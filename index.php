@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 /* 
 PLANTILLA ADMINLTE:
 https://www.adminlte.io/
