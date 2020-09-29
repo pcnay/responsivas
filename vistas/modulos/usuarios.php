@@ -33,7 +33,6 @@
         
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
-
           <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarUsuario">
             Agregar Usuario
           </button>       
@@ -41,7 +40,7 @@
  
         <div class="box-body">
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
-          <!-- Esta clases de "table" son del plugin "bootstrap"-->
+          <!-- Esta clases de "table", "Strip" para desplegar gris, balnco en los renglones. son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
 					<!-- Se coloca "width = 100%" para el navegador Intenet Explorer-->
           <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
@@ -147,7 +146,9 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
     <!-- Modal content-->
     <div class="modal-content">
 
-      <!-- enctype= "multipart/form-data = Para subir archivos. -->
+      <!-- enctype= "multipart/form-data = Para subir archivos. 
+			  formulario de Bootstrap
+			-->
       <form role="form" method="post" enctype= "multipart/form-data">
     
         <!-- La franja azul de la ventana modal -->
@@ -160,6 +161,8 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
         <div class="modal-body">
           <div class="box-body">
             <!-- Clases de BootStrap para las formularios-->
+
+						<!-- Captura de nombre -->
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -167,23 +170,27 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Captura de usaurio  -->		
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
 								<!-- id = "nuevoUsuario" se utiliza en "usuarios.js" para validar que sea único el usuario. -->
+
                 <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder = "Ingresar Usuario" id="nuevoUsuario" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Capturar la contrasena del usuario --> 		
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder = "Ingresar Contraseña" 
-								required>
-								
+								required>								
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Para los perfiles ya estan en un Select los valores son fijos. --> 		
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
@@ -196,6 +203,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Para subir la foto -->			
             <div class="form-group">
               <div class="panel text-up">SUBIR FOTO</div> 
 							<!-- class = "nuevaFoto" : Es un codigo de JavaScript para subir las fotos al sistema.-->
@@ -219,7 +227,8 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
               $crearUsuario = new ControladorUsuarios();
               $crearUsuario->ctrCrearUsuario();
             ?>
-        </form>
+
+        </form> <!-- <form role="form" method="post" enctype= "multipart/form-data"> -->
 
     </div> <!-- <div class="modal-content"> -->
 
