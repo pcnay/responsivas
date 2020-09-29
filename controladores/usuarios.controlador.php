@@ -85,26 +85,27 @@
 							echo '<br><div class="alert alert-danger">El Usuario Aun No esta Activado !!</div>';	
 						} // if ($respuesta["estado"] == 1 )
 
-					}
-					
+					}					
           else
           {
-            echo '<br><div class="alert alert-danger">Error Al Ingresar.</div>';
-            
-          }
-
-
-        }
-
-      }
+            echo '<br><div class="alert alert-danger">Error Al Ingresar.</div>';            
+					} // if (($respuesta["usuario"] == $_POST["ingUsuario"]) && ($respuesta["clave"] == $encriptar))
+					
+				} // if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]))
+				
+      } //if (isset($_POST["ingUsuario"]))
 
     } // public function ctrIngresoUsuario()
 
-		// Registro Usuarios
-		// Se coloca "static" ya que algunos hosting muestra error, por lo que se coloca.
+		
+		// =====================================================
+		// Registrar Usuario.
+		// ====================================================
+
+		// Se coloca "static" ya que algunos hosting  (GoDady) muestra error, por lo que se coloca.
     static public function ctrCrearUsuario()
     {
-			// Valida si esta creada la variable POST "nuevoUsuario", que se encuentra en el formulario; cuando se oprime el boton Submit, se poueden incluir todas del formulario 
+			// Valida si esta creada la variable POST "nuevoUsuario", que se encuentra en el formulario; cuando se oprime el boton Submit, se pueden incluir todas del formulario 
 			//Para poder ejecutar esta funcion. 
 
       if (isset($_POST["nuevoUsuario"]))
@@ -177,7 +178,7 @@
           // Se le llama Capsula, envuelve lo que se quiere encriptar.
 					$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					// Se definen los datos, nombre de la tabla y un arreglo para ser insertado en la base de datos
-          $tabla = "t_Usuario";
+          $tabla = "t_Usuarios";
           $datos = array("nombre"=>$_POST["nuevoNombre"],
                           "usuario"=>$_POST["nuevoUsuario"],
                     	  	 "password"=> $encriptar,

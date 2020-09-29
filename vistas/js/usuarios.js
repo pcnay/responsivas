@@ -1,9 +1,18 @@
 // Se agrega la foto del usuario., viene desde el formulario de captura (vistas/modulos/usuarios.php)
 $(".nuevaFoto").change(function(){
   var imagen = this.files[0]; // propiedad de la etiqueta "File" de JavaScript
-  //console.log("imagen",imagen);
+	// Solo obtiene los datos de la foto.
+	//console.log("imagen",imagen);
 
-  // Validando que el formato de la imagen sea JPE o PNG
+	// Validando que el formato de la imagen sea JPE o PNG
+	/*
+		1 Kbyte -> 1,000 bytes
+		1 Mbyte -> 1,000 Kbytes
+		1 Gbyte -> 1,000 Mbytes
+		1 Tbyte -> 1,000 Gbytes
+
+	*/
+	// Valida que la imagen imagen sea "Jpg", "Png"
   if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png")
   {
     $(".nuevaFoto").val("");
@@ -13,8 +22,7 @@ $(".nuevaFoto").change(function(){
         icon: "error",
         confirmButtonText: "Cerrar"
       });
-  }
-  
+  }  
   else if (imagen["size"] > 2000000) // 2 Mb
   {
     $(".nuevaFoto").val("");
@@ -27,6 +35,8 @@ $(".nuevaFoto").change(function(){
   }
   else
   {
+		// Clase para  lectura de archivo
+		// Iniciando la carga de imagen 
     var datosImagen = new FileReader;
     datosImagen.readAsDataURL(imagen);
     

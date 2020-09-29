@@ -206,7 +206,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						<!-- Para subir la foto -->			
             <div class="form-group">
               <div class="panel text-up">SUBIR FOTO</div> 
-							<!-- class = "nuevaFoto" : Es un codigo de JavaScript para subir las fotos al sistema.-->
+							<!-- class = "nuevaFoto" : Es un codigo de JavaScript para subir las fotos al sistema, ademas cuando se edita se puede utiliar -->
               <input type="file" class="nuevaFoto" name="nuevaFoto">
               <p class="help-block">Peso Máximo de la foto 2 Mb</p>
               <!-- previsualizar = para reemplazar la foto que se va a subir-->

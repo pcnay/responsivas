@@ -35,7 +35,10 @@
 
 		} // static public function mdlMostrarUsuarios($tabla,$item,$valor)
 
-    // Registrar Usuario.
+		
+		// =====================================================
+		// Registrar Usuario.
+		// ====================================================
     static public function mdlIngresarUsuario($tabla,$datos)
     {
       //print_r($datos);
