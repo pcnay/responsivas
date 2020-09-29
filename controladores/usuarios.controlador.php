@@ -15,14 +15,20 @@
           // Este valor  '$2a$07$usesomesillystringforsalt$' es fijo, se utilizar para descriptar e encriptar la clave.
           $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-          $tabla = 't_Usuario';
+          $tabla = 't_Usuarios';
           $item = 'usuario'; // El campo a revisar, para este caso es "usuario"
           $valor = $_POST["ingUsuario"];
-          // Esta forma es para obtener un valor directamente y se almacena en una variable.
-          
-					$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla,$item,$valor);							
+					
+					// Esta forma es para obtener un valor directamente y se almacena en una variable. Es decir que ejecuta y retorna valor inmediatamente.
+          $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla,$item,$valor);							
 
-					if ($respuesta["usuario"] == 'admin')
+					/*
+						Esta forma de ejecucion solo se instancia la clase pero no retorna valor. 
+					$login = new ControladorUsuarios();
+        	$login->ctrIngresoUsuario();
+					*/
+
+ 					if ($respuesta["usuario"] == 'admin')
 					{
 						$encriptar = $respuesta["clave"];
 					}
@@ -75,6 +81,7 @@
 						} // if ($respuesta["estado"] == 1 )
 						else
 						{
+							// Utiliza clases de "bootstrap" para desplegar la franja.
 							echo '<br><div class="alert alert-danger">El Usuario Aun No esta Activado !!</div>';	
 						} // if ($respuesta["estado"] == 1 )
 

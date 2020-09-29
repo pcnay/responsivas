@@ -4,7 +4,8 @@
   class ModeloUsuarios
   {
     // Mostrar usuarios.
-    // "static" debido a que tiene parámetros.
+		// "static" debido a que tiene parámetros.
+		// Algunos servidores requieren que lleve la palabra "static"
     static public function mdlMostrarUsuarios($tabla,$item,$valor)
     {
       //var_dump($tabla);
@@ -12,7 +13,9 @@
 			// Determinar si se quiere un registro o todos.
 			if ($item != null)
 			{
+				// :$item = Es un parametroa enlazar, PDO lo requiere para hacerlo mas seguro.
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+				// Enlazar parametro.
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
 	

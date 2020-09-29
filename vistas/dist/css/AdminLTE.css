@@ -3400,8 +3400,8 @@ table.text-center th {
   left:0;
   width:100%;
   height:100vh;
-  background:url(../../img/plantilla/back.png);
-  background-size:cover;
+  background:url(../../img/plantilla/back.png); /* El fondo de pantalla */
+  background-size:cover; /* Cubre toda la pagina */
   overflow:hidden; /* Cancela los scroll de la pantalla */
   z-index:-1; /* Que no oculte la ventana de login */
 }

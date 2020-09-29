@@ -243,8 +243,12 @@ CREATE TABLE t_Responsivas
 
 /*
 INSERT INTO t_Usuario (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
-  (1,'Usuario Administrador','admin','123','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-*?
+  (1,'Usuario Administrador','admin','1234','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+*/
+
+
+
 
 
 

@@ -22,13 +22,14 @@
       </div>
 
       <div class="row">
-        <!-- /.col -->
+        <!-- Para dispositivo moviles. -->
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
         </div>
         <!-- /.col -->
       </div>
-      <?php 
+			<?php 
+				// Valida si el usuario se encuentra en la base de datos.
         $login = new ControladorUsuarios();
         $login->ctrIngresoUsuario();
 
