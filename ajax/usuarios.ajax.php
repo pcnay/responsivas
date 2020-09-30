@@ -12,14 +12,14 @@
 		public $idUsuario;
 		public function ajaxEditarUsuario()
 		{
-			$item = "id";
+			$item = "id_usuario";
 			$valor = $this->idUsuario;
 			// static public function ctrMostrarUsuarios($item,$valor), se define en "usuarios.controlador"
 			// Para este caso solo se va buscar un solo usuarios, el que se va editar, y obtiene los valores.
 			// Este método requiere tres parámetros, pero se asignan de acuerdo en donde se aplica.
 			$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);  
 			// Retorna el valor (El usuario encontrado) y es pasado a formato JSon.
-			echo json_encode($respuesta); // Este valor es retornado al archivo "usuarios.js" cuando se ejecuta el "Ajax", oara ser asignado en las etiquetas de la forma.
+			echo json_encode($respuesta); // Este valor es retornado al archivo "usuarios.js" cuando se ejecuta el "Ajax", para ser asignado en las etiquetas de la forma.
 		}
 
 		// Activar Usuarios, Cambiarlo de color Rojo a Verde.

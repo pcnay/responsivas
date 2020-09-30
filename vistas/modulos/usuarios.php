@@ -94,11 +94,11 @@
 											if ($value["estado"] != 0)
 											{
 												// Se va a definir una clase "btnActivar" para activar el usuario. El funcionamiento se define en "usuario.js", se agrega el "idUsuario"
-												echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0" >Activado</button></td>';
+												echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id_usuario"].'" estadoUsuario="0" >Activado</button></td>';
 											}
 											else
 											{
-												echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario= "1">Desactivado</button></td>';
+												echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id_usuario"].'" estadoUsuario= "1">Desactivado</button></td>';
 											}											
 
 											echo '<td>'.$value["ultimo_login"].'</td>
@@ -107,9 +107,9 @@
 													<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
 													 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... -->
 													
-													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>
+													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id_usuario"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>
 													<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"-->
-													<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
+													<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id_usuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
 												</div>
 											</td>
 								</tr> ';
@@ -324,8 +324,8 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
           </div>
 					
            <?php 
-              $editarUsuario = new ControladorUsuarios();
-              $editarUsuario->ctrEditarUsuario();
+              //$editarUsuario = new ControladorUsuarios();
+              //$editarUsuario->ctrEditarUsuario();
             ?> 
 
         </form>

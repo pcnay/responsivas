@@ -74,7 +74,9 @@ $(document).on("click",".btnEditarUsuario",function(){
 		dataType:"json",
 		success:function(respuesta)
 		{
-			//console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
+			// Se asigna el valor que viene de las tablas "t_Usuarios", que se obtienen por Ajax.
+			// a las etiquetas de la ventana de "Editar" usuario.
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
 			$("#editarPerfil").html(respuesta["perfil"]); // Es un etiqueta <option>
