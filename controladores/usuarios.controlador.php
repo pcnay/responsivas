@@ -46,7 +46,7 @@
 							// Inicia Session. Se inicia con la creacion de Variables de Sesion.
 							//echo '<br><div class="alert alert-success">Bienvenido al Sistema</div>';
 							$_SESSION["iniciarSesion"] = "ok";
-							$_SESSION["id"] = $respuesta["id"];
+							$_SESSION["id"] = $respuesta["id_usuario"];
 							$_SESSION["nombre"] = $respuesta["nombre"];
 							$_SESSION["usuario"] = $respuesta["usuario"];
 							$_SESSION["foto"] = $respuesta["foto"];
@@ -175,7 +175,12 @@
             
           }
           // '$2a$07$usesomesillystringforsalt$ = Este valor es el sig. parametro de la función es un nivel de encriptacion
-          // Se le llama Capsula, envuelve lo que se quiere encriptar.
+					// Se le llama Capsula, "Salt"  envuelve lo que se quiere encriptar.
+					// "Salt" = Es opcional para la base del Hash. Si no se proporciona el comportamiento se define por la aplicacion y puede coincider a resultados inesperados.
+					// Se utiliza el "Salt" BlowFish para encriptar contrasena.
+					// El segundo parametro es utilizado es el valor utilizado "BlowFish"
+					// Para descriptar se tiene que utilizar el segundo parametro.
+
 					$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					// Se definen los datos, nombre de la tabla y un arreglo para ser insertado en la base de datos
           $tabla = "t_Usuarios";
