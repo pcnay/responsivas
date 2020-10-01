@@ -142,6 +142,8 @@
             // Crear el directorio donde se guardara la foto del usuario
 						$directorio = "vistas/img/usuarios/".$_POST["nuevoUsuario"];
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "usuarios".
+						// Si se tiene un servidor Linux, se tiene que dar permisos 777 totales para este caso es : "/var/www/html/responsivas/vistas/img/usuarios "
+
             mkdir ($directorio,0755);
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
@@ -174,7 +176,8 @@
 
               imagecopyresized($destino,$origen,0,0,0,0,$nuevoAncho,$nuevoAlto,$ancho,$alto);
               // Guardar la foto en la computadora.
-              imagejpeg($destino,$ruta);
+							// imagejpeg($destino,$ruta);
+							imagepng($destino,$ruta);
             }
             
           }
@@ -289,8 +292,6 @@
 
 			if (isset($_POST["editarUsuario"]))
 			{
-				
-
 				if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))						
 				{
 					//echo '<script>alert("Entro a ctrEditarUsuario");</script>';
@@ -298,6 +299,7 @@
 					// De igual forma se suprime "editarUsuario" porque se crean carpetas por cada usuario nuevo por lo que se estaran creando carpetas innecesarias, ocupando espacios en el servidor.
 					
 					// Validar foto
+					// Asigna la ruta de la foto actual.
 					$ruta = $_POST["fotoActual"];
 					//print_r($ruta);
 					//exit;
@@ -329,7 +331,7 @@
 						}
 						else
 						{
-							// Si se tiene un servidor Linux, se tiene que dar permisos 777 totales para este caso es : "/var/www/html/sistema-pos/vistas/img/usuarios "
+							// Si se tiene un servidor Linux, se tiene que dar permisos 777 totales para este caso es : "/var/www/html/responsivas/vistas/img/usuarios "
 							// Si viene vacia.
 							mkdir ($directorio,0755);
 						}
@@ -361,13 +363,13 @@
 							// Ajustar la imagen al tamaño definidos en las variables "$nuevoAncho", y "$nuevoAlto"
 							imagecopyresized($destino,$origen,0,0,0,0,$nuevoAncho,$nuevoAlto,$ancho,$alto);
 							// Guardar la foto en la computadora.
-							imagejpeg($destino,$ruta);
+							imagepng($destino,$ruta);
 						}
 						
 					} // if (isset($_FILES["editarFoto"]["tmp_name"]))
-					// Actualizar los campos en la base de datos
-
-					$tabla = "t_Usuario";
+					
+					// Encriptar la nueva contraseña, antes de grabarla 					
+					$tabla = "t_Usuarios";
 					if ($_POST["editarPassword"] != "") // Tiene información, se cambiara la clave
 					{
 						if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["editarPassword"])) // Valida  la nueva contraseña que solo tengan letras y numeros.
@@ -386,7 +388,7 @@
 									}).then((result)=>{
 										if (result.value)
 										{
-											window.location="categorias";
+											window.location="usuarios";
 										}
 
 										});
@@ -409,7 +411,7 @@
 							"perfil"=>$_POST["editarPerfil"],
 							"ruta" =>$ruta );
 					
-							var_dump ($datos);
+							//var_dump ($datos);
 
 					// Grabar la información en la tabla de la base de datos.
 					$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla,$datos);
@@ -419,7 +421,7 @@
 						echo '<script>							
 							Swal.fire ({
 								type: "success",
-								title: "El usuario ha sido guardado correctamente ",
+								title: "El usuario ha sido editado correctamente ",
 								showConfirmButton: true,
 								confirmButtonText: "Cerrar",
 								closeOnConfirm: false

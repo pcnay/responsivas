@@ -30,10 +30,10 @@
 		public function ajaxActivarUsuario()
 		{
 			// Accesa directamente al modelo, para actualizar el "estado" del usuario.
-			$tabla = 't_Usuario';
+			$tabla = 't_Usuarios';
 			$item1 = "estado";
 			$valor1 = $this->activarUsuario; // esta valor lo obtiene al instanciar la clase.
-			$item2 = 'id';
+			$item2 = 'id_usuario';
 			$valor2 = $this->activarId;		
 
 			$repuesta = ModeloUsuarios::mdlActualizarUsuario($tabla,$item1,$valor1,$item2,$valor2);

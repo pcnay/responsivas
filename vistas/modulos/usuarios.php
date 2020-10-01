@@ -1,5 +1,5 @@
 <?php
-	// El Usuario no puede entrar a Categorias
+	// El Usuario administrador solo puede entrar a esta ventana 
 	if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" )
 	{
 		echo '
@@ -324,8 +324,8 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
           </div>
 					
            <?php 
-              //$editarUsuario = new ControladorUsuarios();
-              //$editarUsuario->ctrEditarUsuario();
+              $editarUsuario = new ControladorUsuarios();
+              $editarUsuario->ctrEditarUsuario();
             ?> 
 
         </form>

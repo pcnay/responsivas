@@ -65,7 +65,9 @@
       $stmt = null; 
 		}
 		
+		// ==============================================
 		// EDITAR USUARIO:
+		// =============================================
 		static public function mdlEditarUsuario($tabla,$datos)
 		{
 			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, clave = :password, perfil = :perfil, foto = :foto WHERE usuario = :usuario");
