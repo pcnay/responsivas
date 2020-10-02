@@ -334,7 +334,7 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> -->
+</div> <!-- <div id="modalEditarUsuario" class="modal fade" role="dialog"> -->
 
 <?php
 	// Este método se esta ejecutando siempre, pero se realiza el borrado cuando se origina la variable global "$_GET["idUsuario"] en Usuarios.controlador.php -> ctrBorrarUsuario()

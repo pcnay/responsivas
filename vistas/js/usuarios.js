@@ -105,16 +105,18 @@ echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value
 //$(".btnActivar").click(function(){
 
 $(document).on("click",".btnActivar",function(){		
+	// Obtiene los valores de las etiquetas del formulario de Mostrar Usuarios.
 	var idUsuario = $(this).attr("idUsuario");
 	var estadoUsuario = $(this).attr("estadoUsuario");
 
-	// Usando Ajax Hara la actualizacion para la base de datos.
+	// Usando Ajax realizara la actualizacion para la base de datos.
 	var datos = new FormData();
 
 	// Estos valores se pasan como parametros POST["activarId"], POST["activarUsuario"]  para "usuarios.ajax.php"
 	datos.append("activarId",idUsuario);
 	datos.append("activarUsuario",estadoUsuario);
 
+	// Se pasaran estos parámetros POST
 	$.ajax
 	({
 		url:"ajax/usuarios.ajax.php",
@@ -149,6 +151,7 @@ $(document).on("click",".btnActivar",function(){
 	// Cambiando el color del boton, una vez que se haya actualizado en la base de datos.
 	if(estadoUsuario == 0)
 	{
+		// Se remueve la etiqueta donde le asigna el color, se coloca nuevo texto.
 		$(this).removeClass('btn-success');
 		$(this).addClass('btn-danger');
 		$(this).html('Desactivado');
