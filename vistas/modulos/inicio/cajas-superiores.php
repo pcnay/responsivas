@@ -2,9 +2,9 @@
 	$ventas = ControladorVentas::ctrSumaTotalVentas();
 	$item = null;
 	$valor = null;
-	$categorias = ControladorCategorias::ctrMostrarCategorias($item,$valor);
-	// var_dump($categorias);
-	$totalCategorias = count($categorias);
+	$perifericos = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
+	// var_dump($Perifericos);
+	$totalPerifericos = count($perifericos);
 
 	$clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
 	$totalClientes = count($clientes);
@@ -36,14 +36,14 @@
 		<!-- small box -->
 		<div class="small-box bg-green">
 			<div class="inner">
-				<h3><?php echo number_format($totalCategorias); ?></h3>
+				<h3><?php echo number_format($totalPerifericos); ?></h3>
 
-				<p>Categorias</p>
+				<p>Perifericos</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-clipboard"></i>
 			</div>
-			<a href="categorias" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
+			<a href="perifericos" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
 	<!-- ./col -->

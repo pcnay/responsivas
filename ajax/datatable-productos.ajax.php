@@ -5,8 +5,8 @@
 	require_once "../controladores/productos.controlador.php";
 	require_once "../modelos/productos.modelo.php";
 
-	require_once "../controladores/categorias.controlador.php";
-	require_once "../modelos/categorias.modelo.php";
+	require_once "../controladores/perifericos.controlador.php";
+	require_once "../modelos/perifericos.modelo.php";
 
 	class TablaProductos
 	{

@@ -1,10 +1,12 @@
 <?php
 	require_once "conexion.php";
-	class ModeloCategorias
+	class ModeloPerifericos
 	{
-		// Crear Categoria.
-		static public function mdlIngresarCategoria($tabla,$datos)
+		// Crear Periferico.
+		static public function mdlIngresarPeriferico($tabla,$datos)
 		{
+			// Para el "id_periferico" se agrega de forma ascedente de forma automatica
+			// Para el campo "fecha" sea asigna tambien de forma automatica ya que esta configurado en la base de datos.
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
 			$stmt->bindParam(":nombre",$datos,PDO::PARAM_STR); 
 			if ($stmt->execute())
@@ -18,15 +20,16 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlIngresarCategoria($tabla,$datos)
+		} // static public function mdlIngresarPerifico($tabla,$datos)
 
-		// ======================================================================================
-		// EDITAR Categoria.
-		static public function mdlEditarCategoria($tabla,$datos)
+		// ======================================================
+		// EDITAR Periferico.
+		// ======================================================
+		static public function mdlEditarPeriferico($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre WHERE id = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre WHERE id_periferico = :id");
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR); 
-			$stmt->bindParam(":id",$datos["id"],PDO::PARAM_STR); 
+			$stmt->bindParam(":id",$datos["id_periferico"],PDO::PARAM_STR); 
 
 			if ($stmt->execute())
 			{
@@ -39,13 +42,14 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlEditarCategoria($tabla,$datos)
+		} // static public function mdlEditarPeriferico($tabla,$datos)
 
-		// ======================================================================================
-		// BORRAR Categoria.
-		static public function mdlBorrarCategorias($tabla,$datos)
+		// ==============================================
+		// BORRAR Periferico.
+		// ==============================================
+		static public function mdlBorrarPeriferico($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_periferico = :id");
 			
 		 	$stmt->bindParam(":id",$datos,PDO::PARAM_INT); 
 
@@ -60,13 +64,13 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlBorrarCategorias($tabla,$datos)
+		} // static public function mdlBorrarPeriferico($tabla,$datos)
 
 
 
-		// Mostrar Categorias.
+		// Mostrar Periferico.
     // "static" debido a que tiene parámetros.
-    static public function mdlMostrarCategorias($tabla,$item,$valor)
+    static public function mdlMostrarPerifericos($tabla,$item,$valor)
     {
       //var_dump($tabla);
 			//exit;
@@ -91,9 +95,9 @@
 			$stmt->close();
 			$stmt = null; 
 
-		} // static public function mdlMostrarCategorias($tabla,$item,$valor)
+		} // static public function mdlMostrarPerifericos($tabla,$item,$valor)
 
 
-	} // class ModeloCategorias
+	} // class ModeloPerifericos
 
 ?>

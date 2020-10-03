@@ -15,12 +15,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Categorías
+        Administrar Perifericos
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Categorías</li>
+        <li class="active">Administrar Perifericos</li>
       </ol>
     </section>
 
@@ -33,8 +33,8 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarCategoria">
-            Agregar Categorias
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPerifericos">
+            Agregar Perifericos
           </button>       
         </div>
  
@@ -46,7 +46,8 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Categorias</th>
+                <th>Periferico</th>
+								<th>Fecha</th>
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -59,10 +60,10 @@
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$categorias = ControladorCategorias::ctrMostrarCategorias($item,$valor);
+								$perifericos = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
 								// Probando mostrando lo que contiene la variable "$categoria"
 								// var_dump($categorias);
-								foreach ($categorias as $key => $value)
+								foreach ($perifericos as $key => $value)
 								{
 									echo '
 												<tr>
@@ -72,13 +73,13 @@
 													<td class="text-uppercase">'.$value["nombre"].'</td>									
 													<td>
 														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarCategoria" para activar una ventana modal -->
-															<!-- "btnEditarCategoria" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>';
+															<!-- data-toggle="modal" data-target="#modalEditarPeriferico" para activar una ventana modal -->
+															<!-- "btnEditarPeriferico" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarPeriferico" idPeriferico="'.$value["id_periferico"].'" data-toggle="modal" data-target="#modalEditarPeriferico"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
-																echo '<!-- Se pasa btnEliminarCategoria, idCategoria="'.$value["id"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+																echo '<!-- Se pasa btnEliminarPeriferico, idPeriferico="'.$value["id_periferico"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarPeriferico" idPeriferico="'.$value["id_periferico"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>
@@ -109,7 +110,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarCategoria" class="modal fade" role="dialog">
+<div id="modalAgregarPeriferico" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -121,7 +122,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Categoria</h4>
+          <h4 class="modal-title">Agregar Periferico</h4>
         </div>
 
 
@@ -131,7 +132,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder = "Ingresar Categoria" id="nuevaCategoria" required>
+                <input type="text" class="form-control input-lg" name="nuevoPeriferico" placeholder = "Ingresar Periferico" id="nuevoPeriferico" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -143,13 +144,13 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+            <button type="submit" class="btn btn-primary">Guardar Periferico</button>
           </div>
 
 					<?php 
 						// Para grabar la categoria.
-						$crearCategoria = new ControladorCategorias();
-						$crearCategoria->ctrCrearCategoria();
+						$crearPeriferico = new ControladorPerifericos();
+						$crearPeriferico->ctrCrearPeriferico();
 					?>
 
       </form>
@@ -158,15 +159,17 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarPeriferico" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Periferico" se activa esta ventana.
 -->
-
-<!-- Modal Editar Categoría .-->
-<div id="modalEditarCategoria" class="modal fade" role="dialog">
+<!-- ================================================
+	 Modal Editar Periferico 
+	====================================================
+-->
+<div id="modalEditarPeriferico" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -178,7 +181,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Categoría</h4>
+          <h4 class="modal-title">Editar Periferico</h4>
         </div>
 
 
@@ -188,9 +191,9 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarCategoria"  id="editarCategoria" required>
+                <input type="text" class="form-control input-lg" name="editarPeriferico"  id="editarPeriferico" required>
 								<!-- Se envía como campo oculto para enviar el "id" de la categoría -->
-								<input type="hidden"  name="idCategoria"  id="idCategoria" required>
+								<input type="hidden"  name="idPeriferico"  id="idPeriferico" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -207,8 +210,8 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 
 					<?php 
 						// Para grabar la modifiacion de categoria.
-						$editarCategoria = new ControladorCategorias();
-						$editarCategoria->ctrEditarCategoria();
+						$editarPeriferico = new ControladorPerifericos();
+						$editarPeriferico->ctrEditarPeriferico();
 					?>
 
       </form>
@@ -217,11 +220,14 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalEditarCategoria" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalEditarPeriferico" class="modal fade" role="dialog"> --> 
 
 <?php 
-	// Para borrar la categoria.
+
+	// =====================================================
+	// Para borrar un Periferico.
+	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarCategoria = new ControladorCategorias();
-	$borrarCategoria->ctrBorrarCategoria();
+	$borrarPeriferico = new ControladorPerifericos();
+	$borrarPeriferico->ctrBorrarPeriferico();
 ?>

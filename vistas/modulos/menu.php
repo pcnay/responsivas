@@ -25,11 +25,11 @@
 				}
 				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial")
 				{
-					echo ' <!-- Manejando las categorias -->
-							<li class="categorias">
-								<a href="categorias">
+					echo ' <!-- Manejando las perifericos -->
+							<li class="perifericos">
+								<a href="perifericos">
 									<i class="fa fa-th"></i>
-									<span>Categorias </span>           
+									<span>Perifericos </span>           
 								</a>
 							</li>
 

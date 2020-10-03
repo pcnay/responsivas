@@ -129,7 +129,7 @@
         // Generando las URL Amigables., cuando se teclea en la barra de direcciones o cuando se seleccione el icono "inicio" o tras rutas.
         if (isset($_GET["ruta"]))
         {
-          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="categorias" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
+          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
           {
             include "modulos/".$_GET["ruta"].".php";
           }
@@ -162,7 +162,7 @@
 	<!-- Agregar las fotografias de los usuarios del sistema -->
 	<script src="vistas/js/usuarios.js"></script>
 	<!-- Agregar las capturas, ediciones y validaciones para las categorias -->
-	<script src="vistas/js/categorias.js"></script>
+	<script src="vistas/js/perifericos.js"></script>
 	<!-- Agregar las capturas, ediciones y validaciones para los Productos -->
 	<script src="vistas/js/productos.js"></script>
 	<!-- se edita los Clientes -->

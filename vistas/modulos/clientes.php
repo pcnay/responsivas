@@ -1,5 +1,5 @@
 <?php
-	// El vendedor no puede entrar a Categorias
+	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Especial")
 	{
 		echo '
