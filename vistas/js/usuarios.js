@@ -188,7 +188,7 @@ $("#nuevoUsuario").change(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			// console.log("respuesta",respuesta);
+			//console.log("respuesta",respuesta);
 			// Si "respuesta = Valor, Verdadero "
 			if (respuesta)
 			{
@@ -204,15 +204,14 @@ $("#nuevoUsuario").change(function(){
 })
 
 
+// ================================================
 // Eliminar USUARIO.
-
-
+// =================================================
 // $(".btnEliminarUsuario").click(function (){
 	// Cuando el documento ya este cargado, busque en cualquier momento la clase ".btnEditarUsuario", por lo que no importa si al cargar la primera vez no se haya creado esta clase, pero al hacer click en la clase se ejecutara esta funcion.  
 	$(document).on("click",".btnEliminarUsuario",function()
 	{	
-
-		// Obteniendo los valores de "idUsuario" y "fotoUsuario"
+		// Obteniendo los valores de "idUsuario" y "fotoUsuario", son los capturados desde usuario.php en los registros que se muestran 
 		var idUsuario = $(this).attr("idUsuario");
 		var fotoUsuario = $(this).attr("fotoUsuario");
 		var usuario = $(this).attr("usuario");

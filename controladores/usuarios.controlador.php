@@ -190,7 +190,12 @@
 
 					$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					// Se definen los datos, nombre de la tabla y un arreglo para ser insertado en la base de datos
-          $tabla = "t_Usuarios";
+					$tabla = "t_Usuarios";
+					if (empty($_POST["nuevoPerfil"]))
+					{
+						$_POST["nuevoPerfil"] = 'Vendedor';
+					}
+
           $datos = array("nombre"=>$_POST["nuevoNombre"],
                           "usuario"=>$_POST["nuevoUsuario"],
                     	  	 "password"=> $encriptar,
@@ -463,7 +468,10 @@
 
 		} // static public function ctrEditarUsuario()
 
+
+		// ========================================
 		// Borrar Usuario
+		// =======================================
 		static public function ctrBorrarUsuario()
 		{
 			// Si esta esta variable global tipo GET "idUsuario" es porque se va a borrar el usuario.
@@ -474,7 +482,7 @@
 
 			if (isset($_GET["idUsuario"]))			
 			{
-				$tabla = "t_Usuario";
+				$tabla = "t_Usuarios";
 				$datos = $_GET["idUsuario"];
 
 				// Viene con foto
