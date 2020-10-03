@@ -36,13 +36,14 @@
 			$item2 = 'id_usuario';
 			$valor2 = $this->activarId;		
 
-			$repuesta = ModeloUsuarios::mdlActualizarUsuario($tabla,$item1,$valor1,$item2,$valor2);
+			$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla,$item1,$valor1,$item2,$valor2);
 
 		}
 
 		public $validarUsuario;
 
 		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		// 
 		public function ajaxValidarUsuario()
 		{
 			$item = "usuario";

@@ -175,6 +175,7 @@ $("#nuevoUsuario").change(function(){
 	// Obtienedo el valor del id=nuevoUsuario.
 	var usuario = $(this).val();
 	//console.log ("usuario desde la etiqueta ",usuario);
+	
 	// Obtener datos de la base de datos
 	var datos = new FormData();
 	datos.append("validarUsuario",usuario);
@@ -192,6 +193,7 @@ $("#nuevoUsuario").change(function(){
 			if (respuesta)
 			{
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				// "parent" sale del "div" y se coloca fuera del recuadro.
 				$("#nuevoUsuario").parent().after('<div class="alert alert-warning" >Este Usuario Ya Existe </div>');
 				$("#nuevoUsuario").val("");
 			}
