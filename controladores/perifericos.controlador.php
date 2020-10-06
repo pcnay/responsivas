@@ -24,8 +24,12 @@
 				{
 					// Enviar la información al Modelo.
 					$tabla = "t_Periferico";
-					$datos = $_POST["nuevoPeriferico"];
+
+					$datos=array();									
+					$datos = array("nuevoPeriferico"=>$_POST["nuevoPeriferico"]);
+
 					$respuesta = ModeloPerifericos::mdlIngresarPeriferico($tabla,$datos);
+
 					if ($respuesta == "ok")
 					{
 						echo '<script>           

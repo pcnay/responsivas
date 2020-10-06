@@ -7,8 +7,13 @@
 		{
 			// Para el "id_periferico" se agrega de forma ascedente de forma automatica
 			// Para el campo "fecha" sea asigna tambien de forma automatica ya que esta configurado en la base de datos.
+
+			//var_dump($datos);
+			//exit;
+
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
-			$stmt->bindParam(":nombre",$datos,PDO::PARAM_STR); 
+			$stmt->bindParam(":nombre",$datos["nuevoPeriferico"],PDO::PARAM_STR); 
+			
 			if ($stmt->execute())
 			{
 				return "ok";				

@@ -1,5 +1,5 @@
 <?php
-	// El vendedor no puede entrar a Categorias
+	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
 		echo '
@@ -33,7 +33,7 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPerifericos">
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPeriferico">
             Agregar Perifericos
           </button>       
         </div>
@@ -70,7 +70,8 @@
 													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
 													<td>'.($key+1).'</td>
 													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["nombre"].'</td>									
+													<td class="text-uppercase">'.$value["nombre"].'</td>		
+													<td>'.$value["fecha"].'</td>									
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarPeriferico" para activar una ventana modal -->

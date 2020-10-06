@@ -161,7 +161,7 @@
 	<script src="vistas/js/plantilla.js"></script>
 	<!-- Agregar las fotografias de los usuarios del sistema -->
 	<script src="vistas/js/usuarios.js"></script>
-	<!-- Agregar las capturas, ediciones y validaciones para las categorias -->
+	<!-- Agregar las capturas, ediciones y validaciones para las perifericos -->
 	<script src="vistas/js/perifericos.js"></script>
 	<!-- Agregar las capturas, ediciones y validaciones para los Productos -->
 	<script src="vistas/js/productos.js"></script>

@@ -19,7 +19,7 @@ $(".btnEditarPeriferico").click(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			// console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarPeriferico" class="modal fade" role="dialog">, "perifericos.php", se le asigna el valor que se retorno el Ajax.
 			$("#editarPeriferico").val(respuesta["nombre"]);
 			$("#idPeriferico").val(respuesta["id_periferico"]); // viene desde el campo oculto de <input type="hidden"  name="idPeriferico"  id="idPeriferico" required>
@@ -47,7 +47,7 @@ $("#nuevoPeriferico").change(function(){
 	// Genera 
 	datos.append("validarPeriferico",periferico);
 	$.ajax({
-		url:"ajax/periferico.ajax.php",
+		url:"ajax/perifericos.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
