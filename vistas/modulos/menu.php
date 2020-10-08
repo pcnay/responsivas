@@ -21,83 +21,173 @@
 									<i class="fa fa-user"></i>
 									<span>Usuarios</span>           
 								</a>
-							</li>';
-				}
-				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial")
-				{
-					echo ' <!-- Manejando las perifericos -->
-							<li class="perifericos">
-								<a href="perifericos">
-									<i class="fa fa-th"></i>
-									<span>Perifericos </span>           
-								</a>
 							</li>
 
-							<!-- Manejando los Productos -->
-							<li class="">
-								<a href="productos">
-									<i class="fa fa-product-hunt"></i>
-									<span>Productos</span>           
-								</a>
-							</li> ';
-				} 
-				
-				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor")
-				{
-					echo '<!-- Manejando los Clientes  -->
-						<li class="">
-							<a href="clientes">
-								<i class="fa fa-users"></i>
-								<span>Clientes</span>           
-							</a>
-						</li>';
-				}
-
-				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor")
-				{			 
-       		echo ' <!-- Permite realizar una botonera en Arbol, para que tenga un menú desplegable 
-        -->
-						<li class="treeview">
-								<a href="#">
+							<li class="treeview">
+								<a href="empleados">
 									<i class="fa fa-list-ul"></i>
-									<span>Ventas</span>
+									<span>Capturar Empleados</span>
 									<span class="pull-right-container">
 										<i class="fa fa-angle-left pull-right"></i>
 									</span>           
-								</a>
-				
+								</a>						
 
-								<ul class="treeview-menu">
-									<li>
-										<a href="ventas">
-											<i class="fa fa-circle-o"></i>
-											<span>Administrar Venta</span>
-										</a>
-									</li>
+									<ul class="treeview-menu">
+										<li>
+											<a href="ubicacion">
+												<i class="fa fa-circle-o"></i>
+												<span>Ubicacion</span>
+											</a>
+										</li>
 
-									<li>
-										<a href="crear-venta">
-											<i class="fa fa-circle-o"></i>
-											<span>Crear Venta</span>
-										</a>
-									</li> ';
+										<li>
+											<a href="supervisor">
+												<i class="fa fa-circle-o"></i>
+												<span>Supervisor</span>
+											</a>
+										</li> 
+
+										<li>
+											<a href="depto">
+												<i class="fa fa-circle-o"></i>
+												<span>Departamento</span>
+											</a>
+										</li> 
+										<li>
+											<a href="puesto">
+												<i class="fa fa-circle-o"></i>
+												<span>Puesto</span>
+											</a>
+										</li> 
+
+
+									</ul>
+							</li>';
 				}
 
+
+				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial")
+				{
+					echo '
+					<li class="treeview">
+						<a href="productos">
+							<i class="fa fa-list-ul"></i>
+							<span>Productos</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>           
+						</a>						
+
+						<ul class="treeview-menu">
+							<li>
+								<a href="perifericos">
+									<i class="fa fa-circle-o"></i>
+									<span>Perifericos</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="almacen">
+									<i class="fa fa-circle-o"></i>
+									<span>Almacen</span>
+								</a>
+							</li> 
+
+							<li>
+								<a href="edo_epo">
+									<i class="fa fa-circle-o"></i>
+									<span>Estado Epo</span>
+								</a>
+							</li> 
+							<li>
+								<a href="marca">
+									<i class="fa fa-circle-o"></i>
+									<span>Marca</span>
+								</a>
+							</li> 
+							<li>
+								<a href="modelo">
+									<i class="fa fa-circle-o"></i>
+									<span>Modelo</span>
+								</a>
+							</li> 
+							<li>
+								<a href="idf">
+									<i class="fa fa-circle-o"></i>
+									<span>idf</span>
+								</a>
+							</li> 
+							<li>
+								<a href="patch_panel">
+									<i class="fa fa-circle-o"></i>
+									<span>Patch Panel</span>
+								</a>
+							</li> 
+							<li>
+								<a href="puerto">
+									<i class="fa fa-circle-o"></i>
+									<span>Puerto</span>
+								</a>
+							</li> 
+							<li>
+								<a href="capturar-producto">
+									<i class="fa fa-circle-o"></i>
+									<span>Alta Producto</span>
+								</a>
+							</li> 
+
+						</ul>
+					</li>	';			
+				} 
+				
 				if ($_SESSION["perfil"] == "Administrador")
 				{
 					echo '
-						<li>
-              <a href="reportes">
-                <i class="fa fa-circle-o"></i>
-                <span>Reporte De Venta</span>
-              </a>
-						</li>';
-				}
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-list-ul"></i>
+							<span>Reportes</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>           
+						</a>						
+
+						<ul class="treeview-menu">
+							<li>
+								<a href="rep-empleados">
+									<i class="fa fa-circle-o"></i>
+									<span>Empleados</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="rep-usuarios">
+									<i class="fa fa-circle-o"></i>
+									<span>Usuarios</span>
+								</a>
+							</li> 
+
+							<li>
+								<a href="rep-productos">
+									<i class="fa fa-circle-o"></i>
+									<span>Productos</span>
+								</a>
+							</li> 
+							<li>
+								<a href="rep-responsivas">
+									<i class="fa fa-circle-o"></i>
+									<span>Responsivas</span>
+								</a>
+							</li> 
+
+						</ul>
+					</li>	';			
+				} 
 
 
-			echo '</ul> <!-- <ul class="treeview-menu"> --> 
+			// echo '</ul> <!-- <ul class="treeview-menu"> --> 
 
-				</li> <!-- <li class="treeview"> -->  '
+				//<!-- </li> <li class="treeview"> -->  '
 			
 			?>
 
