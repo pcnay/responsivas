@@ -100,7 +100,7 @@
 								</a>
 							</li> 
 							<li>
-								<a href="marca">
+								<a href="marcas">
 									<i class="fa fa-circle-o"></i>
 									<span>Marca</span>
 								</a>
