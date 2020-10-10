@@ -10,7 +10,7 @@
 			//var_dump($datos);
 			//exit;
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:descripcion)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:descripcion)");
 			$stmt->bindParam(":descripcion",$datos["nuevaMarca"],PDO::PARAM_STR); 
 			
 			if ($stmt->execute())

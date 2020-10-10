@@ -1,4 +1,3 @@
-
 // =======================================
 // Editar Marcas:
 // ======================================
@@ -19,7 +18,7 @@ $(".btnEditarMarca").click(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			//console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarMarca" class="modal fade" role="dialog">, "marcas.php", se le asigna el valor que se retorno el Ajax.
 			$("#editarMarca").val(respuesta["descripcion"]);
 			$("#idMarca").val(respuesta["id_marca"]); // viene desde el campo oculto de <input type="hidden"  name="idMarca"  id="idMarca" required>

@@ -28,6 +28,9 @@
 			$item = "id_marca";
 			$valor = $this->idMarca;
 			$respuesta = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+			//var_dump($respuesta);
+			//exit;
+
 			echo json_encode($respuesta);
 		}
 

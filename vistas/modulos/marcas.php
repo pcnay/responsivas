@@ -61,7 +61,7 @@
 								$valor = null;
 								$marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
 								// Probando mostrando lo que contiene la variable "$marcas"
-								// var_dump($categorias);
+								// var_dump($marcas);
 								foreach ($marcas as $key => $value)
 								{
 									echo '
@@ -208,7 +208,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
           </div>
 
 					<?php 
-						// Para grabar la modifiacion de categoria.
+						// Para grabar la modifiacion de Marca.
 						$editarMarca = new ControladorMarcas();
 						$editarMarca->ctrEditarMarca();
 					?>

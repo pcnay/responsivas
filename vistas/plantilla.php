@@ -170,7 +170,7 @@
 	<!-- se muestra los productos en el modulo Crear Venta  -->
 	<script src="vistas/js/ventas.js"></script>
 	<!-- se muestra las Marcas  -->
-	<script src="vistas/js/marca.js"></script>
+	<script src="vistas/js/marcas.js"></script>
 	<!-- Es para los reportes que se utilizaran en el sistema  -->
 	<script src="vistas/js/reportes.js"></script>	
 
