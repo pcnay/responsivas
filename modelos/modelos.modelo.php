@@ -1,17 +1,17 @@
 <?php
 	require_once "conexion.php";
-	class ModeloMarcas
+	class ModeloModelos
 	{
-		// Crear Marca.
-		static public function mdlIngresarMarca($tabla,$datos)
+		// Crear Modelo
+		static public function mdlIngresarModelo($tabla,$datos)
 		{
-			// Para el "id_marca" se agrega de forma ascedente de forma automatica
+			// Para el "id_modelo" se agrega de forma ascedente de forma automatica
 			
 			//var_dump($datos);
 			//exit;
 
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:descripcion)");
-			$stmt->bindParam(":descripcion",$datos["nuevaMarca"],PDO::PARAM_STR); 
+			$stmt->bindParam(":descripcion",$datos["nuevoModelo"],PDO::PARAM_STR); 
 			
 			if ($stmt->execute())
 			{
@@ -24,16 +24,16 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlIngresarMarca($tabla,$datos)
+		} // static public function mdlIngresarModelo($tabla,$datos)
 
 		// ======================================================
-		// Editar Marca.
+		// Editar Modelo.
 		// ======================================================
-		static public function mdlEditarMarca($tabla,$datos)
+		static public function mdlEditarModelo($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE id_marca = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE id_modelo = :id");
 			$stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR); 
-			$stmt->bindParam(":id",$datos["id_marca"],PDO::PARAM_STR); 
+			$stmt->bindParam(":id",$datos["id_modelo"],PDO::PARAM_STR); 
 
 			if ($stmt->execute())
 			{
@@ -46,14 +46,14 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlEditarMarca($tabla,$datos)
+		} // static public function mdlEditarModelo($tabla,$datos)
 
 		// ==============================================
-		// Editar Marca.
+		// Editar Modelo.
 		// ==============================================
-		static public function mdlBorrarMarca($tabla,$datos)
+		static public function mdlBorrarModelo($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_marca = :id");
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_modelo = :id");
 			
 		 	$stmt->bindParam(":id",$datos,PDO::PARAM_INT); 
 
@@ -68,13 +68,13 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlBorrarMarca($tabla,$datos)
+		} // static public function mdlBorrarModelo($tabla,$datos)
 
 
 
-		// Mostrar Marca.
+		// Mostrar Modelo.
     // "static" debido a que tiene parámetros.
-    static public function mdlMostrarMarcas($tabla,$item,$valor)
+    static public function mdlMostrarModelos($tabla,$item,$valor)
     {
       //var_dump($tabla);
 			//exit;
@@ -99,9 +99,9 @@
 			$stmt->close();
 			$stmt = null; 
 
-		} // static public function mdlMostrarMarcas($tabla,$item,$valor)
+		} // static public function mdlMostrarModelos($tabla,$item,$valor)
 
 
-	} // class ModeloMarcas
+	} // class ModeloModelos
 
 ?>

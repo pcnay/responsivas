@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Inventory System | Blank Page</title>
+  <title>Sistema de Responsivas | Blank Page</title>
 
   <!-- Plugins de JavaScript -->
   
@@ -129,7 +129,8 @@
         // Generando las URL Amigables., cuando se teclea en la barra de direcciones o cuando se seleccione el icono "inicio" o tras rutas.
         if (isset($_GET["ruta"]))
         {
-          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
+					print_r($_GET["ruta"]);
+          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
           {
             include "modulos/".$_GET["ruta"].".php";
           }
@@ -171,6 +172,8 @@
 	<script src="vistas/js/ventas.js"></script>
 	<!-- se muestra las Marcas  -->
 	<script src="vistas/js/marcas.js"></script>
+	<!-- se muestra los Modelos  -->
+	<script src="vistas/js/modelos.js"></script>
 	<!-- Es para los reportes que se utilizaran en el sistema  -->
 	<script src="vistas/js/reportes.js"></script>	
 

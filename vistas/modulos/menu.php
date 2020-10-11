@@ -106,9 +106,9 @@
 								</a>
 							</li> 
 							<li>
-								<a href="modelo">
+								<a href="Modelos">
 									<i class="fa fa-circle-o"></i>
-									<span>Modelo</span>
+									<span>Modelos</span>
 								</a>
 							</li> 
 							<li>
