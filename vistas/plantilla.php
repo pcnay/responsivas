@@ -130,7 +130,7 @@
         if (isset($_GET["ruta"]))
         {
 					print_r($_GET["ruta"]);
-          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
+          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="ubicacion" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
           {
             include "modulos/".$_GET["ruta"].".php";
           }
@@ -174,7 +174,10 @@
 	<script src="vistas/js/marcas.js"></script>
 	<!-- se muestra los Modelos  -->
 	<script src="vistas/js/modelos.js"></script>
-	<!-- Es para los reportes que se utilizaran en el sistema  -->
+	<!-- se muestra la Ubicacion  -->
+	<script src="vistas/js/ubicacion.js"></script>
+
+	<!-- Es para los reportes que se utilizaran en el sistema  -->	
 	<script src="vistas/js/reportes.js"></script>	
 
 </body>
