@@ -7,7 +7,7 @@ $(".btnEditarUbicacion").click(function(){
 
 	// Para agregar datos 
 	var datos = new FormData();
-	datos.append("idUbicacion",idMarca); // Se crea la variable "POST", "idUbicacion"
+	datos.append("idUbicacion",idUbicacion); // Se crea la variable "POST", "idUbicacion"
 
 	$.ajax({
 		url:"ajax/ubicaciones.ajax.php",
@@ -18,7 +18,7 @@ $(".btnEditarUbicacion").click(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			//console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarUbicacion" class="modal fade" role="dialog">, "ubicaciones.php", se le asigna el valor que se retorno el Ajax.
 			$("#editarUbicacion").val(respuesta["descripcion"]);
 			$("#idUbicacion").val(respuesta["id_ubicacion"]); // viene desde el campo oculto de <input type="hidden"  name="idUbicacion"  id="idUbicacion" required>

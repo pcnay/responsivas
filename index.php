@@ -103,7 +103,8 @@ require_once "controladores/usuarios.controlador.php";
 require_once "controladores/ventas.controlador.php";
 require_once "controladores/marcas.controlador.php";
 require_once "controladores/modelos.controlador.php";
-require_once "controladores/ubicacion.controlador.php";
+require_once "controladores/ubicaciones.controlador.php";
+require_once "controladores/supervisores.controlador.php";
 
 require_once "modelos/perifericos.modelo.php";
 require_once "modelos/clientes.modelo.php";
@@ -112,7 +113,8 @@ require_once "modelos/usuarios.modelo.php";
 require_once "modelos/ventas.modelo.php";
 require_once "modelos/marcas.modelo.php";
 require_once "modelos/modelos.modelo.php";
-require_once "modelos/ubicacion.modelo.php";
+require_once "modelos/ubicaciones.modelo.php";
+require_once "modelos/supervisores.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();

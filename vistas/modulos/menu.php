@@ -34,7 +34,7 @@
 
 									<ul class="treeview-menu">
 										<li>
-											<a href="ubicacion">
+											<a href="ubicaciones">
 												<i class="fa fa-circle-o"></i>
 												<span>Ubicacion</span>
 											</a>
