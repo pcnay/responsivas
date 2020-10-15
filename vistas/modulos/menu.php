@@ -41,7 +41,7 @@
 										</li>
 
 										<li>
-											<a href="supervisor">
+											<a href="supervisores">
 												<i class="fa fa-circle-o"></i>
 												<span>Supervisor</span>
 											</a>
