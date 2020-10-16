@@ -16,7 +16,7 @@
 
 
 		// Crear Supervisor.
-		static public function ctrCrearSupevisores()
+		static public function ctrCrearSupervisores()
     {
 			if (isset($_POST["nuevoSupervisor"]))
 			{

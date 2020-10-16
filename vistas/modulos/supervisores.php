@@ -73,7 +73,7 @@
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarSupervisor" para activar una ventana modal -->
-															<!-- "btnEditarMarca" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<!-- "btnEditarSupervisor" = Para utilizar JavaScript para conectarse a la base de datos.-->
 															<button class="btn btn-warning btnEditarSupervisor" idSupervisor="'.$value["id_supervisor"].'" data-toggle="modal" data-target="#modalEditarSupervisor"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
@@ -99,7 +99,9 @@
       <!-- /.box -->
 
     </section>
-    <!-- /.content -->
+    
+		<!-- /.content -->
+
   </div>
   <!-- /.content-wrapper -->
 
