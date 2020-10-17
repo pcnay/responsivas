@@ -14,7 +14,7 @@
 		public function ajaxValidarSupervisor()
 		{
 			$item = "descripcion";
-			$valor = $this->validarSupervisor;
+			$valor = $this->validarSupervisores;
 
 			$respuesta = ControladorSupervisores::ctrMostrarSupervisores($item,$valor);
 			echo json_encode($respuesta);
@@ -52,7 +52,7 @@
 	if (isset($_POST["validarSupervisor"]))
 	{
 		$valSupervisor = new AjaxSupervisores();
-		$valSupervisor->validarSupervisor = $_POST["validarSupervisor"];
+		$valSupervisor->validarSupervisores = $_POST["validarSupervisor"];
 		$valSupervisor->ajaxValidarSupervisor();
 	}
 

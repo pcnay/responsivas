@@ -54,9 +54,9 @@
 											</a>
 										</li> 
 										<li>
-											<a href="puesto">
+											<a href="puestos">
 												<i class="fa fa-circle-o"></i>
-												<span>Puesto</span>
+												<span>Puestos</span>
 											</a>
 										</li> 
 

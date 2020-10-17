@@ -39,7 +39,7 @@ $("#nuevoSupervisor").change(function(){
 	// Obtienedo el valor del id=nuevoSupervisor.
 	var supervisor = $(this).val();
 	
-	//console.log("Supervisor",supervisor);
+	console.log("Supervisor",supervisor);
 
 	// Obtener datos de la base de datos
 	var datos = new FormData();
