@@ -48,9 +48,9 @@
 										</li> 
 
 										<li>
-											<a href="depto">
+											<a href="deptos">
 												<i class="fa fa-circle-o"></i>
-												<span>Departamento</span>
+												<span>Departamentos</span>
 											</a>
 										</li> 
 										<li>

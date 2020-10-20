@@ -130,7 +130,7 @@
         if (isset($_GET["ruta"]))
         {
 					print_r($_GET["ruta"]);
-          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="ubicaciones" ||  $_GET["ruta"]=="supervisores" || $_GET["ruta"]=="puestos" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
+          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="ventas" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-venta" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="ubicaciones" ||  $_GET["ruta"]=="supervisores" || $_GET["ruta"]=="puestos" || $_GET["ruta"]=="deptos"|| $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="salir")
           {
             include "modulos/".$_GET["ruta"].".php";
           }
@@ -180,7 +180,8 @@
 	<script src="vistas/js/supervisores.js"></script>
 	<!-- se muestra los Puestos  -->
 	<script src="vistas/js/puestos.js"></script>
-
+	<!-- se muestra los Deptos  -->
+	<script src="vistas/js/deptos.js"></script>
 
 
 	<!-- Es para los reportes que se utilizaran en el sistema  -->	
