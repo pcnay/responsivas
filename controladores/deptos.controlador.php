@@ -92,7 +92,7 @@
 					$datos = array("descripcion"=>$_POST["editarDepto"],
 													"id_depto"=>$_POST["idDepto"]);
 
-					$respuesta = ModeloDepto::mdlEditarDepto($tabla,$datos);
+					$respuesta = ModeloDeptos::mdlEditarDepto($tabla,$datos);
 					if ($respuesta == "ok")
 					{
 						echo '<script>           

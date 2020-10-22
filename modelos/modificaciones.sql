@@ -15,9 +15,14 @@
 
 USE bd_responsivas;
 
-/* Para agregar una columna a la tabla t_Productos . */
+/* Para agregar una columna a la tabla t_Empleados. */
+	ALTER TABLE t_Empleados ADD foto varchar(100) NOT NULL;
+	
+
+/* Para agregar una columna a la tabla t_Productos . 
 	ALTER TABLE t_Productos ADD especificaciones TEXT NULL ;
 
+*/
 
 /*
 INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
