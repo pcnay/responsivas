@@ -1,23 +1,35 @@
 <?php
-	// Para poder extraer los datos de la tabla de "productos" y agregarlos al plugin DataTable.
-	// Se agrega porque este archivo no se esta disparando con el "index.php", sino con el archivo "productos.php", se carga mucho después.
+	// Para poder extraer los datos de la tabla de "empleados" y agregarlos al plugin DataTable.
+	// Se agrega porque este archivo no se esta disparando con el "index.php", sino con el archivo "empleados.php", se carga mucho después.
 
-	require_once "../controladores/productos.controlador.php";
-	require_once "../modelos/productos.modelo.php";
+	require_once "../controladores/empleados.controlador.php";
+	require_once "../modelos/empleados.modelo.php";
 
 	require_once "../controladores/perifericos.controlador.php";
 	require_once "../modelos/perifericos.modelo.php";
 
-	class TablaProductos
+	require_once "../controladores/puestos.controlador.php";
+	require_once "../modelos/puestos.modelo.php";
+
+	require_once "../controladores/deptos.controlador.php";
+	require_once "../modelos/deptos.modelo.php";
+
+	require_once "../controladores/supervisores.controlador.php";
+	require_once "../modelos/supervisores.modelo.php";
+
+	require_once "../controladores/ubicaciones.controlador.php";
+	require_once "../modelos/ubicaciones.modelo.php";
+
+	class TablaEmpleados
 	{
-		// Mostrar la tabla de productos.
-		public function mostrarTablaProductos()
+		// Mostrar la tabla de Empleados.
+		public function mostrarTablaEmpleados()
 		{
 			// Extraer la información de la tabla.
 			$item = null;
 			$valor = null;
-			$orden = "id";
-			$productos = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
+			$orden = "id_empleado";
+			$empleados = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 
 			//var_dump($productos);
 			//return;
@@ -25,62 +37,63 @@
 
 			 $datosJson = '{
 				"data": [';
-				for ($i =0;$i<count($productos);$i++)
+				for ($i =0;$i<count($empleados);$i++)
 				{
-					// Se obtiene la imagen del producto, se pasa a variable para agregarlo al JSon.
-					$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
-					// se extrae la categoria
-					$item = "id";
-					$valor = $productos[$i]["id_categoria"];
-					$categoria = ControladorCategorias::ctrMostrarCategorias($item,$valor);
+					// Se obtiene la imagen del "Empleado", se pasa a variable para agregarlo al JSon.
+					$imagen = "<img src='".$empleados[$i]["imagen"]."' width='40px'>";
 
-					// Se utilizara un color para determinar el "Stock" de los productos.
-					if ($productos[$i]["stock"] <= 10)
-					{
-						$stock = "<button class='btn btn-danger'>".$productos[$i]["stock"]."</button>";
-					}
-					else if ($productos[$i]["stock"] > 11 && $productos[$i]["stock"] <=15)
-					{
-						$stock = "<button class='btn btn-warning'>".$productos[$i]["stock"]."</button>";
-					}
-					else // if ($productos[$i][stock] <= 10)
-					{
-						$stock = "<button class='btn btn-success'>".$productos[$i]["stock"]."</button>";
-					}
-
+					// se extrae el Puesto
+					$item = "id_puesto";
+					$valor = $empleados[$i]["id_puesto"];
+					$puesto = ControladorPuestos::ctrMostrarPuestos($item,$valor);
 					
+					// se extrae el Depto
+					$item = "id_depto";
+					$valor = $empleados[$i]["id_depto"];
+					$depto = ControladorDeptos::ctrMostrarDeptos($item,$valor);
 
-					// $imagen = "<img src='/vistas/img/productos/101/105.png' width='40px'>";
-					// Se utilizan estos datos para pasarlos con Ajax a las funciones de JavaScript para obtener la información del "Producto" 
-					// se agrega btnEditarProducto" = Boton para editar 
-					// idProducto='".$productos[$i]["id"]."' para editar el producto.
+					// se extrae el Supervisor
+					$item = "id_supervisor";
+					$valor = $empleados[$i]["id_supervisor"];
+					$supervisor = ControladorSupervisores::ctrMostrarSupervisores($item,$valor);
+					
+					// se extrae la Ubicacion
+					$item = "id_ubicacion";
+					$valor = $empleados[$i]["id_ubicacion"];
+					$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+
+					// $imagen = "<img src='/vistas/img/empleados/101/105.png' width='40px'>";
+					// Se utilizan estos datos para pasarlos con Ajax a las funciones de JavaScript para obtener la información del "Empleado" 
+					// se agrega btnEditarEmpleado" = Boton para editar 
+					// idEmpleado='".$Empleado[$i]["id_empleado"]."' para editar el empleado.
 					// data-toggle='modal' = Para desplegar una ventanta Modal.
-					// data-target='#modalEditarProducto' = Pantalla para editar los productos 
-					// btnEliminarProducto= Boton para eliminar producto
-					// idProducto='".$productos[$i]["id"]."' = Para obtener el código del producto
-					// imagen='".$productos[$i]["imagen"]."' = Para obtener la ruta de la imagen.
+					// data-target='#modalEditarEmpleado' = Pantalla para editar los productos 
+					// btnEliminarEmpleado= Boton para eliminar Empleado
+					// idEmpleado='".$empleado[$i]["id_empleado"]."' = Para obtener el Nt Id del Empleado
+					// imagen='".$empleado[$i]["imagen"]."' = Para obtener la ruta de la imagen.
 
-					// Esta parte se utiliza para utilizar las variables de sesion en DataTable.
+					// Esta parte se utiliza las variables de sesion en DataTable.
 					if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial")
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pencil'></i></button>";
 					}
 					else
 					{
 						// se extrae los datos utilizados para el boton de "Editar" y "Borrar"
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo ='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."' ><i class='fa fa-times'></i></button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' ntid ='".$empleados[$i]["ntid"]."' imagen='".$empleados[$i]["imagen"]."' ><i class='fa fa-times'></i></button></div>";
 					}					
 
 					$datosJson  .= '[
 							"'.($i+1).'",
 							"'.$imagen.'",
-							"'.$productos[$i]["codigo"].'",
-							"'.$productos[$i]["descripcion"].'",
-							"'.$categoria["nombre"].'", 
-							"'.$stock.'",
-							"'.$productos[$i]["precio_compra"].'",
-							"'.$productos[$i]["precio_venta"].'",
-							"'.$productos[$i]["fecha"].'",							
+							"'.$empleados[$i]["ntid"].'",
+							"'.$empleados[$i]["nombre"].'",
+							"'.$empleados[$i]["apellidos"].'",
+							"'.$empleados[$i]["correo_electronico"].'",
+							"'.$puesto["descripcion"].'",
+							"'.$depto["descripcion"].'",
+							"'.$supervisor["descripcion"].'",
+							"'.$empleados[$i]["centro_costo"].'",							
 							"'.$botones.'"
 						],';
 				}
@@ -95,13 +108,13 @@
 
 			// Se utilizan las variables de PHP para no romper la cadena en el JSON.
 		 
-		} // public function mostrarTablaProductos()
+		} // public function mostrarTablaEmpleados()
 
-	} // class TablaProductos
+	} // class TablaEmpleados
 
-	// Activar la tabla de productos.
-	$activarProductos = new TablaProductos();
-	$activarProductos->mostrarTablaProductos();
+	// Activar la tabla de Empleados.
+	$activarEmpleados = new TablaEmpleados();
+	$activarEmpleados->mostrarTablaEmpleados();
 
 
 ?>

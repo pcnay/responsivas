@@ -246,14 +246,13 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		
 			})		
 
+			// Se van asignar los valores a las editas del producto a Editar.
+			$("#editar_ntid").val(respuesta["ntid"]);
+			$("#editarNombre").val(respuesta["nombre"]);
+			$("#editarApellido").val(respuesta["apellidos"]);
+			$("#editarCorreoelect").val(respuesta["correo_electronico"]);
+			$("#editarCentroCosto").val(respuesta["centro_costo"]);
 
-			// Aqui voy .... 
-			// SE van asignar los valores a las editas del producto a Editar.
-			$("#editarCodigo").val(respuesta["codigo"]);
-			$("#editarDescripcion").val(respuesta["descripcion"]);
-			$("#editarStock").val(respuesta["stock"]);
-			$("#editarPrecioCompra").val(respuesta["precio_compra"]);
-			$("#editarPrecioVenta").val(respuesta["precio_venta"]);
 			if (respuesta["imagen"] != "")
 			{
 				$("#imagenActual").val(respuesta["imagen"]);
@@ -270,19 +269,19 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 })
 
 
-// Borrar Producto
+// Borrar Empleado
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
-$(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
-	var idProducto = $(this).attr("idProducto");
-	// console.log("idProducto",idProducto);
-	// Obtener el codigo del producto y la ruta de la imagen que esta grabada en la Tabla.
-	var codigo = $(this).attr("codigo");
+$(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
+	var idEmpleado = $(this).attr("idEmpleado");
+	// console.log("idEmpleado",idEmpleado);
+	// Obtener el NtId del "empleado" y la ruta de la imagen que esta grabada en la Tabla.
+	var codigo = $(this).attr("ntid");
 	var imagen = $(this).attr("imagen");
 
 	
 	Swal.fire ({
 		type: "success",
-		title: "La categoria ha sido borrada correctamente ",
+		title: "El Empleado sido borrada correctamente ",
 		text : "De lo contrario puede cancelar la Acción ",
 		type:'warning',
 		showCancelButton:true,		
@@ -294,7 +293,7 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 		}).then(function(result){
 			if (result.value)
 			{
-				window.location="index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen+"&codigo="+codigo;
+				window.location="index.php?ruta=empleados&idEmpleado="+idEmpleado+"&imagen="+imagen+"&ntid="+ntid;
 			}
 
 			});	
