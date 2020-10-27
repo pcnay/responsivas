@@ -59,7 +59,12 @@
 												<span>Puestos</span>
 											</a>
 										</li> 
-
+										<li>
+											<a href="empleados">
+												<i class="fa fa-circle-o"></i>
+												<span>Capturar Empleados</span>
+											</a>
+										</li> 
 
 									</ul>
 							</li>';

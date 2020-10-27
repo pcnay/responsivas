@@ -18,7 +18,7 @@
 			{
 				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]) &&
+					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCentroCosto"]))
 				{
 					$tabla = "t_Empleados";
@@ -34,9 +34,10 @@
           {
             // Crea un nuevo array
             //Definiendo el tamaño de la foto de 500X500.
-            // getimagesize($_FILES["nuevaImagen"]["tmp_name"]), es un arreglo que en la primera, segunda posicion tiene el tamaño de la foto "Ancho" y "Alto"
+						// getimagesize($_FILES["nuevaImagen"]["tmp_name"]), es un arreglo que en la primera, segunda posicion tiene el tamaño de la foto "Ancho" y "Alto"
+						//var_dump(getimagesize($_FILES["nuevaImagen"]["tmp_name"])); 
             list($ancho,$alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
-            //var_dump(getimagesize($_FILES["nuevaImagen"]["tmp_name"])); 
+            
 
             // Los tamaños de la foto a guardar en la computadora
             $nuevoAncho = 500;
@@ -45,7 +46,7 @@
             // Crear el directorio donde se guardara la foto del usuario
 						$directorio = "vistas/img/empleados/".$_POST["nuevoApellido"];
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
-            mkdir ($directorio,0755);
+            mkdir ($directorio,0775); // 0755
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
             if ($_FILES["nuevaImagen"]["type"] == "image/jpeg")
@@ -93,23 +94,26 @@
 												"correo_electronico" =>$_POST["nuevoCorreoElect"],
 												"centro_costo" =>$_POST["nuevoCentroCosto"],
 												"imagen" =>$ruta);
+
+					var_dump($datos);
+					exit;
+
 					$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
 
-// Aqui voy ...
 
 					if ($respuesta == "ok")
 					{
 						echo '<script>           
 							Swal.fire ({
 								type: "success",
-								title: "El Producto ha sido guardado correctamente ",
+								title: "El Empleado ha sido guardado correctamente ",
 								showConfirmButton: true,
 								confirmButtonText: "Cerrar",
 								closeOnConfirm: false
 								}).then(function(result){
 									if (result.value)
 									{
-										window.location="productos";
+										window.location="empleados";
 									}
 		
 									});
@@ -123,44 +127,48 @@
 					echo '<script>           
 					Swal.fire ({
 						type: "error",
-						title: "El producto no puede ir con los campos vacios o llevar caracteres especiales ",
+						title: "NO se permiten campo vacio o llevar caracteres especiales ",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="productos";
+								window.location="empleados";
 							}
 
 							});
 		
 						</script>';          
 
-				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
+				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevo_ntid"] && ..... ))  
 
-			} //if (isset($_POST["nuevaDescripcion"]))
+			} //if (isset($_POST["nuevoNombre"]))
 		
-		} // 	static public function ctrCrearProducto() 
+		} // 	static public function ctrCrearEmpleado() 
 
 
 	// ******************************************************************
-	// Eliminar Producto
-	// ******************************************************************
-
-	// Editar Producto
-	static public function ctrEditarProducto()
+	// Editar Empleado
+	// ******************************************************************	
+	static public function ctrEditarEmpleado()
 	{
-		if (isset($_POST["editarDescripcion"]))
+		// Se toma este campo como referencia, ya que esta validado para que no deje espacios y se utiliza para determinar que existe datos en los Text de la forma y validaro los campos
+		if (isset($_POST["editarNombre"]))
 		{
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCategoria"]) &&
-				preg_match('/^[0-9]+$/',$_POST["editarStock"]) &&
-				preg_match('/^[0-9.]+$/',$_POST["editarPrecioCompra"]) &&
-				preg_match('/^[0-9.]+$/',$_POST["editarPrecioVenta"]))
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPuesto"]) && 
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarDepto"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarSupervisor"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarUbicacion"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editar_ntid"]) &&
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editaCorreoElect"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editaCentroCosto"]))				
 			{
-				$tabla = "t_Productos";
+				$tabla = "t_Empleados";
 
-				// "vistas/img/productos/default/anonymous.png"; se cambia por es la misma foto
+				// "vistas/img/empleados/default/anonymous.png"; se cambia por es la misma foto
 				$ruta = $_POST["imagenActual"];
 				//print_r ($ruta);
 				//exit;
@@ -170,7 +178,7 @@
 				2.- En la base de datos solo se guardara la ruta donde esta almacenada la foto en el servidor.
 					*/
 				
-				// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/usuarios.php" seccion de "modalAgregarUsuario" etiqueta tipo "File" "nuevaImagen"
+				// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/empleados.php" seccion de "modalAgregarEmpleado" etiqueta tipo "File" "nuevaImagen"
 				// Se agrega otra condicion "!empty($_FIL...." para que cuando no se modifique la foto no realize de nuevo el proceso 
 				if (isset($_FILES["editarImagen"]["tmp_name"]) && !empty($_FILES["editarImagen"]["tmp_name"]))
 				{
@@ -186,9 +194,9 @@
 
 
 					// Crear el directorio donde se guardara la foto del producto
-					$directorio = "vistas/img/productos/".$_POST["editarCodigo"];
+					$directorio = "vistas/img/empleados/".$_POST["editarApellido"];
 					
-					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"))
+					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/empleados/default/anonymous.png"))
 					{
 						// Borrar la foto
 						unlink ($_POST["imagenActual"]);
@@ -203,7 +211,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/jpeg")
 					{
 						$aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/productos/".$_POST["editarApellido"]."/".$aleatorio.".jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -220,7 +228,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/png")
 					{
 						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/productos/".$_POST["editarApellido"]."/".$aleatorio.".png";
 						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -235,28 +243,31 @@
 				}
 
 				// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
-				$datos = array("id_categoria" =>$_POST["editarCategoria"],
-											"codigo" =>$_POST["editarCodigo"],
-											"descripcion" =>$_POST["editarDescripcion"],
-											"stock" =>$_POST["editarStock"],
-											"precio_compra" =>$_POST["editarPrecioCompra"],
-											"precio_venta" =>$_POST["editarPrecioVenta"],
+				$datos = array("id_puesto" =>$_POST["editarPuesto"],
+											 "id_depto" =>$_POST["editarDepto"],
+											 "id_supervisor" =>$_POST["editarSupervisor"],
+											 "id_ubicacion" =>$_POST["editarUbicacion"],	
+											"ntid" =>$_POST["editar_ntid"],
+											"nombre" =>$_POST["editarNombre"],
+											"apellidos" =>$_POST["editarApellido"],
+											"correo_electronico" =>$_POST["editarCorreoElect"],
+											"centro_costo" =>$_POST["editarCentroCosto"],											
 											"imagen" =>$ruta);
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla,$datos);
+				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 
 				if ($respuesta == "ok")
 				{
 					echo '<script>           
 						Swal.fire ({
 							type: "success",
-							title: "El Producto ha sido Editado correctamente ",
+							title: "El Cliente ha sido Editado correctamente ",
 							showConfirmButton: true,
 							confirmButtonText: "Cerrar",
 							closeOnConfirm: false
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="productos";
+									window.location="empleados";
 								}
 	
 								});
@@ -270,60 +281,60 @@
 				echo '<script>           
 				Swal.fire ({
 					type: "error",
-					title: "El producto no puede ir con los campos vacios o llevar caracteres especiales ",
+					title: "No puede ir con los campos vacios o llevar caracteres especiales ",
 					showConfirmButton: true,
 					confirmButtonText: "Cerrar",
 					closeOnConfirm: false
 					}).then(function(result){
 						if (result.value)
 						{
-							window.location="productos";
+							window.location="empleados";
 						}
 						});
 	
 					</script>';          
 
-			} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
+			} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]).....)  
 
-		} //if (isset($_POST["nuevaDescripcion"]))
+		} //if (isset($_POST["editarApellido"]))
 	
-	} // static public function ctrEditarProducto() 
+	} // static public function ctrEditarEmpleado() 
 
 
 
 	// ******************************************************************
-	// Borrar Producto
+	// Borrar Empleado
 	// ******************************************************************
-	static public function ctrEliminarProducto()
+	static public function ctrEliminarEmpleado()
 	{
-		// Si viene en camino la siguiente variable GET : idProducto
-		if (isset($_GET['idProducto']))
+		// Si viene en camino la siguiente variable GET : idEmpleado
+		if (isset($_GET['idEmpleado']))
 		{
-			$tabla = "t_Productos";
-			$datos = $_GET["idProducto"];
-			if ($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/productos/default/anonymous.png")
+			$tabla = "t_Empleados";
+			$datos = $_GET["idEmpleado"];
+			if ($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/empleados/default/anonymous.png")
 			{
 				// Borrar el archivo
 				unlink ($_GET["imagen"]);
 				//$borrar_directorio = new EliminarDirectorio();
-				//$borrar_directorio->eliminar_directorio('vistas/img/productos/'.$_GET["codigo"]);
-				rmdir('vistas/img/productos/'.$_GET["codigo"]);				
+				//$borrar_directorio->eliminar_directorio('vistas/img/empleados/'.$_GET["codigo"]);
+				rmdir('vistas/img/empleados/'.$_GET["apellido"]);				
 			}
 
-			$respuesta = ModeloProductos::mdlEliminarProductos($tabla,$datos);
+			$respuesta = ModeloProductos::mdlEliminarEmpleado($tabla,$datos);
 			if ($respuesta = "ok")
 			{
 				echo '<script>           
 				Swal.fire ({
 					type: "success",
-					title: "El Producto ha sido borrada correctamente ",
+					title: "El Empleado ha sido borrada correctamente ",
 					showConfirmButton: true,
 					confirmButtonText: "Cerrar",
 					closeOnConfirm: false
 					}).then(function(result){
 						if (result.value)
 						{
-							window.location="productos";
+							window.location="empleados";
 						}
 
 						});
@@ -333,7 +344,7 @@
 			} // if ($respuesta = "ok")
 
 		}
-	} // static public function ctrEliminarProducto() 
+	} // static public function ctrEliminarEmpleado() 
 
 	// ===================================================
 	// Mostrar Suma De Ventas 

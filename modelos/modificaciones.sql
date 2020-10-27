@@ -15,12 +15,36 @@
 
 USE bd_responsivas;
 
-/* Para agregar una columna a la tabla t_Empleados. */
+
+
+
+
+
+
+/* Para agregar una columna a la tabla t_Empleados.
 	ALTER TABLE t_Empleados ADD foto varchar(100) NOT NULL;
-	
+*/
+
 
 /* Para agregar una columna a la tabla t_Productos . 
 	ALTER TABLE t_Productos ADD especificaciones TEXT NULL ;
+
+*/
+
+/*
+INSERT INTO t_Empleados (id_empleado,id_ubicacion,id_puesto,id_depto,id_supervisor,nombre,apellidos,ntid,correo_electronico,centro_costos,foto,fecha) VALUES
+  (0,1,1,1,1,'nombreUno','apellidoUno','ntidUno','correoelectronicoUno','centrocostoUno','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP);
+
+
+INSERT INTO t_Empleados (id_empleado,id_ubicacion,id_puesto,id_depto,id_supervisor,nombre,apellidos,ntid,correo_electronico,centro_costos,foto,fecha) VALUES
+  (0,1,1,1,1,'nombreDos','apellidoDos','ntidDos','correoelectronicoDos','centrocostoDos','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP),	
+	(0,1,1,1,1,'nombreTres','apellidoTres','ntidTres','correoelectronicoTres','centrocostoTres','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP),
+	(0,1,1,1,1,'nombreCuatro','apellidoCuatro','ntidCuatro','correoelectronicoCuatro','centrocostoCuatro','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP),
+	......
+	.......
+	......
+
+(0,1,1,1,1,'nombreCuatro','apellidoCuatro','ntidCuatro','correoelectronicoCuatro','centrocostoCuatro','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP);
 
 */
 

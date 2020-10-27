@@ -21,7 +21,7 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarEmpleados">
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarEmpleado">
             Agregar Empleado
           </button>       
         </div>
@@ -48,22 +48,23 @@
             </thead>
             
 						<!-- Cuerpo de la Tabla -->
-            <!-- <tbody>
+            <tbody>
 
 
 							<?php
-							/*
-								Se suprime para agregar el contenido de la tabla con Ajax al plugin DataTable.
+							
+								// Se suprime para agregar el contenido de la tabla con Ajax al plugin DataTable.
 								
 								$item = null;
 								$valor = null;
-								$orden = "id";
+								$orden = "apellidos";
 
-								$productos = controladorProductos::ctrMostrarProductos($item,$valor,$orden);
+								$empleados = controladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 								// Para mostrarlos en pantalla en las pruebas
-								// var_dump($productos); 
-								foreach ($productos as $key => $value)
+								var_dump($empleados); 
+								foreach ($empleados as $key => $value)
 								{
+									/*
 									echo ' 
 									  <tr>
 											<td>'.($key+1).'</td>
@@ -88,11 +89,13 @@
 												</div>
 											</td>
 										</tr>'; 
+										*/
+
 								}
-								*/
+								
 							?>
 
-            </tbody> -->
+            </tbody> 
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
 
@@ -142,7 +145,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
-                <input type="text" class="form-control input-lg" id = "nuevo_ntid" name="nuevo_ntid" placeholder = "Ingresar NT ID" readonly required>
+                <input type="text" class="form-control input-lg" id = "nuevo_ntid" name="nuevo_ntid" placeholder = "Ingresar NT ID" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -270,7 +273,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del Usuario.
 						-->
             <div class="form-group">
-              <div class="panel text-up">SUBIR IMAGEN DEL USUARIO</div> 
+              <div class="panel text-up">SUBIR IMAGEN DEL EMPLEADO</div> 
               <input type="file" class="nuevaImagen" name="nuevaImagen">
               <p class="help-block">Peso Máximo de la foto 2 Mb</p>
               <img src="vistas/img/empleados/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
@@ -290,8 +293,8 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 
 				<!-- Para Guardar la información. -->
 				<?php
-					$crearEmpleado = new ControladorEmpledos();
-					$crearEmpleado->ctrCrearEmpleados();
+					$crearEmpleado = new ControladorEmpleados();
+					$crearEmpleado->ctrCrearEmpleado();
 					
 				?>
 

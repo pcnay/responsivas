@@ -80,7 +80,7 @@
 					else
 					{
 						// se extrae los datos utilizados para el boton de "Editar" y "Borrar"
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' ntid ='".$empleados[$i]["ntid"]."' imagen='".$empleados[$i]["imagen"]."' ><i class='fa fa-times'></i></button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["id_empleado"]."' apellido ='".$empleados[$i]["apellidos"]."' imagen='".$empleados[$i]["imagen"]."' ><i class='fa fa-times'></i></button></div>";
 					}					
 
 					$datosJson  .= '[
