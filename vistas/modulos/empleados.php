@@ -30,7 +30,7 @@
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js Se define "tablaEmpleados" para utilizar JSon para mostrar los datos, ya que son bastantes -->
-          <table class="table table-bordered table-striped dt-responsive tablaEmpleados" width="100%">
+          <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
@@ -49,8 +49,6 @@
             
 						<!-- Cuerpo de la Tabla -->
             <tbody>
-
-
 							<?php
 							
 								// Se suprime para agregar el contenido de la tabla con Ajax al plugin DataTable.
@@ -61,35 +59,43 @@
 
 								$empleados = controladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 								// Para mostrarlos en pantalla en las pruebas
-								var_dump($empleados); 
+								// var_dump($empleados); 
 								foreach ($empleados as $key => $value)
 								{
-									/*
+									
 									echo ' 
 									  <tr>
 											<td>'.($key+1).'</td>
-											<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-											<td>'.$value["codigo"].'</td>
+											<td><img src="vistas/img/empleados/default/anonymous.png" class="img-thumbnail" width="40px"></td>
+											<td>'.$value["ntid"].'</td>
 											<!-- Clase de BootStrap -->
-											<td>'.$value["descripcion"].'</td>';
+											<td>'.$value["nombre"].'</td>
+											<td>'.$value["apellidos"].'</td>
+											<td>'.$value["correo_electronico"].'</td>';											
 											
-											$item = "id";
-											$valor = $value["id_categoria"];
-											$categoria = ControladorCategorias::ctrMostrarCategorias($item,$valor);
+											$item = "id_puesto";
+											$valor = $value["id_puesto"];
+											$puesto = ControladorPuestos::ctrMostrarPuestos($item,$valor);
+											echo '<td>'.$puesto["descripcion"].'</td>';
 
-											echo '<td>'.$categoria["nombre"].'</td>
-											<td>'.$value["stock"].'</td>
-											<td>'.$value["precio_compra"].'</td>
-											<td>'.$value["precio_venta"].'</td>
-											<td>'.$value["fecha"].'</td>
+											$item = "id_depto";
+											$valor = $value["id_depto"];
+											$depto = ControladorDeptos::ctrMostrarDeptos($item,$valor);
+											echo '<td>'.$depto["descripcion"].'</td>';
+
+											$item = "id_supervisor";
+											$valor = $value["id_supervisor"];
+											$supervisor = ControladorSupervisores::ctrMostrarSupervisores($item,$valor);
+											echo '<td>'.$supervisor["descripcion"].'</td>
+
+											<td>'.$value["centro_costos"].'</td>
 											<td>
 												<div class="btn-group">
 													<button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
 													<button class="btn btn-danger"><i class="fa fa-times"></i></button>
 												</div>
 											</td>
-										</tr>'; 
-										*/
+										</tr>'; 								
 
 								}
 								

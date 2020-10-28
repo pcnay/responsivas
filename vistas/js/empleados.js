@@ -1,5 +1,34 @@
-/* Cargar los datos - Empleados de forma dinamica */
+/* Cargar los datos - Empleados de forma dinamica
+	formatos de JSon.
 
+*/
+
+
+$.ajax({		
+	url:"ajax/datatable-empleados.ajax.php",
+	success:function(respuesta){
+	console.log("respuesta",respuesta);
+		}
+})
+
+
+/*
+$('.tabla').DataTable({
+	"ajax":"ajax/datatable-productos.ajax.php"
+});
+*/ 
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Para hacer que las variables de sesion se puedan usar en Datatable.
 var perfilOculto = $("#perfilOculto").val();
 //console.log ("perfilOculto",perfilOculto);
@@ -40,21 +69,9 @@ $('.tablaEmpleados').DataTable({
 	}
 
 });
-
-/*
-$.ajax({		
-	url:"ajax/datatable-productos.ajax.php",
-	success:function(respuesta){
-	console.log("respuesta",respuesta);
-		}
-})
 */
 
-/*
-$('.tabla').DataTable({
-	"ajax":"ajax/datatable-productos.ajax.php"
-});
-*/ 
+
 
 // Se agrega el código para obtener el último número del codigo a utilizar
 $("#nuevaCategoria").change(function(){

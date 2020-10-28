@@ -185,7 +185,7 @@
 	<!-- se muestra los Deptos  -->
 	<script src="vistas/js/deptos.js"></script>
 	<!-- se muestra los Empleados  -->
-	<script src="vistas/js/deptos.js"></script>
+	<script src="vistas/js/empleados.js"></script>
 
 
 	<!-- Es para los reportes que se utilizaran en el sistema  -->	
