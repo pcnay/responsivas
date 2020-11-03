@@ -16,8 +16,8 @@
 		{
 			if (isset($_POST["nuevoNombre"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
+				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
 					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCentroCosto"]))
 				{
@@ -30,6 +30,7 @@
           */
           
 					// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/empleados.php" seccion de "modalAgregarEmpleado" etiqueta tipo "File" "nuevaImagen"
+			
           if (isset($_FILES["nuevaImagen"]["tmp_name"]))
           {
             // Crea un nuevo array
@@ -52,7 +53,7 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/jpeg")
             {
               $aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-              $ruta = "vistas/img/productos/".$_POST["nuevoApellido"]."/".$aleatorio.".jpg";
+              $ruta = "vistas/img/empleados/".$_POST["nuevoApellido"]."/".$aleatorio.".jpg";
               $origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 							$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -82,6 +83,7 @@
             }
             
           }
+				
 
 					// Estos campos se extraen de las etiquetas de la captura de form de los Empleados, y se colocan en un arreglo.					
 					$datos = array("id_puesto" =>$_POST["nuevoPuesto"],
@@ -92,11 +94,11 @@
 												"apellidos" =>$_POST["nuevoApellido"],
 												"ntid" =>$_POST["nuevo_ntid"],
 												"correo_electronico" =>$_POST["nuevoCorreoElect"],
-												"centro_costo" =>$_POST["nuevoCentroCosto"],
+												"centro_costos" =>$_POST["nuevoCentroCosto"],
 												"imagen" =>$ruta);
 
-					var_dump($datos);
-					exit;
+					//var_dump($datos);
+					//exit;
 
 					$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
 
@@ -122,7 +124,7 @@
 
 					}
 				}
-				else
+				else // if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && ...
 				{
 					echo '<script>           
 					Swal.fire ({

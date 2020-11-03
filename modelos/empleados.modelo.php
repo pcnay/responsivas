@@ -25,7 +25,7 @@
 		// Guardar el Empleado, en la tabla "t_Empleados"
 		static public function mdlIngresarEmpleado($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_puesto,id_depto,id_supervisor,id_ubicacion,ntid,nombre,apellidos,correo_electronico,centro_costos,foto) VALUES (:id_puesto,:id_depto,:id_supervisor,:id_ubicacion,:ntid,:nombre,:apellidos,:correo_electronicos,:centro_costo,:imagen)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_puesto,id_depto,id_supervisor,id_ubicacion,ntid,nombre,apellidos,correo_electronico,centro_costos,foto) VALUES (:id_puesto,:id_depto,:id_supervisor,:id_ubicacion,:ntid,:nombre,:apellidos,:correo_electronico,:centro_costos,:imagen)");
 
 			$stmt->bindParam(":id_puesto",$datos["id_puesto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_depto",$datos["id_depto"],PDO::PARAM_INT);
@@ -35,7 +35,7 @@
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos",$datos["apellidos"],PDO::PARAM_STR);
 			$stmt->bindParam(":correo_electronico",$datos["correo_electronico"],PDO::PARAM_STR);
-			$stmt->bindParam(":centro_costos",$datos["centro_costo"],PDO::PARAM_STR);
+			$stmt->bindParam(":centro_costos",$datos["centro_costos"],PDO::PARAM_STR);
 			$stmt->bindParam(":imagen",$datos["imagen"],PDO::PARAM_STR);
 
 			if ($stmt->execute())

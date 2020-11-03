@@ -246,7 +246,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 
         </form>
 
-				<!-- Para Guardar la información. -->
+				<!-- Para Guardar la información en la base de datos  -->
 				<?php
 					$crearEmpleado = new ControladorEmpleados();
 					$crearEmpleado->ctrCrearEmpleado();
