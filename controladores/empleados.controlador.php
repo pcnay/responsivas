@@ -70,7 +70,7 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/png")
             {
               $aleatorio = mt_rand(100,999);
-              $ruta = "vistas/img/productos/".$_POST["nuevoApellido"]."/".$aleatorio.".png";
+              $ruta = "vistas/img/empleados/".$_POST["nuevoApellido"]."/".$aleatorio.".png";
               $origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
               $destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);

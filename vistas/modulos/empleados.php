@@ -260,9 +260,9 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 </div> <!-- <div id="modalAgregarEmpleado" class="modal fade" role="dialog"> -->
 
 
-<!-- // Editar productos. -->
+<!-- // Editar empleados. -->
 <!-- Modal -->
-<div id="modalEditarProducto" class="modal fade" role="dialog">
+<div id="modalEditarEmpleado" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -287,7 +287,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fad fa-id-card"></i></span>
-                <input type="text" class="form-control input-lg" id = "editar_ntid" name="nuevo_ntid" required>
+                <input type="text" class="form-control input-lg" id = "editar_ntid" name="editar_ntid" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -330,7 +330,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="far fa-building"></i></span>
-                <select class="form-control input-lg" id= "editarPuesto" name="editarPuesto" readonly required>
+                <select class="form-control input-lg"  name="editarPuesto" required>
 								<!-- Se utilizara JavaScript para obtener el valor.-->
                   <option id="editarPuesto"></option>
                 </select>                
@@ -342,7 +342,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="far fa-building"></i></span>
-                <select class="form-control input-lg" id= "editarDepto" name="editarDepto" readonly required>
+                <select class="form-control input-lg" name="editarDepto" required>
 								<!-- Se utilizara JavaScript para obtener el valor.-->
                 <option id="editarDepto"></option>
                 </select>                
@@ -354,9 +354,9 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "editarSupevisor" name="editarSupervisor" readonly required>
+                <select class="form-control input-lg" name="editarSupervisor" required>
                   <option id="editarSupervisor"></option>
-	                </select>                
+	              </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -364,9 +364,9 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-street-view"></i></span>
-                <select class="form-control input-lg" id= "editarUbicacion" name="editarUbicacion" readonly required>
+                <select class="form-control input-lg" name="editarUbicacion" required>
                   <option id="editarUbicacion"></option>
-	                </select>                
+	              </select>                
   
 	            </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
@@ -379,7 +379,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <input type="file" class="nuevaImagen" name="editarImagen">
               <p class="help-block">Peso Máximo de la foto 2 Mb</p>
               <img src="vistas/img/empleados/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
-							<!-- Se manda el nombre de la imagen actual, al Javascript utilizando un campo oculto -->
+							<!-- Se manda el nombre de la imagen actual, en el caso de que no se modifique la imagen y manda a Javascript utilizando un campo oculto -->
 							<input type = "hidden" name = "imagenActual" id="imagenActual">							 
 
             </div> <!-- <div class="form-group"> -->
@@ -397,8 +397,8 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 
 				<!-- Para Guardar la Edicion del Empleado -->
 				<?php
-					$editarEmpleado = new ControladorEmpleados();
-					$editarEmpleado->ctrEditarEmpleado();					
+					//$editarEmpleado = new ControladorEmpleados();
+					//$editarEmpleado->ctrEditarEmpleado();					
 				?>
 
     </div> <!-- <div class="modal-content"> -->
