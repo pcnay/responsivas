@@ -40,7 +40,7 @@
 	// Instanaciando la clase para los objetos que se requieran.
 
 	// Editando Puesto.
-	// datos.append("idPuesto",idPuesto); // Se crea la variable "POST", "idPuesto"
+	// datosPuesto.append("idPuesto",respuesta["id_puesto"]); // Se crea la variable "POST", "idPuesto"
 	if (isset($_POST["idPuesto"]))
 	{
 		$puesto = new AjaxPuestos();

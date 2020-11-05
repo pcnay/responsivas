@@ -188,9 +188,16 @@ $(".nuevaImagen").change(function(){
 
 // Editar Empleado
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cunado se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarEmpleado" la siguiente "function"
 $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
+	// "idEmpleados" viene desde el archivo : "datatable-empleados.ajax.php -> $botones"
 	var idEmpleado = $(this).attr("idEmpleado");
-	// console.log("idEmpleado",idEmpleado);
+	console.log("idEmpleado",idEmpleado);
+	
+	
+	// Se utilizara Ajax para obtener la información del empleados desde la base de datos.
 	// Se esta agregando un dato al Ajax.
 	var datos = new FormData();
 	datos.append("idEmpleado",idEmpleado);
@@ -204,9 +211,13 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		dataType:"json",
 		success:function(respuesta)
 		{
-			// console.log("respuesta",respuesta);
-			// Obtener el Puesto.
+			console.log("respuesta",respuesta);
+			
+			// Obtener el Puesto, la descripcion					
 			var datosPuesto = new FormData();
+
+			// respuesta["id_puesto"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+			// "datosPuesto" = es una variable POST que se envia a "puesto.ajax.php".
 			datosPuesto.append("idPuesto",respuesta["id_puesto"]);
 			$.ajax
 			({
@@ -219,13 +230,21 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				dataType:"json",
 				success:function(respuesta)
 				{
-					console.log("respuesta",respuesta);					
+					console.log("respuesta",respuesta);		
+					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
 					$("#editarPuesto").val(respuesta["id_puesto"]);
-					$("#editarPuesto").html(respuesta["descripcion"]);
-		
+					$("#editarPuesto").html(respuesta["descripcion"]);		
 				}
 		
-			})		
+			})
+
+		} // Borrar
+
+	}); // Borrar
+
+
+
+			/*
 			// Obtener el Depto.
 			var datosDepto = new FormData();
 			datosDepto.append("idDepto",respuesta["id_depto"]);
@@ -312,7 +331,9 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 
 	})	
 
-})
+*/
+
+}) // $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 
 
 // Borrar Empleado

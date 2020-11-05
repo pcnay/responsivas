@@ -71,7 +71,7 @@
 		$editarEmpleado->ajaxEditarEmpleado();
 	}
 	
-	// Traer el Producto, para dispositivos mobiles.
+	// Traer el Empleado, para dispositivos mobiles.
 	if (isset($_POST["traerEmpleado"]))
 	{
 		$traerEmpleado = new AjaxEmpleados();
