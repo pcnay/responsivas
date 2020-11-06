@@ -201,7 +201,8 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 	// Se esta agregando un dato al Ajax.
 	var datos = new FormData();
 	datos.append("idEmpleado",idEmpleado);
-	$.ajax({
+	$.ajax
+	({
 		url:"ajax/empleados.ajax.php",
 		method:"POST",
 		data:datos,
@@ -238,9 +239,84 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		
 			})
 
-		} // Borrar
+			// Obtener el Depto, la descripcion					
+			var datosDepto = new FormData();
 
-	}); // Borrar
+			// respuesta["id_depto"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+			// "datosDepto" = es una variable POST que se envia a "deptos.ajax.php".
+			datosDepto.append("idDepto",respuesta["id_depto"]);
+			$.ajax
+			({
+				url:"ajax/deptos.ajax.php",
+				method:"POST",
+				data:datosDepto,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(respuesta)
+				{
+					//console.log("respuesta",respuesta);		
+					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
+					$("#editarDepto").val(respuesta["id_depto"]);
+					$("#editarDepto").html(respuesta["descripcion"]);		
+				}
+		
+			})
+
+			// Obtener el Supervisor, la descripcion					
+			var datosSupervisor = new FormData();
+
+			// respuesta["id_supervisor"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+			// "datosSupervisor" = es una variable POST que se envia a "supervisores.ajax.php".
+			datosSupervisor.append("idSupervisor",respuesta["id_supervisor"]);
+			$.ajax
+			({
+				url:"ajax/supervisores.ajax.php",
+				method:"POST",
+				data:datosSupervisor,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(respuesta)
+				{
+					//console.log("respuesta",respuesta);		
+					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
+					$("#editarSupervisor").val(respuesta["id_supervisor"]);
+					$("#editarSupervisor").html(respuesta["descripcion"]);		
+				}
+		
+			})
+
+			// Obtener la Ubicacion, la descripcion					
+			var datosUbicacion = new FormData();
+
+			// respuesta["id_ubicacion"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+			// "datosSupervisor" = es una variable POST que se envia a "ubicaciones.ajax.php".
+			datosUbicacion.append("idUbicacion",respuesta["id_ubicacion"]);
+			$.ajax
+			({
+				url:"ajax/ubicaciones.ajax.php",
+				method:"POST",
+				data:datosUbicacion,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(respuesta)
+				{
+					//console.log("respuesta",respuesta);		
+					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
+					$("#editarUbicacion").val(respuesta["id_ubicacion"]);
+					$("#editarUbicacion").html(respuesta["descripcion"]);		
+				}
+		
+			})
+
+		} // success:function(respuesta) 
+
+	}); // 
 
 
 

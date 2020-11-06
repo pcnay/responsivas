@@ -333,6 +333,16 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
                 <select class="form-control input-lg"  name="editarPuesto" required>
 								<!-- Se utilizara JavaScript para obtener el valor.-->
                   <option id="editarPuesto"></option>
+									<?php
+										$item = null;
+										$valor = null;
+										$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
+										foreach ($puestos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_puesto"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
@@ -345,6 +355,15 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
                 <select class="form-control input-lg" name="editarDepto" required>
 								<!-- Se utilizara JavaScript para obtener el valor.-->
                 <option id="editarDepto"></option>
+									<?php
+										$item = null;
+										$valor = null;
+										$deptos = ControladorDeptos::ctrMostrarDeptos($item,$valor);
+										foreach ($deptos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_depto"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
                 </select>                
 
               </div> <!-- <div class = "input-group"> -->           
@@ -356,6 +375,16 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                 <select class="form-control input-lg" name="editarSupervisor" required>
                   <option id="editarSupervisor"></option>
+									<?php
+										$item = null;
+										$valor = null;
+										$supervisores = ControladorSupervisores::ctrMostrarSupervisores($item,$valor);
+										foreach ($supervisores as $key => $value)
+										{
+											echo '<option value = "'.$value["id_supervisor"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+
 	              </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
@@ -366,6 +395,16 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
                 <span class="input-group-addon"><i class="fas fa-street-view"></i></span>
                 <select class="form-control input-lg" name="editarUbicacion" required>
                   <option id="editarUbicacion"></option>
+									<?php
+										$item = null;
+										$valor = null;
+										$ubicaciones = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+										foreach ($ubicaciones as $key => $value)
+										{
+											echo '<option value = "'.$value["id_ubicacion"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+
 	              </select>                
   
 	            </div> <!-- <div class = "input-group"> -->           
