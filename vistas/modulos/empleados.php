@@ -436,8 +436,8 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 
 				<!-- Para Guardar la Edicion del Empleado -->
 				<?php
-					//$editarEmpleado = new ControladorEmpleados();
-					//$editarEmpleado->ctrEditarEmpleado();					
+					$editarEmpleado = new ControladorEmpleados();
+					$editarEmpleado->ctrEditarEmpleado();					
 				?>
 
     </div> <!-- <div class="modal-content"> -->

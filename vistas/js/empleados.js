@@ -314,6 +314,18 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		
 			})
 
+			// Asignando los campos restantes 
+			$("#editar_ntid").val(respuesta["ntid"]);
+			$("#editarNombre").val(respuesta["nombre"]);
+			$("#editarApellido").val(respuesta["apellidos"]);
+			$("#editarCorreoElect").val(respuesta["correo_electronico"]);
+			$("#editarCentroCosto").val(respuesta["centro_costos"]);
+			if (respuesta["foto"] != "")
+			{
+				$("#imagenActual").val(respuesta["foto"]);
+				$(".previsualizar").attr("src",respuesta["foto"]);
+			}
+
 		} // success:function(respuesta) 
 
 	}); // 

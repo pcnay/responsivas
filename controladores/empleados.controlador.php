@@ -165,8 +165,8 @@
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editar_ntid"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
-					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editaCorreoElect"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editaCentroCosto"]))				
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCorreoElect"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCentroCosto"]))				
 			{
 				$tabla = "t_Empleados";
 
@@ -206,14 +206,14 @@
 					else
 					{
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos" 0755.
-						mkdir ($directorio,0755);
+						mkdir ($directorio,0775);
 					}
 					
 					// De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
 					if ($_FILES["editarImagen"]["type"] == "image/jpeg")
 					{
 						$aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-						$ruta = "vistas/img/productos/".$_POST["editarApellido"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/empleados/".$_POST["editarApellido"]."/".$aleatorio.".jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -230,7 +230,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/png")
 					{
 						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/productos/".$_POST["editarApellido"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/empleados/".$_POST["editarApellido"]."/".$aleatorio.".png";
 						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -253,7 +253,7 @@
 											"nombre" =>$_POST["editarNombre"],
 											"apellidos" =>$_POST["editarApellido"],
 											"correo_electronico" =>$_POST["editarCorreoElect"],
-											"centro_costo" =>$_POST["editarCentroCosto"],											
+											"centro_costos" =>$_POST["editarCentroCosto"],											
 											"imagen" =>$ruta);
 				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 
