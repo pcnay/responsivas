@@ -150,6 +150,7 @@
 
 		} //  static public function mdlRangoFechasVentas($tabla,$fechaInicial,$fechaFinal)
 
+		/*
 		// ===================================================
 		// Suma Total De Ventas
 		// ==================================================
@@ -164,6 +165,8 @@
 			$stmt=null;		
 		}
 
+		*/
+		
 	} // class ModeloVentas 
 	
 ?>

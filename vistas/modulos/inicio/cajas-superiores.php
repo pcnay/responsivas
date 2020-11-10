@@ -1,4 +1,5 @@
 <?php
+	/*
 	$ventas = ControladorVentas::ctrSumaTotalVentas();
 	$item = null;
 	$valor = null;
@@ -12,7 +13,13 @@
 	$orden = "id";
 	$productos = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 	$totalProductos = count($productos);
+	*/
 	
+	$ventas["total"] = 0;
+	$perifericos = 0;
+	$totalPerifericos = 0;
+	$totalClientes = 0;
+	$totalProductos = 0;
 ?>
 
 <div class="row">

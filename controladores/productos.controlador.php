@@ -30,7 +30,7 @@
 
            */
           
-					// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/usuarios.php" seccion de "modalAgregarUsuario" etiqueta tipo "File" "nuevaImagen"
+		// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/usuarios.php" seccion de "modalAgregarUsuario" etiqueta tipo "File" "nuevaImagen"
           if (isset($_FILES["nuevaImagen"]["tmp_name"]))
           {
             // Crea un nuevo array

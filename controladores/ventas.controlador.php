@@ -1,6 +1,7 @@
 <?php
 	class ControladorVentas
 	{
+		//static public function ctrMostrarVentas($item, $valor)
 		static public function ctrMostrarVentas($item, $valor)
 		{
 			$tabla = "t_Ventas";
@@ -577,14 +578,16 @@
 
 		}	// public function ctrDescargarReporte()
 
+		/*
 		// =========================================
 		// Suma Total De Ventas 
 		//=========================================
-		public function ctrSumaTotalVentas()
+		static public function ctrSumaTotalVentas()
 		{
 			$tabla = "t_Ventas";
 			$respuesta = ModeloVentas::mdlSumaTotalVentas($tabla);
 			return $respuesta;
 		}
-
+		*/
+		
 	} // class ControladorVentas
