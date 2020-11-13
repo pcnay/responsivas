@@ -184,7 +184,7 @@
 					// Crear el directorio donde se guardara la foto del producto
 					$directorio = "vistas/img/productos/".$_POST["editarCodigo"];
 					
-					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"))
+					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/empleados/default/anonymous.png"))
 					{
 						// Borrar la foto
 						unlink ($_POST["imagenActual"]);
@@ -192,14 +192,15 @@
 					else
 					{
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos" 0755.
-						mkdir ($directorio,0755);
+						// mkdir ($directorio,0755);
+						mkdir ($directorio,0775);
 					}
 					
 					// De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
 					if ($_FILES["editarImagen"]["type"] == "image/jpeg")
 					{
 						$aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/empleados/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);

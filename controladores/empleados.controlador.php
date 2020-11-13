@@ -45,8 +45,8 @@
             $nuevoAlto = 500;
 
             // Crear el directorio donde se guardara la foto del usuario
-						$directorio = "vistas/img/empleados/".$_POST["nuevoApellido"];
-						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
+			$directorio = "vistas/img/empleados/".$_POST["nuevoApellido"];
+			// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
             mkdir ($directorio,0775); // 0755
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
@@ -58,8 +58,8 @@
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 							$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
 							
-							// Ajustar la imagen al tamaño definidos en las variables "$nuevoAncho", y "$nuevoAlto"
-							// imagecopyresized (dst_image,src_image,dst_x, dst_y,src_x,src_y,dst_w,dst_h,src_w,src_h)
+			  // Ajustar la imagen al tamaño definidos en las variables "$nuevoAncho", y "$nuevoAlto"
+			 // imagecopyresized (dst_image,src_image,dst_x, dst_y,src_x,src_y,dst_w,dst_h,src_w,src_h)
               imagecopyresized($destino,$origen,0,0,0,0,$nuevoAncho,$nuevoAlto,$ancho,$alto);
               // Guardar la foto en la computadora.
 							imagejpeg($destino,$ruta);
@@ -206,7 +206,7 @@
 					else
 					{
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos" 0755.
-						mkdir ($directorio,0775);
+						mkdir ($directorio,0777);
 					}
 					
 					// De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
@@ -245,6 +245,7 @@
 				}
 
 				// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
+				$tabla = "t_Empleados";
 				$datos = array("id_puesto" =>$_POST["editarPuesto"],
 											 "id_depto" =>$_POST["editarDepto"],
 											 "id_supervisor" =>$_POST["editarSupervisor"],
@@ -253,7 +254,7 @@
 											"nombre" =>$_POST["editarNombre"],
 											"apellidos" =>$_POST["editarApellido"],
 											"correo_electronico" =>$_POST["editarCorreoElect"],
-											"centro_costos" =>$_POST["editarCentroCosto"],											
+											"centro_costos" =>$_POST["editarCentroCosto"],				
 											"imagen" =>$ruta);
 				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 
@@ -276,6 +277,26 @@
 		
 						</script>';          
 
+				}
+				else
+				{
+					echo '<script>           
+					Swal.fire ({
+						type: "error",
+						title: "No puede grabar la informacion ",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+						closeOnConfirm: false
+						}).then(function(result){
+							if (result.value)
+							{
+								window.location="empleados";
+							}
+							});
+		
+						</script>';          
+	
+	
 				}
 			}
 			else
