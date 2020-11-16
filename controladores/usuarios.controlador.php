@@ -144,7 +144,8 @@
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "usuarios".
 						// Si se tiene un servidor Linux, se tiene que dar permisos 777 totales para este caso es : "/var/www/html/responsivas/vistas/img/usuarios "
 
-            mkdir ($directorio,0755);
+						// mkdir ($directorio,0755);
+						mkdir ($directorio,0777);
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
             if ($_FILES["nuevaFoto"]["type"] == "image/jpeg")

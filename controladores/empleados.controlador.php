@@ -89,7 +89,7 @@
 					$datos = array("id_puesto" =>$_POST["nuevoPuesto"],
 												"id_depto" =>$_POST["nuevoDepto"],
 												"id_supervisor" =>$_POST["nuevoSupervisor"],
-												"id_ubicacion" =>$_POST["nuevaUbicacion"],
+												"id_ubicacion" =>$_POST["nuevaUbicacion"],						
 												"nombre" =>$_POST["nuevoNombre"],
 												"apellidos" =>$_POST["nuevoApellido"],
 												"ntid" =>$_POST["nuevo_ntid"],
@@ -100,7 +100,7 @@
 					//var_dump($datos);
 					//exit;
 
-					$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
+					//$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
 
 
 					if ($respuesta == "ok")
@@ -250,13 +250,18 @@
 											 "id_depto" =>$_POST["editarDepto"],
 											 "id_supervisor" =>$_POST["editarSupervisor"],
 											 "id_ubicacion" =>$_POST["editarUbicacion"],	
+											 "id_empleados" =>$_POST["id_empleado"],	
 											"ntid" =>$_POST["editar_ntid"],
 											"nombre" =>$_POST["editarNombre"],
 											"apellidos" =>$_POST["editarApellido"],
 											"correo_electronico" =>$_POST["editarCorreoElect"],
 											"centro_costos" =>$_POST["editarCentroCosto"],				
 											"imagen" =>$ruta);
-				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
+					
+				var_dump($datos);
+				return;
+
+				//$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 
 				if ($respuesta == "ok")
 				{

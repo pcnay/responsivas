@@ -428,6 +428,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
         </div>
 
           <div class="modal-footer">
+						<input type = "hidden" name = "id_empleado" id="id_empleado">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
           </div>

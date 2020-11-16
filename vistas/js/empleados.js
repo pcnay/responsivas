@@ -315,6 +315,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 			})
 
 			// Asignando los campos restantes 
+			$("#id_empleado").val(respuesta["id_empleado"]);
 			$("#editar_ntid").val(respuesta["ntid"]);
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarApellido").val(respuesta["apellidos"]);
