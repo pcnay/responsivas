@@ -87,21 +87,20 @@
 
 					// Estos campos se extraen de las etiquetas de la captura de form de los Empleados, y se colocan en un arreglo.					
 					$datos = array("id_puesto" =>$_POST["nuevoPuesto"],
-												"id_depto" =>$_POST["nuevoDepto"],
-												"id_supervisor" =>$_POST["nuevoSupervisor"],
-												"id_ubicacion" =>$_POST["nuevaUbicacion"],						
-												"nombre" =>$_POST["nuevoNombre"],
-												"apellidos" =>$_POST["nuevoApellido"],
-												"ntid" =>$_POST["nuevo_ntid"],
-												"correo_electronico" =>$_POST["nuevoCorreoElect"],
-												"centro_costos" =>$_POST["nuevoCentroCosto"],
-												"imagen" =>$ruta);
+                        "id_depto" =>$_POST["nuevoDepto"],
+                        "id_supervisor" =>$_POST["nuevoSupervisor"],
+                        "id_ubicacion" =>$_POST["nuevaUbicacion"],						
+                        "nombre" =>$_POST["nuevoNombre"],
+                        "apellidos" =>$_POST["nuevoApellido"],
+                        "ntid" =>$_POST["nuevo_ntid"],
+                        "correo_electronico" =>$_POST["nuevoCorreoElect"],
+                        "centro_costos" =>$_POST["nuevoCentroCosto"],
+                        "imagen" =>$ruta);
 
 					//var_dump($datos);
 					//exit;
 
-					//$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
-
+					$respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);
 
 					if ($respuesta == "ok")
 					{
@@ -166,7 +165,8 @@
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCorreoElect"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCentroCosto"]))				
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCentroCosto"] &&
+					preg_match('/^[0-9]+$/',$_POST["id_empleado"])))				
 			{
 				$tabla = "t_Empleados";
 
@@ -250,7 +250,7 @@
 											 "id_depto" =>$_POST["editarDepto"],
 											 "id_supervisor" =>$_POST["editarSupervisor"],
 											 "id_ubicacion" =>$_POST["editarUbicacion"],	
-											 "id_empleados" =>$_POST["id_empleado"],	
+											 "id_empleado" =>$_POST["id_empleado"],	
 											"ntid" =>$_POST["editar_ntid"],
 											"nombre" =>$_POST["editarNombre"],
 											"apellidos" =>$_POST["editarApellido"],
@@ -259,9 +259,9 @@
 											"imagen" =>$ruta);
 					
 				var_dump($datos);
-				return;
+				//exit; // return;
 
-				//$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
+				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 
 				if ($respuesta == "ok")
 				{
@@ -346,10 +346,10 @@
 				unlink ($_GET["imagen"]);
 				//$borrar_directorio = new EliminarDirectorio();
 				//$borrar_directorio->eliminar_directorio('vistas/img/empleados/'.$_GET["codigo"]);
-				rmdir('vistas/img/empleados/'.$_GET["apellido"]);				
+				rmdir('vistas/img/empleados/'.$_GET["apellidos"]);				
 			}
 
-			$respuesta = ModeloProductos::mdlEliminarEmpleado($tabla,$datos);
+			$respuesta = ModeloEmpleados::mdlEliminarEmpleado($tabla,$datos);
 			if ($respuesta = "ok")
 			{
 				echo '<script>           

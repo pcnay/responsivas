@@ -194,7 +194,7 @@ $(".nuevaImagen").change(function(){
 $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 	// "idEmpleados" viene desde el archivo : "datatable-empleados.ajax.php -> $botones"
 	var idEmpleado = $(this).attr("idEmpleado");
-	console.log("idEmpleado",idEmpleado);
+	//console.log("idEmpleado",idEmpleado);
 	
 	
 	// Se utilizara Ajax para obtener la información del empleados desde la base de datos.
@@ -212,7 +212,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		dataType:"json",
 		success:function(respuesta)
 		{
-			console.log("respuesta",respuesta);
+			//console.log("respuesta Editar Empleado desde el boton Editar ",respuesta);
 			
 			// Obtener el Puesto, la descripcion					
 			var datosPuesto = new FormData();
@@ -229,12 +229,12 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				contentType:false,
 				processData:false,
 				dataType:"json",
-				success:function(respuesta)
+				success:function(puesto)
 				{
-					console.log("respuesta",respuesta);		
+					// console.log("respuesta",respuesta);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
-					$("#editarPuesto").val(respuesta["id_puesto"]);
-					$("#editarPuesto").html(respuesta["descripcion"]);		
+					$("#editarPuesto").val(puesto["id_puesto"]);
+					$("#editarPuesto").html(puesto["descripcion"]);		
 				}
 		
 			})
@@ -254,12 +254,12 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				contentType:false,
 				processData:false,
 				dataType:"json",
-				success:function(respuesta)
+				success:function(depto)
 				{
 					//console.log("respuesta",respuesta);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
-					$("#editarDepto").val(respuesta["id_depto"]);
-					$("#editarDepto").html(respuesta["descripcion"]);		
+					$("#editarDepto").val(depto["id_depto"]);
+					$("#editarDepto").html(depto["descripcion"]);		
 				}
 		
 			})
@@ -279,12 +279,12 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				contentType:false,
 				processData:false,
 				dataType:"json",
-				success:function(respuesta)
+				success:function(supervisor)
 				{
 					//console.log("respuesta",respuesta);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
-					$("#editarSupervisor").val(respuesta["id_supervisor"]);
-					$("#editarSupervisor").html(respuesta["descripcion"]);		
+					$("#editarSupervisor").val(supervisor["id_supervisor"]);
+					$("#editarSupervisor").html(supervisor["descripcion"]);		
 				}
 		
 			})
@@ -304,17 +304,18 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				contentType:false,
 				processData:false,
 				dataType:"json",
-				success:function(respuesta)
+				success:function(ubicacion)
 				{
 					//console.log("respuesta",respuesta);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
-					$("#editarUbicacion").val(respuesta["id_ubicacion"]);
-					$("#editarUbicacion").html(respuesta["descripcion"]);		
+					$("#editarUbicacion").val(ubicacion["id_ubicacion"]);
+					$("#editarUbicacion").html(ubicacion["descripcion"]);		
 				}
 		
 			})
 
 			// Asignando los campos restantes 
+			console.log("respuesta Editar Empleado desde el boton Editar ",respuesta);
 			$("#id_empleado").val(respuesta["id_empleado"]);
 			$("#editar_ntid").val(respuesta["ntid"]);
 			$("#editarNombre").val(respuesta["nombre"]);
@@ -326,101 +327,11 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				$("#imagenActual").val(respuesta["foto"]);
 				$(".previsualizar").attr("src",respuesta["foto"]);
 			}
+			// console.log("id_Empleado javaScript ",respuesta["id_empleado"]);
 
 		} // success:function(respuesta) 
 
-	}); // 
-
-
-
-			/*
-			// Obtener el Depto.
-			var datosDepto = new FormData();
-			datosDepto.append("idDepto",respuesta["id_depto"]);
-			$.ajax
-			({
-				url:"ajax/deptos.ajax.php",
-				method:"POST",
-				data:datosDepto,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(respuesta)
-				{
-					console.log("respuesta",respuesta);					
-					$("#editarDepto").val(respuesta["id_depto"]);
-					$("#editarDepto").html(respuesta["descripcion"]);
-		
-				}
-		
-			})		
-
-			// Obtener el Supervisor.
-			var datosSupervisor = new FormData();
-			datosSupervisor.append("idSupervisor",respuesta["id_supervisor"]);
-			$.ajax
-			({
-				url:"ajax/supervisores.ajax.php",
-				method:"POST",
-				data:datosSupervisor,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(respuesta)
-				{
-					console.log("respuesta",respuesta);					
-					$("#editarSupervisor").val(respuesta["id_supervisor"]);
-					$("#editarSupervisor").html(respuesta["descripcion"]);
-		
-				}
-		
-			})		
-
-			// Obtener la Ubicacion.
-			var datosUbicacion = new FormData();
-			datosUbicacion.append("idUbicacion",respuesta["id_ubicacion"]);
-			$.ajax
-			({
-				url:"ajax/ubicaciones.ajax.php",
-				method:"POST",
-				data:datosUbicacion,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(respuesta)
-				{
-					console.log("respuesta",respuesta);					
-					$("#editarUbicacion").val(respuesta["id_ubicacion"]);
-					$("#editarUbicacion").html(respuesta["descripcion"]);
-		
-				}
-		
-			})		
-
-			// Se van asignar los valores a las editas del producto a Editar.
-			$("#editar_ntid").val(respuesta["ntid"]);
-			$("#editarNombre").val(respuesta["nombre"]);
-			$("#editarApellido").val(respuesta["apellidos"]);
-			$("#editarCorreoelect").val(respuesta["correo_electronico"]);
-			$("#editarCentroCosto").val(respuesta["centro_costo"]);
-
-			if (respuesta["imagen"] != "")
-			{
-				$("#imagenActual").val(respuesta["imagen"]);
-				//console.log("imagen",respuesta["imagen"]);
-				
-				$(".previsualizar").attr("src",respuesta["imagen"]);
-			}
-
-			
-		}
-
-	})	
-
-*/
+	});
 
 }) // $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 
@@ -429,15 +340,15 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 $(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
 	var idEmpleado = $(this).attr("idEmpleado");
-	// console.log("idEmpleado",idEmpleado);
-	// Obtener el NtId del "empleado" y la ruta de la imagen que esta grabada en la Tabla.
-	var codigo = $(this).attr("ntid");
+	//console.log("idEmpleado",idEmpleado);
+
+    // Obtener el NtId del "empleado" y la ruta de la imagen que esta grabada en la Tabla.
+	var apellidos = $(this).attr("apellidos");
 	var imagen = $(this).attr("imagen");
 
 	
 	Swal.fire ({
-		type: "success",
-		title: "El Empleado sido borrada correctamente ",
+	    title: "Esta seguro de Borrar el Empleado ",
 		text : "De lo contrario puede cancelar la Acción ",
 		type:'warning',
 		showCancelButton:true,		
@@ -449,9 +360,10 @@ $(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
 		}).then(function(result){
 			if (result.value)
 			{
-				window.location="index.php?ruta=empleados&idEmpleado="+idEmpleado+"&imagen="+imagen+"&ntid="+ntid;
+				window.location="index.php?ruta=empleados&idEmpleado="+idEmpleado+"&imagen="+imagen+"&apellidos="+apellidos;
 			}
 
 			});	
+
 
 })

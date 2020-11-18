@@ -35,7 +35,7 @@
 			{
 				$item = null;
 				$valor = null;
-				$orden = "id_empleado";
+				$orden = "apellidos";
 				$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 				echo json_encode($respuesta);	
 			}
@@ -52,7 +52,7 @@
 			{
 				$item = "id_empleado";
 				$valor = $this->idEmpleado;
-				$orden = "id_empleado";
+				$orden = "apellidos";
 				$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 				echo json_encode($respuesta);
 			}
