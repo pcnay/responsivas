@@ -131,7 +131,7 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaEdo_Epo" placeholder = "Ingresar Estado Del Equipo" id="nuevaEdo_Epo" required>
+                <input type="text" class="form-control input-lg" name="nuevoEdo_Epo" placeholder = "Ingresar Estado Del Equipo" id="nuevoEdo_Epo" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -158,8 +158,9 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarPerife<?php
-	// El vendedor no puede entrar a Perifericos
+</div> <!-- <div id="modalAgregarEdo_Epo
+<?php
+	// El vendedor no puede entrar a 
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
 		echo '
@@ -175,12 +176,12 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Marcas
+        Administrar Estados del Equipo
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Marcas</li>
+        <li class="active">Administrar Estados Del Equipo</li>
       </ol>
     </section>
 
@@ -193,8 +194,8 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarMarcas">
-            Agregar Marcas
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarEdo_Epo">
+            Agregar Estados Del Equipo
           </button>       
         </div>
  
@@ -206,7 +207,7 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Marcas</th>								
+                <th>Estado Del Equipo</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -219,10 +220,10 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
-								// Probando mostrando lo que contiene la variable "$marcas"
-								// var_dump($marcas);
-								foreach ($marcas as $key => $value)
+								$edo_epo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
+								// Probando mostrando lo que contiene la variable "$edo_epo"
+								// var_dump($edo_epo);
+								foreach ($edo_epo as $key => $value)
 								{
 									echo '
 												<tr>
@@ -232,13 +233,13 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
 													<td class="text-uppercase">'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarMarca" para activar una ventana modal -->
-															<!-- "btnEditarMarca" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarMarca" idMarca="'.$value["id_marca"].'" data-toggle="modal" data-target="#modalEditarMarca"><i class="fa fa-pencil"></i></button>';
+															<!-- data-toggle="modal" data-target="#modalEditarEdo_Epo" para activar una ventana modal -->
+															<!-- "btnEditarEdo_Epo" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarEdo_Epo" idEdo_Epo="'.$value["id_edo_epo"].'" data-toggle="modal" data-target="#modalEditarEdo_Epo"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
-																echo '<!-- Se pasa btnEliminarMarca, idMarca="'.$value["id_marca"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarMarca" idMarca="'.$value["id_marca"].'"><i class="fa fa-times"></i></button>';
+																echo '<!-- Se pasa btnEliminarEdo_Epo, idEdo_Epo="'.$value["id_edo_epo"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarEdo_Epo" idEdo_Epo="'.$value["id_edo_epo"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>
@@ -265,11 +266,11 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
+Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarMarcas" class="modal fade" role="dialog">
+<div id="modalAgregarEdo_Epo" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -281,7 +282,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Marca</h4>
+          <h4 class="modal-title">Agregar Estado Del Equipo</h4>
         </div>
 
 
@@ -291,7 +292,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder = "Ingresar Marca" id="nuevaMarca" required>
+                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder = "Ingresar Estado Del Equipo" id="nuevoEdo_Epo" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -303,74 +304,13 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Marca</button>
+            <button type="submit" class="btn btn-primary">Guardar Edo. Epo.</button>
           </div>
 
 					<?php 
-						// Para grabar la Marcas.
-						$crearMarca = new ControladorMarcas();
-						$crearMarca->ctrCrearMarcas();
-					?>
-
-      </form>
-
-    </div> <!-- <div class="modal-content"> -->
-
-  </div> <!-- <div class="modal-dialog"> -->
-
-</div> <!-- <div id="modalAgregarPeriferico" class="modal fade" role="dialog"> --> 
-
-
-<!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
--->
-<!-- ================================================
-	 Modal Editar Marca 
-	====================================================
--->
-<div id="modalEditarMarca" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-
-      <!-- enctype= "multipart/form-data = Para subir archivos., se suprime -->
-      <form role="form" method="post">
-    
-        <!-- La franja azul de la ventana modal -->
-        <div class="modal-header" style= "background:#3c8dbc; color:white">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Marca</h4>
-        </div>
-
-
-        <div class="modal-body">
-          <div class="box-body">
-            <!-- Clases de BootStrap para las formularios-->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarMarca"  id="editarMarca" required>
-								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
-								<input type="hidden"  name="idMarca"  id="idMarca" required>
-              </div> <!-- <div class = "input-group"> -->           
-
-            </div> <!-- <div class="form-group"> -->
-
-          </div> <!-- <div class="box-body"> -->
-
-        </div> <!-- <div class="modal-body"> -->
-
-					<!-- Pie Del Modal-->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-          </div>
-
-					<?php 
-						// Para grabar la modifiacion de Marca.
-						$editarMarca = new ControladorMarcas();
-						$editarMarca->ctrEditarMarca();
+						// Para grabar la Estado Equipo.
+						$crearEdo_Epo = new ControladorEdo_Epos();
+						$crearEdo_Epo->ctrCrearEdo_Epo();
 					?>
 
       </form>
@@ -380,6 +320,67 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
   </div> <!-- <div class="modal-dialog"> -->
 
 </div> <!-- <div id="modalAgregarEdo_Epo" class="modal fade" role="dialog"> --> 
+
+
+<!--Este código se tomo desde el bootstrap - > Table 
+Cuando el usuario oprima el boton de "Editar Estado Equipo" se activa esta ventana.
+-->
+<!-- ================================================
+	 Modal Editar Estado Equipo 
+	====================================================
+-->
+<div id="modalEditarEdo_Epo" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <!-- enctype= "multipart/form-data = Para subir archivos., se suprime -->
+      <form role="form" method="post">
+    
+        <!-- La franja azul de la ventana modal -->
+        <div class="modal-header" style= "background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar Estado Equipo</h4>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="box-body">
+            <!-- Clases de BootStrap para las formularios-->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <input type="text" class="form-control input-lg" name="editarEdo_Epo"  id="editarEdo_Epo" required>
+								<!-- Se envía como campo oculto para enviar el "id" de la Estado Equipo -->
+								<input type="hidden"  name="idEdo_Epo"  id="idEdo_Epo" required>
+              </div> <!-- <div class = "input-group"> -->           
+
+            </div> <!-- <div class="form-group"> -->
+
+          </div> <!-- <div class="box-body"> -->
+
+        </div> <!-- <div class="modal-body"> -->
+
+					<!-- Pie Del Modal-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-primary">Editar Cambios</button>
+          </div>
+
+					<?php 
+						// Para grabar la modifiacion de Estado Equipos.
+						$editarEdo_Epo = new ControladorEdo_Epos();
+						$editarEdo_Epo->ctrEditarEdo_Epo();
+					?>
+
+      </form>
+
+    </div> <!-- <div class="modal-content"> -->
+
+  </div> <!-- <div class="modal-dialog"> -->
+
+</div> <!-- <div id="modalEditarEdo_Epo" class="modal fade" role="dialog"> --> 
 
 <?php 
 	// =====================================================
@@ -392,7 +393,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Estado Equipo" se activa esta ventana.
 -->
 <!-- ================================================
 	 Modal Editar Estado Del Equipo 
