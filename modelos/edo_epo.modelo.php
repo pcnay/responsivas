@@ -51,7 +51,7 @@
 		// ==============================================
 		// Editar Estado Del Equipo.
 		// ==============================================
-		static public function mdlBorrarEdo-Epo($tabla,$datos)
+		static public function mdlBorrarEdo_Epo($tabla,$datos)
 		{
 			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_edo_Epo = :id");
 			

@@ -20,7 +20,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Estado Del EquipoMarcas</li>
+        <li class="active">Administrar Estado Del Equipo</li>
       </ol>
     </section>
 

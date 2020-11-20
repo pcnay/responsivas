@@ -99,9 +99,9 @@
 							</li> 
 
 							<li>
-								<a href="edo_epo">
+								<a href="edo-epo">
 									<i class="fa fa-circle-o"></i>
-									<span>Estado Epo</span>
+									<span>Estado Equipo</span>
 								</a>
 							</li> 
 							<li>
