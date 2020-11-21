@@ -24,7 +24,7 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // static public function mdlIngresarEdo_Epo$tabla,$datos)
+		} // static public function mdlIngresarEdo_Epo($tabla,$datos)
 
 		// ======================================================
 		// Editar Estado Del Equipo.

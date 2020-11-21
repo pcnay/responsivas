@@ -2,8 +2,8 @@
 	// Se vuelve a llamar ya que en el Ajax, trabaja en 2do. plano, porque se tiene que volver a invocarlo.
 // No declarar "static" en esta funcion, no la soporta el servidor Cloud de Google, por lo que deja de trabajar el programa de forma correcta.
 
-	require_once "../controladores/edo_epo.controlador.php";
-	require_once "../modelos/edo_epo.modelo.php";
+	require_once "../controladores/edo-epo.controlador.php";
+	require_once "../modelos/edo-epo.modelo.php";
 	
 	class AjaxEdo_Epo
 		{

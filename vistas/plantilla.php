@@ -187,7 +187,7 @@
 	<!-- se muestra los Empleados  -->
 	<script src="vistas/js/empleados.js"></script>
 	<!-- se muestra el Estado de los Equipos -->
-	<script src="vistas/js/edo_epo.js"></script>
+	<script src="vistas/js/edo-epo.js"></script>
 
 
 	<!-- Es para los reportes que se utilizaran en el sistema  -->	

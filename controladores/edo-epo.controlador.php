@@ -25,7 +25,7 @@
 					// Enviar la información al Modelo.
 					$tabla = "t_Edo_epo";
 
-					$datos=array();									
+					//$datos=array();									
 					$datos = array("nuevoEdo_Epo"=>$_POST["nuevoEdo_Epo"]);
 
 					$respuesta = ModeloEdo_Epos::mdlIngresarEdo_Epo($tabla,$datos);
@@ -42,7 +42,7 @@
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="edo_epo";
+									window.location="edo-epo";
 								}
 	
 								});
@@ -63,7 +63,7 @@
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="edo_epo";
+								window.location="edo-epo";
 							}
 
 							});
@@ -105,7 +105,7 @@
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="edo_epo";
+									window.location="edo-epo";
 								}
 	
 								});
@@ -126,7 +126,7 @@
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="edo_epo";
+								window.location="edo-epo";
 							}
 
 							});
@@ -170,7 +170,7 @@
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="edo_epo";
+								window.location="edo-epo";
 							}
 
 							});

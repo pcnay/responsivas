@@ -5,12 +5,14 @@ $(".btnEditarEdo_Epo").click(function(){
 	// Se obtiene el valor de "idEdo_Epo"
 	var idEdo_Epo = $(this).attr("idEdo_Epo");
 
+	console.log("idEdo_Epo",idEdo_Epo);
+
 	// Para agregar datos 
 	var datos = new FormData();
 	datos.append("idEdo_Epo",idEdo_Epo); // Se crea la variable "POST", "idEdo_Epo"
 
 	$.ajax({
-		url:"ajax/edo_epo.ajax.php",
+		url:"ajax/edo-epo-ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
@@ -44,7 +46,7 @@ $("#nuevoEdo_Epo").change(function(){
 	// Genera 
 	datos.append("validarEdo_Epo",edo_epo);
 	$.ajax({
-		url:"ajax/edo_epo.ajax.php",
+		url:"ajax/edo-epo-ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
@@ -88,7 +90,7 @@ $("#nuevoEdo_Epo").change(function(){
 		}).then(function(result){ 
 			if (result.value)
 			{
-				window.location = "index.php?ruta=edo_epo&idEdo_Epo="+idEdo_Epo;
+				window.location = "index.php?ruta=edo-epo&idEdo_Epo="+idEdo_Epo;
 			}
 		})	
 
