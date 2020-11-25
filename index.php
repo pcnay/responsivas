@@ -109,6 +109,7 @@ require_once "controladores/puestos.controlador.php";
 require_once "controladores/deptos.controlador.php";
 require_once "controladores/empleados.controlador.php";
 require_once "controladores/edo-epo.controlador.php";
+require_once "controladores/almacen.controlador.php";
 
 require_once "modelos/perifericos.modelo.php";
 require_once "modelos/clientes.modelo.php";
@@ -123,10 +124,7 @@ require_once "modelos/puestos.modelo.php";
 require_once "modelos/deptos.modelo.php";
 require_once "modelos/empleados.modelo.php";
 require_once "modelos/edo-epo.modelo.php";
+require_once "modelos/almacen.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();
-
-
- 
-
