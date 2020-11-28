@@ -1,5 +1,5 @@
 <?php
-	// El vendedor no puede entrar a Puestos
+	// El vendedorno puede entrar a puerto
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
 		echo '
@@ -15,12 +15,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Puestos
+        Administrar Puertos
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Puestos</li>
+        <li class="active">Administrar Puertos</li>
       </ol>
     </section>
 
@@ -33,8 +33,8 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPuestos">
-            Agregar Puestos
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPuerto">
+            Agregar Puertos
           </button>       
         </div>
  
@@ -46,7 +46,7 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Puestos</th>								
+                <th>Puertos</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -59,10 +59,10 @@
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
-								// Probando mostrando lo que contiene la variable "$marcas"
-								// var_dump($marcas);
-								foreach ($puestos as $key => $value)
+								$puertos = ControladorPuertos::ctrMostrarPuertos($item,$valor);
+								// Probando mostrando lo que contiene la variable "$puertos"
+								// var_dump($puertos);
+								foreach ($puertos as $key => $value)
 								{
 									echo '
 												<tr>
@@ -72,13 +72,13 @@
 													<td class="text-uppercase">'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarPuesto" para activar una ventana modal -->
-															<!-- "btnEditarPuesto" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarPuerto" idPuesto="'.$value["id_puesto"].'" data-toggle="modal" data-target="#modalEditarPuesto"><i class="fa fa-pencil"></i></button>';
+															<!-- data-toggle="modal" data-target="#modalEditarPuerto" para activar una ventana modal -->
+															<!-- "btnEditarPuerto" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarPuerto" idPuerto="'.$value["id_puerto"].'" data-toggle="modal" data-target="#modalEditarPuerto"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
-																echo '<!-- Se pasa btnEliminarPuesto, idPuesto="'.$value["id_puesto"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarPuesto" idPuesto="'.$value["id_puesto"].'"><i class="fa fa-times"></i></button>';
+																echo '<!-- Se pasa btnEliminarPuerto, idPuerto="'.$value["id_puerto"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarPuerto" idPuerto="'.$value["id_puerto"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>
@@ -90,7 +90,7 @@
 
             </tbody>
 
-          </table> <!-- <table class="table table-bordered tabe-striped"> -->
+          </table> <!-- <table class="table table-bordered table-striped tablas"> -->
 
         </div> <!-- <div class="box-body"> -->
 
@@ -105,11 +105,11 @@
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
+Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarPuestos" class="modal fade" role="dialog">
+<div id="modalAgregarPuerto" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -121,7 +121,7 @@ Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Puestos</h4>
+          <h4 class="modal-title">Agregar Puerto</h4>
         </div>
 
 
@@ -131,7 +131,7 @@ Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoPuesto" placeholder = "Ingresar Puesto" id="nuevoPuesto" required>
+                <input type="text" class="form-control input-lg" name="nuevoPuerto" placeholder = "Ingresar Puerto" id="nuevoPuerto" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -143,13 +143,13 @@ Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Puesto</button>
+            <button type="submit" class="btn btn-primary">Guardar Puerto</button>
           </div>
 
 					<?php 
-						// Para grabar el Puesto.
-						$crearPuesto = new ControladorPuestos();
-						$crearPuesto->ctrCrearPuestos();
+						// Para grabar el Puerto.
+						$crearPuerto = new ControladorPuertos();
+						$crearPuerto->ctrCrearPuerto();
 					?>
 
       </form>
@@ -158,17 +158,17 @@ Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarPuestos" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarPuerto" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Puerto" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Puesto
+	 Modal Editar Puerto 
 	====================================================
 -->
-<div id="modalEditarPuesto" class="modal fade" role="dialog">
+<div id="modalEditarPuerto" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -180,7 +180,7 @@ Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Puesto</h4>
+          <h4 class="modal-title">Editar Puerto</h4>
         </div>
 
 
@@ -190,9 +190,9 @@ Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarPuesto"  id="editarPuesto" required>
-								<!-- Se envía como campo oculto para enviar el "id" del Puesto -->
-								<input type="hidden"  name="idPuesto"  id="idPuesto" required>
+                <input type="text" class="form-control input-lg" name="editarPuerto"  id="editarPuerto" required>
+								<!-- Se envía como campo oculto para enviar el "id" del Puerto-->
+								<input type="hidden"  name="idPuerto"  id="idPuerto" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -208,9 +208,9 @@ Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
           </div>
 
 					<?php 
-						// Para grabar la modifiacion del Puesto.
-						$editarPuesto = new ControladorPuestos();
-						$editarPuesto->ctrEditarPuesto();
+						// Para grabar la modifiacion de Puerto.
+						$editarPuerto = new ControladorPuertos();
+						$editarPuerto->ctrEditarPuerto();
 					?>
 
       </form>
@@ -223,9 +223,9 @@ Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
 
 <?php 
 	// =====================================================
-	// Para borrar un Puesto.
+	// Para borrar un Puerto.
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarPuesto = new ControladorPuestos();
-	$borrarPuesto->ctrBorrarPuesto();
+	$borrarPuerto = new ControladorPuertos();
+	$borrarPuerto->ctrBorrarPuerto();
 ?>

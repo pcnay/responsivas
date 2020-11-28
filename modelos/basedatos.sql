@@ -15,9 +15,10 @@ CREATE DATABASE IF NOT EXISTS bd_responsivas;
 USE bd_responsivas;
 
 
-/* Solo se ejecuta la primera vez. */
+/* Solo se ejecuta la primera vez. 
 CREATE USER 'usuario_responsiva'@'localhost' IDENTIFIED BY 'responsivas-2020';
 GRANT ALL on bd_responsivas.* to 'usuario_responsiva'  IDENTIFIED BY 'responsivas-2020';
+*/
 
 /* 
 Mostrar todos los usuarios 
@@ -123,7 +124,7 @@ CREATE TABLE t_Usuarios
   clave VARCHAR(80) NOT NULL,
   perfil VARCHAR(45) NOT NULL,
   vendedor VARCHAR(45) NULL,
-  foto VARCHAR(45) NULL,
+  foto VARCHAR(100) NULL,
   estado TINYINT UNSIGNED DEFAULT 0,
   ultimo_login DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -166,6 +167,7 @@ CREATE TABLE t_Empleados
 	ntid VARCHAR(20) NOT NULL,
 	correo_electronico VARCHAR(50) NOT NULL,
 	centro_costos VARCHAR(20) NOT NULL,	
+	foto VARCHAR(100) NOT NULL,	
 	fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -185,8 +187,6 @@ CREATE TABLE t_Productos
 	id_marca SMALLINT UNSIGNED NOT NULL,
 	id_modelo SMALLINT UNSIGNED NOT NULL,
 	id_idf SMALLINT UNSIGNED NOT NULL,
-	id_patch_panel SMALLINT UNSIGNED NOT NULL,
-	id_puerto SMALLINT UNSIGNED NOT NULL,
 	id_periferico SMALLINT UNSIGNED NOT NULL,
   nomenclatura VARCHAR(45) NOT NULL,
 	num_serie VARCHAR(45) NOT NULL,
@@ -195,7 +195,8 @@ CREATE TABLE t_Productos
 	precio_venta decimal(10,2) DEFAULT NULL,
 	cuantas_veces TINYINT DEFAULT NULL,
 	fecha_arribo DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	comentarios TEXT,
+	especificaciones TEXT NULL,
+	comentarios TEXT NULL,
 	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_edo_epo) REFERENCES t_Edo_epo(id_edo_epo)
@@ -205,10 +206,6 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_modelo) REFERENCES t_Modelo(id_modelo)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_idf) REFERENCES t_Idf(id_idf)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_patch_panel) REFERENCES t_Patch_panel(id_patch_panel)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_puerto) REFERENCES t_Puerto(id_puerto)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_periferico) REFERENCES t_Periferico(id_periferico)
 	ON DELETE RESTRICT ON UPDATE CASCADE
