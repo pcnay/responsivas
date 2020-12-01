@@ -123,7 +123,7 @@
 								</a>
 							</li> 
 							<li>
-								<a href="patch_panel">
+								<a href="patchpanel">
 									<i class="fa fa-circle-o"></i>
 									<span>Patch Panel</span>
 								</a>

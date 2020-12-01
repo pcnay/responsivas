@@ -92,9 +92,7 @@
 					$datos = array("descripcion"=>$_POST["editarPuerto"],
 													"id_puerto"=>$_POST["idPuerto"]);
 					
-					var_dump($datos);
-					//exit;
-
+					
 					$respuesta = ModeloPuertos::mdlEditarPuerto($tabla,$datos);
 					if ($respuesta == "ok")
 					{
