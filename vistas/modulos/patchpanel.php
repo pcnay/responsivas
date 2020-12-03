@@ -123,7 +123,7 @@ Cuando el usuario oprima el boton de "Agregar Patch Panel" se activa esta ventan
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Marca</h4>
+          <h4 class="modal-title">Agregar Patch Panel</h4>
         </div>
 
 
@@ -133,7 +133,7 @@ Cuando el usuario oprima el boton de "Agregar Patch Panel" se activa esta ventan
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder = "Ingresar Marca" id="nuevaMarca" required>
+                <input type="text" class="form-control input-lg" name="nuevoPatchPanel" placeholder = "Ingresar Patch Panel " id="nuevoPatchPanel" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -142,17 +142,17 @@ Cuando el usuario oprima el boton de "Agregar Patch Panel" se activa esta ventan
 
         </div> <!-- <div class="modal-body"> -->
 
-					<!-- Pie Del Modal-->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Marca</button>
-          </div>
+				<!-- Pie Del Modal-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="submit" class="btn btn-primary">Guardar Patch Panel</button>
+        </div>
 
-					<?php 
-						// Para grabar la Marcas.
-						$crearMarca = new ControladorMarcas();
-						$crearMarca->ctrCrearMarcas();
-					?>
+				<?php 
+					// Para grabar la Marcas.
+					$crearPatchPanel = new ControladorPatchPanel();
+					$crearPatchPanel->ctrCrearPatchPanel();
+				?>
 
       </form>
 
@@ -160,17 +160,17 @@ Cuando el usuario oprima el boton de "Agregar Patch Panel" se activa esta ventan
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarPeriferico" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarPatchPanel" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Patch Panel" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Marca 
+	 Modal Editar Patch Panel
 	====================================================
 -->
-<div id="modalEditarMarca" class="modal fade" role="dialog">
+<div id="modalEditarPatchPanel" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -182,7 +182,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Marca</h4>
+          <h4 class="modal-title">Editar Patch Panel</h4>
         </div>
 
 
@@ -192,9 +192,9 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarMarca"  id="editarMarca" required>
-								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
-								<input type="hidden"  name="idMarca"  id="idMarca" required>
+                <input type="text" class="form-control input-lg" name="editarPatchPanel"  id="editarPatchPanel" required>
+								<!-- Se envía como campo oculto para enviar el "id" del Patch Panel -->
+								<input type="hidden"  name="idPatchPanel"  id="idPatchPanel" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -210,9 +210,9 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
           </div>
 
 					<?php 
-						// Para grabar la modifiacion de Marca.
-						$editarMarca = new ControladorMarcas();
-						$editarMarca->ctrEditarMarca();
+						// Para grabar la modifiacion del Patch Panel.
+						$editarPatchP = new ControladorPatchPanel();
+						$editarPatchP->ctrEditarPatchPanel();
 					?>
 
       </form>
@@ -225,9 +225,9 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 
 <?php 
 	// =====================================================
-	// Para borrar un Marca.
+	// Para borrar un Patch Panel.
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarMarca = new ControladorMarcas();
-	$borrarMarca->ctrBorrarMarca();
+	$borrarPatchPanel = new ControladorPatchPanel();
+	$borrarPatchPanel->ctrBorrarPatchPanel();
 ?>

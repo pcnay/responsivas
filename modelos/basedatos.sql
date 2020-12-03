@@ -7,10 +7,11 @@
 --    source script.sql ó \. script.sql
 */
 
-DROP DATABASE IF EXISTS bd_responsivas;
+/* DROP DATABASE IF EXISTS bd_responsivas; */
+
 
 CREATE DATABASE IF NOT EXISTS bd_responsivas;
-/* SET time_zone = 'America/Tijuana'; */
+ /* SET time_zone = 'America/Tijuana';  */
 
 USE bd_responsivas;
 
@@ -92,20 +93,15 @@ CREATE TABLE t_Puerto
 
 CREATE TABLE t_Patch_panel
 (
-  id_patch_panel SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	id_puerto SMALLINT UNSIGNED NOT NULL,
-  descripcion VARCHAR(45) NOT NULL,
-	FOREIGN KEY(id_puerto) REFERENCES t_Puerto(id_puerto)
-	ON DELETE RESTRICT ON UPDATE CASCADE
+  id_patch_panel SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,	
+  descripcion VARCHAR(45) NOT NULL	
 );
 
 CREATE TABLE t_Idf
 (
-  id_idf SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	id_patch_panel SMALLINT UNSIGNED NOT NULL,
-  descripcion VARCHAR(45) NOT NULL,  
-	FOREIGN KEY(id_patch_panel) REFERENCES t_Patch_panel(id_patch_panel)
-	ON DELETE RESTRICT ON UPDATE CASCADE
+  id_idf SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,	
+  descripcion VARCHAR(45) NOT NULL
+
 );
 
 CREATE TABLE t_Planta
@@ -187,6 +183,8 @@ CREATE TABLE t_Productos
 	id_marca SMALLINT UNSIGNED NOT NULL,
 	id_modelo SMALLINT UNSIGNED NOT NULL,
 	id_idf SMALLINT UNSIGNED NOT NULL,
+	id_patch_panel SMALLINT UNSIGNED NOT NULL,
+	id_puerto SMALLINT UNSIGNED NOT NULL,
 	id_periferico SMALLINT UNSIGNED NOT NULL,
   nomenclatura VARCHAR(45) NOT NULL,
 	num_serie VARCHAR(45) NOT NULL,
@@ -206,6 +204,10 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_modelo) REFERENCES t_Modelo(id_modelo)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_idf) REFERENCES t_Idf(id_idf)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_patch_panel) REFERENCES t_Patch_panel(id_patch_panel)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_puerto) REFERENCES t_Puerto(id_puerto)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_periferico) REFERENCES t_Periferico(id_periferico)
 	ON DELETE RESTRICT ON UPDATE CASCADE
