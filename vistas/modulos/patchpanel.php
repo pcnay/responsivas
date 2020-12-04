@@ -46,8 +46,7 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>PathcPanel</th>
-								<th>Puerto</th>								
+                <th>PatchPanel</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -60,7 +59,7 @@
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$patchpanel = ControladorPatchPanels::ctrMostrarPatchPanel($item,$valor);
+								$patchpanel = ControladorPatchPanel::ctrMostrarPatchPanel($item,$valor);
 								// Probando mostrando lo que contiene la variable "$patchpanel"
 								// var_dump($patchpanel);
 								foreach ($patchpanel as $key => $value)
@@ -70,8 +69,8 @@
 													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
 													<td>'.($key+1).'</td>
 													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["descripcion"].'</td>						<td class="text-uppercase">'.$value["puerto"].'</td>
-
+													<td class="text-uppercase">'.$value["descripcion"].'</td>						
+													
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarPatchPanel" para activar una ventana modal -->

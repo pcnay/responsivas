@@ -1,6 +1,6 @@
 <?php
 	// Manejando el Patch Panel.
-  class ControladorMarcas
+  class ControladorPatchPanel
   {
 
 		// ==================================================================
@@ -20,7 +20,7 @@
     {
 			if (isset($_POST["nuevoPatchPanel"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPatchPanel"]))
+				if (preg_match('/^[a-zA-Z0-9-ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPatchPanel"]))
 				{
 					// Enviar la información al Modelo.
 					$tabla = "t_Patch_panel";
@@ -84,7 +84,7 @@
 		{
 			if (isset($_POST["editarPatchPanel"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPatchPanel"]))
+				if (preg_match('/^[a-zA-Z0-9-ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPatchPanel"]))
 				{
 					// Enviar la información al Modelo.
 					$tabla = "t_Patch_panel";
