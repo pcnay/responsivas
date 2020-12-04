@@ -112,6 +112,7 @@ require_once "controladores/edo-epo.controlador.php";
 require_once "controladores/almacen.controlador.php";
 require_once "controladores/puerto.controlador.php";
 require_once "controladores/patchpanel.controlador.php";
+require_once "controladores/idf.controlador.php";
 
 require_once "modelos/perifericos.modelo.php";
 require_once "modelos/clientes.modelo.php";
@@ -129,6 +130,7 @@ require_once "modelos/edo-epo.modelo.php";
 require_once "modelos/almacen.modelo.php";
 require_once "modelos/puerto.modelo.php";
 require_once "modelos/patchpanel.modelo.php";
+require_once "modelos/idf.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();
