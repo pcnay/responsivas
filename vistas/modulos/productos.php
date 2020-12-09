@@ -27,7 +27,7 @@
         </div>
  
         <div class="box-body">
-          <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
+          <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDataTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
           <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
@@ -35,12 +35,13 @@
               <tr>
                 <th style="width:10px">#</th>
                 <th>Imagen</th>
-                <th>Codigo</th>
                 <th>Descripcion</th>
-                <th>Categoria</th>
+                <th>Serial</th>
+                <th>Marca</th>
+								<th>Modelo</th>
                 <th>Stock</th>
-                <th>Precio Compra</th>
-								<th>Precio Venta</th>
+								<th>Edo_Epo</th>
+                <th>Precio Venta</th>
 								<th>Agregado</th>
                 <th>Acciones </th>
               </tr>
