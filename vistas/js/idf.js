@@ -21,7 +21,7 @@ $(".btnEditarIdf").click(function(){
 			//console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarIdf" class="modal fade" role="dialog">, "idf.php", se le asigna el valor que se retorno el Ajax.
 			$("#editarIdf").val(respuesta["descripcion"]);
-			$("#id_idf").val(respuesta["id_idf"]); // viene desde el campo oculto de <input type="hidden"  name="idIdf"  id="idIdf" required>
+			$("#idIdf").val(respuesta["id_idf"]); // viene desde el campo oculto de <input type="hidden"  name="idIdf"  id="idIdf" required>
 		}
 
 	}); // $.ajax({ ......

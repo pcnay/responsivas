@@ -22,7 +22,7 @@
 		}
 
 		// Editar Idf
-		public $idMarca;
+		public $idIdf;
 		public function ajaxEditarIdf()
 		{
 			$item = "id_idf";
