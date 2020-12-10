@@ -135,7 +135,7 @@
 								</a>
 							</li> 
 							<li>
-								<a href="capturar-producto">
+								<a href="productos">
 									<i class="fa fa-circle-o"></i>
 									<span>Alta Producto</span>
 								</a>
