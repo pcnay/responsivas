@@ -1,16 +1,3 @@
-<?php
-	// El Usuario no puede entrar a Categorias
-	if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" )
-	{
-		echo '
-			<script>
-				window.location = "inicio";
-			</script>';
-			return;			
-	}
-?>
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -33,17 +20,17 @@
         
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
+
           <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarProducto">
-            Agregar Producto
+            Agregar Producto 
           </button>       
         </div>
  
         <div class="box-body">
-          <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
-          <!-- Esta clases de "table", "Strip" para desplegar gris, blanco en los renglones. son del plugin "bootstrap"-->
+          <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDataTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
+          <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
-					<!-- Se coloca "width = 100%" para el navegador Intenet Explorer-->
-          <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+          <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
@@ -51,139 +38,66 @@
                 <th>Descripcion</th>
                 <th>Serial</th>
                 <th>Marca</th>
-                <th>Modelo</th>
+								<th>Modelo</th>
                 <th>Stock</th>
-								<th>Precio Venta</th>
-								<th>Edo Epo</th>
+								<th>Edo_Epo</th>
+                <th>Precio Venta</th>
+								<th>Agregado</th>
                 <th>Acciones </th>
               </tr>
             </thead>
-
-            <!-- Cuerpo de la Tabla, se desplegara desde la base de datos.  -->
-            <tbody>
-							<tr>
-								<td>1</td>
-								<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-								<td>Gabinete</td>
-                <td>MXL2893ES45</td>
-                <td>HP</td>
-                <td>PRODESK 400 G5</td>
-                <td>10</td>
-								<td>800 DLLS</td>
-								<td>Operable</td>
-
-								<td>
-									<div class="btn-group">
-										<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
-										 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... 								
-
-										<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button> -->
-										<button class="btn btn-warning"> <i class="fa fa-pencil"></i></button>
-
-
-										<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"
-										<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button> -->
-
-										<button class="btn btn-danger"><i class="fa fa-times"></i></button>
-									</div>
-								</td>
-							</tr>
-
-							<tr>
-								<td>1</td>
-								<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-								<td>Gabinete</td>
-                <td>MXL2893ES45</td>
-                <td>HP</td>
-                <td>PRODESK 400 G5</td>
-                <td>10</td>
-								<td>800 DLLS</td>
-								<td>Operable</td>
-
-								<td>
-									<div class="btn-group">
-										<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
-										 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... 								
-
-										<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button> -->
-										<button class="btn btn-warning"> <i class="fa fa-pencil"></i></button>
-
-
-										<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"
-										<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button> -->
-
-										<button class="btn btn-danger"><i class="fa fa-times"></i></button>
-									</div>
-								</td>
-							</tr>
-
+            
+						<!-- Cuerpo de la Tabla -->
+            <!-- <tbody>
 
 
 							<?php
 							/*
-								// Obtener los datos desde la base de datos.
-								// Estos valores lo requiere el MdlMostrarUsarios(......)
+								Se suprime para agregar el contenido de la tabla con Ajax al plugin DataTable.
+								
 								$item = null;
 								$valor = null;
+								$orden = "id";
 
-								$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
-								// var_dump($usuarios);
-								// Como se utiliza "Bootstrap" con solo colocar las etiquetas de HTML5, automaticamente las centra en pantalla, utilizando las pantallas Responsive
-								foreach ($usuarios as $key => $value)
+								$productos = controladorProductos::ctrMostrarProductos($item,$valor,$orden);
+								// Para mostrarlos en pantalla en las pruebas
+								// var_dump($productos); 
+								foreach ($productos as $key => $value)
 								{
-									// var_dump($value["nombre"]);
-									echo '<tr>
-												<!-- Para mostrar el indice de acuerdo al "$usuarios" -->
+									echo ' 
+									  <tr>
 											<td>'.($key+1).'</td>
-											<td>'.$value["nombre"].'</td>
-											<td>'.$value["usuario"].'</td>
-											<!-- Clase de BootStrap -->';
+											<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
+											<td>'.$value["codigo"].'</td>
+											<!-- Clase de BootStrap -->
+											<td>'.$value["descripcion"].'</td>';
 											
-											if ($value["foto"] != "")
-											{
-												echo '<td><img src="'.$value["foto"].'" class="ing-thumbnail" width="40px"></td>
-												';
-											}
-											else
-											{
-												echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
-											}
+											$item = "id";
+											$valor = $value["id_categoria"];
+											$categoria = ControladorCategorias::ctrMostrarCategorias($item,$valor);
 
-											echo '<td>'.$value["perfil"].'</td>';
-											
-											//  != 0, El estado es activado.
-											if ($value["estado"] != 0)
-											{
-												// Se va a definir una clase "btnActivar" para activar el usuario. El funcionamiento se define en "usuario.js", se agrega el "idUsuario"
-												echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0" >Activado</button></td>';
-											}
-											else
-											{
-												echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario= "1">Desactivado</button></td>';
-											}											
-
-											echo '<td>'.$value["ultimo_login"].'</td>
+											echo '<td>'.$categoria["nombre"].'</td>
+											<td>'.$value["stock"].'</td>
+											<td>'.$value["precio_compra"].'</td>
+											<td>'.$value["precio_venta"].'</td>
+											<td>'.$value["fecha"].'</td>
 											<td>
 												<div class="btn-group">
-													<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
-													 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... -->
-													
-													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>
-													<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"-->
-													<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
+													<button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+													<button class="btn btn-danger"><i class="fa fa-times"></i></button>
 												</div>
 											</td>
-								</tr> ';
-
-								} // foreach ($usuarios as $key => $value)
-
-							*/
-
+										</tr>'; 
+								}
+								*/
 							?>
 
-            </tbody>
+            </tbody> -->
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
+
+					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
+					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 
@@ -202,111 +116,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarUsuario" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-
-      <!-- enctype= "multipart/form-data = Para subir archivos. 
-			  formulario de Bootstrap
-			-->
-      <form role="form" method="post" enctype= "multipart/form-data">
-    
-        <!-- La franja azul de la ventana modal -->
-        <div class="modal-header" style= "background:#3c8dbc; color:white">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Usuario</h4>
-        </div>
-
-
-        <div class="modal-body">
-          <div class="box-body">
-            <!-- Clases de BootStrap para las formularios-->
-
-						<!-- Captura de nombre -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Captura de usaurio  -->		
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-								<!-- id = "nuevoUsuario" se utiliza en "usuarios.js" para validar que sea único el usuario. -->
-
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder = "Ingresar Usuario" id="nuevoUsuario" required>
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Capturar la contrasena del usuario --> 		
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder = "Ingresar Contraseña" 
-								required>								
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Para los perfiles ya estan en un Select los valores son fijos. --> 		
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="nuevoPerfil">
-                  <option value="">Seleccionar perfil</option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Especial">Especial</option>
-                  <option value="Vendedor">Vendedor</option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Para subir la foto -->			
-            <div class="form-group">
-              <div class="panel text-up">SUBIR FOTO</div> 
-							<!-- class = "nuevaFoto" : Es un codigo de JavaScript para subir las fotos al sistema.-->
-              <input type="file" class="nuevaFoto" name="nuevaFoto">
-              <p class="help-block">Peso Máximo de la foto 2 Mb</p>
-              <!-- previsualizar = para reemplazar la foto que se va a subir-->
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
-
-            </div> <!-- <div class="form-group"> -->
-
-          </div> <!-- <div class="box-body"> -->
-
-        </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Usuarios</button>
-          </div>
-						<!-- Cuando pasa el boton "Submit" ejecuta esta Objeto para Guardar la información del Usuario, pero antes se validan los campos.-->
-            <?php 
-              $crearUsuario = new ControladorUsuarios();
-              $crearUsuario->ctrCrearUsuario();
-            ?>
-
-        </form> <!-- <form role="form" method="post" enctype= "multipart/form-data"> -->
-
-    </div> <!-- <div class="modal-content"> -->
-
-  </div> <!-- <div class="modal-dialog"> -->
-
-</div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> -->
-
-
-<!-- ============================================================================================= -->
-
-<!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
--->
-
-<!-- Modal -->
-<div id="modalEditarUsuario" class="modal fade" role="dialog">
+<div id="modalAgregarProducto" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -318,61 +128,284 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Usuario</h4>
+          <h4 class="modal-title">Agregar Producto</h4>
         </div>
 
-				<!-- Se deja vacio el atributo "value" este se llenara con JavaScript-->
+				<!-- CUERPO DE LA VENTANA MODAL -->
+				<!-- Captura del codigo del producto -->
         <div class="modal-body">
           <div class="box-body">
             <!-- Clases de BootStrap para las formularios-->
+
+						<!-- Capturar el Número De Serie -->
             <div class="form-group">
               <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-								<!-- id="editarNombre : Para asignarle valor de la base de datos desde JavaScript.-->
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value = " " required>
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <input type="text" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+
+						<!-- Captura el Almacen -->
             <div class="form-group">
               <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-								<!-- Se coloca "readonly" porque no se podrá modificar, solo es mostrado -->
-                <input type="text" class="form-control input-lg" id = "editarUsuario" name ="editarUsuario" value = " " readonly>
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder = "Escriba una nueva contraseña" >
-								<!-- Se coloca este tipo de "input", ya que para relizar la accion de UPDATE, se tiene que agregar todos los campos., por si la clave no se modifica se manda como tipo "hidden"-->
-								<input type="hidden" id="passwordActual" name="passwordActual" >
-
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="editarPerfil">
-									<!-- id= "editarPerfil" para que desde JavaScript se modifique el que tiene el usuario .-->
-                  <option value=""  id="editarPerfil"></option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Especial">Especial</option>
-                  <option value="Vendedor">Vendedor</option>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
+                  <option value="">Seleccionar Almacen</option>
+									<?php
+										// Se obtendrán el Almacen desdes la base de datos.
+										$item = null;
+										$valor = null;
+										$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
+										foreach ($almacen as $key => $value)
+										{
+											echo '<option value = "'.$value["id_almacen"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Captura el Estado Del Equipo -->
             <div class="form-group">
-              <div class="panel text-up">SUBIR FOTO</div> 
-							<!-- class = "nuevaFoto" : Es un codigo de JavaScript para subir las fotos al sistema.-->
-              <input type="file" class="nuevaFoto" name="editarFoto" id="editarFoto">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
+                  <option value="">Seleccionar Edo Epo</option>
+									<?php
+										// Se obtendrán el Estado Del Equipo desdes la base de datos.
+										$item = null;
+										$valor = null;
+										$edoEpo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
+										foreach ($almacen as $key => $value)
+										{
+											echo '<option value = "'.$value["id_edo_epo"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Marca -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoMarca" name="nuevoMarca" required>
+                  <option value="">Seleccionar Marca</option>
+									<?php
+										// Se obtendrán la Marca desdes la base de datos.
+										$item = null;
+										$valor = null;
+										$Marca = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+										foreach ($Marca as $key => $value)
+										{
+											echo '<option value = "'.$value["id_marca"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Modelo -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoModelo" name="nuevoModelo" required>
+                  <option value="">Seleccionar Modelo</option>
+									<?php
+										// Se obtendrán el Modelo desde la base de datos.
+										$item = null;
+										$valor = null;
+										$Modelo = ControladorModelos::ctrMostrarModelos($item,$valor);
+										foreach ($Modelo as $key => $value)
+										{
+											echo '<option value = "'.$value["id_modelo"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el IDF -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoIdf" name="nuevoIdf" required>
+                  <option value="">Seleccionar Idf</option>
+									<?php
+										// Se obtendrán el Idf desde la base de datos.
+										$item = null;
+										$valor = null;
+										$Idf = ControladorIdf::ctrMostrarIdf($item,$valor);
+										foreach ($Idf as $key => $value)
+										{
+											echo '<option value = "'.$value["id_idf"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Patch Panel -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoPatchPanel" name="nuevoPatchPanel" required>
+                  <option value="">Seleccionar Patch Panel</option>
+									<?php
+										// Se obtendrán el Patch Panel de la base de datos.
+										$item = null;
+										$valor = null;
+										$PatchPanel = ControladorPatchPanel::ctrMostrarPatchPanel($item,$valor);
+										foreach ($PatchPanel as $key => $value)
+										{
+											echo '<option value = "'.$value["id_patch_panel"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Puerto -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoPuerto" name="nuevoPuerto" required>
+                  <option value="">Seleccionar Puerto</option>
+									<?php
+										// Se obtendrán el Patch Panel de la base de datos.
+										$item = null;
+										$valor = null;
+										$Puerto = ControladorPuertos::ctrMostrarPuertos($item,$valor);
+										foreach ($Puerto as $key => $value)
+										{
+											echo '<option value = "'.$value["id_puerto"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Periferico -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
+                  <option value="">Seleccionar Periferico</option>
+									<?php
+										// Se obtendrán el Periferico desde la base de datos.
+										$item = null;
+										$valor = null;
+										$Periferico = ControladorPeriferico::ctrMostrarPeriferico($item,$valor);
+										foreach ($Puerto as $key => $value)
+										{
+											echo '<option value = "'.$value["id_periferico"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						
+
+						<!-- Capturar el Código -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <input type="text" class="form-control input-lg" id = "nuevoCodigo" name="nuevoCodigo" placeholder = "Ingresar Codigo" readonly required>
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura de la descripcion del producto -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+								<!-- id="nuevaCategoria"  = Se agrega para obtener el último numero del código del producto. -->
+                <input type="text" class="form-control input-lg" id="nuevaDescripcion" name="nuevaDescripcion" placeholder = "Ingresar Descripcion" required>
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+
+						<!-- Captura del Stock del producto -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class="form-group">
+							<div class = "input-group">
+								<span class="input-group-addon"><i class="fa fa-check"></i></span>
+								<!-- min="0" Para que solo permita números positivos. -->
+								<input type="number" class="form-control input-lg" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
+							</div> <!-- <div class = "input-group"> -->           
+						</div> <!-- <div class="form-group"> -->
+
+
+
+						<!-- Captura de Precio Compra -->
+						<!-- Clases de BootStrap para las formularios-->
+						<!-- Se realizara un cambio en estos dos campos, colocando uno a lado del otro, además cuando se teclee el precio compra, calcule de forma automática el precio de venta. -->
+						<div class="form-group row">
+							
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales.
+									-->
+									<input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" step="any" placeholder = "Ingresar Precio Compra" required>
+								</div> <!-- <div class = "input-group"> -->
+
+							</div> <!-- 	<div class="col-xs-6">	-->
+
+							<!-- Captura de Precio Venta -->
+							<!-- Clases de BootStrap para las formularios-->
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales.
+									-->
+									<input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0" step="any" placeholder = "Ingresar Precio Venta" required>
+								</div> <!-- <div class = "input-group"> -->   
+								<br>
+
+								<!-- Checkbox para porcentaje -->
+								<div class="col-xs-6">
+									<div class="form-group">
+										<label>
+											<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
+											<input type="checkbox" id="porcentaje" class = "minimal porcentaje" checked>
+											Utilizar porcentaje
+										</label>
+
+									</div> <!-- <div class="form-group"> -->
+
+								</div> <!-- <div class="col-xs-6"> -->
+
+								<!-- Entrada para el porcentaje -->
+								<div class= "col-xs-6" style="padding:0">
+									<div class="input-group">
+										<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
+									</div> <!-- <div class="input-group"> -->
+
+								</div> <!-- <div class= "col-xs-6"> -->
+
+							</div> <!-- 	<div class="col-xs-6">	-->
+
+						</div> <!-- <div class="form-group"> -->
+
+
+						<!-- Subir Imagen del producto 
+						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del producto.
+						-->
+            <div class="form-group">
+              <div class="panel text-up">SUBIR IMAGEN DEL PRODUCTO</div> 
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
               <p class="help-block">Peso Máximo de la foto 2 Mb</p>
-              <!-- previsualizar = para reemplazar la foto que se va a subir-->
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
-							<!-- Se utiliza este tipo de "input" para dejar el valor si el usuario no modifica la foto -->
-							<input type="hidden" name="fotoActual" id="fotoActual">
+              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
 
             </div> <!-- <div class="form-group"> -->
 
@@ -382,15 +415,17 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Actualizar Usuarios</button>
+            <button type="submit" class="btn btn-primary">Guardar Producto</button>
           </div>
-					
-           <?php 
-              $editarUsuario = new ControladorUsuarios();
-              $editarUsuario->ctrEditarUsuario();
-            ?> 
 
         </form>
+
+				<!-- Para Guardar la información. -->
+				<?php
+					$crearProducto = new ControladorProductos();
+					$crearProducto->ctrCrearProducto();
+					
+				?>
 
     </div> <!-- <div class="modal-content"> -->
 
@@ -398,8 +433,175 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
 
 </div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> -->
 
+
+<!-- // Editar productos. -->
+<!-- Modal -->
+<div id="modalEditarProducto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <!-- enctype= "multipart/form-data = Para subir archivos. -->
+      <form role="form" method="post" enctype= "multipart/form-data">
+    
+        <!-- La franja azul de la ventana modal -->
+        <div class="modal-header" style= "background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar Producto</h4>
+        </div>
+
+				<!-- CUERPO DE LA VENTANA MODAL -->
+				<!-- Editar el codigo del producto -->
+        <div class="modal-body">
+          <div class="box-body">
+            <!-- Clases de BootStrap para las formularios-->
+
+						<!-- Captura de la categoria del producto -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarCategoria"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarCategoria"></option>
+
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Capturar el Código -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <input type="text" class="form-control input-lg" id = "editarCodigo" name="editarCodigo" readonly required>
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura de la descripcion del producto 
+								el contenido de "descripcion" se asignara utilizando JavaScript
+						-->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion"  required>
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+
+						<!-- Captura del Stock del producto 
+							el contenido de "stock" se asignara utilizando JavaScript
+						-->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class="form-group">
+							<div class = "input-group">
+								<span class="input-group-addon"><i class="fa fa-check"></i></span>
+								<!-- min="0" Para que solo permita números positivos. -->
+								<input type="number" class="form-control input-lg" id ="editarStock" name="editarStock" min="0"  required>
+							</div> <!-- <div class = "input-group"> -->           
+						</div> <!-- <div class="form-group"> -->
+
+
+
+						<!-- Captura de Precio Compra -->
+						<!-- Clases de BootStrap para las formularios-->
+						<!-- Se realizara un cambio en estos dos campos, colocando uno a lado del otro, además cuando se teclee el precio compra, calcule de forma automática el precio de venta. 
+						el contenido de "precio_compra" se asignara utilizando JavaScript
+						-->
+						<div class="form-group row">
+							
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales.
+									-->
+									<input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" min="0" step="any" required>
+								</div> <!-- <div class = "input-group"> -->
+
+							</div> <!-- 	<div class="col-xs-6">	-->
+
+							<!-- Captura de Precio Venta -->
+							<!-- Clases de BootStrap para las formularios-->
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores 
+							el contenido de "precio_venta" se asignara utilizando JavaScript
+							-->
+
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales.
+									-->
+									<input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" min="0" step="any"  required readonly > 
+								</div> <!-- <div class = "input-group"> -->   
+								<br>
+
+								<!-- Checkbox para porcentaje -->
+								<div class="col-xs-6">
+									<div class="form-group">
+										<label>
+											<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
+											<input type="checkbox" id="porcentaje" class = "minimal porcentaje" checked>
+											Utilizar porcentaje
+										</label>
+
+									</div> <!-- <div class="form-group"> -->
+
+								</div> <!-- <div class="col-xs-6"> -->
+
+								<!-- Entrada para el porcentaje -->
+								<div class= "col-xs-6" style="padding:0">
+									<div class="input-group">
+										<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
+									</div> <!-- <div class="input-group"> -->
+
+								</div> <!-- <div class= "col-xs-6"> -->
+
+							</div> <!-- 	<div class="col-xs-6">	-->
+
+						</div> <!-- <div class="form-group"> -->
+
+
+						<!-- Subir Imagen del producto 
+						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del producto.
+						-->
+            <div class="form-group">
+              <div class="panel text-up">SUBIR IMAGEN DEL PRODUCTO</div> 
+              <input type="file" class="nuevaImagen" name="editarImagen">
+              <p class="help-block">Peso Máximo de la foto 2 Mb</p>
+              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
+							<!-- Se manda el nombre de la imagen actual, al Javascript utilizando un campo oculto -->
+							<input type = "hidden" name = "imagenActual" id="imagenActual">							 
+
+            </div> <!-- <div class="form-group"> -->
+
+          </div> <!-- <div class="box-body"> -->
+
+        </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+
+        </form>
+
+				<!-- Para Guardar la información. -->
+				<?php
+					$editarProducto = new ControladorProductos();
+					$editarProducto->ctrEditarProducto();					
+				?>
+
+    </div> <!-- <div class="modal-content"> -->
+
+  </div> <!-- <div class="modal-dialog"> -->
+
+</div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> -->
 <?php
-	// Este método se esta ejecutando siempre, pero se realiza el borrado cuando se origina la variable global "$_GET["idUsuario"] en Usuarios.controlador.php -> ctrBorrarUsuario()
-	$borrarUsuario = new ControladorUsuarios();
-	$borrarUsuario->ctrBorrarUsuario();
+	$eliminarProducto = new ControladorProductos();
+	$eliminarProducto->ctrEliminarProducto();
 ?>
