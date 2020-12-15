@@ -138,193 +138,192 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             <!-- Clases de BootStrap para las formularios-->
 
 						<!-- Capturar el Número De Serie -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                <input type="text" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->	
 
 
 						<!-- Captura el Almacen -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
-                  <option value="">Seleccionar Almacen</option>
-									<?php
-										// Se obtendrán el Almacen desdes la base de datos.
-										$item = null;
-										$valor = null;
-										$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
-										foreach ($almacen as $key => $value)
-										{
-											echo '<option value = "'.$value["id_almacen"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
+	                  <option value="">Seleccionar Almacen</option>
+										<?php
+											// Se obtendrán el Almacen desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
+											foreach ($almacen as $key => $value)
+											{
+												echo '<option value = "'.$value["id_almacen"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Captura el Estado Del Equipo -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
-                  <option value="">Seleccionar Edo Epo</option>
-									<?php
-										// Se obtendrán el Estado Del Equipo desdes la base de datos.
-										$item = null;
-										$valor = null;
-										$edoEpo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
-										foreach ($almacen as $key => $value)
-										{
-											echo '<option value = "'.$value["id_edo_epo"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
+	                  <option value="">Seleccionar Edo Epo</option>
+										<?php
+											// Se obtendrán el Estado Del Equipo desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$edoEpo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
+											foreach ($almacen as $key => $value)
+											{
+												echo '<option value = "'.$value["id_edo_epo"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->  								         
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
 
 						<!-- Captura el Marca -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoMarca" name="nuevoMarca" required>
-                  <option value="">Seleccionar Marca</option>
-									<?php
-										// Se obtendrán la Marca desdes la base de datos.
-										$item = null;
-										$valor = null;
-										$Marca = ControladorMarcas::ctrMostrarMarcas($item,$valor);
-										foreach ($Marca as $key => $value)
-										{
-											echo '<option value = "'.$value["id_marca"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoMarca" name="nuevoMarca" required>
+	                  <option value="">Seleccionar Marca</option>
+										<?php
+											// Se obtendrán la Marca desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$Marca = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+											foreach ($Marca as $key => $value)
+											{
+												echo '<option value = "'.$value["id_marca"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class = "form-group"> -->           	
+            </div> <!-- <div class= "col-xs-12 col-sm-6"> -->
 
 						<!-- Captura el Modelo -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoModelo" name="nuevoModelo" required>
-                  <option value="">Seleccionar Modelo</option>
-									<?php
-										// Se obtendrán el Modelo desde la base de datos.
-										$item = null;
-										$valor = null;
-										$Modelo = ControladorModelos::ctrMostrarModelos($item,$valor);
-										foreach ($Modelo as $key => $value)
-										{
-											echo '<option value = "'.$value["id_modelo"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoModelo" name="nuevoModelo" required>
+	                  <option value="">Seleccionar Modelo</option>
+										<?php
+											// Se obtendrán el Modelo desde la base de datos.
+											$item = null;
+											$valor = null;
+											$Modelo = ControladorModelos::ctrMostrarModelos($item,$valor);
+											foreach ($Modelo as $key => $value)
+											{
+												echo '<option value = "'.$value["id_modelo"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Captura el IDF -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoIdf" name="nuevoIdf" required>
-                  <option value="">Seleccionar Idf</option>
-									<?php
-										// Se obtendrán el Idf desde la base de datos.
-										$item = null;
-										$valor = null;
-										$Idf = ControladorIdf::ctrMostrarIdf($item,$valor);
-										foreach ($Idf as $key => $value)
-										{
-											echo '<option value = "'.$value["id_idf"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoIdf" name="nuevoIdf" required>
+	                  <option value="">Seleccionar Idf</option>
+										<?php
+											// Se obtendrán el Idf desde la base de datos.
+											$item = null;
+											$valor = null;
+											$Idf = ControladorIdf::ctrMostrarIdf($item,$valor);
+											foreach ($Idf as $key => $value)
+											{
+												echo '<option value = "'.$value["id_idf"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class="col-xs-12 col-sm-6"> -->
 
 						<!-- Captura el Patch Panel -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoPatchPanel" name="nuevoPatchPanel" required>
-                  <option value="">Seleccionar Patch Panel</option>
-									<?php
-										// Se obtendrán el Patch Panel de la base de datos.
-										$item = null;
-										$valor = null;
-										$PatchPanel = ControladorPatchPanel::ctrMostrarPatchPanel($item,$valor);
-										foreach ($PatchPanel as $key => $value)
-										{
-											echo '<option value = "'.$value["id_patch_panel"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoPatchPanel" name="nuevoPatchPanel" required>
+	                  <option value="">Seleccionar Patch Panel</option>
+										<?php
+											// Se obtendrán el Patch Panel de la base de datos.
+											$item = null;
+											$valor = null;
+											$PatchPanel = ControladorPatchPanel::ctrMostrarPatchPanel($item,$valor);
+											foreach ($PatchPanel as $key => $value)
+											{
+												echo '<option value = "'.$value["id_patch_panel"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+	          </div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
 						<!-- Captura el Puerto -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoPuerto" name="nuevoPuerto" required>
-                  <option value="">Seleccionar Puerto</option>
-									<?php
-										// Se obtendrán el Patch Panel de la base de datos.
-										$item = null;
-										$valor = null;
-										$Puerto = ControladorPuertos::ctrMostrarPuertos($item,$valor);
-										foreach ($Puerto as $key => $value)
-										{
-											echo '<option value = "'.$value["id_puerto"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoPuerto" name="nuevoPuerto" required>
+	                  <option value="">Seleccionar Puerto</option>
+										<?php
+											// Se obtendrán el Patch Panel de la base de datos.
+											$item = null;
+											$valor = null;
+											$Puerto = ControladorPuertos::ctrMostrarPuertos($item,$valor);
+											foreach ($Puerto as $key => $value)
+											{
+												echo '<option value = "'.$value["id_puerto"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
 						<!-- Captura el Periferico -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
-                  <option value="">Seleccionar Periferico</option>
-									<?php
-										// Se obtendrán el Periferico desde la base de datos.
-										$item = null;
-										$valor = null;
-										$Periferico = ControladorPeriferico::ctrMostrarPeriferico($item,$valor);
-										foreach ($Puerto as $key => $value)
-										{
-											echo '<option value = "'.$value["id_periferico"].'">'.$value["descripcion"].'</option>';
-										}
-									?>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						
-
-						<!-- Capturar el Código -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                <input type="text" class="form-control input-lg" id = "nuevoCodigo" name="nuevoCodigo" placeholder = "Ingresar Codigo" readonly required>
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Captura de la descripcion del producto -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-								<!-- id="nuevaCategoria"  = Se agrega para obtener el último numero del código del producto. -->
-                <input type="text" class="form-control input-lg" id="nuevaDescripcion" name="nuevaDescripcion" placeholder = "Ingresar Descripcion" required>
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
+						<div class= "col-xs-12 col-sm-6">						
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
+	                  <option value="">Seleccionar Periferico</option>
+										<?php
+											// Se obtendrán el Periferico desde la base de datos.
+											$item = null;
+											$valor = null;
+											$Periferico = ControladorPeriferico::ctrMostrarPeriferico($item,$valor);
+											foreach ($Periferico as $key => $value)
+											{
+												echo '<option value = "'.$value["id_periferico"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+	          </div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
 						<!-- Captura del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->
@@ -335,8 +334,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								<input type="number" class="form-control input-lg" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
 							</div> <!-- <div class = "input-group"> -->           
 						</div> <!-- <div class="form-group"> -->
-
-
 
 						<!-- Captura de Precio Compra -->
 						<!-- Clases de BootStrap para las formularios-->
