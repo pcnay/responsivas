@@ -16,7 +16,7 @@
 			// Extraer la información de la tabla.
 			$item = null;
 			$valor = null;
-			$orden = "id";
+			$orden = "descripcion";
 			$productos = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 
 			//var_dump($productos);

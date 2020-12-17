@@ -42,7 +42,6 @@
                 <th>Stock</th>
 								<th>Edo_Epo</th>
                 <th>Precio Venta</th>
-								<th>Agregado</th>
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -328,7 +327,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						<!-- Captura de Precio Compra -->
 						<!-- Clases de BootStrap para las formularios-->
 						<!-- Se realizara un cambio en estos dos campos, colocando uno a lado del otro, además cuando se teclee el precio compra, calcule de forma automática el precio de venta. -->
-						<div class="form-group row">
+						<div class="form-group"> <!-- <div class="form-group row">-->
 							
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
 							<div class="col-xs-12 col-sm-6">							
@@ -341,11 +340,13 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 									<input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" step="any" placeholder = "Ingresar Precio Compra" required>
 								</div> <!-- <div class = "input-group"> -->
 							</div> <!-- 	<div class="col-xs-6">	-->
+						</div> <!-- <div class="form-group row"> -->
 
 							<!-- Captura de Precio Venta -->
 							<!-- Clases de BootStrap para las formularios-->
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
 
+						<div class="form-group"> <!-- <div class="form-group row">-->
 							<div class="col-xs-12 col-sm-6">							
 
 								<div class = "input-group">
@@ -357,23 +358,53 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								</div> <!-- <div class = "input-group"> -->   
 								<br>
 
-						</div> <!-- <div class="form-group row"> -->
+						</div> <!-- <div class="form-group"> -->
 
 						<!-- Checkbox para porcentaje -->
-						<div class="col-xs-6">
-							<div class="form-group">
-								<label>
-									<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
-									<input type="checkbox" id="porcentaje" class = "minimal porcentaje" checked>
-									Utilizar porcentaje
-								</label>
+						<div class="form-group">
+							<div class="col-xs-6">								
+									<label>
+										<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
+										<input type="checkbox" id="porcentaje" class = "minimal porcentaje" checked>
+										Utilizar porcentaje
+									</label>
 
-							</div> <!-- <div class="form-group"> -->
+								</div> <!-- <div class="col-xs-6"> -->
 
-						</div> <!-- <div class="col-xs-6"> -->
+						</div> <!-- <div class="form-group">  -->
 
+						<!-- Captura el Puerto -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">	                
+									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
+						<div class="form-group">
+						  <label for="especificaciones">Especificiones:</label>
+						  <textarea class="form-control" rows="5" name="nuevaEspecif" id="nuevaEspecif">
+							</textarea>
+						</div>
 
+						<div class="form-group">
+						  <label for="comentarios">Comentarios:</label>
+						  <textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
+							</textarea>
+						</div>
+
+						<!-- Subir Imagen del producto 
+						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del producto.
+						-->
+            <div class="form-group">
+              <div class="panel text-up">SUBIR IMAGEN DEL PRODUCTO</div> 
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
+              <p class="help-block">Peso Máximo de la foto 2 Mb</p>
+              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
+
+            </div> <!-- <div class="form-group"> -->
 
 
 					</div> <!-- <div class="box-body">  -->	
