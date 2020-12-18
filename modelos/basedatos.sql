@@ -189,6 +189,7 @@ CREATE TABLE t_Productos
   nomenclatura VARCHAR(45) NOT NULL,
 	num_serie VARCHAR(45) NOT NULL,
 	imagen_producto VARCHAR(100) NOT NULL,
+	stock SMALLINT UNSIGNED DEFAULT 0,
 	precio_compra decimal(10,2) DEFAULT NULL,
 	precio_venta decimal(10,2) DEFAULT NULL,
 	cuantas_veces TINYINT DEFAULT NULL,

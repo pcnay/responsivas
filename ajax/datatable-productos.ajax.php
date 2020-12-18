@@ -28,26 +28,36 @@
 				for ($i =0;$i<count($productos);$i++)
 				{
 					// Se obtiene la imagen del producto, se pasa a variable para agregarlo al JSon.
-					$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
+					$imagen = "<img src='".$productos[$i]["Imagen"]."' width='40px'>";
+
+					/*
 					// se extrae la categoria
 					$item = "id";
 					$valor = $productos[$i]["id_categoria"];
 					$categoria = ControladorCategorias::ctrMostrarCategorias($item,$valor);
+					*/ 
+
+					$periferico = $productos[$i]["Periferico"];
+					$serial = $productos[$i]["Serial"];
+					$marca = $productos[$i]["Marca"];
+					$modelo = $productos[$i]["Modelo"];
+					$edo_epo = $productos[$i]["Edo_Epo"];
+					
 
 					// Se utilizara un color para determinar el "Stock" de los productos.
-					if ($productos[$i]["stock"] <= 10)
+					if ($productos[$i]["Stock"] <= 10)
 					{
-						$stock = "<button class='btn btn-danger'>".$productos[$i]["stock"]."</button>";
+						$stock = "<button class='btn btn-danger'>".$productos[$i]["Stock"]."</button>";
 					}
-					else if ($productos[$i]["stock"] > 11 && $productos[$i]["stock"] <=15)
+					else if ($productos[$i]["Stock"] > 11 && $productos[$i]["Stock"] <=15)
 					{
-						$stock = "<button class='btn btn-warning'>".$productos[$i]["stock"]."</button>";
+						$stock = "<button class='btn btn-warning'>".$productos[$i]["Stock"]."</button>";
 					}
 					else // if ($productos[$i][stock] <= 10)
 					{
-						$stock = "<button class='btn btn-success'>".$productos[$i]["stock"]."</button>";
+						$stock = "<button class='btn btn-success'>".$productos[$i]["Stock"]."</button>";
 					}
-
+					$precio_venta = $productos[$i]["Precio_Venta"];
 					
 
 					// $imagen = "<img src='/vistas/img/productos/101/105.png' width='40px'>";

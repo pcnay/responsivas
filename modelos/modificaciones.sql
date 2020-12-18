@@ -15,6 +15,10 @@
 
 USE bd_responsivas;
 
+/* Para agregar una columna a la tabla t_Empleados. */
+	ALTER TABLE t_Productos ADD stock SMALLINT UNSIGNED DEFAULT 0;
+
+
 /* Para agregar una columna a la tabla t_Empleados.
 	ALTER TABLE t_Empleados ADD foto varchar(100) NOT NULL;
 */
@@ -30,9 +34,10 @@ INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,est
   (1,'Usuario Administrador','admin','1234','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 */
 
-
+/*
 INSERT INTO t_Empleados (id_empleado,id_ubicacion,id_puesto,id_depto,id_supervisor,nombre,apellidos,ntid,correo_electronico,centro_costos,foto,fecha) VALUES
   (0,1,1,1,1,'nombreUno','apellidoUno','ntidUno','correoelectronicoUno','centrocostoUno','vistas/img/productos/default/anonymous.png',CURRENT_TIMESTAMP);
+*/
 
 /*
 
