@@ -134,6 +134,29 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 				<!-- Captura del codigo del producto -->
         <div class="modal-body">
           <div class="box-body">
+
+						<!-- Capturar Periferico -->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
+	                  <option value="">Seleccionar Periferico</option>
+										<?php
+											// Se obtendrán el Perifico desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$periferico = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
+											foreach ($periferico as $key => $value)
+											{
+												echo '<option value = "'.$value["id_periferico"].'">'.$value["nombre"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
             <!-- Clases de BootStrap para las formularios-->
 						<!-- Capturar el Número De Serie -->
 						<div class= "col-xs-12 col-sm-6">
@@ -145,48 +168,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
-						<!-- Captura el Almacen -->
-            <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
-	                  <option value="">Seleccionar Almacen</option>
-										<?php
-											// Se obtendrán el Almacen desdes la base de datos.
-											$item = null;
-											$valor = null;
-											$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
-											foreach ($almacen as $key => $value)
-											{
-												echo '<option value = "'.$value["id_almacen"].'">'.$value["descripcion"].'</option>';
-											}
-										?>
-	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           							
-            	</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
-						<!-- Captura el Estado Del Equipo -->
-						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
-	                  <option value="">Seleccionar Edo Epo</option>
-										<?php
-											// Se obtendrán el Estado Del Equipo desdes la base de datos.
-											$item = null;
-											$valor = null;
-											$edoEpo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
-											foreach ($almacen as $key => $value)
-											{
-												echo '<option value = "'.$value["id_edo_epo"].'">'.$value["descripcion"].'</option>';
-											}
-										?>
-	                </select>                
-	              </div> <!-- <div class = "input-group"> -->  								         
-	            </div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
 
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
@@ -231,6 +212,53 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	              </div> <!-- <div class = "input-group"> -->           
 	            </div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+
+						<!-- Captura el Almacen -->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
+	                  <option value="">Seleccionar Almacen</option>
+										<?php
+											// Se obtendrán el Almacen desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
+											foreach ($almacen as $key => $value)
+											{
+												echo '<option value = "'.$value["id_almacen"].'">'.$value["nombre"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+
+						<!-- Captura el Estado Del Equipo -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
+	                  <option value="">Seleccionar Edo Epo</option>
+										<?php
+											// Se obtendrán el Estado Del Equipo desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$edoEpo = ControladorEdo_Epos::ctrMostrarEdo_Epos($item,$valor);
+											foreach ($edoEpo as $key => $value)
+											{
+												echo '<option value = "'.$value["id_edo_epo"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->  								         
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
+
 
 						<!-- Captura el IDF -->
 						<div class= "col-xs-12 col-sm-6">
@@ -298,7 +326,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	            </div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
-
 						<!-- Captura del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
@@ -310,19 +337,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
-
-						<!-- Captura del Stock del producto -->
-						<!-- Clases de BootStrap para las formularios-->
-						<div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<div class = "input-group">
-									<span class="input-group-addon"><i class="fa fa-check"></i></span>
-									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="number" class="form-control input-lg" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
-								</div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
-
 
 						<!-- Captura de Precio Compra -->
 						<!-- Clases de BootStrap para las formularios-->

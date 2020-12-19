@@ -37,11 +37,13 @@
 					$categoria = ControladorCategorias::ctrMostrarCategorias($item,$valor);
 					*/ 
 
+					/*
 					$periferico = $productos[$i]["Periferico"];
 					$serial = $productos[$i]["Serial"];
 					$marca = $productos[$i]["Marca"];
 					$modelo = $productos[$i]["Modelo"];
 					$edo_epo = $productos[$i]["Edo_Epo"];
+					*/
 					
 
 					// Se utilizara un color para determinar el "Stock" de los productos.
@@ -73,24 +75,24 @@
 					// Esta parte se utiliza para utilizar las variables de sesion en DataTable.
 					if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial")
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button>";
 					}
 					else
 					{
 						// se extrae los datos utilizados para el boton de "Editar" y "Borrar"
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo ='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."' ><i class='fa fa-times'></i></button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id_producto"]."' imagen='".$productos[$i]["Imagen"]."' ><i class='fa fa-times'></i></button></div>";
 					}					
 
 					$datosJson  .= '[
 							"'.($i+1).'",
 							"'.$imagen.'",
-							"'.$productos[$i]["codigo"].'",
-							"'.$productos[$i]["descripcion"].'",
-							"'.$categoria["nombre"].'", 
-							"'.$stock.'",
-							"'.$productos[$i]["precio_compra"].'",
-							"'.$productos[$i]["precio_venta"].'",
-							"'.$productos[$i]["fecha"].'",							
+							"'.$productos[$i]["Periferico"].'",
+							"'.$productos[$i]["Serial"].'",
+							"'.$productos[$i]["Marca"].'",
+							"'.$productos[$i]["Modelo"].'", 							
+							"'.$stock.'",							
+							"'.$productos[$i]["Edo_Epo"].'", 
+							"'.$productos[$i]["Precio_Venta"].'",
 							"'.$botones.'"
 						],';
 				}
