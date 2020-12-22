@@ -8,7 +8,7 @@
 	class AjaxMarcas
 		{
 		// Validar si existe una Marca.
-		public $validarMarcas;
+		public $validarMarca;
 
 		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
 		public function ajaxValidarMarca()

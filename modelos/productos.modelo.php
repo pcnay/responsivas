@@ -37,15 +37,23 @@
 		// Guardar el Producto, en la tabla "t_Productos"
 		static public function mdlIngresarProducto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria,codigo, descripcion,imagen,stock,precio_compra,precio_venta) VALUES (:id_categoria,:codigo,:descripcion,:imagen,:stock,:precio_compra,:precio_venta)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,id_idf,id_patch_panel,id_puerto,stock,precio_compra,precio_venta,especificaciones,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,_id_edo_epo,:id_idf,:id_patch_panel,:id_puerto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios,:imagen_producto)");
 
-			$stmt->bindParam(":id_categoria",$datos["id_categoria"],PDO::PARAM_INT);
-			$stmt->bindParam(":codigo",$datos["codigo"],PDO::PARAM_STR);
-			$stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR);
-			$stmt->bindParam(":imagen",$datos["imagen"],PDO::PARAM_STR);
+			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
+			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);
+			$stmt->bindParam(":id_marca",$datos["id_marca"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_modelo",$datos["id_modelo"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_edo_epo",$datos["id_edo_epo"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_idf",$datos["id_idf"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_patch_panel",$datos["id_patch_panel"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_puerto",$datos["id_puerto"],PDO::PARAM_INT);
 			$stmt->bindParam(":stock",$datos["stock"],PDO::PARAM_STR);
 			$stmt->bindParam(":precio_compra",$datos["precio_compra"],PDO::PARAM_STR);
 			$stmt->bindParam(":precio_venta",$datos["precio_venta"],PDO::PARAM_STR);
+			$stmt->bindParam(":espeficaciones",$datos["especificaciones"],PDO::PARAM_STR);
+			$stmt->bindParam(":comentarios",$datos["comentarios"],PDO::PARAM_STR);
+			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);
 
 			if ($stmt->execute())
 			{

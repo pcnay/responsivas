@@ -6,6 +6,21 @@
 
 	class AjaxProductos
 	{
+		// Validar si existe el Serial.
+		public $validarSerial;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarSerial()
+		{
+			$item = "num_serie";
+			$valor = $this->validarSerial;
+
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+
+
 		// Generar código a partir de ID Categoría 
 		public $idCategoria;
 		public function ajaxCrearCodigoProducto()
@@ -89,5 +104,14 @@
 		$traerProductos->nombreProducto = $_POST["nombreProducto"];
 		$traerProductos->ajaxEditarProducto();
 	}
+
+	// Validar que NO se repita el Serial.
+	if (isset($_POST["validarSerial"]))
+	{
+		$valSerial = new AjaxProductos();
+		$valSerial->validarSerial = $_POST["validarSerial"];
+		$valSerial->ajaxValidarSerial();
+	}
+
 
 ?>

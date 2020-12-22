@@ -14,12 +14,23 @@
 		// Crear producto
 		static public function ctrCrearProducto()
 		{
-			if (isset($_POST["nuevaDescripcion"]))
+			if (isset($_POST["nuevoSerial"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]) &&
-					preg_match('/^[0-9]+$/',$_POST["nuevoStock"]) &&
-					preg_match('/^[0-9.]+$/',$_POST["nuevoPrecioCompra"]) &&
-					preg_match('/^[0-9.]+$/',$_POST["nuevoPrecioVenta"]))
+				if (preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoMarca"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoModelo"]) &&					
+					preg_match('/^[0-9]+$/',$_POST["nuevoAlmacen"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoEdoEpo"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoIdf"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoPatchPanel"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoPuerto"]) &&
+					preg_match('/^[0-9.]+$/',$_POST["nuevoStock"]) &&
+					preg_match('/^[0-9]+$/',$_POST["nuevoPrecioCompra"]) && 
+					preg_match('/^[0-9]+$/',$_POST["porcentaje"]) && 
+					preg_match('/^[0-9]+$/',$_POST["nuevoPorcentaje"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["especificaciones"]) && 
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["comentarios"]))
 				{
 					$tabla = "t_Productos";
 
@@ -43,16 +54,16 @@
             $nuevoAncho = 500;
             $nuevoAlto = 500;
 
-            // Crear el directorio donde se guardara la foto del usuario
-						$directorio = "vistas/img/productos/".$_POST["nuevoCodigo"];
+            // Crear el directorio donde se guardara la foto del producto
+						$directorio = "vistas/img/productos/".$_POST["nuevoSerial"];
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
-            mkdir ($directorio,0755);
+            mkdir ($directorio,0777);
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
             if ($_FILES["nuevaImagen"]["type"] == "image/jpeg")
             {
               $aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-              $ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".jpg";
+              $ruta = "vistas/img/productos/".$_POST["nuevoSerial"]."/".$aleatorio.".jpg";
               $origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 							$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -69,7 +80,7 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/png")
             {
               $aleatorio = mt_rand(100,999);
-              $ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".png";
+              $ruta = "vistas/img/productos/".$_POST["nuevoSerial"]."/".$aleatorio.".png";
               $origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
               $destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -84,12 +95,20 @@
           }
 
 					// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
-					$datos = array("id_categoria" =>$_POST["nuevaCategoria"],
-												"codigo" =>$_POST["nuevoCodigo"],
-												"descripcion" =>$_POST["nuevaDescripcion"],
+					$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
+												"num_serie" =>$_POST["nuevoSerial"],
+												"id_marca" =>$_POST["nuevoMarca"],
+												"id_modelo" =>$_POST["nuevoModelo"],
+												"id_almacen" =>$_POST["nuevoAlmacen"],
+												"id_modelo" =>$_POST["nuevoEdoEpo"],
+												"id_idf" =>$_POST["nuevoIdf"],
+												"id_patch_panel" =>$_POST["nuevoPatchPanel"],
+												"id_puerto" =>$_POST["nuevoPuerto"],
 												"stock" =>$_POST["nuevoStock"],
 												"precio_compra" =>$_POST["nuevoPrecioCompra"],
 												"precio_venta" =>$_POST["nuevoPrecioVenta"],
+												"especificaciones" =>$_POST["nuevaEspecif"],
+												"comentarios" =>$_POST["nuevaComent"],
 												"imagen" =>$ruta);
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);
 

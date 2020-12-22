@@ -58,6 +58,44 @@ $('.tabla').DataTable({
 });
 */ 
 
+// Revisando que el "Serial" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
+$("#nuevoSerial").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoSerial.
+	var serial = $(this).val();
+	
+	//console.log("Serial",marca);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarSerial",serial);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoSerial").parent().after('<div class="alert alert-warning" >Este Serial Existe </div>');
+				$("#nuevoSerial").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoSerial").change(function(){
+
+
 // Se agrega el código para obtener el último número del codigo a utilizar
 $("#nuevaCategoria").change(function(){
 	
