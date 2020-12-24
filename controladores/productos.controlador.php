@@ -16,8 +16,10 @@
 		{
 			if (isset($_POST["nuevoSerial"]))
 			{
-				if (preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]) &&
+				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]))
+				{
+					/*
+					(preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]) &&
 					preg_match('/^[0-9]+$/',$_POST["nuevoMarca"]) &&
 					preg_match('/^[0-9]+$/',$_POST["nuevoModelo"]) &&					
 					preg_match('/^[0-9]+$/',$_POST["nuevoAlmacen"]) &&
@@ -27,11 +29,12 @@
 					preg_match('/^[0-9]+$/',$_POST["nuevoPuerto"]) &&
 					preg_match('/^[0-9.]+$/',$_POST["nuevoStock"]) &&
 					preg_match('/^[0-9]+$/',$_POST["nuevoPrecioCompra"]) && 
-					preg_match('/^[0-9]+$/',$_POST["porcentaje"]) && 
-					preg_match('/^[0-9]+$/',$_POST["nuevoPorcentaje"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["especificaciones"]) && 
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["comentarios"]))
-				{
+					preg_match('/^[0-9]+$/',$_POST["porcentaje"]))				
+
+					//preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["especificaciones"]) && 
+					//preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ, ]+$/',$_POST["comentarios"]))
+					*/
+
 					$tabla = "t_Productos";
 
 					$ruta = "vistas/img/productos/default/anonymous.png";

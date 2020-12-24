@@ -37,7 +37,7 @@
 		// Guardar el Producto, en la tabla "t_Productos"
 		static public function mdlIngresarProducto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,id_idf,id_patch_panel,id_puerto,stock,precio_compra,precio_venta,especificaciones,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,_id_edo_epo,:id_idf,:id_patch_panel,:id_puerto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios,:imagen_producto)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,id_idf,id_patch_panel,id_puerto,stock,precio_compra,precio_venta,especificaciones,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_idf,:id_patch_panel,:id_puerto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios,:imagen_producto)");
 
 			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
 			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);

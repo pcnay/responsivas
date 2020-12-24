@@ -312,7 +312,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	                <select class="form-control input-lg" id= "nuevoPuerto" name="nuevoPuerto" required>
 	                  <option value="">Seleccionar Puerto</option>
 										<?php
-											// Se obtendrán el Patch Panel de la base de datos.
+											// Se obtendrán el Puerto de la base de datos.
 											$item = null;
 											$valor = null;
 											$Puerto = ControladorPuertos::ctrMostrarPuertos($item,$valor);
@@ -333,7 +333,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="number" class="form-control input-lg" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
+									<input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -379,7 +379,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							<div class="col-xs-6">								
 									<label>
 										<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
-										<input type="checkbox" id="porcentaje" class = "minimal porcentaje" checked>
+										<input type="checkbox" id="porcentaje" cname = "porcentaje" lass = "minimal porcentaje" checked>
 										Utilizar porcentaje
 									</label>
 
