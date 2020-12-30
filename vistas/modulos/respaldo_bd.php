@@ -1,6 +1,8 @@
 <?php
+	// En la carpeta donde esta este archivo, se tiene que cambiar los permisos "chmod -R 777 moduos/" para este caso. Propietario, Grupo, Cualaquiera (debe tener todo el acceso, de lo contrario no lo generara, al menos en CentOS)
+	
 	// Para respaldar la base de datos 
-	// Se ejecuta desde la carpeta donde esta el arhivo "pos-2020...."
+	// Se ejecuta desde la carpeta donde esta el archivo "pos-2020...."
 	// 		mysql -u root -p pos(nombre BaseDeDatos) < pos-20200906-191217.sql (archivo que tiene la 		informacion respaldada)
 	//
 	echo "Iniciando el respaldo ... ";
@@ -27,8 +29,9 @@
     //unlink ($salida_zip); 
 
     // para que muestre como descarga desde un navegador.
-    //header ("Location: $salida_zip");
-    
+		//header ("Location: $salida_zip");
+		echo "<br><br>";
+		echo "Respaldo Realizado .....";
   }
   else
   {
