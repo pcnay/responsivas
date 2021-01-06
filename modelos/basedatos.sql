@@ -16,10 +16,11 @@ CREATE DATABASE IF NOT EXISTS bd_responsivas;
 USE bd_responsivas;
 
 
-/* Solo se ejecuta la primera vez. 
+/*Solo se ejecuta la primera vez.
 CREATE USER 'usuario_responsiva'@'localhost' IDENTIFIED BY 'responsivas-2020';
 GRANT ALL on bd_responsivas.* to 'usuario_responsiva'  IDENTIFIED BY 'responsivas-2020';
 */
+
 
 /* 
 Mostrar todos los usuarios 
@@ -240,12 +241,20 @@ CREATE TABLE t_Responsivas
 	ON DELETE RESTRICT ON UPDATE CASCADE	
 );
 
+CREATE TABLE t_Cintas
+(
+  id_cintas SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  num_serial VARCHAR(15) NOT NULL,
+  fecha_inic DATE NULL,
+	fecha_final DATE NULL,
+  ubicacion VARCHAR(20) NOT NULL,
+	comentarios TEXT
+  
+);
 
-/*
-INSERT INTO t_Usuario (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
-  (1,'Usuario Administrador','admin','1234','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
-*/
+
+
 
 
 

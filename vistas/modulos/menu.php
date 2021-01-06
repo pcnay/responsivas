@@ -14,6 +14,13 @@
 								</a>
 							</li>
 
+							<li class="active">
+								<a href="cintas">
+									<i class="fa fa-home"></i>
+									<span>Cintas</span>           
+								</a>
+							</li>
+
 							<!-- Manejando los roles de los usuarios. -->
 
 							<li class="">

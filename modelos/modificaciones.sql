@@ -15,9 +15,9 @@
 
 USE bd_responsivas;
 
-/* Para agregar una columna a la tabla t_Empleados. */
+/* Para agregar una columna a la tabla t_Empleados. 
 	ALTER TABLE t_Productos ADD stock SMALLINT UNSIGNED DEFAULT 0;
-
+*/
 
 /* Para agregar una columna a la tabla t_Empleados.
 	ALTER TABLE t_Empleados ADD foto varchar(100) NOT NULL;
@@ -29,10 +29,23 @@ USE bd_responsivas;
 
 */
 
+
+CREATE TABLE t_Cintas
+(
+  id_cintas SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  num_serial VARCHAR(15) NOT NULL,
+  fecha_inic DATE NULL,
+	fecha_final DATE NULL,
+  ubicacion VARCHAR(20) NOT NULL,
+	comentarios TEXT
+  
+);
+
 /*
 INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
-  (1,'Usuario Administrador','admin','1234','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+  (0,'Usuario Administrador','admin','1234','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 */
+
 
 /*
 INSERT INTO t_Empleados (id_empleado,id_ubicacion,id_puesto,id_depto,id_supervisor,nombre,apellidos,ntid,correo_electronico,centro_costos,foto,fecha) VALUES
