@@ -19,9 +19,8 @@
     {
 			if (isset($_POST["nueva_cinta"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9-]+$/',$_POST["nueva_cinta"]) &&
-				preg_match('/^[a-zA-Z0-9,- ]+$/',$_POST["nueva_ubic"])
-				)
+				if (preg_match('/^[a-zA-Z0-9- ]+$/',$_POST["nueva_cinta"])) //&&
+				//preg_match('/^[a-zA-Z0-9,- ]+$/',$_POST["nueva_ubic"])			
 				{
 					// Enviar la información al Modelo.
 					$tabla = "t_Cintas";

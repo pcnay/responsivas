@@ -245,5 +245,5 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
 
 <?php
 	$eliminarCinta = new ControladorCintas();
-	$eliminarCinta->ctrEliminarCinta();
+	$eliminarCinta->ctrBorrarCinta();
 ?>

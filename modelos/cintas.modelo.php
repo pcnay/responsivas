@@ -13,7 +13,7 @@
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(num_serial,fecha_inic,fecha_final,ubicacion,comentarios) VALUES (:num_serial,:fecha_inic,:fecha_final,:ubicacion,:comentarios)");
 			$stmt->bindParam(":num_serial",$datos["nueva_cinta"],PDO::PARAM_STR); 
 			$stmt->bindParam(":fecha_inic",$datos["nueva_fecha_inic"],PDO::PARAM_STR); 
-			$stmt->bindParam(":fecha_final",$datos["nueva_fecha_final"],PDO::PARAM_STR);
+			$stmt->bindParam(":fecha_final",$datos["nueva_fecha_fin"],PDO::PARAM_STR);
 			$stmt->bindParam(":ubicacion",$datos["nueva_ubic"],PDO::PARAM_STR);
 			$stmt->bindParam(":comentarios",$datos["nuevoComent"],PDO::PARAM_STR);
 

@@ -24,7 +24,8 @@
 			$valor = null;
 			$orden = "num_serial";
 			$cintas = ControladorCintas::ctrMostrarCintas($item,$valor,$orden);
-			//var_dump($empleados);
+	
+			//var_dump($cintas);
 
 			// Aqui se genera la variable tipo JSon.
 			// Es importante que no se agrege un caracter demas en la cadena $datosJson
@@ -34,22 +35,23 @@
 					{
 
 						// Se agrega los botones con las clases y id para "editar" y "borrar"
-						$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idCinta = '".$empleados[$i]["id_cintas"]."'<i class='fa fa-times'></i></button></div>";
+						$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idCinta = '".$cintas[$i]["id_cintas"]."'><i class='fa fa-times'></i></button></div>";
 
-						
+
 						$datosJson .= '[
 							"'.($i+1).'",														
 							"'.$cintas[$i]['num_serial'].'",
 							"'.$cintas[$i]['fecha_inic'].'",
 							"'.$cintas[$i]['fecha_final'].'",
 							"'.$cintas[$i]['ubicacion'].'",
-							"'.$cintas['comentarios'].'",
+							"'.$cintas[$i]['comentarios'].'",
 							"'.$botones.'"
 						],';	
 					}
 					
 					$datosJson = substr($datosJson,0,-1);
 					$datosJson .= ']}';
+					
 					
 					echo $datosJson;
 
