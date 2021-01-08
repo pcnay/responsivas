@@ -242,6 +242,7 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
   </div> <!-- <div class="modal-dialog"> -->
 
 </div> <!-- <div id="modalEditarCinta" class="modal fade" role="dialog"> -->
+
 <?php
 	$eliminarCinta = new ControladorCintas();
 	$eliminarCinta->ctrEliminarCinta();
