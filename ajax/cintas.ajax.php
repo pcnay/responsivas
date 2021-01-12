@@ -6,6 +6,19 @@
 
 	class AjaxCintas
 	{
+		// Validar si existe una Cinta.
+		public $validarCinta;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarCinta()
+		{
+			$item = "num_serial";
+			$valor = $this->validarCinta;
+
+			$respuesta = ControladorCintas::ctrMostrarCintas($item,$valor);
+			echo json_encode($respuesta);
+
+		}
 		// Editar "Cintas"
 		// Para obtener la "Cinta" que se va a editar.
 		public $idCinta;
@@ -53,4 +66,11 @@
 		$traerCinta->ajaxEditarCinta();
 	}
 
+	// Validar que NO se repita la Cinta.
+	if (isset($_POST["validarCinta"]))
+	{
+		$valCinta = new AjaxCintas();
+		$valCinta->validarCinta = $_POST["validarCinta"];
+		$valCinta->ajaxValidarCinta();
+	}
 ?>

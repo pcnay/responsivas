@@ -142,6 +142,43 @@ $(".nuevaImagen").change(function(){
 })
 */
 
+// Revisando que el "Numero de Serie" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nueva_cinta" id="nueva_cinta" placeholder = "Ingresar una Cinta" required>
+$("#nueva_cinta").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nueva_cinta.
+	var cinta = $(this).val();
+	
+	//console.log("Num Serie",marca);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarCinta",cinta);
+	$.ajax({
+		url:"ajax/cintas.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nueva_cinta").parent().after('<div class="alert alert-warning" >Esta Numero Serie Existe </div>');
+				$("#nueva_cinta").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nueva_cinta").change(function(){
+
 // Editar Cintas
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 
