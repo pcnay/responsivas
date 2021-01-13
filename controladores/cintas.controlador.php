@@ -25,12 +25,13 @@
 					// Enviar la información al Modelo.
 					$tabla = "t_Cintas";
 
+					// Se debe agregar la instruccion "rtrim" para eliminar espacios de la derecha, d elo contrario el DataTable falla
 					$datos=array();									
 					$datos = array("nueva_cinta"=>$_POST["nueva_cinta"],
 						"nueva_fecha_inic"=>$_POST["nueva_fecha_inic"],
 						"nueva_fecha_fin"=>$_POST["nueva_fecha_fin"],
 						"nueva_ubic"=>$_POST["nueva_ubic"],
-						"nuevoComent"=>$_POST["nuevoComent"]);
+						"nuevoComent"=>rtrim($_POST["nuevoComent"]));
 
 					$respuesta = ModeloCintas::mdlIngresarCinta($tabla,$datos);
 
@@ -86,19 +87,19 @@
 		// ==============================================
 		static public function ctrEditarCinta()
 		{
-			if (isset($_POST["editar_num_serie"]))
+			if (isset($_POST["editar_num_serial"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_num_serie"]) && 
-					preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_ubicacion"]))
+				if (preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_num_serial"]))
+				// && 	preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_ubicacion"]))
 				{
 					// Enviar la información al Modelo.
 					$tabla = "t_Cintas";
 					// Se pasan los valores para  la consulta en la base de datos.
-					$datos = array("num_serial"=>$_POST["editar_num_serie"],
+					$datos = array("num_serial"=>$_POST["editar_num_serial"],
 												"fecha_inic"=>$_POST["editar_fecha_inic"],
 												"fecha_final"=>$_POST["editar_fecha_fin"],
 												"ubicacion"=>$_POST["editar_ubicacion"],
-												"comentarios"=>$_POST["editar_comentarios"],
+												"comentarios"=>rtrim($_POST["editar_comentarios"]),
 												"id_cintas"=>$_POST["idCinta"]);
 
 					$respuesta = ModeloCintas::mdlEditarCinta($tabla,$datos);

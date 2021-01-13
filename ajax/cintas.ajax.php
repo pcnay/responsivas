@@ -51,10 +51,10 @@
 
 	
 	// Para editar la Cinta.
-	if (isset($_POST["idCinta"]))
+	if (isset($_POST["idcinta"]))
 	{
 		$editarCinta = new AjaxCintas();
-		$editarCinta->idCinta = $_POST["idCinta"];
+		$editarCinta->idCinta = $_POST["idcinta"];
 		$editarCinta->ajaxEditarCinta();
 	}
 	

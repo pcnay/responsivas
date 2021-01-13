@@ -126,9 +126,9 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
             </div> <!-- <div class="form-group"> -->
 
 						<!-- Captura los Comentarios -->
-						<div class="form-group">
+						<div class="form-group">						
 						  <label for="comentarios">Comentarios:</label>
-						  <textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
+							<textarea class="form-control" rows="5" cols="30" name="nuevoComent" id="nuevoComent">							       
 							</textarea>
 						</div>
 
@@ -186,7 +186,7 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fad fa-id-card"></i></span>
                 <input type="hidden"  name="id_cintas"  id="id_cintas" required>
-                <input type="text" class="form-control input-lg" id = "editar_num_serie" name="editar_num_serie" required>
+                <input type="text" class="form-control input-lg" id = "editar_num_serial" name="editar_num_serial" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -215,9 +215,18 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
             </div> <!-- <div class="form-group"> -->
 
 						<!-- Editar Comentarios -->
+
+						<!-- Captura los Comentarios 
+						<div class="form-group">						
+						  <label for="comentarios">Comentarios:</label>
+							<textarea class="form-control" rows="5" cols="30" name="nuevoComent" id="nuevoComent">							       
+							</textarea>
+						</div> -->
+
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
                 <input type="text" class="form-control input-lg" id="editar_comentarios" name="editar_comentarios" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
