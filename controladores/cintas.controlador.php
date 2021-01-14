@@ -191,6 +191,7 @@
 				$tabla = "t_Cintas";
 				$datos = $_GET["idCinta"]; // Obtiene el valor.
 				$respuesta = ModeloCintas::mdlBorrarCinta($tabla,$datos);
+				
 				if ($respuesta = "ok")
 				{
 					echo '<script>           
