@@ -223,13 +223,27 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
 							</textarea>
 						</div> -->
 
+
+						<!-- Captura los Comentarios -->
+						<div class="form-group">						
+						  <label for="comentarios">Comentarios:</label>
+							<textarea class="form-control" rows="5" cols="30" name="editar_comentarios" id="editar_comentarios">							       
+							</textarea>
+						</div>
+
+
+
+
+
+
+					<!--
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" id="editar_comentarios" name="editar_comentarios" required>
-              </div> <!-- <div class = "input-group"> -->       
-            </div> <!-- <div class="form-group"> -->
+              </div>  <div class = "input-group"> 
+            </div>  <div class="form-group"> -->
 
 
 

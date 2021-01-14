@@ -35,13 +35,22 @@
 		// ======================================================
 		static public function mdlEditarCinta($tabla,$datos)
 		{
+			//$datos["editar_num_serial"] = 'SERIAL1';
+			//$datos["editar_fecha_inic"] = '2021/01/10';
+			//$datos["editar_fecha_final"] = '2021/01/05';
+			//$datos["editar_ubicacion"] = 'Ubicacion 1';
+			//$datos["editar_comentarios"] = 'Comentarios1';
+			//$datos["id_cintas"] = '8';
+
 			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET num_serial = :num_serial, fecha_inic = :fecha_inic, fecha_final = :fecha_final, ubicacion = :ubicacion, comentarios = :comentarios WHERE id_cintas = :id");
-			$stmt->bindParam(":num_serial",$datos["editar_num_serie"],PDO::PARAM_STR);
-			$stmt->bindParam(":fecha_inic",$datos["editar_fecha_inic"],PDO::PARAM_STR);
-			$stmt->bindParam(":fecha_final",$datos["editar_fecha_fin"],PDO::PARAM_STR);
-			$stmt->bindParam(":ubicacion",$datos["editar_ubicacion"],PDO::PARAM_STR);
-			$stmt->bindParam(":comentarios",$datos["editar_comentarios"],PDO::PARAM_STR);
+			
+			$stmt->bindParam(":num_serial",$datos["num_serial"],PDO::PARAM_STR);			
+			$stmt->bindParam(":fecha_inic",$datos["fecha_inic"],PDO::PARAM_STR);			
+			$stmt->bindParam(":fecha_final",$datos["fecha_final"],PDO::PARAM_STR);			
+			$stmt->bindParam(":ubicacion",$datos["ubicacion"],PDO::PARAM_STR);			
+			$stmt->bindParam(":comentarios",$datos["comentarios"],PDO::PARAM_STR);
 			$stmt->bindParam(":id",$datos["id_cintas"],PDO::PARAM_STR); 
+			
 
 			if ($stmt->execute())
 			{

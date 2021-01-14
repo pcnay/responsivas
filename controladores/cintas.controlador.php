@@ -99,8 +99,11 @@
 												"fecha_inic"=>$_POST["editar_fecha_inic"],
 												"fecha_final"=>$_POST["editar_fecha_fin"],
 												"ubicacion"=>$_POST["editar_ubicacion"],
-												"comentarios"=>rtrim($_POST["editar_comentarios"]),
-												"id_cintas"=>$_POST["idCinta"]);
+												"comentarios"=>rtrim(ltrim($_POST["editar_comentarios"])),
+												"id_cintas"=>$_POST["id_cintas"]);
+					//var_dump($datos);
+					//exit;
+
 
 					$respuesta = ModeloCintas::mdlEditarCinta($tabla,$datos);
 					if ($respuesta == "ok")
@@ -122,6 +125,26 @@
 			
 							</script>';          
 	
+					}
+					else
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "success",
+							title: "Error al Editar la Cinta",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="cintas";
+								}
+	
+								});
+			
+							</script>';          
+
 					}
 				}
 				else
