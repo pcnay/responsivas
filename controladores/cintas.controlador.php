@@ -219,5 +219,5 @@
 
   } // class ControladorCintas
 
-?> 
+ 
   
