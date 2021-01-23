@@ -11,7 +11,6 @@ require_once('tcpdf_include.php');
  
 class imprimirCintas
 {
-	public $codigo;
 	public function traerImpresionCintas()
 	{
 
@@ -19,7 +18,8 @@ class imprimirCintas
 		$item = null;
 		$valor = null;
 		$respuestaCintas = ControladorCintas::ctrMostrarCintas($item,$valor);
-
+		//var_dump($respuestaCintas);
+		//exit;
 
 
 // create new PDF document
@@ -38,164 +38,86 @@ $bloque1 = <<<EOF
 	<table>
 		<tr>
 			<td style="width:150px"><img src="images/logo-negro-bloque.png"></td>			
-			<td style="background-color:white; width:140px">
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
+			<td style="background-color:white; width:390px">
+				<div style="font-size:15px; text-align:center; line-height:20px;">
 					<br>
-					NIT:71.759.963-9
-					<br>
-					Dirección: Calle 44B 92-11
+					REPORTES DE CINTAS MAGNETICAS 
 				</div>
 			</td>
 		</tr>
-
-
 	</table>
+	<!-- Para insertar espacios entre cada tabla  -->
+	<table>
+		<tr>
+			<td>
+			</td>
+		</tr>
+	</table>
+
 
 EOF;
 $pdf->writeHTML($bloque1,false,false,false,false,'');
 
 
 $bloque2 = <<<EOF
-	<table>
-		<tr>
-			<!-- Se coloca una imagen vacia, solo es para ocupar un espacio de 540px -->
-			<td style="width:540px"><img src="images/back.jpg"></td>
-		</tr>
-	</table>
-
+	<!-- Imprime los encabezados de las ventas -->
 	<table style="font-size:10px; padding:5px 10px;">
 		<tr>
-			<!-- Dibuja un recuadro en el campo de Nombre Cliente -->
-			<td style="border:1px solid #666; background-color:white; width:390px">
-				Cliente: $respuestaCliente[nombre]
-			</td>
-	
-			<td style="border:1px solid #666; background-color:white; width:150px; text-align:right">
-				Fecha: $fecha
-			</td>
+			<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Num. Serial</td>
+			<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Fecha Inicio</td>
+			<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Fecha final</td>
+			<td style="border: 1px solid #666; background-color:white; width:90px; text-align:center">Ubicacion</td>
+			<td style="border: 1px solid #666; background-color:white; width:210px; text-align:center">Comentarios</td>
+			
 		</tr>
-		<tr>
-			<td style="border:1px solid #666; background-color:white; width:540px">Vendedor: $respuestaVendedor[nombre]</td>
-		</tr>
-		<tr>
-			<!-- Para insertar un renglon en blanco -->
-			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
-		</tr>
+		
 	</table>
+
 
 EOF;
 
 $pdf->writeHTML($bloque2,false,false,false,false,'');
 
 
-$bloque3 = <<<EOF
-	<!-- Imprime los encabezados de las ventas -->
-	<table style="font-size:10px; padding:5px 10px;">
-		<tr>
-			<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Productos</td>
-			<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
-		</tr>
-	</table>
-
-
-EOF;
-
-$pdf->writeHTML($bloque3,false,false,false,false,'');
-
-/*
-// Se va a imprimir el desglose de las ventas.
-foreach ($productos as $key => $item)
+foreach ($respuestaCintas as $key => $item)
 {
-	$itemProducto = "descripcion";
-	$valorProducto = $item["descripcion"];
-	$orden = "id";
-
-	$respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto,$valorProducto,$orden);
-
-	// Se debe utilizar variable de lo contrario muestra error.
-	$valorUnitario = number_format($respuestaProducto["precio_venta"],2);
-	$precioTotal = number_format($item["total"],2);
-
-
-
-
-$bloque4 = <<<EOF
-		<table style="font-size:10px; padding:5px 10px;">
-			<tr>
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-					$item[descripcion]
-				</td>
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; 	text-align:center">
-					$item[cantidad]
-				</td>
-
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; 	text-align:center">
-					$ $valorUnitario
-				</td>
-
-				<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; 	text-align:center">
-					$ $precioTotal
-			</td>
-
-			</tr>
-		</table>
-
-EOF;
+	$bloque3 = <<<EOF
 	
-$pdf->writeHTML($bloque4,false,false,false,false,'');
+		<table style="font-size:10px; padding:5px 10px;">
+	
+			<tr>
+				
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+					$item[num_serial]
+				</td>
+	
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+					$item[fecha_inic]
+				</td>
+	
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+				$item[fecha_final]
+				</td>
+	
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:90px; text-align:center"> 
+				$item[ubicacion]
+				</td>
 
-//	} // foreach ($productos as $key => $item)
+				<td style="border: 1px solid #666; color:#333; background-color:white; width:210px; text-align:center"> 
+				$item[comentarios]
+				</td>
 
-
-$bloque5 = <<<EOF
-	<table style="font-size:10px; padding:5px 10px;">
-		<tr>
-			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
-			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; 	text-align:center"></td>
-			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; 	text-align:center"></td>
-		</tr>
-		<tr>
-			<!-- Es el espacio que tiene para imprimir el siguiente valor -->
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-			<td style="border: 1px solid #666; background-color:white; width:100px; 	text-align:center">
-				neto
-			</td>
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px;	text-align:center">
-				$ $neto
-			</td>
-		</tr>
-
-		<tr>
-			<!-- Es el espacio que tiene para imprimir el siguiente valor -->
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				impuesto
-			</td>
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px;	text-align:center">
-				$ $impuesto
-			</td>		 
-		</tr>
-		
-		<tr>
-			<!-- Es el espacio que tiene para imprimir el siguiente valor -->
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Total
-			</td>
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px;	text-align:center">
-				$ $total
-			</td>		 
-		</tr>
-
+	
+			</tr>
+	
 		</table>
-
-EOF;
-
-$pdf->writeHTML($bloque5,false,false,false,false,'');
-
-*/
+		
+	EOF;
+	
+	$pdf->writeHTML($bloque3, false, false, false, false, '');
+	
+	}
+	
 
 // Para imprimir la factura.
 $pdf->Output('cintas.pdf');
@@ -204,9 +126,9 @@ $pdf->Output('cintas.pdf');
 
 } // class imprimirFactura
 
-$factura = new imprimirCintas();
+$cintas = new imprimirCintas();
 //$factura->codigo = '10'; //$_GET["codigo"];
-$factura->traerImpresionCintas();
+$cintas->traerImpresionCintas();
 
 
 
