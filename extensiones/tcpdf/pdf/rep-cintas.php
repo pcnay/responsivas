@@ -21,34 +21,15 @@ class MYPDF extends TCPDF
 			$this->Image($image_file, 5, 10, 30, 15, 'PNG', '', 'T', false, 250, '', false, false, 0, false, false, false);
 			$this->Ln(10);
 			// Set font
-			$this->SetFont('helvetica', 'B', 20);
+			$this->SetFont('helvetica', 'B', 18);
 			// Title
 			//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
 			// $w = 0; abarcar por defecto las 200px lo ancho de la hoja
 			// $ln=0(false) ; No pasa a las siguiente linea.
 			$this->SetLeftMargin(60);
-			$this->Cell(120,15,'REPORTES DE CINTAS MAGNETICAS', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+			$this->Cell(120,15,'REPORTES DE CINTAS MAGNETICAS - DEPTO T.I.', 0,1, 'C', 0, '', 0, false, 'M', 'M');					
 			$this->SetLeftMargin(5);
-			$this->Ln(10);
-
-
-$bloque2 = <<<EOF
-			<!-- Imprime los encabezados de las ventas -->
-				
-			<table style="font-size:9px; padding:3px 5px;">
-				<tr>
-					<!-- <td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Num. Serial</td> -->
-					<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Num. Serial</td>
-					<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Fecha Inicio</td>
-					<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Fecha final</td>
-					<td style="border: 1px solid #666; background-color:yellow; width:90px; text-align:center">Ubicacion</td>
-					<td style="border: 1px solid #666; background-color:yellow; width:220px; text-align:center">Comentarios</td>			
-				</tr>		
-			</table>
-		EOF;
-
-$this->writeHTML($bloque2,false,false,false,false,'');
-
+			
 	}
 
 	// Page footer
@@ -110,8 +91,42 @@ $pdf->AddPage();
 
 $pdf->Ln(8); // Para que quede pegada las tablas de Encabezado y 
 $pdf->Ln(10);
+// 37 Renglones por hoja
+$contador = 0;
+
 foreach ($respuestaCintas as $key => $item)
 {
+	$contador++;
+
+	if ($contador==37)
+	{
+		$contador = 1;
+
+	}
+
+	if ($contador == 1) 
+	{
+		
+		$bloque2 = <<<EOF
+		<!-- Imprime los encabezados de las ventas -->
+
+		<table style="font-size:9px; padding:3px 5px;">
+			<tr>
+				<!-- <td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Num. Serial</td> -->
+				<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Num. Serial</td>
+				<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Fecha Inicio</td>
+				<td style="border: 1px solid #666; background-color:yellow; width:80px; text-align:center">Fecha final</td>
+				<td style="border: 1px solid #666; background-color:yellow; width:90px; text-align:center">Ubicacion</td>
+				<td style="border: 1px solid #666; background-color:yellow; width:220px; text-align:center">Comentarios</td>			
+			</tr>		
+		</table>
+		EOF;
+
+		$pdf->writeHTML($bloque2,false,false,false,false,'');
+
+	}
+
+
 	$bloque3 = <<<EOF
 			<!-- <table style="font-size:10px; padding:5px 10px;"> -->
 		<table style="font-size:9px; padding:3px 5px;">
@@ -146,8 +161,16 @@ foreach ($respuestaCintas as $key => $item)
 	EOF;
 	
 	$pdf->writeHTML($bloque3, false, false, false, false, '');
-	
-}
+
+	/*
+	if ($contador==37)
+	{
+		$contador = 0;
+	}
+	*/
+
+} //foreach ($respuestaCintas as $key => $item)
+
 // $pdf->AddPage();
 
 // Para imprimir las Cintas.
