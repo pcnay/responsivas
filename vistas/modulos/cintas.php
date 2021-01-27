@@ -22,10 +22,26 @@
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
           <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarCintas">
-            Agregar Cintas
+            Agregar 
           </button>       
+
+					<?php
+					echo '<a href="/responsivas/vistas/modulos/descargar-reporte.php">';
+					?>
+					<button class="btn btn-success" id="imp_cintas">
+            Imprimir
+          </button>       
+					</a>
+
+
+					<button class="btn btn-info" id="exp_excel">
+            Exportar A Excel
+          </button>       
+
+
         </div>
  
+
         <div class="box-body">
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
