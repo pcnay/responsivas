@@ -217,6 +217,54 @@
 
 		} // static public function ctrBorrarCinta()
 
+		static public function ctrExportarExcelCintas()
+		{
+			// Traer la información de las Cintas.
+			$item = null;
+			$valor = null;
+			$respuestaCintas = ControladorCintas::ctrMostrarCintas($item,$valor);
+
+			// ===========================
+			// Crear el archivo de Excel
+			// ==========================
+			$Name = 'ExportarExcel'.'.xls';
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel");
+			header("Cache-Control: cache, must-revalidate");
+			header('Content-Description: File Transfer');
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
+			header("Pragma: public");
+			header('Content-Disposition:; filename="'.$Name.'"');
+			header("Content-Transfer-Encoding: binary");
+
+			// Creando la tabla de Excel
+			// utf8_decode = Para poder trabajar con tildes, acentos, ñ, Ñ
+			// Creando los encabezados de la tabla.
+			echo utf8_decode("<table border='0'>
+				<tr>
+					<td style='font-weight:bold; border:1px solid #eee;'>NUMERO_SERIE</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA_INICIAL</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA_FINAL</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>UBICACION</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>COMENTARIOS</td>
+				</tr>");
+		
+				foreach ($respuestaCintas as $row => $item)
+				{
+					echo utf8_decode("<tr>
+						<td style='border:1px solid #eee;'>".$item["num_serial"]."</td>
+						<td style='border:1px solid #eee;'>".$item["fecha_inic"]."</td>
+						<td style='border:1px solid #eee;'>".$item["fecha_final"]."</td>
+						<td style='border:1px solid #eee;'>".$item["ubicacion"]."</td>
+						<td style='border:1px solid #eee;'>".$item["comentarios"]."</td>
+						</tr>");					
+					
+					}
+				echo "</table>"; 
+
+		} // static public function ctrExportarExcelCintas()
+
   } // class ControladorCintas
 
  
