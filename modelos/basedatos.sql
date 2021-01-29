@@ -248,8 +248,7 @@ CREATE TABLE t_Cintas
   fecha_inic DATE NULL,
 	fecha_final DATE NULL,
   ubicacion VARCHAR(20) NOT NULL,
-	comentarios TEXT
-  
+	comentarios VARCHAR(100) NULL  
 );
 
 

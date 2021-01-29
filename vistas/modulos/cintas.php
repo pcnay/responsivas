@@ -143,13 +143,21 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Captura los Comentarios -->
+						<!-- Captura de Comentarios -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control input-lg" id="nuevoComent" name="nuevoComent" placeholder = "Ingresar Los Comentarios" required>
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura los Comentarios 
 						<div class="form-group">						
 						  <label for="comentarios">Comentarios:</label>
 							<textarea class="form-control" rows="5" cols="30" name="nuevoComent" id="nuevoComent">							       
 							</textarea>
 						</div>
-
+						-->
 
           </div> <!-- <div class="box-body"> -->
 
@@ -237,32 +245,17 @@ Cuando el usuario oprima el boton de "Agregar Cintas" se activa esta ventana.
 						<!-- Captura los Comentarios 
 						<div class="form-group">						
 						  <label for="comentarios">Comentarios:</label>
-							<textarea class="form-control" rows="5" cols="30" name="nuevoComent" id="nuevoComent">							       
-							</textarea>
-						</div> -->
-
-
-						<!-- Captura los Comentarios -->
-						<div class="form-group">						
-						  <label for="comentarios">Comentarios:</label>
 							<textarea class="form-control" rows="5" cols="30" name="editar_comentarios" id="editar_comentarios">							       
 							</textarea>
 						</div>
+						-->		
 
-
-
-
-
-
-					<!--
-            <div class="form-group">
+	           <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
                 <input type="text" class="form-control input-lg" id="editar_comentarios" name="editar_comentarios" required>
-              </div>  <div class = "input-group"> 
-            </div>  <div class="form-group"> -->
-
+              </div>  <!-- <div class = "input-group"> -->
+            </div>  <!-- <div class="form-group"> -->
 
 
           <div class="modal-footer">						
