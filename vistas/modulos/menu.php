@@ -151,7 +151,40 @@
 						</ul>
 					</li>	';			
 				} 
+
 				
+				if ($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial")
+				{
+					echo '
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-list-ul"></i>
+							<span>Responsivas</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>           
+						</a>						
+
+						<ul class="treeview-menu">
+							<li>
+								<a href="cap-responsiva">
+									<i class="fa fa-circle-o"></i>
+									<span>Capturar Responsivas</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="rep-responsivas">
+									<i class="fa fa-circle-o"></i>
+									<span>Reportes Responsivas</span>
+								</a>
+							</li> 
+
+						</ul>
+					</li>	';			
+				} 
+
+
 				if ($_SESSION["perfil"] == "Administrador")
 				{
 					echo '
