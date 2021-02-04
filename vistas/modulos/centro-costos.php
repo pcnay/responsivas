@@ -217,6 +217,22 @@ Cuando el usuario oprima el boton de "Editar Centro De Costos" se activa esta ve
 
         </div> <!-- <div class="modal-body"> -->
 
+        <div class="modal-body">
+          <div class="box-body">
+            <!-- Clases de BootStrap para las formularios-->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <input type="text" class="form-control input-lg" name="editarDesc_cc"  id="editarDesc_cc" required>
+
+              </div> <!-- <div class = "input-group"> -->           
+
+            </div> <!-- <div class="form-group"> -->
+
+          </div> <!-- <div class="box-body"> -->
+
+        </div> <!-- <div class="modal-body"> -->
+
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>

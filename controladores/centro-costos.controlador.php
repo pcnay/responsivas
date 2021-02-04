@@ -83,32 +83,34 @@
 		// ==============================================
 		// Editar Centro de Costos
 		// ==============================================
-		static public function ctrEditarEdo_Epo()
+		static public function ctrEditarCentro_Costos()
 		{
-			if (isset($_POST["editarEdo_Epo"]))
+			if (isset($_POST["editarCentro_Costos"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarEdo_Epo"]))
+				if (preg_match('/^[0-9]+$/',$_POST["editarCentro_Costos"]) && 
+						preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarDesc_cc"]))
 				{
 					// Enviar la información al Modelo.
-					$tabla = "t_Edo_epo";
+					$tabla = "t_Centro_Costos";
 					// Se pasan los valores para  la consulta en la base de datos.
-					$datos = array("descripcion"=>$_POST["editarEdo_Epo"],
-													"id_edo_epo"=>$_POST["idEdo_Epo"]);
+					$datos = array("num_centro_costo"=>$_POST["editarCentro_Costos"],
+													"descripcion"=>$_POST["editarDesc_cc"],
+													"id_centro_costos"=>$_POST["idCentro_Costos"]);
 
-					$respuesta = ModeloEdo_Epos::mdlEditarEdo_Epo($tabla,$datos);
+					$respuesta = ModeloCentro_Costos::mdlEditarCentro_Costos($tabla,$datos);
 					if ($respuesta == "ok")
 					{
 						echo '<script>           
 						Swal.fire ({
 							type: "success",
-							title: "El Estado Del Equipo ha sido cambiada correctamente ",
+							title: "El Centro De Costos ha sido cambiado correctamente ",
 							showConfirmButton: true,
 							confirmButtonText: "Cerrar",
 							closeOnConfirm: false
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="edo-epo";
+									window.location="centro-costos";
 								}
 	
 								});
@@ -122,58 +124,58 @@
 					echo '<script>           
 					Swal.fire ({
 						type: "error",
-						title: "El estado del equipo no puede ir vacio o llevar caracteres especiales ",
+						title: "El Centro Costo y/o Descripcion equipo no puede ir vacio o llevar caracteres especiales ",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="edo-epo";
+								window.location="centro-costos";
 							}
 
 							});
 		
 						</script>';          
 
-				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoEdo_Epo"]))
+				} // if (preg_match('/^[0-9]+$/',$_POST["nuevoCentro_Costos"]))
 
 			}
 
-		} // static public function ctrCrearEdo_Epo()
+		} // static public function ctrEditarCentro_Costos()
 
 		// =========================================
-		// Borrar Estado del Equipo
+		// Borrar Centro De Costos
 		// =========================================
-		static public function ctrBorrarEdo_Epo()
+		static public function ctrBorrarCentro_Costos()
 		{
-			// "idEdo_Epo" = se origina 
+			// "idCentro_Costos" = se origina 
 			/*
-			//$(document).on("click",".btnEliminarEdo_Epo",function()
+			//$(document).on("click",".btnEliminarCentro_Costos",function()
 		//	{	
 		
-				// Obteniendo los valores de "idEdo_Epo"
-				var idEdo_Epo = $(this).attr("idEdo_Epo");
+				// Obteniendo los valores de "idCentro_Costos"
+				var idCentro_Costos = $(this).attr("idCentro_Costos");
 		*/
 
-			if (isset($_GET["idEdo_Epo"]))
+			if (isset($_GET["idCentro_Costos"]))
 			{
-				$tabla = "t_Edo_epo";
-				$datos = $_GET["idEdo_Epo"]; // Obtiene el valor.
-				$respuesta = ModeloEdo_Epos::mdlBorrarEdo_Epo($tabla,$datos);
+				$tabla = "t_Centro_Costos";
+				$datos = $_GET["idCentro_Costos"]; // Obtiene el valor.
+				$respuesta = ModeloCentro_Costos::mdlBorrarCentro_Costos($tabla,$datos);
 				if ($respuesta = "ok")
 				{
 					echo '<script>           
 					Swal.fire ({
 						type: "success",
-						title: "El Estado del Equipo ha sido borrado correctamente ",
+						title: "El Centro de Costos ha sido borrado correctamente ",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="edo-epo";
+								window.location="centro-costos";
 							}
 
 							});
@@ -182,11 +184,11 @@
 
 				} // if ($respuesta = "ok")
 
-			} // if (isset($_GET["idMarca"]))
+			} // if (isset($_GET["idCentro_Costos"]))
 
-		} // static public function ctrBorrarEdo_Epo()
+		} // static public function ctrBorrarCentro_Costos()
 
-  } // class ControladorEdo_Epos
+  } // class ControladorCentro_Costos
 
 ?> 
   
