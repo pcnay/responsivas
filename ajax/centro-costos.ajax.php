@@ -3,8 +3,8 @@
 	// Se vuelve a llamar ya que en el Ajax, trabaja en 2do. plano, porque se tiene que volver a invocarlo.
 // No declarar "static" en esta funcion, no la soporta el servidor Cloud de Google, por lo que deja de trabajar el programa de forma correcta.
 
-	require_once "../controladores/edo-epo.controlador.php";
-	require_once "../modelos/edo-epo.modelo.php";
+	require_once "../controladores/centro-costos.controlador.php";
+	require_once "../modelos/centro-costos.modelo.php";
 	
 	class AjaxCentro_Costos
 		{
@@ -15,7 +15,7 @@
 		public function ajaxValidarCentro_Costos()
 		{
 			$item = "num_centro_costos";
-			$valor = $this->validarCenro_Costos;
+			$valor = $this->validarCentro_Costos;
 
 			$respuesta = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
 			echo json_encode($respuesta);

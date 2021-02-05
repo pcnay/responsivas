@@ -28,9 +28,11 @@
 
 					//$datos=array();				
 					
-					$datos = array("num_centro_costo" =>$_POST["nuevoCentro_Costos"],
+					$datos = array("num_centro_costos" =>$_POST["nuevoCentro_Costos"],
 												"descripcion" =>$_POST["nuevaDesc_cc"]);
 
+					var_dump($datos);
+					//exit;
 					$respuesta = ModeloCentro_Costos::mdlIngresarCentro_Costos($tabla,$datos);
 
 					if ($respuesta == "ok")
@@ -52,6 +54,25 @@
 			
 							</script>';          
 	
+					}
+					else
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "error",
+							title: "Error al Grabar el Centro de Costos",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="centro-costos";
+								}
+	
+								});
+			
+							</script>';          	
 					}
 				}
 				else
@@ -93,7 +114,7 @@
 					// Enviar la información al Modelo.
 					$tabla = "t_Centro_Costos";
 					// Se pasan los valores para  la consulta en la base de datos.
-					$datos = array("num_centro_costo"=>$_POST["editarCentro_Costos"],
+					$datos = array("num_centro_costos"=>$_POST["editarCentro_Costos"],
 													"descripcion"=>$_POST["editarDesc_cc"],
 													"id_centro_costos"=>$_POST["idCentro_Costos"]);
 

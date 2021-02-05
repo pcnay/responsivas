@@ -3,13 +3,13 @@
 // ======================================
 $(".btnEditarCentro_Costos").click(function(){
 	// Se obtiene el valor de "idCentro_Costos"
-	var idCtro_Costos = $(this).attr("idCentro_Costos");
+	var idCentro_Costos = $(this).attr("idCentro_Costos");
 
-	//console.log("idEdo_Epo",idEdo_Epo);
+	console.log("idCentro_Costos",idCentro_Costos);
 
 	// Para agregar datos 
 	var datos = new FormData();
-	datos.append("idCentro_Costos",idCtro_Costos); // Se crea la variable "POST", "idCentro_Costos"
+	datos.append("idCentro_Costos",idCentro_Costos); // Se crea la variable "POST", "idCentro_Costos"
 
 	$.ajax({
 		url:"ajax/centro-costos-ajax.php",
@@ -20,9 +20,9 @@ $(".btnEditarCentro_Costos").click(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			//console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarCentro_Costos" class="modal fade" role="dialog">, "centro-costos.php", se le asigna el valor que se retorno el Ajax.
-			$("#editarCentro_Costos").val(respuesta["num_centro_costo"]);
+			$("#editarCentro_Costos").val(respuesta["num_centro_costos"]);
 			$("#editarDesc_cc").val(respuesta["descripcion"]);
 			$("#idCentro_Costos").val(respuesta["id_centro_costos"]); // viene desde el campo oculto de <input type="hidden"  name="idCentro_Costos"  id="idCentro_Costos" required>
 		}

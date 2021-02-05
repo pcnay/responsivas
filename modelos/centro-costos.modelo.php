@@ -5,11 +5,11 @@
 		// Crear el Centro de Costos.
 		static public function mdlIngresarCentro_Costos($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(0,num_centro_costo,descripcion) VALUES (:descripcion)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(num_centro_costos,descripcion) VALUES (:num_centro_costos,:descripcion)");
 
-			$stmt->bindParam(":num_centro_costo",$datos["nuevoCentro_Costos"],PDO::PARAM_STR); 
-			$stmt->bindParam(":descripcion",$datos["nuevaDesc_cc"],PDO::PARAM_STR); 
-			
+			$stmt->bindParam(":num_centro_costos",$datos["num_centro_costos"],PDO::PARAM_STR); 
+			$stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR); 
+
 			if ($stmt->execute())
 			{
 				return "ok";				
@@ -28,9 +28,9 @@
 		// ======================================================
 		static public function mdlEditarCentro_Costos($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET num_centro_costo = :num_centro_costo, descripcion = :descripcion WHERE id_centro_costos = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET num_centro_costos = :num_centro_costos, descripcion = :descripcion WHERE id_centro_costos = :id");
 
-			$stmt->bindParam(":num_centro_costo",$datos["num_centro_costo"],PDO::PARAM_STR); 
+			$stmt->bindParam(":num_centro_costos",$datos["num_centro_costos"],PDO::PARAM_STR); 
 			$stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR); 
 			$stmt->bindParam(":id",$datos["id_centro_costos"],PDO::PARAM_STR); 
 

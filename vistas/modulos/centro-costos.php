@@ -70,12 +70,12 @@
 													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
 													<td>'.($key+1).'</td>
 													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["num_centro_costo"].'</td>		<td class="text-uppercase">'.$value["descripcion"].'</td>							
+													<td class="text-uppercase">'.$value["num_centro_costos"].'</td>		<td class="text-uppercase">'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarCentro_Costo" para activar una ventana modal -->
 															<!-- "btnEditarCentro_Costo" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarCentro_Costo" idCentro_Costos="'.$value["id_centro_costos"].'" data-toggle="modal" data-target="#modalEditarCentro_Costos"><i class="fa fa-pencil"></i></button>';
+															<button class="btn btn-warning btnEditarCentro_Costos" idCentro_Costos="'.$value["id_centro_costos"].'" data-toggle="modal" data-target="#modalEditarCentro_Costos"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
 																echo '<!-- Se pasa btnEliminarCentro_Costos, idCentro_Costos="'.$value["id_centro_costos"].'" para utilizarlo con Ajax, como variable GET en la URL -->
