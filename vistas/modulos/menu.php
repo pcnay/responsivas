@@ -67,6 +67,13 @@
 											</a>
 										</li> 
 										<li>
+											<a href="centro-costos">
+												<i class="fa fa-circle-o"></i>
+												<span>Centro De Costos</span>
+											</a>
+										</li> 
+										<li>
+										<li>										
 											<a href="empleados">
 												<i class="fa fa-circle-o"></i>
 												<span>Capturar Empleados</span>
@@ -142,12 +149,6 @@
 								</a>
 							</li> 
 							<li>
-							<li>
-								<a href="centro-costos">
-									<i class="fas fa-donate"></i>
-									<span>Centro De Costos</span>
-								</a>
-							</li> 
 							<li>
 								<a href="productos">
 									<i class="fa fa-circle-o"></i>

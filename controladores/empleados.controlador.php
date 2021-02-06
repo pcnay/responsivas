@@ -18,8 +18,7 @@
 			{
 				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
-					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCentroCosto"]))
+					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]))
 				{
 					$tabla = "t_Empleados";
 
@@ -89,12 +88,12 @@
 					$datos = array("id_puesto" =>$_POST["nuevoPuesto"],
                         "id_depto" =>$_POST["nuevoDepto"],
                         "id_supervisor" =>$_POST["nuevoSupervisor"],
-                        "id_ubicacion" =>$_POST["nuevaUbicacion"],						
+												"id_ubicacion" =>$_POST["nuevaUbicacion"],
+												"id_centro_costos" =>$_POST["nuevoCentro_Costos"],
                         "nombre" =>$_POST["nuevoNombre"],
                         "apellidos" =>$_POST["nuevoApellido"],
                         "ntid" =>$_POST["nuevo_ntid"],
                         "correo_electronico" =>$_POST["nuevoCorreoElect"],
-                        "centro_costos" =>$_POST["nuevoCentroCosto"],
                         "imagen" =>$ruta);
 
 					//var_dump($datos);
@@ -161,12 +160,12 @@
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarDepto"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarSupervisor"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarUbicacion"]) &&
+					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCentro_Costos"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editar_ntid"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
-					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCorreoElect"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCentroCosto"] &&
-					preg_match('/^[0-9]+$/',$_POST["id_empleado"])))				
+					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCorreoElect"]) &&					
+					preg_match('/^[0-9]+$/',$_POST["id_empleado"]))				
 			{
 				$tabla = "t_Empleados";
 
@@ -249,16 +248,16 @@
 				$datos = array("id_puesto" =>$_POST["editarPuesto"],
 											 "id_depto" =>$_POST["editarDepto"],
 											 "id_supervisor" =>$_POST["editarSupervisor"],
-											 "id_ubicacion" =>$_POST["editarUbicacion"],	
-											 "id_empleado" =>$_POST["id_empleado"],	
+											 "id_ubicacion" =>$_POST["editarUbicacion"],
+											 "id_centro_costos" =>$_POST["editarCentro_Costos"],		
+											 "id_empleado" =>$_POST["id_empleado"],												 
 											"ntid" =>$_POST["editar_ntid"],
 											"nombre" =>$_POST["editarNombre"],
 											"apellidos" =>$_POST["editarApellido"],
 											"correo_electronico" =>$_POST["editarCorreoElect"],
-											"centro_costos" =>$_POST["editarCentroCosto"],				
 											"imagen" =>$ruta);
 					
-				var_dump($datos);
+				//var_dump($datos);
 				//exit; // return;
 
 				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);

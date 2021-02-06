@@ -130,15 +130,6 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Capturar el Centro de Costos -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="far fa-money-bill-alt"></i></span>
-
-                <input type="text" class="form-control input-lg" id="nuevoCentroCosto" name="nuevoCentroCosto" placeholder = "Ingresar Centro De Costo" required>
-              </div> <!-- <div class = "input-group"> -->       
-            </div> <!-- <div class="form-group"> -->
-
 						<!-- Captura el puesto del empleado -->
             <div class="form-group">
               <div class = "input-group">
@@ -223,6 +214,29 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Centro De Costos del empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="far fa-building"></i></span>
+                <select class="form-control input-lg" id= "nuevoCentro_Costos" name="nuevoCentro_Costos" required>
+                  <option value="">Seleccionar Centro De Costos</option>
+									<?php
+										// Se obtendrán el Centro De Costos desde de la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
+										foreach ($centro_costos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_centro_costos"].'">'.$value["num_centro_costos"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+
 
 						<!-- Subir Imagen del Usuario 
 						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del Usuario.
@@ -318,15 +332,6 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Capturar el Centro de Costos -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-
-                <input type="text" class="form-control input-lg" id="editarCentroCosto" name="editarCentroCosto" required>
-              </div> <!-- <div class = "input-group"> -->       
-            </div> <!-- <div class="form-group"> -->
-
 						<!-- Editar el Puesto del empleado -->
             <div class="form-group">
               <div class = "input-group">
@@ -403,6 +408,27 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 										foreach ($ubicaciones as $key => $value)
 										{
 											echo '<option value = "'.$value["id_ubicacion"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+
+	              </select>                
+  
+	            </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Editar el Centro De Costos del empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-street-view"></i></span>
+                <select class="form-control input-lg" name="editarCentro_Costos" required>
+                  <option id="editarCentro_Costos"></option>
+									<?php
+										$item = null;
+										$valor = null;
+										$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
+										foreach ($centro_costos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_centro_costos"].'">'.$value["num_centro_costos"].'</option>';
 										}
 									?>
 

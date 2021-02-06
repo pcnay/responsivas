@@ -25,12 +25,13 @@
 		// Guardar el Empleado, en la tabla "t_Empleados"
 		static public function mdlIngresarEmpleado($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_puesto,id_depto,id_supervisor,id_ubicacion,ntid,nombre,apellidos,correo_electronico,centro_costos,foto) VALUES (:id_puesto,:id_depto,:id_supervisor,:id_ubicacion,:ntid,:nombre,:apellidos,:correo_electronico,:centro_costos,:imagen)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_puesto,id_depto,id_supervisor,id_ubicacion,id_centro_costos,ntid,nombre,apellidos,correo_electronico,foto) VALUES (:id_puesto,:id_depto,:id_supervisor,:id_ubicacion,:id_centro_costos,:ntid,:nombre,:apellidos,:correo_electronico,:imagen)");
 
 			$stmt->bindParam(":id_puesto",$datos["id_puesto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_depto",$datos["id_depto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_supervisor",$datos["id_supervisor"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_ubicacion",$datos["id_ubicacion"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_centro_costos",$datos["id_centro_costos"],PDO::PARAM_INT);
 			$stmt->bindParam(":ntid",$datos["ntid"],PDO::PARAM_STR);
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos",$datos["apellidos"],PDO::PARAM_STR);
@@ -56,13 +57,14 @@
 
 		static public function mdlEditarEmpleado($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_puesto = :id_puesto, id_depto = :id_depto, id_supervisor = :id_supervisor, id_ubicacion = :id_ubicacion, ntid = :ntid, nombre = :nombre, apellidos = :apellidos, correo_electronico = :correo_electronico, centro_costos = :centro_costos, foto = :imagen WHERE id_empleado = :id_empleado");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_puesto = :id_puesto, id_depto = :id_depto, id_supervisor = :id_supervisor, id_ubicacion = :id_ubicacion,id_centro_costos = :id_centro_costos, ntid = :ntid, nombre = :nombre, apellidos = :apellidos, correo_electronico = :correo_electronico,foto = :imagen WHERE id_empleado = :id_empleado");
 
 			$stmt->bindParam(":id_puesto",$datos["id_puesto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_depto",$datos["id_depto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_supervisor",$datos["id_supervisor"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_ubicacion",$datos["id_ubicacion"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_empleado",$datos["id_empleado"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_centro_costos",$datos["id_centro_costos"],PDO::PARAM_INT);
 
 			$stmt->bindParam(":ntid",$datos["ntid"],PDO::PARAM_STR);
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
