@@ -198,7 +198,8 @@
 	<script src="vistas/js/idf.js"></script>
 	<!-- Se muestra el CINTAS -->
 	<script src="vistas/js/cintas.js"></script>
-
+	<!-- Se muestra el CINTAS -->
+	<script src="vistas/js/centro-costos.js"></script>
 
 	<!-- Es para los reportes que se utilizaran en el sistema  -->	
 	<script src="vistas/js/reportes.js"></script>	

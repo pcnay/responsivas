@@ -12,7 +12,7 @@ $(".btnEditarCentro_Costos").click(function(){
 	datos.append("idCentro_Costos",idCentro_Costos); // Se crea la variable "POST", "idCentro_Costos"
 
 	$.ajax({
-		url:"ajax/centro-costos-ajax.php",
+		url:"ajax/centro-costos.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
@@ -47,7 +47,7 @@ $("#nuevoCentro_Costos").change(function(){
 	// Genera 
 	datos.append("validarCentro_Costos",centro_costos);
 	$.ajax({
-		url:"ajax/centro-costos-ajax.php",
+		url:"ajax/centro-costos.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
