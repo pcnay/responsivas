@@ -227,7 +227,7 @@ Cuando el usuario oprima el boton de "Editar Estado Equipo" se activa esta venta
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
 	$borrarEdo_Epo = new ControladorEdo_Epos();
-	$borrarEdo_Epo->ctrBorrarEdo_Epo;
+	$borrarEdo_Epo->ctrBorrarEdo_Epo();
 ?>
 
 

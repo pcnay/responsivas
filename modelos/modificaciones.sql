@@ -28,12 +28,14 @@ CREATE TABLE t_Centro_Costos
 	ALTER TABLE 't_Empleados' CHANGE 'id_centro_costos' 'id_centro_costos' SMALLINT(5) UNSIGNED NOT NULL;
 */
 
-	ALTER TABLE t_Empleados ADD FOREIGN KEY(id_centro_costos) REFERENCES t_Centro_Costos(id_centro_costos) ON DELETE RESTRICT ON UPDATE CASCADE;
-
 /*
-INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
-  (1,'Usuario Administrador','admin','Resp-2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+	ALTER TABLE t_Empleados ADD FOREIGN KEY(id_centro_costos) REFERENCES t_Centro_Costos(id_centro_costos) ON DELETE RESTRICT ON UPDATE CASCADE;
 */
+
+
+INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
+  (1,'Usuario Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
 
 /*
 INSERT INTO t_Cintas (id_cintas,num_serial,fecha_inic,fecha_final,ubicacion,comentarios) VALUES

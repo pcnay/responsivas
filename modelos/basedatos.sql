@@ -154,7 +154,7 @@ CREATE TABLE t_Depto
 CREATE TABLE t_Centro_Costos
 (
   id_centro_costos SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	num_centro_costos VARCHAR(30) NOT NULL	
+	num_centro_costos VARCHAR(30) NOT NULL,
   descripcion VARCHAR(80) NOT NULL	
 );
 
@@ -170,7 +170,6 @@ CREATE TABLE t_Empleados
 	apellidos VARCHAR(45) NOT NULL,
 	ntid VARCHAR(20) NOT NULL,
 	correo_electronico VARCHAR(50) NOT NULL,
-	centro_costos VARCHAR(20) NOT NULL,	
 	foto VARCHAR(100) NOT NULL,	
 	fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion)
@@ -180,7 +179,7 @@ CREATE TABLE t_Empleados
 	FOREIGN KEY(id_supervisor) REFERENCES t_Supervisor(id_supervisor)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_depto) REFERENCES t_Depto(id_depto)
-	ON DELETE RESTRICT ON UPDATE CASCADE
+	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_centro_costos) REFERENCES t_Centro_Costos(id_centro_costos) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 

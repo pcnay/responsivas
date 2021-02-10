@@ -314,14 +314,40 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 		
 			})
 
+			// Obtener el Centro De Costos					
+			var datosCentro_Costos = new FormData();
+
+			// respuesta["id_centro_costos"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+			// "datosCentro_Costos" = es una variable POST que se envia a "ubicaciones.ajax.php".
+			datosCentro_Costos.append("idCentro_Costos",respuesta["id_centro_costos"]);
+			$.ajax
+			({
+				url:"ajax/centro-costos.ajax.php",
+				method:"POST",
+				data:datosCentro_Costos,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(Centro_Costos)
+				{
+					//console.log("respuesta",respuesta);		
+					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
+					$("#editarCentro_Costos").val(Centro_Costos["id_centro_costos"]);
+					$("#editarCentro_Costos").html(Centro_Costos["num_centro_costos"]);		
+				}
+		
+			})
+			
+			
 			// Asignando los campos restantes 
-			console.log("respuesta Editar Empleado desde el boton Editar ",respuesta);
+			//console.log("respuesta Editar Empleado desde el boton Editar ",respuesta);
 			$("#id_empleado").val(respuesta["id_empleado"]);
 			$("#editar_ntid").val(respuesta["ntid"]);
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarApellido").val(respuesta["apellidos"]);
 			$("#editarCorreoElect").val(respuesta["correo_electronico"]);
-			$("#editarCentroCosto").val(respuesta["centro_costos"]);
+
 			if (respuesta["foto"] != "")
 			{
 				$("#imagenActual").val(respuesta["foto"]);

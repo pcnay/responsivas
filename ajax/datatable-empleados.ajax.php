@@ -20,6 +20,9 @@
 	require_once "../controladores/ubicaciones.controlador.php";
 	require_once "../modelos/ubicaciones.modelo.php";
 
+	require_once "../controladores/centro-costos.controlador.php";
+	require_once "../modelos/centro-costos.modelo.php";
+
 	class TablaEmpleados
 	{
 		// Mostrar la tabla de Empleados.
@@ -67,7 +70,7 @@
 						//Para obtener el centro de Costos:
 						$item = "id_centro_costos";
 						$valor = $empleados[$i]["id_centro_costos"];
-						$centro_costos = ControladorCentroCostos::ctrMostrarCentro_Costos($item,$valor);
+						$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
 						
 						// Se agrega los botones con las clases y id para "editar" y "borrar"
 						$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target = '#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' apellidos='".$empleados[$i]["apellidos"]."' imagen='".$empleados[$i]["foto"]."' ><i class='fa fa-times'></i></button></div>";

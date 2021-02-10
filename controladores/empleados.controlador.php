@@ -18,7 +18,7 @@
 			{
 				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
-					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoCorreoElect"]))
+					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["nuevoCorreoElect"]))
 				{
 					$tabla = "t_Empleados";
 
@@ -164,7 +164,7 @@
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editar_ntid"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
-					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCorreoElect"]) &&					
+					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["editarCorreoElect"]) &&					
 					preg_match('/^[0-9]+$/',$_POST["id_empleado"]))				
 			{
 				$tabla = "t_Empleados";
@@ -243,7 +243,7 @@
 					
 				}
 
-				// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
+				// Estos campos se extraen de las etiquetas de la captura de form de los empleados, y se colocan en un arreglo.					
 				$tabla = "t_Empleados";
 				$datos = array("id_puesto" =>$_POST["editarPuesto"],
 											 "id_depto" =>$_POST["editarDepto"],
@@ -258,7 +258,7 @@
 											"imagen" =>$ruta);
 					
 				//var_dump($datos);
-				//exit; // return;
+				//return;
 
 				$respuesta = ModeloEmpleados::mdlEditarEmpleado($tabla,$datos);
 

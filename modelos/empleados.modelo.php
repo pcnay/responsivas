@@ -35,8 +35,7 @@
 			$stmt->bindParam(":ntid",$datos["ntid"],PDO::PARAM_STR);
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos",$datos["apellidos"],PDO::PARAM_STR);
-			$stmt->bindParam(":correo_electronico",$datos["correo_electronico"],PDO::PARAM_STR);
-			$stmt->bindParam(":centro_costos",$datos["centro_costos"],PDO::PARAM_STR);
+			$stmt->bindParam(":correo_electronico",$datos["correo_electronico"],PDO::PARAM_STR);			
 			$stmt->bindParam(":imagen",$datos["imagen"],PDO::PARAM_STR);
 
 			if ($stmt->execute())
@@ -57,7 +56,9 @@
 
 		static public function mdlEditarEmpleado($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_puesto = :id_puesto, id_depto = :id_depto, id_supervisor = :id_supervisor, id_ubicacion = :id_ubicacion,id_centro_costos = :id_centro_costos, ntid = :ntid, nombre = :nombre, apellidos = :apellidos, correo_electronico = :correo_electronico,foto = :imagen WHERE id_empleado = :id_empleado");
+			// var_dump($datos);
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_puesto = :id_puesto, id_depto = :id_depto, id_supervisor = :id_supervisor, id_ubicacion = :id_ubicacion,id_centro_costos = :id_centro_costos,id_empleado = :id_empleado, ntid = :ntid, nombre = :nombre, apellidos = :apellidos, correo_electronico = :correo_electronico,foto = :imagen WHERE id_empleado = :id_empleado");
 
 			$stmt->bindParam(":id_puesto",$datos["id_puesto"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_depto",$datos["id_depto"],PDO::PARAM_INT);
@@ -69,8 +70,7 @@
 			$stmt->bindParam(":ntid",$datos["ntid"],PDO::PARAM_STR);
 			$stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
 			$stmt->bindParam(":apellidos",$datos["apellidos"],PDO::PARAM_STR);
-			$stmt->bindParam(":correo_electronico",$datos["correo_electronico"],PDO::PARAM_STR);
-			$stmt->bindParam(":centro_costos",$datos["centro_costos"],PDO::PARAM_STR);
+			$stmt->bindParam(":correo_electronico",$datos["correo_electronico"],PDO::PARAM_STR);			
 			$stmt->bindParam(":imagen",$datos["imagen"],PDO::PARAM_STR);
 			
 			if ($stmt->execute())
