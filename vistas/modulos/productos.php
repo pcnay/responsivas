@@ -260,7 +260,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
 
 
-						<!-- Captura el IDF -->
+						<!-- Captura el IDF 
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
 	              <div class = "input-group">
@@ -268,6 +268,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	                <select class="form-control input-lg" id= "nuevoIdf" name="nuevoIdf" required>
 	                  <option value="">Seleccionar Idf</option>
 										<?php
+											/*
 											// Se obtendrán el Idf desde la base de datos.
 											$item = null;
 											$valor = null;
@@ -276,13 +277,14 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 											{
 												echo '<option value = "'.$value["id_idf"].'">'.$value["descripcion"].'</option>';
 											}
+											*/
 										?>
 	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           
-	            </div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class="col-xs-12 col-sm-6"> -->
+	              </div> <div class = "input-group">
+	            </div> <div class="form-group">
+						</div> <div class="col-xs-12 col-sm-6"> -->
 
-						<!-- Captura el Patch Panel -->
+						<!-- Captura el Patch Panel 
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
 	              <div class = "input-group">
@@ -290,6 +292,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	                <select class="form-control input-lg" id= "nuevoPatchPanel" name="nuevoPatchPanel" required>
 	                  <option value="">Seleccionar Patch Panel</option>
 										<?php
+										/*
 											// Se obtendrán el Patch Panel de la base de datos.
 											$item = null;
 											$valor = null;
@@ -298,33 +301,23 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 											{
 												echo '<option value = "'.$value["id_patch_panel"].'">'.$value["descripcion"].'</option>';
 											}
+											*/
 										?>
 	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           
-	            </div> <!-- <div class="form-group"> -->
-	          </div> <!-- <div class= "col-xs-12 col-sm-6" -->
+	              </div>  <div class = "input-group">
+	            </div>  <div class="form-group">
+	          </div> <div class= "col-xs-12 col-sm-6" -->
 
-						<!-- Captura el Puerto -->
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar la Nomenclatura -->
 						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
+            	<div class="form-group">
 	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoPuerto" name="nuevoPuerto" required>
-	                  <option value="">Seleccionar Puerto</option>
-										<?php
-											// Se obtendrán el Puerto de la base de datos.
-											$item = null;
-											$valor = null;
-											$Puerto = ControladorPuertos::ctrMostrarPuertos($item,$valor);
-											foreach ($Puerto as $key => $value)
-											{
-												echo '<option value = "'.$value["id_puerto"].'">'.$value["descripcion"].'</option>';
-											}
-										?>
-	                </select>                
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevaNomenclatura" name="nuevaNomenclatura" placeholder = "Ingresar Nomenclatura">
 	              </div> <!-- <div class = "input-group"> -->           
-	            </div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
 						<!-- Captura del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->

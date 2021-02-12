@@ -14,7 +14,7 @@
 		{
 			$item = "num_serie";
 			$valor = $this->validarSerial;
-
+			
 			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
 			echo json_encode($respuesta);
 

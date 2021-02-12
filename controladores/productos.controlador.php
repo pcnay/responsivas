@@ -4,10 +4,10 @@
 	class ControladorProductos
 	{
 		// Mostrar productos
-		static public function ctrMostrarProductos($item, $valor,$orden)
+		static public function ctrMostrarProductos($item,$valor)
 		{
 			$tabla = "t_Productos";
-			$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+			$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor);
 			return $respuesta;			
 		}
 
@@ -97,21 +97,22 @@
             
           }
 
-					// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
+					// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.		
+					$veces = 1;			
+					$tabla = "t_Productos";
 					$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
 												"num_serie" =>$_POST["nuevoSerial"],
 												"id_marca" =>$_POST["nuevoMarca"],
 												"id_modelo" =>$_POST["nuevoModelo"],
 												"id_almacen" =>$_POST["nuevoAlmacen"],
-												"id_modelo" =>$_POST["nuevoEdoEpo"],
-												"id_idf" =>$_POST["nuevoIdf"],
-												"id_patch_panel" =>$_POST["nuevoPatchPanel"],
-												"id_puerto" =>$_POST["nuevoPuerto"],
+												"id_edo_epo" =>$_POST["nuevoEdoEpo"],
 												"stock" =>$_POST["nuevoStock"],
+												"nomenclatura" =>$_POST["nuevaNomenclatura"],
 												"precio_compra" =>$_POST["nuevoPrecioCompra"],
 												"precio_venta" =>$_POST["nuevoPrecioVenta"],
-												"especificaciones" =>$_POST["nuevaEspecif"],
-												"comentarios" =>$_POST["nuevaComent"],
+												"especificaciones" =>rtrim($_POST["nuevaEspecif"]),
+												"comentarios" =>rtrim($_POST["nuevoComent"]),
+												"cuantas_veces" =>$veces,
 												"imagen" =>$ruta);
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);
 
@@ -134,6 +135,25 @@
 			
 							</script>';          
 
+					}
+					else
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "error",
+							title: "Error al Grabar el Producto",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="productos";
+								}
+	
+								});
+			
+							</script>';          	
 					}
 				}
 				else
