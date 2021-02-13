@@ -14,6 +14,11 @@
 */
 
 USE bd_responsivas;
+
+INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
+  (1,'Usuario Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+
 /*
 CREATE TABLE t_Centro_Costos
 (
@@ -22,6 +27,8 @@ CREATE TABLE t_Centro_Costos
   descripcion VARCHAR(80) NOT NULL	
 );
 */
+
+
 
 /* Para agregar una columna a la tabla t_Empleados .  */
 	/*
@@ -33,8 +40,6 @@ CREATE TABLE t_Centro_Costos
 */
 
 
-INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
-  (1,'Usuario Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 
 /*

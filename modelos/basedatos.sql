@@ -5,6 +5,9 @@
 -- Otra Forma :
 --    mysql -u usuario -p NombreBaseDatos
 --    source script.sql ó \. script.sql
+
+			Borrar tabla: DROP TABLE <nombre Tabla>
+			
 */
 
 /* DROP DATABASE IF EXISTS bd_responsivas; */

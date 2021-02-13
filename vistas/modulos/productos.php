@@ -462,36 +462,116 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
           <div class="box-body">
             <!-- Clases de BootStrap para las formularios-->
 
-						<!-- Captura de la categoria del producto -->
+						<!-- Captura de los Perifericos -->
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarCategoria"  readonly required>
+                <select class="form-control input-lg" name="editarPeriferico"  readonly required>
 								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarCategoria"></option>
+                  <option id= "editarPeriferico"></option>
 
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Capturar el Código -->
+						<!-- Captura el Serial -->
             <div class="form-group">
               <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                <input type="text" class="form-control input-lg" id = "editarCodigo" name="editarCodigo" readonly required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarSerial"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarSerial"></option>
+                </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Captura de la descripcion del producto 
-								el contenido de "descripcion" se asignara utilizando JavaScript
-						-->
+						<!-- Captura el Marca -->
             <div class="form-group">
               <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-                <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion"  required>
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarMarca"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarMarca"></option>
+                </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Captura el Modelo -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarModelo"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarModelo"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Almacen -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarAlmacen"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarAlmacen"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Edo Epo -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarEdoEpo"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarEdoEpo"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Nomenclatura -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarNomenclatura"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarNomenclatura"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura la Cantidad -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarCantidad"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarCantidad"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura Precio Compra -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarPrecioCompra"  readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarPrecioCompra"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura Precio Venta -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" name="editarPrecioVenta" readonly required>
+								<!-- Se utilizara JavaScript para obtener el valor.-->
+                  <option id= "editarPrecioVenta"></option>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
 
 						<!-- Captura del Stock del producto 
 							el contenido de "stock" se asignara utilizando JavaScript
