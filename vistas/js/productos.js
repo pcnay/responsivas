@@ -263,29 +263,84 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		success:function(respuesta)
 		{
 			// console.log("respuesta",respuesta);
-			// Obtener la categoria.
-			var datosCategoria = new FormData();
-			datosCategoria.append("idCategoria",respuesta["id_categoria"]);
-			$.ajax({
-				url:"ajax/categoria.ajax.php",
+			// Obtener el periferico.
+			var datosPeriferico = new FormData();
+			datosPerifericos.append("idPeriferico",respuesta["id_periferico"]);
+			$.ajax
+			({
+				url:"ajax/perifericos.ajax.php",
 				method:"POST",
-				data:datosCategoria,
+				data:datosPerifericos,
 				cache:false,
 				contentType:false,
 				processData:false,
 				dataType:"json",
-				success:function(respuesta)
+				success:function(periferico)
 				{
-					console.log("respuesta",respuesta);					
-					$("#editarCategoria").val(respuesta["id"]);
-					$("#editarCategoria").html(respuesta["nombre"]);
-		
-				}
-		
+					//console.log("respuesta",periferico);					
+					$("#editarPeriferico").val(periferico["id_periferico"]);
+					$("#editarPeriferico").html(periferico["nombre"]);		
+				}		
+			})		
+			// Obtener el Marca.
+			var datosMarcas = new FormData();
+			datosMarcas.append("idMarca",respuesta["id_marca"]);
+			$.ajax
+			({
+				url:"ajax/marcas.ajax.php",
+				method:"POST",
+				data:datosMarcas,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(marcas)
+				{					
+					$("#editarMarca").val(periferico["id_marca"]);
+					$("#editarMarca").html(periferico["descripcion"]);		
+				}		
+			})		
+			// Obtener el Modelo.
+			var datosModelos = new FormData();
+			datosModelos.append("idModelo",respuesta["id_modelo"]);
+			$.ajax
+			({
+				url:"ajax/modelos.ajax.php",
+				method:"POST",
+				data:datosModelos,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(modelos)
+				{					
+					$("#editarModelo").val(modelos["id_modelo"]);
+					$("#editarModelo").html(modelos["descripcion"]);		
+				}		
+			})		
+			// Obtener el Almacen.
+			var datosAlmacen = new FormData();
+			datosAlmacen.append("idAlmacen",respuesta["id_almacen"]);
+			$.ajax
+			({
+				url:"ajax/almacen.ajax.php",
+				method:"POST",
+				data:datosAlmacen,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(almacen)
+				{					
+					$("#editarAlmacen").val(modelos["id_almacen"]);
+					$("#editarAlmacen").html(modelos["nombre"]);		
+				}		
 			})		
 
+
+
 			// SE van asignar los valores a las editas del producto a Editar.
-			$("#editarCodigo").val(respuesta["codigo"]);
+			$("#editarSerial").val(respuesta["num_serie"]);
 			$("#editarDescripcion").val(respuesta["descripcion"]);
 			$("#editarStock").val(respuesta["stock"]);
 			$("#editarPrecioCompra").val(respuesta["precio_compra"]);

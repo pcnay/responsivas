@@ -457,7 +457,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
         </div>
 
 				<!-- CUERPO DE LA VENTANA MODAL -->
-				<!-- Editar el codigo del producto -->
         <div class="modal-body">
           <div class="box-body">
             <!-- Clases de BootStrap para las formularios-->
@@ -475,15 +474,19 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             </div> <!-- <div class="form-group"> -->
 
 						<!-- Captura el Serial -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarSerial"  readonly required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarSerial"></option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class="modal-body">
+							<div class="box-body">
+							<!-- Clases de BootStrap para las formularios-->
+								<div class="form-group">
+									<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-th"></i></span>
+									<input type="text" class="form-control input-lg" name="editarSerial"  id="editarSerial" required>
+									<!-- Se envía como campo oculto para enviar el "id" del Producto -->
+									<input type="hidden"  name="idProducto"  id="idProducto" required>
+									</div> <!-- <div class = "input-group"> -->           
+								</div> <!-- <div class="form-group"> -->
+							</div> <!-- <div class="box-body"> -->
+        		</div> <!-- <div class="modal-body"> -->
 
 						<!-- Captura el Marca -->
             <div class="form-group">
@@ -530,48 +533,18 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             </div> <!-- <div class="form-group"> -->
 
 						<!-- Captura el Nomenclatura -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarNomenclatura"  readonly required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarNomenclatura"></option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
+						<div class="modal-body">
+							<div class="box-body">
+							<!-- Clases de BootStrap para las formularios-->
+								<div class="form-group">
+									<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-th"></i></span>
+									<input type="text" class="form-control input-lg" name="editarNomenclatura" id="editarNomenclatura" required>								
+									</div> <!-- <div class = "input-group"> -->           
+								</div> <!-- <div class="form-group"> -->
+							</div> <!-- <div class="box-body"> -->
+        		</div> <!-- <div class="modal-body"> -->
 
-						<!-- Captura la Cantidad -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarCantidad"  readonly required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarCantidad"></option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Captura Precio Compra -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarPrecioCompra"  readonly required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarPrecioCompra"></option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
-
-						<!-- Captura Precio Venta -->
-            <div class="form-group">
-              <div class = "input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="editarPrecioVenta" readonly required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
-                  <option id= "editarPrecioVenta"></option>
-                </select>                
-              </div> <!-- <div class = "input-group"> -->           
-            </div> <!-- <div class="form-group"> -->
 
 						<!-- Captura del Stock del producto 
 							el contenido de "stock" se asignara utilizando JavaScript
@@ -585,9 +558,8 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							</div> <!-- <div class = "input-group"> -->           
 						</div> <!-- <div class="form-group"> -->
 
-
-
 						<!-- Captura de Precio Compra -->
+
 						<!-- Clases de BootStrap para las formularios-->
 						<!-- Se realizara un cambio en estos dos campos, colocando uno a lado del otro, además cuando se teclee el precio compra, calcule de forma automática el precio de venta. 
 						el contenido de "precio_compra" se asignara utilizando JavaScript
@@ -612,7 +584,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores 
 							el contenido de "precio_venta" se asignara utilizando JavaScript
 							-->
-
 							<div class="col-xs-12 col-sm-6">							
 
 								<div class = "input-group">
@@ -685,7 +656,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarUsuario" class="modal fade" role="dialog"> -->
+</div> <!-- <div id="modalEditarProducto" class="modal fade" role="dialog"> -->
 <?php
 	$eliminarProducto = new ControladorProductos();
 	$eliminarProducto->ctrEliminarProducto();
