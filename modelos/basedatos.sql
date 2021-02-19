@@ -1,5 +1,9 @@
 /*
 -- Ejecutarlo desde una terminal de Mysql 
+-- Cuando sea la PRIMERA VEZ que se esta generando la base de datos, se debe enttrar como root en la computadora y accesar a "mysql"
+		mysql -u root -p
+
+
 -- Se debe accesar al directorio donde se encuentra el "script.sql" y ejecutar el comenado "mysql" desde una terminal
 -- $ mysql -u nom-usr -p NombreBaseDatos < script.sql
 -- Otra Forma :
@@ -28,7 +32,8 @@ GRANT ALL on bd_responsivas.* to 'usuario_responsiva'  IDENTIFIED BY 'responsiva
 /* 
 Mostrar todos los usuarios 
   select user from mysql.user;
-Para borrar un usuario:
+
+Para borrar un usuario: se tiene que ejecutar los dos comandos.
 Para borrar un usuario para todos los hosts:
 	drop user ventas-pos;
 

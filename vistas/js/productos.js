@@ -95,7 +95,7 @@ $("#nuevoSerial").change(function(){
  
 }) // $("#nuevoSerial").change(function(){
 
-
+/*
 // Se agrega el código para obtener el último número del codigo a utilizar
 $("#nuevaCategoria").change(function(){
 	
@@ -134,6 +134,7 @@ $("#nuevaCategoria").change(function(){
 		}
 	})
 })
+*/
 
 // Agregando Precio de Venta.
 // Se esta agregando otra clase, para cuando se edite un producto.
@@ -247,11 +248,13 @@ $(".nuevaImagen").change(function(){
 // Editar Producto
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
-	var idProducto = $(this).attr("idProducto");
-	// console.log("idProducto",idProducto);
+	var id_Producto = $(this).attr("idProducto");
+	console.log("idProducto",id_Producto);
 	// Se esta agregando un dato al Ajax.
+	
+	
 	var datos = new FormData();
-	datos.append("idProducto",idProducto);
+	datos.append("idProducto",id_Producto);
 	$.ajax({
 		url:"ajax/productos.ajax.php",
 		method:"POST",
@@ -262,9 +265,9 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		dataType:"json",
 		success:function(respuesta)
 		{
-			// console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta);
 			// Obtener el periferico.
-			var datosPeriferico = new FormData();
+			var datosPerifericos = new FormData();
 			datosPerifericos.append("idPeriferico",respuesta["id_periferico"]);
 			$.ajax
 			({
@@ -277,7 +280,7 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 				dataType:"json",
 				success:function(periferico)
 				{
-					//console.log("respuesta",periferico);					
+					console.log("periferico",periferico);					
 					$("#editarPeriferico").val(periferico["id_periferico"]);
 					$("#editarPeriferico").html(periferico["nombre"]);		
 				}		
@@ -296,8 +299,8 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 				dataType:"json",
 				success:function(marcas)
 				{					
-					$("#editarMarca").val(periferico["id_marca"]);
-					$("#editarMarca").html(periferico["descripcion"]);		
+					$("#editarMarca").val(marcas["id_marca"]);
+					$("#editarMarca").html(marcas["descripcion"]);		
 				}		
 			})		
 			// Obtener el Modelo.
@@ -332,16 +335,34 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 				dataType:"json",
 				success:function(almacen)
 				{					
-					$("#editarAlmacen").val(modelos["id_almacen"]);
-					$("#editarAlmacen").html(modelos["nombre"]);		
+					$("#editarAlmacen").val(almacen["id_almacen"]);
+					$("#editarAlmacen").html(almacen["nombre"]);		
+				}		
+			})		
+
+			// Obtener el Edo del Epo.
+			var datosEdoEpo = new FormData();
+			datosEdoEpo.append("idEdoEpo",respuesta["id_edo_epo"]);
+			$.ajax
+			({
+				url:"ajax/edo-epo-ajax.php",
+				method:"POST",
+				data:datosEdoEpo,
+				cache:false,
+				contentType:false,
+				processData:false,
+				dataType:"json",
+				success:function(edo_epo)
+				{					
+					$("#editarEdoEpo").val(almacen["id_edo_epo"]);
+					$("#editarEdoEpo").html(almacen["descripcion"]);		
 				}		
 			})		
 
 
-
 			// SE van asignar los valores a las editas del producto a Editar.
 			$("#editarSerial").val(respuesta["num_serie"]);
-			$("#editarDescripcion").val(respuesta["descripcion"]);
+			$("#editarNomenclatura").val(respuesta["nomenclatura"]);
 			$("#editarStock").val(respuesta["stock"]);
 			$("#editarPrecioCompra").val(respuesta["precio_compra"]);
 			$("#editarPrecioVenta").val(respuesta["precio_venta"]);

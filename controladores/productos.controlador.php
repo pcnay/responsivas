@@ -3,14 +3,22 @@
 
 	class ControladorProductos
 	{
-		// Mostrar productos
+		// Mostrar productos Ajax
+		static public function ctrMostrarProductosAjax($item,$valor)
+		{
+			$tabla = "t_Productos";
+			$respuesta = ModeloProductos::mdlMostrarProductosAjax($tabla,$item,$valor);
+			return $respuesta;			
+		}
+
+		// Mostrar productos DataTable
 		static public function ctrMostrarProductos($item,$valor)
 		{
 			$tabla = "t_Productos";
 			$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor);
 			return $respuesta;			
 		}
-
+		
 		// Crear producto
 		static public function ctrCrearProducto()
 		{

@@ -83,6 +83,7 @@
 						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id_producto"]."' imagen='".$productos[$i]["Imagen"]."' ><i class='fa fa-times'></i></button></div>";
 					}					
 
+
 					$datosJson  .= '[
 							"'.($i+1).'",
 							"'.$imagen.'",

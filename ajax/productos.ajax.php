@@ -21,19 +21,6 @@
 		}
 
 
-		// Generar código a partir de ID Categoría 
-		public $idCategoria;
-		public function ajaxCrearCodigoProducto()
-		{
-			$item = "id_categoria";
-			$valor = $this->idCategoria;
-			$orden = "id";
-			 
-			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
-			echo json_encode($respuesta);
-			 
-		}
-
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
 		public $idProducto;
@@ -42,6 +29,7 @@
 
 		public function ajaxEditarProducto()
 		{
+			
 			// Para el caso de que se edita utilizando un dispositivo movil
 			if ($this->traerProductos == "ok")
 			{
@@ -63,9 +51,9 @@
 			else 
 			{
 				$item = "id";
-				$valor = $this->idProducto;
-				$orden = "id";
-				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
+				$valor = $this->idProducto;				
+				$respuesta = ControladorProductos::ctrMostrarProductosAjax($item,$valor);
+				var_dump($respuesta);
 				echo json_encode($respuesta);
 			}
 
@@ -74,13 +62,7 @@
 
 	} // class AjaxProductos
 
-	if (isset($_POST["idCategoria"]))
-	{
-		$codigoProducto = new AjaxProductos();
-		$codigoProducto->idCategoria = $_POST["idCategoria"];
-		$codigoProducto->ajaxCrearCodigoProducto();
-	}
-
+	
 	// Para editar el producto.
 	if (isset($_POST["idProducto"]))
 	{
