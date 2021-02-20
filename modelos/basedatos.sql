@@ -199,6 +199,7 @@ CREATE TABLE t_Productos
 	id_marca SMALLINT UNSIGNED NOT NULL,
 	id_modelo SMALLINT UNSIGNED NOT NULL,
 	id_periferico SMALLINT UNSIGNED NOT NULL,
+	id_empleado SMALLINT UNSIGNED NOT NULL,
   nomenclatura VARCHAR(45) NULL,
 	num_serie VARCHAR(45) NOT NULL,
 	imagen_producto VARCHAR(100) NOT NULL,
@@ -218,6 +219,8 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_modelo) REFERENCES t_Modelo(id_modelo)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_periferico) REFERENCES t_Periferico(id_periferico)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
 	ON DELETE RESTRICT ON UPDATE CASCADE
 );
 

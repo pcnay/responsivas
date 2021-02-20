@@ -41,7 +41,8 @@
 								<th>Modelo</th>
                 <th>Stock</th>
 								<th>Edo_Epo</th>
-                <th>Precio Venta</th>
+								<th>NTID</th>
+                <th>Empleado</th>
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -607,24 +608,48 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 
 						</div> <!-- <div class="form-group"> -->
 
-						<!-- Checkbox para porcentaje -->
+						<!-- Checkbox para porcentaje 
 						<div class="form-group">
 							<div class="col-xs-6">								
 									<label>
-										<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"-->
+										<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"
 										<input type="checkbox" id="porcentaje" name = "porcentaje" lass = "minimal porcentaje" checked>
 										Utilizar porcentaje
 									</label>
 
-								</div> <!-- <div class="col-xs-6"> -->
+								</div> <!-- <div class="col-xs-6"> 
 
 						</div> <!-- <div class="form-group">  -->
+
+						<!-- Captura el Empleado asignado al producto. -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoEmpleado" name="nuevoEmpleado" required>
+	                  <option value="">Seleccionar Empleado</option>
+										<?php
+											// Se obtendrán la Marca desdes la base de datos.
+											$item = null;
+											$valor = null;
+											$orden = "apellidos";
+											$Empleado = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
+											foreach ($Empleado as $key => $value)
+											{
+												echo '<option value = "'.$value["id_empleado"].'">'.$value["nombre"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class = "form-group"> -->           	
+            </div> <!-- <div class= "col-xs-12 col-sm-6"> -->
+					
 
 						<!-- Captura el Nuevo Porcentaje -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
 	              <div class = "input-group">	                
-									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="0" required>
 										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
 	              </div> <!-- <div class = "input-group"> -->           
 	            </div> <!-- <div class="form-group"> -->

@@ -29,7 +29,7 @@
 
 		public function ajaxEditarProducto()
 		{
-			
+			/*
 			// Para el caso de que se edita utilizando un dispositivo movil
 			if ($this->traerProductos == "ok")
 			{
@@ -50,15 +50,15 @@
 			}			
 			else 
 			{
-				$item = "id";
+		*/
+				$item = "id_producto";
 				$valor = $this->idProducto;				
 				$respuesta = ControladorProductos::ctrMostrarProductosAjax($item,$valor);
 				var_dump($respuesta);
+				exit;
 				echo json_encode($respuesta);
-			}
-
-		}
-
+				
+		} // public function ajaxEditarProducto()
 
 	} // class AjaxProductos
 

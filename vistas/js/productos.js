@@ -249,13 +249,14 @@ $(".nuevaImagen").change(function(){
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 	var id_Producto = $(this).attr("idProducto");
-	console.log("idProducto",id_Producto);
+	//console.log("idProducto",id_Producto);
 	// Se esta agregando un dato al Ajax.
 	
 	
 	var datos = new FormData();
 	datos.append("idProducto",id_Producto);
-	$.ajax({
+	
+	$.ajax({		
 		url:"ajax/productos.ajax.php",
 		method:"POST",
 		data:datos,
@@ -265,7 +266,7 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		dataType:"json",
 		success:function(respuesta)
 		{
-			console.log("respuesta",respuesta);
+			console.log("respuesta",respuesta["id_periferico"]);
 			// Obtener el periferico.
 			var datosPerifericos = new FormData();
 			datosPerifericos.append("idPeriferico",respuesta["id_periferico"]);
@@ -285,6 +286,7 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 					$("#editarPeriferico").html(periferico["nombre"]);		
 				}		
 			})		
+			/*
 			// Obtener el Marca.
 			var datosMarcas = new FormData();
 			datosMarcas.append("idMarca",respuesta["id_marca"]);
@@ -374,7 +376,8 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 				$(".previsualizar").attr("src",respuesta["imagen"]);
 			}
 
-			
+			*/
+
 		}
 
 	})	

@@ -93,7 +93,8 @@
 							"'.$productos[$i]["Modelo"].'", 							
 							"'.$stock.'",							
 							"'.$productos[$i]["Edo_Epo"].'", 
-							"'.$productos[$i]["Precio_Venta"].'",
+							"'.$productos[$i]["Ntid"].'", 
+							"'.$productos[$i]["Empleado"].'",
 							"'.$botones.'"
 						],';
 				}

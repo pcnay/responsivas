@@ -38,7 +38,7 @@
 
 			if ($item != null)
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen,tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta FROM t_Productos tp INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen,tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico ORDER BY tperif.nombre ASC WHERE tp.id_producto = :$item");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				$stmt->execute();
@@ -46,7 +46,7 @@
 			}
 			else
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen,tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta FROM t_Productos tp INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen,tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, emp.apellidos AS Empleado, emp.ntid AS Ntid  FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico ORDER BY tperif.nombre ASC");				
 				$stmt->execute();
 				return $stmt->fetchAll();				 
@@ -61,14 +61,15 @@
 			/*
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,stock,precio_compra,precio_venta,nomenclatura,especificaciones,comentarios,imagen_producto,cuantas_veces) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:stock,:precio_compra,:precio_venta,:nomenclatura,:especificaciones,:comentarios,:imagen_producto,:cuantas_veces)");
 			*/
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,nomenclatura,imagen_producto,stock,precio_compra,precio_venta,especificaciones,comentarios) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:nomenclatura,:imagen_producto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,imagen_producto,stock,precio_compra,precio_venta,especificaciones,comentarios) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:imagen_producto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios)");
 
 			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
 			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);
 			$stmt->bindParam(":id_marca",$datos["id_marca"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_modelo",$datos["id_modelo"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);
-			$stmt->bindParam(":id_edo_epo",$datos["id_edo_epo"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_edo_epo",$datos["id_edo_epo"],PDO::PARAM_INT);			
+			$stmt->bindParam(":id_empleado",$datos["id_empleado"],PDO::PARAM_INT);
 			$stmt->bindParam(":nomenclatura",$datos["nomenclatura"],PDO::PARAM_STR);
 			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);
 			$stmt->bindParam(":stock",$datos["stock"],PDO::PARAM_STR);
