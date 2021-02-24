@@ -45,6 +45,12 @@ Para borrar mas de un usuario en el host
 	
 	flush privileges;
 
+BORRANDO EL CONTENIDO DE UNA TABLA EN MariaDB
+	truncate table nombre-tabla;
+Para mostrar los campos de una tabla:
+	describe t_Responsivas;
+
+
 */
 
 /* Tabla de Datos */
@@ -92,25 +98,6 @@ CREATE TABLE t_Modelo
 (
   id_modelo SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   descripcion VARCHAR(45) NOT NULL  
-);
-
-CREATE TABLE t_Puerto
-(
-  id_puerto SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  descripcion VARCHAR(45) NOT NULL  
-);
-
-CREATE TABLE t_Patch_panel
-(
-  id_patch_panel SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,	
-  descripcion VARCHAR(45) NOT NULL	
-);
-
-CREATE TABLE t_Idf
-(
-  id_idf SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,	
-  descripcion VARCHAR(45) NOT NULL
-
 );
 
 CREATE TABLE t_Planta
@@ -237,6 +224,7 @@ CREATE TABLE t_Responsivas
 	responsiva_firmada VARCHAR(100),
 	comentario TEXT,
 	devolucion TEXT,
+	fecha_devolucion DATE NULL,
 	fecha_asignado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(id_planta) REFERENCES t_Planta(id_planta)
 	ON DELETE RESTRICT ON UPDATE CASCADE,

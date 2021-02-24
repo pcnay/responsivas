@@ -1,0 +1,45 @@
+	
+	
+	
+	
+	
+	<!-- Inicio para borrar  -->
+	
+	<section class="content-header">
+		<h1>
+			Crear Responsivas
+		</h1>
+
+		<ol class="breadcrumb">
+			<li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+			<li class="active">Crear Responsiva</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<!-- Donde se captura el formulario -->
+			<!-- Se definen los puntos de quiebre de las pantallas -->
+			<div class="col-lg-5 col-xs-12">
+			<!-- En tamaños de pantalla grande se visualizara la lista de los productos 
+						Pero en dispositivos tablets en formato Vertical y dispositivos Mobiles se va a ocultar 
+			-->
+				<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+				<div class="box box-success">
+				</div>
+				<!-- Para mostrar solamente en pantallas de escritorio de Desktop, para los demas tamaños se oculto -->
+				<div class="col-lg-7 hidden-md hidden-sm hidden-xs ">
+				
+				</div> <!-- <div class="col-lg-7 hidden-md hidden-sm hidden-xs "> -->
+
+			</div> <!-- <div class="col-lg-5 col-xs-12"> -->
+
+		</div> <!-- <div class="row"> -->
+
+	</section> <!-- <section class="content">-->
+	
+</div> <!-- <div class="content-wrapper"> -->
+
+
+

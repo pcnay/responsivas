@@ -131,25 +131,6 @@
 								</a>
 							</li> 
 							<li>
-								<a href="idf">
-									<i class="fa fa-circle-o"></i>
-									<span>idf</span>
-								</a>
-							</li> 
-							<li>
-								<a href="patchpanel">
-									<i class="fa fa-circle-o"></i>
-									<span>Patch Panel</span>
-								</a>
-							</li> 
-							<li>
-								<a href="puerto">
-									<i class="fa fa-circle-o"></i>
-									<span>Puerto</span>
-								</a>
-							</li> 
-							<li>
-							<li>
 								<a href="productos">
 									<i class="fa fa-circle-o"></i>
 									<span>Alta Producto</span>
@@ -175,7 +156,7 @@
 
 						<ul class="treeview-menu">
 							<li>
-								<a href="cap-responsiva">
+								<a href="responsivas">
 									<i class="fa fa-circle-o"></i>
 									<span>Capturar Responsivas</span>
 								</a>

@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Venta
+        Administrar Responsivas
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Ventas</li>
+        <li class="active">Administrar Responsiva</li>
       </ol>
     </section>
 
@@ -17,12 +17,13 @@
 
       <!-- Default box -->
       <div class="box">
-        
         <div class="box-header with-border">
-				<!-- Se coloca un enlace para abrir la ventana de "Crear Venta" -->
-					<a href="crear-venta">
+				<!-- Se coloca un enlace para abrir la ventana de "Crear Responsiva" -->				
+					<a href="cap-responsiva">
+
+					<!-- NO se utilizan ventanas de tipo modal por lo que se tiene que suprimir : data-toggle= "modal" data-target="#modalAgregarProducto", se utilizara una ventana normal exclusiva para la captura de Responsiva-->
 						<button class="btn btn-primary" >
-							Agregar Venta
+							Agregar Responsiva
 						</button>       
 					</a>
 
@@ -35,29 +36,27 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Codigo Factura</th>
-								<th>Cliente</th>								
-								<th>Vendedor</th>
-								<th>Forma De Pago</th>
-								<th>Neto</th>
-								<th>Total</th>
-                <th>Acciones </th>
-								
+                <th>Num Responsiva</th>
+								<th># Empleado</th>								
+								<th>Nombre</th>
+								<th>Equipo</th>
+								<th>Asignacion</th>
+								<th>Fecha Devolucion</th>
+                <th>Acciones </th>								
               </tr>
-            </thead
-						>
+            </thead>
+						
             <!-- Cuerpo de la Tabla -->
             <tbody>
 							<!-- Se va ha utilizar el quemado de datos en el HTML, dado el volumen de los datos, pero se puede arreglar para que se utilize el "TDataTable"-->
 							<tr>
 								<td>1</td>
-								<td>93382938494</td>
-								<td>Juan Villegas</td>
-								<td>Julio Gomez</td>
-								<td>TC-2123123123 </td>
-								<td>$1,000</td>
-								<td>$1,190</td>								
-							
+								<td>10102</td>
+								<td>2572434</td>
+								<td>Juan Perez Perez</td>
+								<td>Laptop</td>
+								<td>Prestamo</td>
+								<td>10/Feb/21</td>															
 									<td>
 										<div class="btn-group">
 											<!-- Imprimir la transacción --> 

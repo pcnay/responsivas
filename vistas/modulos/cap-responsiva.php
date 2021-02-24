@@ -1,119 +1,412 @@
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Administrar Venta
-        <small>Panel De Control</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Ventas</li>
-      </ol>
-    </section>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
 
-    <!-- Main content -->
-    <section class="content">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Crear Responsiva     
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+			<li class="active">Crear Responsiva</li>
+		</ol>
+	</section>
 
-      <!-- Default box -->
-      <div class="box">
-        
-        <div class="box-header with-border">
-				<!-- Se suprime la ventana modal ya que se utilizara una ventana completa para las capturas-->
-				<!-- Se coloca un enlace para abrir la ventana de "Crear Venta" -->
-					<a href="crear-venta">
-						<button class="btn btn-primary" >
-							Agregar Venta
-						</button>       
-					</a>
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+
+			<!-- Se devide en dos partes la pantalla, para regitrar los productos, y la otra para seleccionar los productos. -->
+			<!-- Donde se captura el formulario -->
+			<!-- Se definen los puntos de quiebre de las pantallas -->
+			<!-- Es la sección del Formulario, es para responsive, varias pantallas  -->
+			<div class = "col-lg-5 col-xs-12">
+				
+			<!-- En tamaños de pantalla grande se visualizara la lista de los productos 
+					Pero en dispositivos tablets en formato Vertical y dispositivos Mobiles se va a ocultar 
+			-->
+			<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+				<div class="box box-success">
+					<!-- Se agrega una franja blanca abajo de la linea de color verder-->
+					<div class="box-header with-border"></div>
+
+					<form role="form" method="post">
+							<!-- Se crea el cuerpo de este modulo -->
+							<div class="box-body">
+
+
+									<div class="box">
+
+										<!-- Corresponde a la entrada del Usuario  -->
+										<div class="form-group">
+											<div class = "input-group">								
+												<span class="input-group-addon"><i class="fa fa-users"></i></span>
+												<input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" placeholder="Usuario Administrador " readonly>
+
+											</div> <!-- <div class = "input-group"> -->
+										</div> <!-- <div class="form-group"> -->
+
+										<!-- Corresponde a la entrada de Numero responsiva -->
+										<div class="form-group">
+											<div class = "input-group">								
+												<span class="input-group-addon"><i class="fa fa-users"></i></span>
+												<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="1010" readonly>
+												
+											</div> <!-- <div class = "input-group"> -->
+										</div> <!-- <div class="form-group"> -->
+
+										<!-- Corresponde a la entrada del Empleado -->
+										<div class="form-group">
+											<div class = "input-group">								
+												<span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+												<input type="text" class="form-control" id="agregarEmpleado" name="agregarEmpleado" placeholder="Agregar Empleado" required>
+												
+												<!-- Revisar esta etiqueta para la utilizacion 
+												<select class="form-control" id="seleccionarEmpleado" name="seleccionarEmpleado" required> 
+													<option value="">Selecciona Empleado</option>
+												</select>
+												-->
+
+												<span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarEmpleado" data-dismiss="modal">Agregar Empleado</button></span>
+												
+											</div> <!-- <div class = "input-group"> -->
+										</div> <!-- <div class="form-group"> -->
+
+									<!-- Entrada del Producto -->
+									<div class="form-group row nuevoProducto">
+
+										<!-- Para cada renglon que se agregue de los productos. -->
+										<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->
+										<div class="col-xs-6" style="padding-right:0px">
+											<div class="input-group">
+												<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
+
+												<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripcion Del Prodcuto" required>
+
+											</div><!-- <div class="input-group"> -->
+
+										</div> <!-- <div class="col-xs-6" style="padding-right:0px"> -->
+
+										<!-- Columna de la "cantidad" -->
+										<div class="col-xs-3">
+											<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>
+										</div> <!-- <div class="col-xs-3"> -->
+										
+										<!-- Columna del "Precio" -->
+										<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->
+										<div class="col-xs-3" style="padding-left:0px">
+											<div class="input-group">
+											<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+												<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" placeholder="00000000" readonly required>
+												
+
+											</div>	<!-- <div class="input-group">  -->
+
+										</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->
+
+									</div> <!-- <div clss="form-group row nuevoProducto"> -->
+
+									<!-- Boton para agregar producto, en pantallas grandes desarparece. -->
+									<button type="button" class="btn btn-default hidden-lg">Agregar Producto</button>
+
+									<hr>
+									<div class="row">
+										<div class="col-xs-8 pull-right">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Impuesto</th>
+														<th>Total</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td style="width: 50%">
+															<div class="input-group">														
+																<input type="number" class="form-control" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+																<span class="input-group-addon"><i class="fa fa-percent "></i></span>
+																
+															</div>
+														</td>
+														<td style="width: 50%">
+															<div class="input-group">
+																<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+																<input type="number" class="form-control" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="00000" readonly required>
+																
+															</div>
+														</td>
+
+													</tr>
+												
+												</tbody>
+
+											</table>
+										</div> <!-- <div class="col-xs-8 pull-right"> -->
+									</div> <!-- <div class="row">  -->
+									
+										<hr>
+
+										<!-- Para colocar en 6 columnas el forma de pago.-->
+									
+										<div class="form-group row">
+											<div class="col-xs-6">
+												<!-- Para crear el metodo de pago. -->
+												<div class="input-group">
+													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
+														<option value="">Seleccione Metodo De Pago</option>
+														<option value="efectivo">Efectivo</option>
+														<option value="tarjetaCredito">Tarjeta Credito</option>
+														<option value="tarjetaDebito">Tarjeta Debito</option>
+													</select>
+												</div> <!-- <div class="input-group"> -->									
+											</div> <!-- <div class="col-xs-6"> -->
+
+											<div class="col-xs-6" style="padding-left:0px">
+												<!-- Para crear el metodo de pago. -->
+												<div class="input-group">
+													<input type="text" classs="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Codigo Transaccion" required >
+													<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+												</div> <!-- <div class="input-group"> -->									
+											</div> <!-- <div class="col-xs-6"> -->
+
+										</div> <!-- <div class="form-group row">  -->
+
+									<br/>
+
+									</div> <!-- <div class="box"> -->
+
+							</div> <!-- <div class="box-body"> -->
+
+							<!-- Se colocan el boton para guardar los cambios -->
+							<div class="box-footer">						
+								<button type="submit" class="btn btn-primary pull-right" >Guardar Venta</button>
+							</div>
+
+					</form>
+					
+				</div> <!-- <div class="box box-success"> -->
+					
+			</div> <!-- <div class = "col-lg-5 col-xs-12"> -->
+
+
+				<!-- PANTALLA DE PRODUCTOS 
+					Para mostrar solamente en pantallas de escritorio de Desktop, para los demas tamaños se oculto -->					<!-- Para solo se muestra para pantalla grande, los demas tamaños : medianas, pequeñas, y telefonos, se ocultaran.
+				-->
+				<div class="col-lg-7 hidden-md hidden-sm bidden-xs">
+					<!-- Muestra una línea hasta la mitad de la pantalla -->
+					<div class="box box-warning">
+					
+					</div>
+
+				</div>
+
+
+
+		</div> <!-- <div class="row"> -->
+
+	</section> <!-- <section class="content"> -->
+
+</div> <!-- <div class="content-wrapper"> -->
+
+
+<!-- Modal -->
+<div id="modalAgregarEmpleado" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <!-- enctype= "multipart/form-data = Para subir archivos. -->
+      <form role="form" method="post" enctype= "multipart/form-data">
+    
+        <!-- La franja azul de la ventana modal -->
+        <div class="modal-header" style= "background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar Empleado</h4>
+        </div>
+
+				<!-- CUERPO DE LA VENTANA MODAL -->
+
+				<!-- Captura el NT ID del empleado -->
+        <div class="modal-body">
+          <div class="box-body">
+            <!-- Clases de BootStrap para las formularios-->
+
+						<!-- Capturar el NT ID -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
+                <input type="text" class="form-control input-lg" id = "nuevo_ntid" name="nuevo_ntid" placeholder = "Ingresar NT ID" required>
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura de nombre del Empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Capturar el Apelllido del Empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+
+                <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder = "Ingresar Apellidos" required>
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Capturar el correo electronico -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+
+                <input type="text" class="form-control input-lg" id="nuevoCorreoElect" name="nuevoCorreoElect" placeholder = "Ingresar Correo Electronico" required>
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el puesto del empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="far fa-building"></i></span>
+                <select class="form-control input-lg" id= "nuevoPuesto" name="nuevoPuesto" required>
+                  <option value="">Seleccionar Puesto</option>
+									<?php
+										// Se obtendrán los Puestos desdes la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
+										foreach ($puestos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_puesto"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+
+						<!-- Captura el Depto que pertenece el empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="far fa-building"></i></span>
+                <select class="form-control input-lg" id= "nuevoDepto" name="nuevoDepto" required>
+                  <option value="">Seleccionar Depto</option>
+									<?php
+										// Se obtendrán los Deptos desdes la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$depto = ControladorDeptos::ctrMostrarDeptos($item,$valor);
+										foreach ($depto as $key => $value)
+										{
+											echo '<option value = "'.$value["id_depto"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Supervisor que pertenece el empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id= "nuevoSupevisor" name="nuevoSupervisor" required>
+                  <option value="">Seleccionar Supervisor</option>
+									<?php
+										// Se obtendrán el Supervisor desdes la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$supervisor = ControladorSupervisores::ctrMostrarSupervisores($item,$valor);
+										foreach ($supervisor as $key => $value)
+										{
+											echo '<option value = "'.$value["id_supervisor"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura la Ubicacion que pertenece el empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-street-view"></i></span>
+                <select class="form-control input-lg" id= "nuevaUbicacion" name="nuevaUbicacion" required>
+                  <option value="">Seleccionar Ubicacion</option>
+									<?php
+										// Se obtendrán la Ubicacion desdes la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+										foreach ($ubicacion as $key => $value)
+										{
+											echo '<option value = "'.$value["id_ubicacion"].'">'.$value["descripcion"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Centro De Costos del empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="far fa-building"></i></span>
+                <select class="form-control input-lg" id= "nuevoCentro_Costos" name="nuevoCentro_Costos" required>
+                  <option value="">Seleccionar Centro De Costos</option>
+									<?php
+										// Se obtendrán el Centro De Costos desde de la base de datos.
+										$item = null;
+										$valor = null;						
+
+										$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
+										foreach ($centro_costos as $key => $value)
+										{
+											echo '<option value = "'.$value["id_centro_costos"].'">'.$value["num_centro_costos"].'</option>';
+										}
+									?>
+                </select>                
+              </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
+
+
+
+						<!-- Subir Imagen del Usuario 
+						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del Usuario.
+						-->
+            <div class="form-group">
+              <div class="panel text-up">SUBIR IMAGEN DEL EMPLEADO</div> 
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
+              <p class="help-block">Peso Máximo de la foto 2 Mb</p>
+              <img src="vistas/img/empleados/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
+
+            </div> <!-- <div class="form-group"> -->
+
+          </div> <!-- <div class="box-body"> -->
 
         </div>
- 
-        <div class="box-body">
 
-					<!-- Es la tabla donde se mostrara los datos iniciales para la Venta. -->
-          <table class="table table-bordered table-striped dt-responsive tablas">
-            <thead>
-              <tr>
-                <th style="width:10px">#</th>
-                <th>Num Responsiva</th>
-								<th>Empleado</th>								
-								<th>Suporte TI</th>								
-								<th>Precio Unitario</th>
-								<th>Total</th>
-                <th>Acciones </th>
-								
-              </tr>
-            </thead
-						>
-            <!-- Cuerpo de la Tabla -->
-            <tbody>
-							<!-- Se va ha utilizar el quemado de datos en el HTML, dado el volumen de los datos, pero se puede arreglar para que se utilize el "TDataTable"-->
-							<tr>
-								<td>1</td>
-								<td>93382938494</td>
-								<td>Juan Villegas</td>
-								<td>Julio Gomez</td>
-								<td>TC-2123123123 </td>
-								<td>$1,000</td>
-								<td>$1,190</td>								
-							
-									<td>
-										<div class="btn-group">
-											<!-- Imprimir la transacción --> 
-											<button class="btn btn-info"><i class="fa fa-print"></i></button>
-											<button class="btn btn-danger"><i class="fa fa-times"></i></button>
-										</div>
-									</td>
-							</tr>						
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+          </div>
 
-							<?php 
-							/*
-								// Para mostrar los datos en pantalla.
-								$item = null;
-								$valor = null;
-								$clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
-								// var_dump ($clientes);
-								foreach ($clientes as $key => $value)
-								{
-									echo ' 
-										<tr>
-											<td>'.($key+1).'</td>
-											<td>'.$value["nombre"].'</td>
-											<td>'.$value["documento"].'</td>
-											<td>'.$value["email"].'</td>
-											<td>'.$value["telefono"].'</td>
-											<td>'.$value["direccion"].'</td>
-											<td>'.$value["fecha_nacimiento"].'</td>
-											<td>'.$value["compras"].'</td>
-											<td>0000-00-00 00:00:00</td>
-											<td>'.$value["fecha"].'</td>
-			
-											<td>
-												<div class="btn-group">
-													<button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-													<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>
-												</div>
-											</td>
-										</tr>	';
-								}
-								*/
+        </form>
 
-							?>
-             
-            </tbody>
+				<!-- Para Guardar la información en la base de datos  -->
+				<?php
+					$crearEmpleado = new ControladorEmpleados();
+					$crearEmpleado->ctrCrearEmpleado();
+					
+				?>
 
-          </table> <!-- <table class="table table-bordered tabe-striped"> -->
+    </div> <!-- <div class="modal-content"> -->
 
-        </div> <!-- <div class="box-body"> -->
+  </div> <!-- <div class="modal-dialog"> -->
 
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
+</div> <!-- <div id="modalAgregarEmpleado" class="modal fade" role="dialog"> -->

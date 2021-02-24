@@ -15,8 +15,15 @@
 
 USE bd_responsivas;
 
+
+/*
 INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
   (1,'Usuario Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+*/
+/*
+ Para agregar una columna a la tabla t_Empleados. */
+	ALTER TABLE t_Responsivas ADD fecha_devolucion date NULL;
+
 
 
 /*
