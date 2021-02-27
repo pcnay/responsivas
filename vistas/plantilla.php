@@ -200,6 +200,9 @@
 	<script src="vistas/js/cintas.js"></script>
 	<!-- Se muestra el CINTAS -->
 	<script src="vistas/js/centro-costos.js"></script>
+	<!-- Para las capturas de las responsivas  -->
+	<script src="vistas/js/responsivas.js"></script>
+
 
 	<!-- Es para los reportes que se utilizaran en el sistema  -->	
 	<script src="vistas/js/reportes.js"></script>	

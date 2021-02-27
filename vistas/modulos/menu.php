@@ -158,6 +158,13 @@
 							<li>
 								<a href="responsivas">
 									<i class="fa fa-circle-o"></i>
+									<span>Administrar Responsivas</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="cap-responsiva">
+									<i class="fa fa-circle-o"></i>
 									<span>Capturar Responsivas</span>
 								</a>
 							</li>

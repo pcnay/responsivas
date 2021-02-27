@@ -5,7 +5,14 @@ $('.sidebar-menu').tree()
 Pantalla oficial: https://www.datatables.net
 Leccion 19, contiene archivos donde se encuentra "responsive.bootstrap.min.css"
 */
+
+// Para mostrar los registros en la pantalla en el Datatable.
+// 	"pageLength":3,
+//	"lengthMenu": [ 3, 10, 25, 50, 75, 100 ],
+
 $(".tablas").DataTable({
+	"pageLength":10,
+	"lengthMenu": [ 10, 25, 50, 75, 100 ],
   "language":{ 
     "sProcessing": "Procesando ...",
     "sLengthMenu": "Mostrar _MENU_ registros",

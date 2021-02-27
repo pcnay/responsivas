@@ -41,10 +41,7 @@
 										<div class="form-group">
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
-												<input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
-
-												<!-- Este valor se va a guardar en la tabla de Responsiva .-->
-												<input type="hidden" name = "idUsuario" value ="<?php echo $_SESSION["id"]; ?>">
+												<input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" placeholder="Usuario Administrador " readonly>
 
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
@@ -53,27 +50,7 @@
 										<div class="form-group">
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
-												<?php
-													// Se obtiene el último numero de responsiva.
-													$item = null;
-													$valor = null;
-													$responsiva= ControladorResponsivas::ctrMostrarResponsivas($item,$valor);
-													if (!$responsiva)
-													{
-														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="1" readonly>';
-													}
-													else 
-													{
-														foreach ($responsiva as $key => $value)
-														{
-
-														}
-														$num_responsiva = $value["num_folio"]+1;
-														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="'.$num_responsiva.'" readonly>';
-
-													}
-
-												?>
+												<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="1010" readonly>
 												
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
@@ -265,7 +242,7 @@
 					<div class="box box-warning">
 						<div class="box-header with-border">
 
-						<table class="table table-bordered table-striped dt-responsive tablaResponsivas">
+						<table class="table table-bordered table-striped dt-responsive tablas">
 							<thead>
 								<tr>
 									<th style="width:10px">#</th>

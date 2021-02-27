@@ -108,6 +108,12 @@ CREATE TABLE t_Planta
 	telefono VARCHAR(45)  
 );
 
+CREATE TABLE t_Telefonia
+(
+  id_telefonia SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(45) NOT NULL
+);
+
 CREATE TABLE t_Usuarios
 (
   id_usuario SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -187,6 +193,8 @@ CREATE TABLE t_Productos
 	id_modelo SMALLINT UNSIGNED NOT NULL,
 	id_periferico SMALLINT UNSIGNED NOT NULL,
 	id_empleado SMALLINT UNSIGNED NOT NULL,
+	id_telefonia SMALLINT UNSIGNED NOT NULL,
+	num_tel VARCHAR(25) NULL,
   nomenclatura VARCHAR(45) NULL,
 	num_serie VARCHAR(45) NOT NULL,
 	imagen_producto VARCHAR(100) NOT NULL,
@@ -208,7 +216,10 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_periferico) REFERENCES t_Periferico(id_periferico)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_telefonia) REFERENCES t_Telefonia(id_telefonia)
 	ON DELETE RESTRICT ON UPDATE CASCADE
+
 );
 
 CREATE TABLE t_Responsivas
@@ -219,13 +230,17 @@ CREATE TABLE t_Responsivas
 	id_producto SMALLINT UNSIGNED NOT NULL,
 	id_usuario SMALLINT UNSIGNED NOT NULL,
 	id_ubicacion SMALLINT UNSIGNED NOT NULL,
-  num_folio VARCHAR(45) NOT NULL,
+  num_folio SMALLINT UNSIGNED NOT NULL,
 	prestamo CHAR(1) NOT NULL,	
 	responsiva_firmada VARCHAR(100),
 	comentario TEXT,
 	devolucion TEXT,
+	productos TEXT,
+  impuesto decimal(10,2) DEFAULT NULL,
+	neto decimal(10,2) DEFAULT NULL,
+	total decimal(10,2) DEFAULT NULL,
 	fecha_devolucion DATE NULL,
-	fecha_asignado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	fecha_asignado DATE NULL,
 	FOREIGN KEY(id_planta) REFERENCES t_Planta(id_planta)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)

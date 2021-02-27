@@ -115,6 +115,7 @@ require_once "controladores/patchpanel.controlador.php";
 require_once "controladores/idf.controlador.php";
 require_once "controladores/cintas.controlador.php";
 require_once "controladores/centro-costos.controlador.php";
+require_once "controladores/responsivas.controlador.php";
 
 require_once "modelos/perifericos.modelo.php";
 require_once "modelos/clientes.modelo.php";
@@ -135,6 +136,7 @@ require_once "modelos/patchpanel.modelo.php";
 require_once "modelos/idf.modelo.php";
 require_once "modelos/cintas.modelo.php";
 require_once "modelos/centro-costos.modelo.php";
+require_once "modelos/responsivas.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();
