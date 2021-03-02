@@ -8,6 +8,10 @@
 	require_once "../controladores/perifericos.controlador.php";
 	require_once "../modelos/perifericos.modelo.php";
 
+	require_once "../controladores/empleados.controlador.php";
+	require_once "../modelos/empleados.modelo.php";
+
+
 	class TablaProductosResponsivas
 	{
 		// Mostrar la tabla de productos.
@@ -116,5 +120,6 @@
 	$activarProductosResponsivas = new TablaProductosResponsivas();
 	$activarProductosResponsivas->mostrarTablaProductosResponsivas();
 
+	
 
 ?>
