@@ -53,9 +53,10 @@
 		*/
 				$item = "id_producto";
 				$valor = $this->idProducto;				
-				$respuesta = ControladorProductos::ctrMostrarProductosAjax($item,$valor);
-				var_dump($respuesta);
-				exit;
+				//$respuesta = ControladorProductos::ctrMostrarProductosAjax($item,$valor);
+				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+				//var_dump($respuesta);
+				//exit;
 				echo json_encode($respuesta);
 				
 		} // public function ajaxEditarProducto()

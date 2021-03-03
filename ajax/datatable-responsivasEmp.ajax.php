@@ -52,7 +52,7 @@
 					// recuperarBoton = Se utiliza cuando se quita un producto de la lista y vuelva estar activo.
 					if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Admin")
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpelado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpleado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
 					}
 					else
 					{

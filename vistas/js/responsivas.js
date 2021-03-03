@@ -100,8 +100,108 @@ $('.tablaResponsivasEmp').DataTable({
 
 });
 
-$(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function(){
+
+// Click en la tabla de los Empleados.
+$(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
+	//$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpleado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
+
+	var idEmpleado = $(this).attr("idEmpleado");
+	console.log("idEmpleado",idEmpleado);
+	// Desactivar el boton "Agregar", solo se activa una sola vez.
+	$(this).removeClass("btn-primary agregarEmpleado");
+	$(this).addClass("btn-default");
+
+	// Se vas obtener el Empleado atraves de una consulta.
+	var datos = new FormData();
+	datos.append("idEmpleado",idEmpleado); // Se genera la variable global "idEmpleado", que se utiliza en "empleados.ajax.php"
+	$.ajax({
+		url:"ajax/empleados.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			// Para agregar el contenido en la etiqueta de "Nombre Empleado"
+			$("#agregarEmpleado").val(respuesta["nombre"]+' '+respuesta["apellidos"]);
+			console.log("respuesta",respuesta);
+		}
+
+	});
+
+
+
+});
+
+
+// Click en la tabla de los productos.
+$(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
+{
+	//	$botones = "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id_producto"]."'>Agregar </button></div>";
+
 	var idProducto = $(this).attr("idProducto");
 	console.log("idProducto",idProducto);
-	
+	// Desactivar el boton "Agregar", solo se activa una sola vez.
+	$(this).removeClass("btn-primary agregarProducto");
+	$(this).addClass("btn-default");
+
+	// Se vas obtener el producto atraves de una consulta.
+	var datos = new FormData();
+	datos.append("idProducto",idProducto); // Se genera la variable global "idProducto", que se utiliza en "productos.ajax.php"
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			var descripcion = respuesta["Periferico"];
+			var stock = respuesta["Stock"];
+			var precio = respuesta["Precio_Venta"];
+			//console.log("Nombre Periferico",respuesta["Periferico"]);
+			
+			// Se inicia agregar los productos en la responsivas
+			$(".nuevoProducto").append(
+					'<!-- Para cada renglon que se agregue de los productos -->'+
+					'<!--Para evitar no se apilen los renglones al agregar productos  -->'+
+					'<div class ="row" style="padding:5px 15px">'+
+						
+						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
+						'<div class="col-xs-6" style="padding-right:0px">'+
+							'<div class="input-group">'+
+								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>'+
+
+								'<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripcion Del Prodcuto" required>'+
+
+							'</div> <!-- <div class="input-group"> -->'+
+
+						'</div> <!-- <div class="col-xs-6" style="padding-right:0px"> -->'+
+
+						'<!-- Columna de la "cantidad" -->'+
+						'<div class="col-xs-3">'+
+							'<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>'+
+						'</div> <!-- <div class="col-xs-3"> --> '+
+						
+						'<!-- Columna del "Precio" -->'+
+						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
+						'<div class="col-xs-3" style="padding-left:0px">'+
+							'<div class="input-group">'+
+							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+								'<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" placeholder="00000000" readonly required>'+
+							'</div>	<!-- <div class="input-group">  -->'+
+
+						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
+
+					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '); 
+
+
+		}
+
+	});
+
 });
+

@@ -100,10 +100,12 @@
 									Se utilizara JavaScript para agregar los productos a la responsiva.
 									-->
 
-									<!-- Entrada del Producto 
+									<!-- Entrada del Producto -->
 									<div class="form-group row nuevoProducto">
 
-										<!- Para cada renglon que se agregue de los productos. 
+										<!--				
+										<!- Para cada renglon que se agregue de los productos, a través de JavaScript
+										
 										<!- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -
 										<div class="col-xs-6" style="padding-right:0px">
 											<div class="input-group">
@@ -130,7 +132,7 @@
 
 											</div>	<!- <div class="input-group">  
 
-										</div> <!- <div class="col-xs-3" style="ppading-left:0px"> -
+										</div> <!- <div class="col-xs-3" style="ppading-left:0px"> -->
 
 									</div> <!- <div clss="form-group row nuevoProducto"> 
 
@@ -214,7 +216,7 @@
 
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">						
-								<button type="submit" class="btn btn-primary pull-right" >Guardar Venta</button>
+								<button type="submit" class="btn btn-primary pull-right" >Guardar Responsiva</button>
 							</div>
 
 					</form>
@@ -269,10 +271,12 @@
 
 				</div> <!-- <div class="col-lg-7 hidden-md hidden-sm bidden-xs"> -->
 
-				<div class="col-lg-7 hidden-md hidden-sm bidden-xs">
 
 					<!-- Muestra una línea hasta la mitad de la pantalla -->
 					<!-- Se muestran los productos -->
+
+				<div class="col-lg-7 hidden-md hidden-sm bidden-xs">
+
 
 					<div class="box box-warning">
 						<div class="box-header with-border">
@@ -289,7 +293,9 @@
 								</tr>
 							</thead>
 							<tbody>
+					<!--
 								<tr>
+
 									<td>#1</td>
 									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
 									<td>COMPUTADORA DE ESCRITORIO</td>
@@ -409,6 +415,7 @@
 										</div>
 									</td>
 								</tr>						
+-->
 
 							</tbody>
 						</table>
