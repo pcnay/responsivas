@@ -30,7 +30,7 @@
 					<!-- Se agrega una franja blanca abajo de la linea de color verder-->
 					<div class="box-header with-border"></div>
 
-					<form role="form" method="post">
+					<form role="form" method="post" class="formularioResponsiva">
 							<!-- Se crea el cuerpo de este modulo -->
 							<div class="box-body">
 

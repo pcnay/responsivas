@@ -106,10 +106,10 @@ $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
 	//$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpleado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
 
 	var idEmpleado = $(this).attr("idEmpleado");
-	console.log("idEmpleado",idEmpleado);
+	//console.log("idEmpleado",idEmpleado);
 	// Desactivar el boton "Agregar", solo se activa una sola vez.
-	$(this).removeClass("btn-primary agregarEmpleado");
-	$(this).addClass("btn-default");
+	//$(this).removeClass("btn-primary agregarEmpleado");
+	//$(this).addClass("btn-default");
 
 	// Se vas obtener el Empleado atraves de una consulta.
 	var datos = new FormData();
@@ -125,7 +125,7 @@ $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
 		success:function(respuesta){
 			// Para agregar el contenido en la etiqueta de "Nombre Empleado"
 			$("#agregarEmpleado").val(respuesta["nombre"]+' '+respuesta["apellidos"]);
-			console.log("respuesta",respuesta);
+			//console.log("respuesta",respuesta);
 		}
 
 	});
@@ -141,7 +141,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 	//	$botones = "<div class='btn-group'><button class='btn btn-primary agregarProducto recuperarBoton' idProducto='".$productos[$i]["id_producto"]."'>Agregar </button></div>";
 
 	var idProducto = $(this).attr("idProducto");
-	console.log("idProducto",idProducto);
+	//console.log("idProducto",idProducto);
 	// Desactivar el boton "Agregar", solo se activa una sola vez.
 	$(this).removeClass("btn-primary agregarProducto");
 	$(this).addClass("btn-default");
@@ -160,11 +160,28 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 		success:function(respuesta){
 			//console.log("respuesta",respuesta);
 			var descripcion = respuesta["Periferico"];
-			var stock = respuesta["Stock"];
+			var stock = respuesta["Stock"];			
 			var precio = respuesta["Precio_Venta"];
-			//console.log("Nombre Periferico",respuesta["Periferico"]);
+			// console.log("Nombre Periferico",respuesta["Periferico"]);
+
+			// Evitar agregar Producto cuando el Stocl esta en CERO
+			if (stock == 0)
+			{
+				Swal.fire ({
+					title: "NO hay stock disponible",
+					type:"error",
+					confirmButtonText: "Cerrar"
+					});
+					$("button[idProducto='"+idProducto+"']").addClass("btn-primary agregarProducto");
+					return;
+			}
 			
-			// Se inicia agregar los productos en la responsivas
+			// Se inicia agregar los productos en la responsivas, esta clase viene desde :
+			// <!-- Entrada del Producto -->
+			//<div class="form-group row nuevoProducto">
+			// Se utiliza el atributo "value" para asignar los valores que se obtienen de la tabla de Productos cuando
+			//se selecciona.
+
 			$(".nuevoProducto").append(
 					'<!-- Para cada renglon que se agregue de los productos -->'+
 					'<!--Para evitar no se apilen los renglones al agregar productos  -->'+
@@ -173,9 +190,9 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
 						'<div class="col-xs-6" style="padding-right:0px">'+
 							'<div class="input-group">'+
-								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>'+
+								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'+idProducto+'" ><i class="fa fa-times"></i></button></span>'+
 
-								'<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripcion Del Prodcuto" required>'+
+								'<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
 
 							'</div> <!-- <div class="input-group"> -->'+
 
@@ -183,7 +200,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 
 						'<!-- Columna de la "cantidad" -->'+
 						'<div class="col-xs-3">'+
-							'<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>'+
+							'<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" required>'+
 						'</div> <!-- <div class="col-xs-3"> --> '+
 						
 						'<!-- Columna del "Precio" -->'+
@@ -191,13 +208,12 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 						'<div class="col-xs-3" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" placeholder="00000000" readonly required>'+
+								'<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" value ="'+precio+'" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
 
 					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '); 
-
 
 		}
 
@@ -205,3 +221,55 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 
 });
 
+
+// Cuando cargue la tabla cada vez que se nevegue en ella
+// Es para realizar una funcion cuando se esta navegando en la tabla, es recomendada por DataTable. 
+$(".tablaResponsivasProd").on("draw.dt",function()
+{
+	//console.log("tabla");
+	if(localStorage.getItem("quitarProducto") != null)
+	{
+		// Convierte el String de Local Storage a un Json
+		var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto")); 
+		for (var i = 0; i < listaIdProductos.length; i++)
+		{
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');		
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');		
+		}
+	}
+})
+
+
+
+// Quitar un producto de la responsiva  y recuperar el boton de "Agregar"
+
+var idQuitarProducto = [];
+localStorage.removeItem("quitarProducto");
+
+$(".formularioResponsiva").on("click","button.quitarProducto",function(){
+	// Conforme se agregan los "parent" se van borrando, pero con los 4 parent lleva a este nivel
+	// '<div class ="row" style="padding:5px 15px">', es decir donde se inicia el "append"
+	$(this).parent().parent().parent().parent().remove();
+
+	var idProducto = $(this).attr("idProducto"); // Para obtener el "id_producto"
+
+
+	// Se agrega un ajuste, ya que cuando se agrega un producto desde otras paginas, se desactiva el boton cuando se agrego, pero se regresa a esa misma pagina, pero el boton queda desactivado cuando se quita el producto de la responsiva.
+
+	if (localStorage.getItem("quitarProducto")== null)
+	{
+		idQuitarProducto = [];
+
+	}
+	else
+	{
+		idQuitarProducto.concat(localStorage.getItem("quitarProducto"));
+	}
+	idQuitarProducto.push({"idProducto":idProducto});
+	localStorage.setItem("quitarProducto",JSON.stringify(idQuitarProducto)); // se genera la clase 
+
+
+	// Para remover cuando esta deshabilitado, y habilitarlo.
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+})
