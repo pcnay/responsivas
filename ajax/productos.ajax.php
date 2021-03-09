@@ -29,7 +29,12 @@
 
 		public function ajaxEditarProducto()
 		{
-			/*
+
+			if($this->nombreProducto != "")
+			{
+				// Para poder obtener el registro que se selecciono del ComboBox.
+			}	
+
 			// Para el caso de que se edita utilizando un dispositivo movil
 			if ($this->traerProductos == "ok")
 			{
@@ -39,25 +44,23 @@
 				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 				echo json_encode($respuesta);	
 			}
-			else if($this->nombreProducto != "")
+			else if ($this->nombreProducto != "")
 			{
-				// Para poder obtener el registro que se selecciono del ComboBox.
-				$item = "descripcion";
+				$item = "Periferico";
 				$valor = $this->nombreProducto;
-				$orden = "id";
+				$orden = "id_producto";
 				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 				echo json_encode($respuesta);
-			}			
-			else 
+			
+			}		// if ($this->traerProductos == "ok")
+			else
 			{
-		*/
 				$item = "id_producto";
-				$valor = $this->idProducto;				
-				//$respuesta = ControladorProductos::ctrMostrarProductosAjax($item,$valor);
-				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
-				//var_dump($respuesta);
-				//exit;
+				$valor = $this->idProducto;
+				$orden = "id_producto";
+				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 				echo json_encode($respuesta);
+			}
 				
 		} // public function ajaxEditarProducto()
 

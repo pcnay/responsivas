@@ -100,7 +100,7 @@
 									Se utilizara JavaScript para agregar los productos a la responsiva.
 									-->
 
-									<!-- Entrada del Producto -->
+									<!-- Entrada del Producto, renglon de cada producto que se agrega a la responsiva -->
 									<div class="form-group row nuevoProducto">
 
 										<!--				
@@ -137,13 +137,13 @@
 									</div> <!- <div clss="form-group row nuevoProducto"> 
 
 
-									<!- En esta seccion final es para capturar los productos de forma dinamica en la Responsiva 
+									<!--En esta seccion final es para capturar los productos de forma dinamica en la Responsiva 
 									=========================================================================
 									-->
 
 
 									<!-- Boton para agregar producto, en pantallas grandes desarparece. -->
-									<button type="button" class="btn btn-default hidden-lg">Agregar Producto</button>
+									<button type="button" class="btn btn-default hidden-lg btnAgregarProducto">Agregar Producto</button>
 
 									<hr>
 									<div class="row">

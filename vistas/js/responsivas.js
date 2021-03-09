@@ -182,7 +182,8 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 			// Se utiliza el atributo "value" para asignar los valores que se obtienen de la tabla de Productos cuando
 			//se selecciona.
 
-			$(".nuevoProducto").append(
+			$(".nuevoProducto").append
+			(
 					'<!-- Para cada renglon que se agregue de los productos -->'+
 					'<!--Para evitar no se apilen los renglones al agregar productos  -->'+
 					'<div class ="row" style="padding:5px 15px">'+
@@ -192,7 +193,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 							'<div class="input-group">'+
 								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'+idProducto+'" ><i class="fa fa-times"></i></button></span>'+
 
-								'<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
+								'<input type="text" class="form-control agregarProducto" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
 
 							'</div> <!-- <div class="input-group"> -->'+
 
@@ -200,7 +201,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 
 						'<!-- Columna de la "cantidad" -->'+
 						'<div class="col-xs-3">'+
-							'<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" required>'+
+							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" required>'+
 						'</div> <!-- <div class="col-xs-3"> --> '+
 						
 						'<!-- Columna del "Precio" -->'+
@@ -208,12 +209,13 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 						'<div class="col-xs-3" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" value ="'+precio+'" readonly required>'+
+								'<input type="number" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value ="'+precio+'" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
 
-					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '); 
+					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '
+			); 
 
 		}
 
@@ -273,3 +275,127 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
 })
+
+// ===========================================================
+// Agregando producto desde el boton para dispositivos.
+// ============================================================
+var numProducto = 0;
+$(".btnAgregarProducto").click(function(){
+	numProducto ++;
+	var datos = new FormData()
+	datos.append("traerProductos","ok");
+
+	// Para obtener todos los productos, utilizando Ajax.
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(respuesta)
+		{
+			//	console.log('productos',respuesta);
+			
+			$(".nuevoProducto").append(
+					'<!-- Para cada renglon que se agregue de los productos -->'+
+					'<!--Para evitar no se apilen los renglones al agregar productos  -->'+
+					'<div class ="row" style="padding:5px 15px">'+
+						
+						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
+						'<div class="col-xs-6" style="padding-right:0px">'+
+							'<div class="input-group">'+
+								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto ><i class="fa fa-times"></i></button></span>'+
+
+								'<select class="form-control nuevaDescripcionProducto" id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
+
+								'<option>Seleccione el Produdcto</option>'+
+								'</select>'+
+
+							'</div> <!-- <div class="input-group"> -->'+
+
+						'</div> <!-- <div class="col-xs-6" style="padding-right:0px"> -->'+
+
+						'<!-- Columna de la "cantidad" -->'+
+						'<div class="col-xs-3 ingresoCantidad">'+
+							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock required>'+
+						'</div> <!-- <div class="col-xs-3"> --> '+
+						
+						'<!-- Columna del "Precio" -->'+
+						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
+						'<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
+							'<div class="input-group">'+
+							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+								'<input type="number" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value = "" readonly required>'+
+							'</div>	<!-- <div class="input-group">  -->'+
+
+						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
+
+					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '); // .append
+
+			// Agregar los productos al SELECT.
+			respuesta.forEach(funcionForEach);
+			
+			function funcionForEach(item,index)
+			{
+				if (item.stock != 0)
+				{
+					//console.log ("item",item.Periferico);
+					//$(".nuevaDescripcionProducto").append(
+						$("#producto"+numProducto).append(
+						'<option idProducto="'+item.id_producto+'" value="'+item.Periferico+'">'+item.Periferico+'</option>'				
+						)
+				}
+
+			} // function funcionForEach(intem,index)
+		
+
+			//respuesta.forEach(funcionForEach);		
+
+
+		} // success:function(respuesta)
+
+	})
+})
+
+// Seleccionar Producto.
+// Cuando en el "Select" se selecciona un producto, se lanza este evento.
+$(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",function(){
+	// Obtener el "idProducto"
+
+	// var obtenerNombreProducto = $(this).('#addLocationIdReq').val(); 
+	//var select = document.getElementById("addLocationIdReq");
+	//var obtenerNombreProducto = select.option[select .selectedIndex].value;
+	 obtenerNombreProducto = $(this).val();
+	// console.log("nombreProducto",obtenerNombreProducto);
+
+	// Se sube 3 niveles hasta llegar a '<div class ="row" style="padding:5px 15px">' btnAgregarProducto tamaño Tablet solamente se aplica $(.nuevpProdcuto)
+	var nuevoPrecioProducto = $(this).parent().parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
+
+	var nuevaCantidadProducto = $(this).parent().parent().parent().children(".ingresoCantidad").children(".nuevaCantidadProducto");
+
+	// Se vas obtener el producto atraves de una consulta.
+	var datos = new FormData();
+	datos.append("nombreProducto",obtenerNombreProducto);
+	 // Se genera la variable global "nombreProducto", que se utiliza en "productos.ajax.php"
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(respuesta)
+		{
+			// console.log("respuesta",respuesta)
+			$(nuevaCantidadProducto).attr("stock",respuesta["stock"]);
+			$(nuevoPrecioProducto).val(respuesta["precio_venta"]);
+
+		} // function(respuesta)
+
+	}) // $.ajax
+
+}) // $(".formularioResponsiva").on("onchange","select.nuevaDescripcionProducto",function(){
+

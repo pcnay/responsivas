@@ -292,7 +292,7 @@ $(".btnAgregarProducto").click(function(){
 					//$(".nuevaDescripcionProducto").append(
 						// Es modificacion se realiza para evitar que se dupliquen los elementos del "select"
 						$("#producto"+numProducto).append(
-						'<option idProducto="'+items.id+'" value="'+item.descripcion+'">'+item.descripcion+'</option>'
+						'<option idProducto="'+item.id+'" value="'+item.descripcion+'">'+item.descripcion+'</option>'
 						)
 				}
 				
