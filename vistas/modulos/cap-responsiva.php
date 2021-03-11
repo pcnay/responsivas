@@ -159,7 +159,11 @@
 													<tr>
 														<td style="width: 50%">
 															<div class="input-group">														
-																<input type="number" class="form-control" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+																<!-- Se agrega este "input hidden" para que se pueda grabar en la base de datos. -->
+																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto">
+																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto">
+
 																<span class="input-group-addon"><i class="fa fa-percent "></i></span>
 																
 															</div>
@@ -167,7 +171,7 @@
 														<td style="width: 50%">
 															<div class="input-group">
 																<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-																<input type="number" class="form-control" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="00000" readonly required>
+																<input type="number" class="form-control input-lg" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
 																
 															</div>
 														</td>

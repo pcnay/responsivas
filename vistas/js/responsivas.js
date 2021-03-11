@@ -200,23 +200,26 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 						'</div> <!-- <div class="col-xs-6" style="padding-right:0px"> -->'+
 
 						'<!-- Columna de la "cantidad" -->'+
-						'<div class="col-xs-3">'+
+						'<div class="col-xs-3 ingresoCantidad">'+
 							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" required>'+
 						'</div> <!-- <div class="col-xs-3"> --> '+
 						
 						'<!-- Columna del "Precio" -->'+
 						'<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->'+
-						'<div class="col-xs-3" style="padding-left:0px">'+
+						'<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value ="'+precio+'" readonly required>'+
+								'<input type="number" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value ="'+precio+'" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
 
 					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '
 			); 
-
+			
+			// Sumar totalpreicos
+			sumarTotalPrecios();
+			agregarImpuesto();
 		}
 
 	});
@@ -274,7 +277,23 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	// Para remover cuando esta deshabilitado, y habilitarlo.
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
-})
+
+	// Viene desde "cap-responsiva.php", <Div> ... id ="nuevoProducto" ...
+	// que no tenga renglones en las responsivas.
+	if($(".nuevoProducto").children().length == 0)	
+	{
+		$("#nuevoImpuestoVenta").val(0);
+		$("#nuevoTotalVenta").val(0);
+		$("#nuevoTotalVenta").attr("total",0);
+	}
+	else
+	{
+		// Actualizando el total de los precios de las responsivas
+		sumarTotalPrecios();	
+		agregarImpuesto();
+	}
+	
+}) 
 
 // ===========================================================
 // Agregando producto desde el boton para dispositivos.
@@ -327,7 +346,7 @@ $(".btnAgregarProducto").click(function(){
 						'<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value = "" readonly required>'+
+								'<input type="number" min="1" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
@@ -349,12 +368,17 @@ $(".btnAgregarProducto").click(function(){
 				}
 
 			} // function funcionForEach(intem,index)
-		
+			
+			// total de precios 
+			sumarTotalPrecios();
+			agregarImpuesto();
 
+	
 			//respuesta.forEach(funcionForEach);		
 
 
 		} // success:function(respuesta)
+
 
 	})
 })
@@ -392,6 +416,9 @@ $(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",functio
 			// console.log("respuesta",respuesta)
 			$(nuevaCantidadProducto).attr("stock",respuesta["stock"]);
 			$(nuevoPrecioProducto).val(respuesta["precio_venta"]);
+			// Asignando el atributo.
+			$(nuevoPrecioProducto).attr("precioReal",respuesta["precio_venta"]);
+
 
 		} // function(respuesta)
 
@@ -399,3 +426,95 @@ $(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",functio
 
 }) // $(".formularioResponsiva").on("onchange","select.nuevaDescripcionProducto",function(){
 
+
+// =============================================================
+// Modificar el precio compra en base a la cantidad de productos 
+// =============================================================
+$(".formularioResponsiva").on("change","input.nuevaCantidadProducto",function(){
+	// Se salen tres padres de la etiquetas , para accesar a la etiqueta "ingresoPrecio" para obtener el precio del Producto.
+	var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
+	//console.log("precio",precio.val());
+
+	// Para aregar el valor de precio actual.
+	// console.log("$(this).val()",$(this).val());
+	// precio.attr("precioReal"); = Es para que sea el valor inicial y no se acumule con el anterior sino que teme siempre el valor real, y lo multiple por las cantidad,
+	var precioFinal = $(this).val()*precio.attr("precioReal");
+
+	// Para asignar el precio en la etiqueta de precio.
+	precio.val(precioFinal);
+
+	// Para actualizar el stock de los productos.
+	// Verificando que no rebase el stock disponible 
+	if (Number($(this).val()) > Number($(this).attr("stock")))
+	{
+
+		// Si la cantidad es superior al Stock regresar valores iniciales.
+		$(this).val(1);
+		var precioFinal = $(this).val()*precio.attr("precioReal");
+		precio.val(precioFinal);
+		sumarTotalPrecios();
+		agregarImpuesto();
+
+
+		Swal.fire ({
+			title: "La cantidad supera el Stock",
+			text:"Solo hay "+$(this).attr("stock")+" unidades !",
+			type:"error",
+			confirmButtonText: "Cerrar"
+			});
+			
+	}
+	// Sumar total de precios
+	sumarTotalPrecios();
+	agregarImpuesto();
+})
+
+
+// ===========================================================================
+// Sumar todos los precios 
+// ===========================================================================
+function sumarTotalPrecios()
+{
+	// Acumula los precios de los productos que se encuentran en la clase : "nuevoPrecioProducto"
+	var precioItem = $(".nuevoPrecioProducto");
+	var arraySumaPrecio = [];
+
+	for (var i=0; i<precioItem.length; i++)
+	{
+		arraySumaPrecio.push(Number($(precioItem[i]).val()));
+		
+	}
+
+	//console.log("arraySumaPrecio",arraySumaPrecio);
+	function sumaArrayPrecios(total,numero)
+	{
+		return total+numero;
+	}
+
+	var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+	// console.log("sumaTotalPrecio",sumaTotalPrecio);	
+	$("#nuevoTotalVenta").val(sumaTotalPrecio);
+	//Se asigna este valor al id de "cap-responsiva.php" -> total=
+	$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
+
+}
+
+// Funcion Agregar Impuesto.
+function agregarImpuesto()
+{
+	//Proviene del archivo "cap-responsiva.php", del DVD nuevoImpuestoVenta
+	var impuesto = $("#nuevoImpuestoVenta").val();
+	var precioTotal = $("#nuevoTotalVenta").attr("total");
+	var precioImpuesto = Number(precioTotal*(impuesto/100));
+	var totalConImpuesto = Number(precioImpuesto)+Number(precioTotal);
+
+	// Asignar a las etiquetas de Cap-responsivas.php
+	$("#nuevoTotalVenta").val(totalConImpuesto);
+	$("#nuevoPrecioImpuesto").val(precioImpuesto);
+	$("#nuevoPrecioNeto").val(precioTotal);
+}
+
+// Cuando cambia el Impuesto. Se lanza este evento.
+$("#nuevoImpuestoVenta").change(function(){
+	agregarImpuesto();
+}) 
