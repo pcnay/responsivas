@@ -102,39 +102,13 @@
 
 									<!-- Entrada del Producto, renglon de cada producto que se agrega a la responsiva -->
 									<div class="form-group row nuevoProducto">
-
-										<!--				
-										<!- Para cada renglon que se agregue de los productos, a través de JavaScript
 										
-										<!- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -
-										<div class="col-xs-6" style="padding-right:0px">
-											<div class="input-group">
-												<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
+										<!-- Para cada renglon que se agregue de los productos, a través de JavaScript -->				
 
-												<input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripcion Del Prodcuto" required>
+									</div> <!-- <div clss="form-group row nuevoProducto" -->
+									
+									<input type="hidden" id="listaProducto" name="listaProducto">
 
-											</div><!- <div class="input-group"> 
-
-										</div> <!- <div class="col-xs-6" style="padding-right:0px"> 
-
-										<!- Columna de la "cantidad" 
-										<div class="col-xs-3">
-											<input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>
-										</div> <!- <div class="col-xs-3"> 
-										
-										<!- Columna del "Precio" -->
-										<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas 
-										<div class="col-xs-3" style="padding-left:0px">
-											<div class="input-group">
-											<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-												<input type="number" class="form-control" id="nuevaPrecioProducto" name="nuevaPrecioProducto" placeholder="00000000" readonly required>
-												
-
-											</div>	<!- <div class="input-group">  
-
-										</div> <!- <div class="col-xs-3" style="ppading-left:0px"> -->
-
-									</div> <!- <div clss="form-group row nuevoProducto"> 
 
 
 									<!--En esta seccion final es para capturar los productos de forma dinamica en la Responsiva 

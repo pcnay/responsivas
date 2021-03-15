@@ -193,7 +193,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 							'<div class="input-group">'+
 								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'+idProducto+'" ><i class="fa fa-times"></i></button></span>'+
 
-								'<input type="text" class="form-control agregarProducto" idProducto="'+idProducto+'" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
+								'<input type="text" class="form-control nuevaDescripcionProducto" idProducto="'+idProducto+'" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
 
 							'</div> <!-- <div class="input-group"> -->'+
 
@@ -201,7 +201,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 
 						'<!-- Columna de la "cantidad" -->'+
 						'<div class="col-xs-3 ingresoCantidad">'+
-							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" required>'+
+							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock = "'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
 						'</div> <!-- <div class="col-xs-3"> --> '+
 						
 						'<!-- Columna del "Precio" -->'+
@@ -220,6 +220,9 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 			// Sumar totalpreicos
 			sumarTotalPrecios();
 			agregarImpuesto();
+
+			//Agrupar productos en formato JSon, en un solo renglons se agregan el detalle de la Responsiva.
+			listarProductos();
 			
 			// Asignar fornmatos al precio de los productos.
 			$(".nuevoPrecioProducto").number(true,2);
@@ -295,6 +298,9 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 		// Actualizando el total de los precios de las responsivas
 		sumarTotalPrecios();	
 		agregarImpuesto();
+		//Agrupar productos en formato JSon, en un solo renglons se agregan el detalle de la Responsiva.
+		listarProductos();
+
 	}
 	
 }) 
@@ -331,7 +337,7 @@ $(".btnAgregarProducto").click(function(){
 							'<div class="input-group">'+
 								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto ><i class="fa fa-times"></i></button></span>'+
 
-								'<select class="form-control nuevaDescripcionProducto agregarProducto" idProducto="'+idProducto+'"  idProducto name="nuevaDescripcionProducto" required>'+
+								'<select class="form-control nuevaDescripcionProducto" idProducto name="nuevaDescripcionProducto" required>'+
 
 								'<option>Seleccione el Produdcto</option>'+
 								'</select>'+
@@ -342,7 +348,7 @@ $(".btnAgregarProducto").click(function(){
 
 						'<!-- Columna de la "cantidad" -->'+
 						'<div class="col-xs-3 ingresoCantidad">'+
-							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock required>'+
+							'<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock nuevoStock="'+Number(stock-1)+'" required>'+
 						'</div> <!-- <div class="col-xs-3"> --> '+
 						
 						'<!-- Columna del "Precio" -->'+
@@ -391,7 +397,7 @@ $(".btnAgregarProducto").click(function(){
 	})
 })
 
-// Seleccionar Producto.
+// Seleccionar Producto, desde dispositivos Moviles.
 // Cuando en el "Select" se selecciona un producto, se lanza este evento.
 $(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",function(){
 	// Obtener el "idProducto"
@@ -422,11 +428,15 @@ $(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",functio
 		success:function(respuesta)
 		{
 			// console.log("respuesta",respuesta)
+
 			$(nuevaCantidadProducto).attr("stock",respuesta["stock"]);
+			$(nuevaCantidadProducto).attr("nuevoStock",Number(respuesta["stock"]-1));
 			$(nuevoPrecioProducto).val(respuesta["precio_venta"]);
 			// Asignando el atributo.
 			$(nuevoPrecioProducto).attr("precioReal",respuesta["precio_venta"]);
 
+			//Agrupar productos en formato JSon, en un solo renglons se agregan el detalle de la Responsiva.
+			listarProductos();
 
 		} // function(respuesta)
 
@@ -437,6 +447,7 @@ $(".formularioResponsiva").on("change","select.nuevaDescripcionProducto",functio
 
 // =============================================================
 // Modificar el precio compra en base a la cantidad de productos 
+// Cuando se modifica el "Input" de la etiqueta "Cantidad"
 // =============================================================
 $(".formularioResponsiva").on("change","input.nuevaCantidadProducto",function(){
 	// Se salen tres padres de la etiquetas , para accesar a la etiqueta "ingresoPrecio" para obtener el precio del Producto.
@@ -447,6 +458,11 @@ $(".formularioResponsiva").on("change","input.nuevaCantidadProducto",function(){
 	// console.log("$(this).val()",$(this).val());
 	// precio.attr("precioReal"); = Es para que sea el valor inicial y no se acumule con el anterior sino que teme siempre el valor real, y lo multiple por las cantidad,
 	var precioFinal = $(this).val()*precio.attr("precioReal");
+
+	// $(this).val() = Donde esta el stock actual del producto
+	var nuevoStock = Number($(this).attr("stock")) - Number($(this).val());
+	// Se le asigna el nuevo Stock, a la clase "nuevoStock".
+	$(this).attr("nuevoStock",nuevoStock);
 
 	// Para asignar el precio en la etiqueta de precio.
 	precio.val(precioFinal);
@@ -462,7 +478,8 @@ $(".formularioResponsiva").on("change","input.nuevaCantidadProducto",function(){
 		precio.val(precioFinal);
 		sumarTotalPrecios();
 		agregarImpuesto();
-
+		//Agrupar productos en formato JSon, en un solo renglons se agregan el detalle de la Responsiva.
+		listarProductos();
 
 		Swal.fire ({
 			title: "La cantidad supera el Stock",
@@ -475,6 +492,9 @@ $(".formularioResponsiva").on("change","input.nuevaCantidadProducto",function(){
 	// Sumar total de precios
 	sumarTotalPrecios();
 	agregarImpuesto();
+	//Agrupar productos en formato JSon, en un solo renglons se agregan el detalle de la Responsiva.
+	listarProductos();
+
 })
 
 
@@ -608,26 +628,34 @@ function listarProductos()
 	// Estos valores se obtienen de la etiqueta:  $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 	//var id =
 	// Contine todos los productos de la resposivas
-	var descripcion = $(".agregarProducto");
-
+	var descripcion = $(".nuevaDescripcionProducto");
 	var cantidad = $(".nuevaCantidadProducto");
 	var precio = $(".nuevoPrecioProducto");
-	//var total =
+	
+	/* Se obtiene el valores del reglon de las Responsivas 
 
-	for (var i=0; 1 < descripcion.length; i++)
+	console.log("IdProducto",$(descripcion[0]).attr("idProducto"));
+	// attr("idProducto") = Obtiene el valor de la variable asignado en la ejecucion de la funcion, es decir el Valor del atributo "idProducto"
+	console.log("Descripcion",$(descripcion[0]).val());
+	console.log("Cantidad",$(cantidad[0]).val());
+	console.log("Precio",$(precio[0]).val());
+	*/
+
+	for (var i=0; i < descripcion.length; i++)
 	{
 		// Ingresando en Json el los productos de la responsiva 
 		listarProductos.push({"id" : $(descripcion[i]).attr("idProducto"),
 													"descripcion" : $(descripcion[i]).val(),
 													"cantidad" : $(cantidad[i]).val(),
-													"stock" : $(cantidad[i]).attr("stock"),
-													"precio" : $(precio[i]).attr("precioRealstock"),
-													"precio" : $(precio[i]).val(),
-
-												});	 
+													"stock" : $(cantidad[i]).attr("nuevoStock"),
+													"precio" : $(precio[i]).attr("precioReal"),
+													"total" : $(precio[i]).val()});	 
 	} // for (var i=0; 1 < descripcion.length; i++)
 
-	console.log("listaProductos",listaProductos);
+	// JSON.stringfy = Lo convierte de JSon a Cadena de Textos que se utilizara para grabar en la base de datos.
+	// console.log("listarProductos",JSON.stringify(listarProductos));
+	$("#listaMetodo").val(JSON.stringify(listaMetodos));
+
 
 
 	
