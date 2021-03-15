@@ -171,7 +171,7 @@
 														<td style="width: 50%">
 															<div class="input-group">
 																<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-																<input type="number" class="form-control input-lg" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
+																<input type="text" class="form-control input-lg"  id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
 																
 															</div>
 														</td>
@@ -189,26 +189,23 @@
 										<!-- Para colocar en 6 columnas el forma de pago.-->
 									
 										<div class="form-group row">
-											<div class="col-xs-6">
+											<div class="col-xs-6"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
 													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
 														<option value="">Seleccione Metodo De Pago</option>
-														<option value="efectivo">Efectivo</option>
-														<option value="tarjetaCredito">Tarjeta Credito</option>
-														<option value="tarjetaDebito">Tarjeta Debito</option>
+														<option value="Efectivo">Efectivo</option>
+														<option value="TC">Tarjeta Credito</option>
+														<option value="TD">Tarjeta Debito</option>
 													</select>
 												</div> <!-- <div class="input-group"> -->									
 											</div> <!-- <div class="col-xs-6"> -->
-
-											<div class="col-xs-6" style="padding-left:0px">
-												<!-- Para crear el metodo de pago. -->
-												<div class="input-group">
-													<input type="text" classs="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Codigo Transaccion" required >
-													<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-												</div> <!-- <div class="input-group"> -->									
-											</div> <!-- <div class="col-xs-6"> -->
+											<!-- En esta parte estaba la seccion para "Tipo De Pago"  -->
+											
+											<!-- Se utiliza JavaScript para agregar datos en esta Seccion del DIV -->
+											<div class="cajasMetodoPago">
+													
+											</div>
 
 										</div> <!-- <div class="form-group row">  -->
 

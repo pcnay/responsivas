@@ -73,7 +73,14 @@
 						$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
 						
 						// Se agrega los botones con las clases y id para "editar" y "borrar"
-						$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target = '#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' apellidos='".$empleados[$i]["apellidos"]."' imagen='".$empleados[$i]["foto"]."' ><i class='fa fa-times'></i></button></div>";
+						if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador")
+						{
+							$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target = '#modalEditarEmpleado'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' apellidos='".$empleados[$i]["apellidos"]."' imagen='".$empleados[$i]["foto"]."' ><i class='fa fa-times'></i></button></div>";
+						}
+						else
+						{
+							$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado = '".$empleados[$i]["id_empleado"]."' data-toggle='modal' data-target = '#modalEditarEmpleado'><i class='fa fa-pencil'></i></button></div>";	
+						}
 
 						
 						$datosJson .= '[

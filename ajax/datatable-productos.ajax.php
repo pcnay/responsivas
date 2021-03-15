@@ -73,14 +73,14 @@
 					// imagen='".$productos[$i]["imagen"]."' = Para obtener la ruta de la imagen.
 
 					// Esta parte se utiliza para utilizar las variables de sesion en DataTable.
-					if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial")
+					if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador")
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id_producto"]."' imagen='".$productos[$i]["Imagen"]."' ><i class='fa fa-times'></i></button></div>";
 					}
 					else
 					{
 						// se extrae los datos utilizados para el boton de "Editar" y "Borrar"
-						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id_producto"]."' imagen='".$productos[$i]["Imagen"]."' ><i class='fa fa-times'></i></button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id_producto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button></div>";
 					}					
 
 

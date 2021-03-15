@@ -1,4 +1,5 @@
 <?php
+	/*
 	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
@@ -8,6 +9,8 @@
 			</script>';
 			return;			
 	}
+	*/
+	
 ?>
 
   <!-- Content Wrapper. Contains page content -->

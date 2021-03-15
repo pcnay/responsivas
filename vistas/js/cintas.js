@@ -20,9 +20,11 @@ $.ajax({
 	"processing":true,
   Estos tres parametros son para optimizar el DataTable.
 */
+// Para hacer que las variables de sesion se puedan usar en Datatable.
+var perfilOculto = $("#perfilOculto").val();
 
 $('.tablaCintas').DataTable({
-	"ajax":"ajax/datatable-cintas.ajax.php",
+	"ajax":"ajax/datatable-cintas.ajax.php?perfilOculto="+perfilOculto,
 	"defenderRender":true,
 	"retrieve":true,
 	"processing":true,

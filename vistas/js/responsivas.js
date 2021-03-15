@@ -193,7 +193,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 							'<div class="input-group">'+
 								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'+idProducto+'" ><i class="fa fa-times"></i></button></span>'+
 
-								'<input type="text" class="form-control agregarProducto" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
+								'<input type="text" class="form-control agregarProducto" idProducto="'+idProducto+'" name="agregarProducto" value ="'+descripcion+'" readonly required>'+
 
 							'</div> <!-- <div class="input-group"> -->'+
 
@@ -209,7 +209,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 						'<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value ="'+precio+'" readonly required>'+
+								'<input type="text" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value ="'+precio+'" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
@@ -220,6 +220,10 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 			// Sumar totalpreicos
 			sumarTotalPrecios();
 			agregarImpuesto();
+			
+			// Asignar fornmatos al precio de los productos.
+			$(".nuevoPrecioProducto").number(true,2);
+
 		}
 
 	});
@@ -327,7 +331,7 @@ $(".btnAgregarProducto").click(function(){
 							'<div class="input-group">'+
 								'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto ><i class="fa fa-times"></i></button></span>'+
 
-								'<select class="form-control nuevaDescripcionProducto" id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>'+
+								'<select class="form-control nuevaDescripcionProducto agregarProducto" idProducto="'+idProducto+'"  idProducto name="nuevaDescripcionProducto" required>'+
 
 								'<option>Seleccione el Produdcto</option>'+
 								'</select>'+
@@ -346,7 +350,7 @@ $(".btnAgregarProducto").click(function(){
 						'<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">'+
 							'<div class="input-group">'+
 							'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-								'<input type="number" min="1" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>'+
+								'<input type="text" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>'+
 							'</div>	<!-- <div class="input-group">  -->'+
 
 						'</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->'+
@@ -372,6 +376,10 @@ $(".btnAgregarProducto").click(function(){
 			// total de precios 
 			sumarTotalPrecios();
 			agregarImpuesto();
+
+			// Asignar fornmatos al precio de los productos.
+			$(".nuevoPrecioProducto").number(true,2);
+
 
 	
 			//respuesta.forEach(funcionForEach);		
@@ -518,3 +526,110 @@ function agregarImpuesto()
 $("#nuevoImpuestoVenta").change(function(){
 	agregarImpuesto();
 }) 
+
+// Asignar fornmatos al precio final (total)
+$("#nuevoTotalVenta").number(true,2);
+
+// Seleccionar forma de Pago. Esta id="nuevoMetodoPago" proviene del archivo "cap-responsiva.php"
+// Se lanza este evento cuando se cambia en el "Select" una opcion.
+$("#nuevoMetodoPago").change(function(){
+	//Obtiene el valor del "select" (NO el Id)
+	var metodo = $(this).val();
+	if (metodo == "Efectivo")
+	{
+		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
+		$(this).parent().parent().removeClass("col-xs-6");
+		$(this).parent().parent().addClass("col-xs-6");
+		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
+		// Se agrega una etiqueta desde JavaScript 
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+			'<div class="col-xs-4">'+
+				'<div class="input-group">'+ 
+					'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+					'<input type="text" class="form-control nuevoValorEfectivo" placeholder="0000000" required >'+
+				'</div>'+ 
+			'</div>'+
+			'<div class="col-xs-4 capturarCambioEfectivo" style="padding-left:0px">'+
+				'<div class="input-group">'+ 
+					'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+					'<input type="text" class="form-control nuevoCambioEfectivo" name="nuevoCambioEfectivo" placeholder="0000000" readonly required >'+
+				'</div>'+		
+			'</div>'
+
+			);
+			//Agregar formato al precio
+			$('.nuevoValorEfectivo').number(true,2);
+			$('.nuevoCambioEfectivo').number(true,2);
+	}
+	else
+	{
+		$(this).parent().parent().removeClass('col-xs-4');
+		$(this).parent().parent().addClass("col-xs-6");
+		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
+		// Se agrega una etiqueta desde JavaScript 
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+		'<div class="col-xs-6" style="padding-left:0px">'+
+			'<!-- Para crear el metodo de pago. -->'+
+			'<div class="input-group">'+
+				'<input type="text" classs="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Codigo Transaccion" required >'+
+				'<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+
+			'</div> <!-- <div class="input-group"> -->'+								
+		'</div> <!-- <div class="col-xs-6"> -->')
+
+	}
+})
+
+// =======================================================================
+// Cambio en Efectivo 
+// =======================================================================
+// Cuando cambie el "input" de nuevoValorEfectivo
+$(".formularioResponsiva").on("change","input.nuevoValorEfectivo",function(){
+	// Es el contenido del input "nuevoValorEfectivo, se crea en : "$("#nuevoMetodoPago").change(function(){"
+
+	var efectivo = $(this).val();
+	var cambio = Number(efectivo) - Number($('#nuevoTotalVenta').val());
+
+	// Para accesar a "nuevoCambioEfectivo" (Se encuentra en: $("#nuevoMetodoPago")
+	var nuevoCambioEfectivo = $(this).parent().parent().parent().children('.capturarCambioEfectivo').children().children('.nuevoCambioEfectivo');
+
+	// Asignar el cambio para el cliente.
+	nuevoCambioEfectivo.val(cambio);
+	
+})
+
+// ====================================================================================
+// Listar todos los productos.
+// ====================================================================================
+function listarProductos()
+{
+	var listarProductos = [];
+	
+	// Estos valores se obtienen de la etiqueta:  $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
+	//var id =
+	// Contine todos los productos de la resposivas
+	var descripcion = $(".agregarProducto");
+
+	var cantidad = $(".nuevaCantidadProducto");
+	var precio = $(".nuevoPrecioProducto");
+	//var total =
+
+	for (var i=0; 1 < descripcion.length; i++)
+	{
+		// Ingresando en Json el los productos de la responsiva 
+		listarProductos.push({"id" : $(descripcion[i]).attr("idProducto"),
+													"descripcion" : $(descripcion[i]).val(),
+													"cantidad" : $(cantidad[i]).val(),
+													"stock" : $(cantidad[i]).attr("stock"),
+													"precio" : $(precio[i]).attr("precioRealstock"),
+													"precio" : $(precio[i]).val(),
+
+												});	 
+	} // for (var i=0; 1 < descripcion.length; i++)
+
+	console.log("listaProductos",listaProductos);
+
+
+	
+
+}

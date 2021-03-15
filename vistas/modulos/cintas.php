@@ -1,3 +1,14 @@
+<?php
+// Los perfiles que no tiene permitido 
+	if ($_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Banca Talento" )
+	{
+		echo '
+			<script>
+				window.location = "inicio";
+			</script>';
+			return;			
+	}
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

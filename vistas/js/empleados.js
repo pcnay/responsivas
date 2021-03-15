@@ -20,9 +20,10 @@ $.ajax({
 	"processing":true,
   Estos tres parametros son para optimizar el DataTable.
 */
+var perfilOculto = $("#perfilOculto").val();
 
 $('.tablaEmpleados').DataTable({
-	"ajax":"ajax/datatable-empleados.ajax.php",
+	"ajax":"ajax/datatable-empleados.ajax.php?perfilOculto="+perfilOculto,
 	"defenderRender":true,
 	"retrieve":true,
 	"processing":true,

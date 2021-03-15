@@ -33,10 +33,15 @@
 				"data": [';
 					for ($i=0;$i<count($cintas);$i++)
 					{
-
-						// Se agrega los botones con las clases y id para "editar" y "borrar"
-						$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idCinta = '".$cintas[$i]["id_cintas"]."'><i class='fa fa-times'></i></button></div>";
-
+						if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Administrador")
+						{
+							// Se agrega los botones con las clases y id para "editar" y "borrar"
+							$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idCinta = '".$cintas[$i]["id_cintas"]."'><i class='fa fa-times'></i></button></div>";
+						}
+						else
+						{
+							$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></div>";
+						}
 
 						$datosJson .= '[
 							"'.($i+1).'",														

@@ -1,6 +1,6 @@
 <?php
 	// El Usuario administrador solo puede entrar a esta ventana 
-	if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" )
+	if ($_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Banca Talento" )
 	{
 		echo '
 			<script>
@@ -9,7 +9,6 @@
 			return;			
 	}
 ?>
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -107,10 +106,13 @@
 													<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
 													 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... -->
 													
-													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id_usuario"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>
-													<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"-->
-													<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id_usuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
-												</div>
+													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id_usuario"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>';
+													if ($_SESSION["perfil"] == "Administrador")
+													{
+														echo '<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"-->
+														<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id_usuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>';
+													}
+												echo '</div>
 											</td>
 								</tr> ';
 
@@ -196,9 +198,10 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
                 <select class="form-control input-lg" name="nuevoPerfil">
                   <option value="">Seleccionar perfil</option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Especial">Especial</option>
-                  <option value="Vendedor">Vendedor</option>
+                  <option value="Supervisor">Supervisor</option>
+                  <option value="Ingeniero">Ingeniero</option>
+                  <option value="Soporte">Soporte</option>
+									<option value="Banca Talento">Banca Talento</option>
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
@@ -295,9 +298,10 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
                 <select class="form-control input-lg" name="editarPerfil">
 									<!-- id= "editarPerfil" para que desde JavaScript se modifique el que tiene el usuario .-->
                   <option value=""  id="editarPerfil"></option>
-                  <option value="Administrador">Administrador</option>
-                  <option value="Especial">Especial</option>
-                  <option value="Vendedor">Vendedor</option>
+                  <option value="Supervisor">Supervisor</option>
+                  <option value="Ingeniero">Ingeniero</option>
+                  <option value="Soporte">Soporte</option>
+									<option value="Banca Talento">Banca Talento</option>
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
