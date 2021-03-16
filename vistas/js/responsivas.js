@@ -125,7 +125,8 @@ $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
 		success:function(respuesta){
 			// Para agregar el contenido en la etiqueta de "Nombre Empleado"
 			$("#agregarEmpleado").val(respuesta["nombre"]+' '+respuesta["apellidos"]);
-			//console.log("respuesta",respuesta);
+			$("#idEmpleado").val(respuesta["id_empleado"]);
+			//console.log("respuesta",$("#idEmpleado").val());
 		}
 
 	});
@@ -291,6 +292,7 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	{
 		$("#nuevoImpuestoVenta").val(0);
 		$("#nuevoTotalVenta").val(0);
+		$("#totalVenta").val(0);
 		$("#nuevoTotalVenta").attr("total",0);
 	}
 	else
@@ -522,6 +524,7 @@ function sumarTotalPrecios()
 	var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
 	// console.log("sumaTotalPrecio",sumaTotalPrecio);	
 	$("#nuevoTotalVenta").val(sumaTotalPrecio);
+	$("#totalVenta").val(sumaTotalPrecio);
 	//Se asigna este valor al id de "cap-responsiva.php" -> total=
 	$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
 
@@ -538,6 +541,7 @@ function agregarImpuesto()
 
 	// Asignar a las etiquetas de Cap-responsivas.php
 	$("#nuevoTotalVenta").val(totalConImpuesto);
+	$("#totalVenta").val(totalConImpuesto);
 	$("#nuevoPrecioImpuesto").val(precioImpuesto);
 	$("#nuevoPrecioNeto").val(precioTotal);
 }
@@ -566,20 +570,22 @@ $("#nuevoMetodoPago").change(function(){
 			'<div class="col-xs-4">'+
 				'<div class="input-group">'+ 
 					'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-					'<input type="text" class="form-control nuevoValorEfectivo" placeholder="0000000" required >'+
+					'<input type="text" class="form-control" id="nuevoValorEfectivo" placeholder="0000000" required >'+
 				'</div>'+ 
 			'</div>'+
-			'<div class="col-xs-4 capturarCambioEfectivo" style="padding-left:0px">'+
+			'<div class="col-xs-4" id="capturarCambioEfectivo" style="padding-left:0px">'+
 				'<div class="input-group">'+ 
 					'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-					'<input type="text" class="form-control nuevoCambioEfectivo" name="nuevoCambioEfectivo" placeholder="0000000" readonly required >'+
+					'<input type="text" class="form-control" id="nuevoCambioEfectivo" name="nuevoCambioEfectivo" placeholder="0000000" readonly required >'+
 				'</div>'+		
 			'</div>'
 
 			);
 			//Agregar formato al precio
-			$('.nuevoValorEfectivo').number(true,2);
-			$('.nuevoCambioEfectivo').number(true,2);
+			$('#nuevoValorEfectivo').number(true,2);
+			$('#nuevoCambioEfectivo').number(true,2);
+			// Para obtener el Metodo de Pago
+			listarMetodos();
 	}
 	else
 	{
@@ -604,18 +610,27 @@ $("#nuevoMetodoPago").change(function(){
 // Cambio en Efectivo 
 // =======================================================================
 // Cuando cambie el "input" de nuevoValorEfectivo
-$(".formularioResponsiva").on("change","input.nuevoValorEfectivo",function(){
+$(".formularioResponsiva").on("change","input#nuevoValorEfectivo",function(){
 	// Es el contenido del input "nuevoValorEfectivo, se crea en : "$("#nuevoMetodoPago").change(function(){"
 
 	var efectivo = $(this).val();
 	var cambio = Number(efectivo) - Number($('#nuevoTotalVenta').val());
 
 	// Para accesar a "nuevoCambioEfectivo" (Se encuentra en: $("#nuevoMetodoPago")
-	var nuevoCambioEfectivo = $(this).parent().parent().parent().children('.capturarCambioEfectivo').children().children('.nuevoCambioEfectivo');
+	var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
 
 	// Asignar el cambio para el cliente.
 	nuevoCambioEfectivo.val(cambio);
 	
+})
+
+// =======================================================================
+// Cambio Transaccion 
+// =======================================================================
+// Cuando cambie el "input" ID nuevoCodigoTransaccion
+$(".formularioResponsiva").on("change","input#nuevoCodigoTransaccion",function(){
+	// Para obtener el Metodo de Pago
+	listarMetodos();
 })
 
 // ====================================================================================
@@ -654,10 +669,24 @@ function listarProductos()
 
 	// JSON.stringfy = Lo convierte de JSon a Cadena de Textos que se utilizara para grabar en la base de datos.
 	// console.log("listarProductos",JSON.stringify(listarProductos));
-	$("#listaMetodo").val(JSON.stringify(listaMetodos));
-
-
-
-	
+	$("#listaProductos").val(JSON.stringify(listarProductos));
 
 }
+
+// ===========================================================
+// Listar método de Pagos
+// ===========================================================
+function listarMetodos()
+{
+	var listaMetodos = "";
+	if ($("#nuevoMetodoPago").val() == "Efectivo")
+	{
+		$("#listaMetodoPago").val("Efectivo")
+	}
+	else
+	{
+		// $("#nuevoCodigoTransaccion").val(); proviene de la funcion $("#nuevoMetodoPago").change(function(){
+		$("#listaMetodoPago").val($("#nuevoMetodoPago").val()+"-"+$("#nuevoCodigoTransaccion").val())
+	}
+
+} // function listarMetodos()

@@ -40,7 +40,7 @@
 										<div class="form-group">
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
-												<input type="text" class="form-control" id="nuevoUsuario" name="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
+												<input type="text" class="form-control" id="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
 
 												<!-- Este valor se va a guardar en la tabla de Responsiva .-->
 												<input type="hidden" name = "idUsuario" value ="<?php echo $_SESSION["id"]; ?>">
@@ -82,7 +82,9 @@
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
 
 												<input type="text" class="form-control" id="agregarEmpleado" name="agregarEmpleado" placeholder="Agregar Empleado" required>
-												
+												<!-- Para obtener el Id Empleado, que se utilizara para grabarlo en la base de datos -->
+												<input type="hidden" name="idEmpleado" id="idEmpleado">
+
 												<!-- Revisar esta etiqueta para la utilizacion 
 												<select class="form-control" id="seleccionarEmpleado" name="seleccionarEmpleado" required> 
 													<option value="">Selecciona Empleado</option>
@@ -107,7 +109,7 @@
 
 									</div> <!-- <div clss="form-group row nuevoProducto" -->
 									
-									<input type="hidden" id="listaProducto" name="listaProducto">
+									<input type="hidden" id="listaProductos" name="listaProductos">
 
 
 
@@ -133,7 +135,7 @@
 													<tr>
 														<td style="width: 50%">
 															<div class="input-group">														
-																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" >
 																<!-- Se agrega este "input hidden" para que se pueda grabar en la base de datos. -->
 																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto">
 																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto">
@@ -146,6 +148,11 @@
 															<div class="input-group">
 																<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 																<input type="text" class="form-control input-lg"  id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
+
+																<!-- Se utilizara un input "hidden" para gurdar el el importe de la venta sin formato.-->
+
+																<input type="hidden" name="totalVenta" id="totalVenta">
+
 																
 															</div>
 														</td>
@@ -177,9 +184,11 @@
 											<!-- En esta parte estaba la seccion para "Tipo De Pago"  -->
 											
 											<!-- Se utiliza JavaScript para agregar datos en esta Seccion del DIV -->
-											<div class="cajasMetodoPago">
-													
+											<div class="cajasMetodoPago">														
 											</div>
+
+											<!--  Este campo se utiliza en JavaScript -->
+											<input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
 
 										</div> <!-- <div class="form-group row">  -->
 
@@ -195,7 +204,12 @@
 							</div>
 
 					</form>
-					
+					<!-- Para generar la Responsiva -->
+					<?php
+						$guardarResponsiva = new ControladorResponsivas();
+						$guardarResponsiva->ctrCrearResponsiva();
+
+					?>
 				</div> <!-- <div class="box box-success"> -->
 					
 			</div> <!-- <div class = "col-lg-5 col-xs-12"> -->
