@@ -47,7 +47,7 @@
 
 			if ($item != null)
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen,tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE $condicion = :$item ORDER BY tperif.nombre ASC");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				//$stmt->bindParam(":".$comparar, $condicion,PDO::PARAM_STR);
@@ -151,10 +151,19 @@
 
 		}
 
-		// Actualizar Producto, cuando se realiza la Venta. 
+		// Actualizar Producto, por uno solo campo 
+		// $valor = Es el contenido del "Id"
+		// $item1a = "cuantas_veces" es el campo que se utilizara a modificar
+		// $valor1a = Es el nuevo valor de "Cuantas_veces".
+		//$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1a,$valor1a,$valor);
+
 		static public function mdlActualizarProducto($tabla,$item1,$valor1,$valor2)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE id = :id");
+			// $item1 = Actualizar de forma dinamica, Stok, precio, descripicon,
+			// $valor1 = Es el valor del campo($item1) a modificar
+			// $valor2 = Es el valor del "id" que se quiere modificar.
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE id_producto = :id");
 			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
 			$stmt->bindParam(":id", $valor2,PDO::PARAM_STR);
 

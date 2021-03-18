@@ -57,7 +57,7 @@
 			{
 				$item = "id_producto";
 				$valor = $this->idProducto;
-				$orden = "id_producto";
+				$orden = "nombre";
 				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 				echo json_encode($respuesta);
 			}
