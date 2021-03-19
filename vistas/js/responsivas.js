@@ -559,13 +559,63 @@ $("#nuevoTotalVenta").number(true,2);
 $("#nuevoMetodoPago").change(function(){
 	//Obtiene el valor del "select" (NO el Id)
 	var metodo = $(this).val();
-	if (metodo == "Efectivo")
+	if (metodo == "Prestamo")
 	{
+		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
+		$(this).parent().parent().removeClass("col-xs-6");
+		$(this).parent().parent().addClass("col-xs-4");
+		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
+		// Se agrega una etiqueta desde JavaScript 
+		
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+			'<div class="col-xs-3">'+
+				'<div class="input-group">'+ 
+					'<!-- <span class="input-group-addon"></span> -->'+
+					'<input type="date" class="form-control" id="nuevaFechaAsignado style="width:5px; heigth :51px"" required >'+
+				'</div>'+ 
+			'</div>'+
+			'<div class="col-xs-3" id="c2pturarCambioEfectivo" style="padding-left:10px">'+
+				'<div class="input-group">'+ 
+					'<!-- <span class="input-group-addon"></span> -->'+
+					'<input type="date" class="form-control" id="nuevaFechaDevolucion" name="nuevaFechaDevolucion" required >'+
+				'</div>'+		
+			'</div>'
+
+			);
+		//Agregar formato al precio
+		//$('#nuevoValorEfectivo').number(true,2);
+		//$('#nuevoCambioEfectivo').number(true,2);
+		// Para obtener el Metodo de Pago
+		//listarMetodos();		
+	}
+	else
+	{
+		
+		$(this).parent().parent().removeClass('col-xs-4');
+		$(this).parent().parent().addClass("col-xs-6");
+		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
+		// Se agrega una etiqueta desde JavaScript 
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+		'<div class="col-xs-6" style="padding-left:0px">'+
+			'<!-- Para crear el metodo de pago. -->'+
+			'<div class="input-group">'+
+				'<input type="text" classs="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Codigo Transaccion" required >'+
+				'<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+
+			'</div> <!-- <div class="input-group"> -->'+								
+		'</div> <!-- <div class="col-xs-6"> -->')
+		
+
+	}
+
+		/* Se deje en comentario, ya que no se requiere, pero esta operable.
+
 		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
 		$(this).parent().parent().removeClass("col-xs-6");
 		$(this).parent().parent().addClass("col-xs-6");
 		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
 		// Se agrega una etiqueta desde JavaScript 
+		
 		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
 			'<div class="col-xs-4">'+
 				'<div class="input-group">'+ 
@@ -589,6 +639,7 @@ $("#nuevoMetodoPago").change(function(){
 	}
 	else
 	{
+		/*
 		$(this).parent().parent().removeClass('col-xs-4');
 		$(this).parent().parent().addClass("col-xs-6");
 		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
@@ -602,8 +653,9 @@ $("#nuevoMetodoPago").change(function(){
 
 			'</div> <!-- <div class="input-group"> -->'+								
 		'</div> <!-- <div class="col-xs-6"> -->')
+		*/
 
-	}
+
 })
 
 // =======================================================================

@@ -44,7 +44,6 @@
 
 												<!-- Este valor se va a guardar en la tabla de Responsiva .-->
 												<input type="hidden" name = "idUsuario" value ="<?php echo $_SESSION["id"]; ?>">
-
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
 
@@ -96,7 +95,32 @@
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
 
+										<!-- Se selecciona la Planta (1,2,3,4) -->			
+										<div class="form-group row">
+											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
+												<!-- Para crear el metodo de pago. -->
+												<div class="input-group">
+													<select class="form-control" id="nuevaPlanta" name="nuevaPlanta" required>
+														<option value="">Seleccione La Planta</option>
+														<option value="P1">Planta 1</option>
+														<option value="P2">Planta 2</option>
+														<option value="P3">Planta 3</option>
+													</select>
+												</div> <!-- <div class="input-group"> -->
+											</div> <!-- <div class="col-xs-4"> -->	
 
+													<div class="col-xs-8">
+														<div class="input-group">
+															<!-- <label for="comentarios">Comentarios:</label> -->
+															<textarea class="form-control" rows="1" cols="60" name="nuevoComentario" id="nuevoComentario">Comentarios
+															</textarea>
+														</div> <!-- <div class="input-group" -->		
+
+											</div> <!-- <div class="col-xs-4"> -->							
+										</div> <!-- <div class="form-group row">  -->
+										
+											
+									
 									<!-- En esta seccion es para capturar los productos de forma dinamica en la Responsiva 
 									=========================================================================
 									Se utilizara JavaScript para agregar los productos a la responsiva.
@@ -170,14 +194,13 @@
 										<!-- Para colocar en 6 columnas el forma de pago.-->
 									
 										<div class="form-group row">
-											<div class="col-xs-6"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
+											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
 													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
-														<option value="">Seleccione Metodo De Pago</option>
-														<option value="Efectivo">Efectivo</option>
-														<option value="TC">Tarjeta Credito</option>
-														<option value="TD">Tarjeta Debito</option>
+														<option value="">Modalidad</option>
+														<option value="Permanente">Permanente</option>
+														<option value="Prestamo">Prestamo</option>													
 													</select>
 												</div> <!-- <div class="input-group"> -->									
 											</div> <!-- <div class="col-xs-6"> -->
