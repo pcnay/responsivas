@@ -562,23 +562,25 @@ $("#nuevoMetodoPago").change(function(){
 	if (metodo == "Prestamo")
 	{
 		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
-		$(this).parent().parent().removeClass("col-xs-6");
+		$(this).parent().parent().removeClass("col-xs-4");
 		$(this).parent().parent().addClass("col-xs-4");
-		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
-		// Se agrega una etiqueta desde JavaScript 
-		
+	
+		// Para que se maneje dos columnas las fechas.
 		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
-			'<div class="col-xs-3">'+
-				'<div class="input-group">'+ 
+			'<div class="form-row">'+
+				'<div class="form-group col-xs-4">'+
+						'<!-- <span class="input-group-addon"></span> -->'+
+						'<label>Fecha Asignado</label>'+
+						'<input type="date" class="form-control" id="nuevaFechaAsignado" required >'+					
+				'</div>'+
+			'</div>'+	
+
+			'<div class="form-row">'+
+				'<div class="form-group col-xs-4">'+
 					'<!-- <span class="input-group-addon"></span> -->'+
-					'<input type="date" class="form-control" id="nuevaFechaAsignado style="width:5px; heigth :51px"" required >'+
-				'</div>'+ 
-			'</div>'+
-			'<div class="col-xs-3" id="c2pturarCambioEfectivo" style="padding-left:10px">'+
-				'<div class="input-group">'+ 
-					'<!-- <span class="input-group-addon"></span> -->'+
+					'<label>Fecha Devolucion</label>'+
 					'<input type="date" class="form-control" id="nuevaFechaDevolucion" name="nuevaFechaDevolucion" required >'+
-				'</div>'+		
+				'</div>'+
 			'</div>'
 
 			);
@@ -589,22 +591,20 @@ $("#nuevoMetodoPago").change(function(){
 		//listarMetodos();		
 	}
 	else
-	{
-		
+	{		
 		$(this).parent().parent().removeClass('col-xs-4');
 		$(this).parent().parent().addClass("col-xs-6");
 		// Hasta llegar al <DIV> "form-group", hasta llegar el <DIV id=cajasMetodoPago>
 		// Se agrega una etiqueta desde JavaScript 
 		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
-		'<div class="col-xs-6" style="padding-left:0px">'+
+			'<div class="col-xs-6" style="padding-left:0px">'+
 			'<!-- Para crear el metodo de pago. -->'+
 			'<div class="input-group">'+
-				'<input type="text" classs="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Codigo Transaccion" required >'+
-				'<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+				'<label>Fecha Asignado</label>'+
+				'<input type="date" classs="form-control" id="nuevaFechaAsignado" name="nuevaFechaAsignado"  required >'+			
 
 			'</div> <!-- <div class="input-group"> -->'+								
 		'</div> <!-- <div class="col-xs-6"> -->')
-		
 
 	}
 
