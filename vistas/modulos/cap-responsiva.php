@@ -100,12 +100,27 @@
 											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
-													<select class="form-control" id="nuevaPlanta" name="nuevaPlanta" required>
-														<option value="">Seleccione La Planta</option>
-														<option value="P1">Planta 1</option>
-														<option value="P2">Planta 2</option>
-														<option value="P3">Planta 3</option>
-													</select>
+													<input type="text" class="form-control" id="nuevoTicket" name="nuevoTicket" placeholder="Agregar Ticket" required>
+
+
+													<!-- 
+													<select class="form-control input-lg" id= "nuevaPlanta" name="nuevaPlanta" required>
+														<option value="">Planta</option>
+														<?php
+														/*
+															// Se obtendrán el Almacen.
+															$item = null;
+															$valor = null;
+															$orden = "descripcion";
+															$Almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor,$orden);
+															foreach ($Almacen as $key => $value)
+															{
+																echo '<option value = "'.$value["id_almacen"].'">'.$value["nombre"].'</option>';
+															}
+															*/
+														?>
+													</select>  -->
+
 												</div> <!-- <div class="input-group"> -->
 											</div> <!-- <div class="col-xs-4"> -->	
 

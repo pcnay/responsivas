@@ -138,5 +138,6 @@ require_once "modelos/cintas.modelo.php";
 require_once "modelos/centro-costos.modelo.php";
 require_once "modelos/responsivas.modelo.php";
 
+
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();

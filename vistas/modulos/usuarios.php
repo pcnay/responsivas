@@ -198,6 +198,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
                 <select class="form-control input-lg" name="nuevoPerfil">
                   <option value="">Seleccionar perfil</option>
+									<option value="Administrador">Administrador</option>
                   <option value="Supervisor">Supervisor</option>
                   <option value="Ingeniero">Ingeniero</option>
                   <option value="Soporte">Soporte</option>
@@ -298,6 +299,7 @@ Cuando el usuario oprima el boton de "Editar" (Lapiz)  se activa esta ventana.
                 <select class="form-control input-lg" name="editarPerfil">
 									<!-- id= "editarPerfil" para que desde JavaScript se modifique el que tiene el usuario .-->
                   <option value=""  id="editarPerfil"></option>
+									<option value="Administrador">Administrador</option>
                   <option value="Supervisor">Supervisor</option>
                   <option value="Ingeniero">Ingeniero</option>
                   <option value="Soporte">Soporte</option>

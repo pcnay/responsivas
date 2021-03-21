@@ -75,7 +75,6 @@
 								echo '<script>
 											window.location ="inicio";
 								 			</script>';
-
 							}
 							else
 							{
@@ -86,13 +85,13 @@
 						else
 						{
 							// Utiliza clases de "bootstrap" para desplegar la franja.
-							echo '<br><div class="alert alert-danger">El Usuario Aun No esta Activado !!</div>';	
+							echo '<br><div class="alert alert-danger">El Usuario NO esta Activo !!</div>';	
 						} // if ($respuesta["estado"] == 1 )
 
 					}					
           else
           {
-            echo '<br><div class="alert alert-danger">Error Al Ingresar.</div>';            
+            echo '<br><div class="alert alert-danger">Usuario y/o Clave Erronea </div>';            
 					} // if (($respuesta["usuario"] == $_POST["ingUsuario"]) && ($respuesta["clave"] == $encriptar))
 					
 				} // if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]))

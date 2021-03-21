@@ -11,6 +11,7 @@
 --    source script.sql ó \. script.sql
 
 			Borrar tabla: DROP TABLE <nombre Tabla>
+			Borrar Base Datos : DROP DATABASE <nombre Base Datos>
 			
 */
 
@@ -68,6 +69,15 @@ Para mostrar los campos de una tabla:
 
   */
 
+CREATE TABLE t_Cintas
+(
+  id_cintas SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  num_serial VARCHAR(15) NOT NULL,
+  fecha_inic DATE NULL,
+	fecha_final DATE NULL,
+  ubicacion VARCHAR(20) NOT NULL,
+	comentarios VARCHAR(100) NULL  
+);
 
 CREATE TABLE t_Periferico
 (
@@ -98,14 +108,6 @@ CREATE TABLE t_Modelo
 (
   id_modelo SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   descripcion VARCHAR(45) NOT NULL  
-);
-
-CREATE TABLE t_Planta
-(
-  id_planta SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  descripcion VARCHAR(45) NOT NULL,
-	domicilio VARCHAR(100) NOT NULL,
-	telefono VARCHAR(45)  
 );
 
 CREATE TABLE t_Telefonia
@@ -149,6 +151,12 @@ CREATE TABLE t_Supervisor
 CREATE TABLE t_Depto
 (
   id_depto SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  descripcion VARCHAR(50) NOT NULL	
+);
+
+CREATE TABLE t_Telefonia
+(
+  id_telefonia SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   descripcion VARCHAR(50) NOT NULL	
 );
 
@@ -225,50 +233,49 @@ CREATE TABLE t_Productos
 CREATE TABLE t_Responsivas
 (
   id_responsiva SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  
-	id_planta SMALLINT UNSIGNED NOT NULL,
 	id_empleado SMALLINT UNSIGNED NOT NULL,
-	id_producto SMALLINT UNSIGNED NOT NULL,
 	id_usuario SMALLINT UNSIGNED NOT NULL,
-	id_ubicacion SMALLINT UNSIGNED NOT NULL,
-  num_folio SMALLINT UNSIGNED NOT NULL,
-	prestamo CHAR(1) NOT NULL,	
-	responsiva_firmada VARCHAR(100),
+	id_almacen SMALLINT UNSIGNED NOT NULL,	
+  activa CHAR(1) NOT NULL,	
+	num_folio SMALLINT UNSIGNED NOT NULL,
+	modalidad_entrega VARCHAR(25) NOT NULL,	
+	ticket VARCHAR(30) NULL,
+	responsiva_firmada VARCHAR(100) NULL,
 	comentario TEXT,
-	devolucion TEXT,
+	comentario_devolucion TEXT,
 	productos TEXT,
   impuesto decimal(10,2) DEFAULT NULL,
 	neto decimal(10,2) DEFAULT NULL,
 	total decimal(10,2) DEFAULT NULL,
 	fecha_devolucion DATE NULL,
 	fecha_asignado DATE NULL,
-	FOREIGN KEY(id_planta) REFERENCES t_Planta(id_planta)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_producto) REFERENCES t_Productos(id_producto)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_usuario) REFERENCES t_Usuarios(id_usuario)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion)
+	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
 	ON DELETE RESTRICT ON UPDATE CASCADE	
 );
 
-CREATE TABLE t_Cintas
+CREATE TABLE t_Tareas
 (
-  id_cintas SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  num_serial VARCHAR(15) NOT NULL,
-  fecha_inic DATE NULL,
-	fecha_final DATE NULL,
-  ubicacion VARCHAR(20) NOT NULL,
-	comentarios VARCHAR(100) NULL  
+  id_tarea SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  
+	id_producto SMALLINT UNSIGNED NOT NULL,
+	id_empleado SMALLINT UNSIGNED NOT NULL,
+	id_almacen SMALLINT UNSIGNED NOT NULL,	
+	id_usuario SMALLINT UNSIGNED NOT NULL,	  
+	tarea_asignada VARCHAR(70) NOT NULL,	
+	ticket VARCHAR(30) NULL,
+	comentario1 TEXT,
+	comentario2 TEXT,
+	fecha_inicio DATE NULL,
+	fecha_fin DATE NULL,
+	FOREIGN KEY(id_producto) REFERENCES t_Productos(id_producto)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_usuario) REFERENCES t_Usuarios(id_usuario)
+	ON DELETE RESTRICT ON UPDATE CASCADE	
 );
-
-
-
-
-
-
-
-
-
-
