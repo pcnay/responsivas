@@ -4,7 +4,7 @@
     <!-- Despliega los iconos del menu laterial -->
     <ul class="sidebar-menu">
 			<?php
-				if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador")
+				if ($_SESSION["perfil"] == "Administrador")
 				{
 					echo '
 						<!-- Manejando los roles de los usuarios. -->
@@ -116,6 +116,18 @@
 										</a>
 									</li>	
 									<li>
+										<a href="telefonia">
+											<i class="fa fa-circle-o"></i>
+											<span>Cia Telefonica</span>
+										</a>
+									</li>	
+									<li>
+										<a href="plan_telefonia">
+											<i class="fa fa-circle-o"></i>
+											<span>Plan De Telefonia</span>
+										</a>
+									</li>	
+									<li>								
 										<a href="productos">
 											<i class="fa fa-circle-o"></i>
 											<span>Alta Producto</span>

@@ -372,8 +372,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
         </div>
 
 				<!-- CUERPO DE LA VENTANA MODAL -->
-				<!-- Captura del codigo del producto -->
-        <div class="modal-body">
+				<div class="modal-body">
           <div class="box-body">
 
 						<!-- Capturar Periferico -->
@@ -409,6 +408,72 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
+						<!-- Capturar Compañia Telefonica-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoTelefonia" name="nuevoTelefonia" required>
+	                  <option value="">Telefonia</option>
+										<?php
+											// Se obtendrán la compañia telefonicadesdes la base de datos.
+											$item = null;
+											$valor = null;
+											$telefonia = ControladorTelefonicas::ctrMostrarTelefonicas($item,$valor);
+											foreach ($telefonia as $key => $value)
+											{
+												echo '<option value = "'.$value["id_telefonia"].'">'.$value["nombre"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+
+						<!-- Capturar Plan Telefonia-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoPlanTelefonia" name="nuevoPlanTelefonia" required>
+	                  <option value="">Plan Telefonia</option>
+										<?php
+											// Se obtendrán la compañia telefonicadesdes la base de datos.
+											$item = null;
+											$valor = null;
+											$plan_telefonia = ControladorPlanTelefonias::ctrMostrarPlanTelefonias($item,$valor);
+											foreach ($plan_telefonia as $key => $value)
+											{
+												echo '<option value = "'.$value["id_plan_tel"].'">'.$value["nombre"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar numero de telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoNumTel" name="nuevoNumTel" placeholder = "Ingresar Numero Telefonico">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar numero de Cuenta. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevaCuenta" name="nuevaCuenta" placeholder = "Num. Cuenta ">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
@@ -454,7 +519,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	            </div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
-
 						<!-- Captura el Almacen -->
             <div class= "col-xs-12 col-sm-6">
 							<div class="form-group">							
@@ -499,55 +563,6 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	              </div> <!-- <div class = "input-group"> -->  								         
 	            </div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
-
-
-						<!-- Captura el IDF 
-						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoIdf" name="nuevoIdf" required>
-	                  <option value="">Seleccionar Idf</option>
-										<?php
-											/*
-											// Se obtendrán el Idf desde la base de datos.
-											$item = null;
-											$valor = null;
-											$Idf = ControladorIdf::ctrMostrarIdf($item,$valor);
-											foreach ($Idf as $key => $value)
-											{
-												echo '<option value = "'.$value["id_idf"].'">'.$value["descripcion"].'</option>';
-											}
-											*/
-										?>
-	                </select>                
-	              </div> <div class = "input-group">
-	            </div> <div class="form-group">
-						</div> <div class="col-xs-12 col-sm-6"> -->
-
-						<!-- Captura el Patch Panel 
-						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoPatchPanel" name="nuevoPatchPanel" required>
-	                  <option value="">Seleccionar Patch Panel</option>
-										<?php
-										/*
-											// Se obtendrán el Patch Panel de la base de datos.
-											$item = null;
-											$valor = null;
-											$PatchPanel = ControladorPatchPanel::ctrMostrarPatchPanel($item,$valor);
-											foreach ($PatchPanel as $key => $value)
-											{
-												echo '<option value = "'.$value["id_patch_panel"].'">'.$value["descripcion"].'</option>';
-											}
-											*/
-										?>
-	                </select>                
-	              </div>  <div class = "input-group">
-	            </div>  <div class="form-group">
-	          </div> <div class= "col-xs-12 col-sm-6" -->
 
             <!-- Clases de BootStrap para las formularios-->
 						<!-- Capturar la Nomenclatura -->
@@ -655,11 +670,13 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	            </div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
+						<!-- 
 						<div class="form-group">
 						  <label for="especificaciones">Especificiones:</label>
 						  <textarea class="form-control" rows="5" name="nuevaEspecif" id="nuevaEspecif">
 							</textarea>
 						</div>
+						-->
 
 						<div class="form-group">
 						  <label for="comentarios">Comentarios:</label>

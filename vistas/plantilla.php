@@ -132,7 +132,7 @@
         if (isset($_GET["ruta"]))
         {
 					print_r($_GET["ruta"]);
-          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="responsivas" || $_GET["ruta"]=="cap-responsiva" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-responsiva" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="ubicaciones" ||  $_GET["ruta"]=="supervisores" || $_GET["ruta"]=="puestos" || $_GET["ruta"]=="deptos" || $_GET["ruta"]=="empleados" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="edo-epo" || $_GET["ruta"]=="almacen" || $_GET["ruta"]=="cintas"|| $_GET["ruta"]=="centro-costos" || $_GET["ruta"]=="planta" ||$_GET["ruta"]=="salir")
+          if ($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuarios" || $_GET["ruta"]=="perifericos" || $_GET["ruta"]=="productos" || $_GET["ruta"]=="clientes"|| $_GET["ruta"]=="responsivas" || $_GET["ruta"]=="cap-responsiva" || $_GET["ruta"]=="crear-venta" || $_GET["ruta"]=="editar-responsiva" || $_GET["ruta"]=="marcas" ||  $_GET["ruta"]=="Modelos" || $_GET["ruta"]=="ubicaciones" ||  $_GET["ruta"]=="supervisores" || $_GET["ruta"]=="puestos" || $_GET["ruta"]=="deptos" || $_GET["ruta"]=="empleados" || $_GET["ruta"]=="reportes" || $_GET["ruta"]=="respaldo_bd" || $_GET["ruta"]=="edo-epo" || $_GET["ruta"]=="almacen" || $_GET["ruta"]=="cintas"|| $_GET["ruta"]=="centro-costos" || $_GET["ruta"]=="telefonia" ||$_GET["ruta"]=="salir")
           {
             include "modulos/".$_GET["ruta"].".php";
           }
@@ -190,18 +190,12 @@
 	<script src="vistas/js/edo-epo.js"></script>
 	<!-- Se muestra el Almacen -->
 	<script src="vistas/js/almacen.js"></script>
-	<!-- Se muestra el Puerto -->
-	<script src="vistas/js/puerto.js"></script>
-	<!-- Se muestra el PatchPanel -->
-	<script src="vistas/js/patchpanel.js"></script>
-	<!-- Se muestra el IDF -->
-	<script src="vistas/js/idf.js"></script>
 	<!-- Se muestra el CINTAS -->
 	<script src="vistas/js/cintas.js"></script>
 	<!-- Se muestra el CINTAS -->
 	<script src="vistas/js/centro-costos.js"></script>
-	<!-- Para las capturas de las plantas Edificios -->
-	<script src="vistas/js/plantas.js"></script>
+	<!-- Se muestra la telefonia -->
+	<script src="vistas/js/telefonia.js"></script>
 	<!-- Para las capturas de las responsivas  -->
 	<script src="vistas/js/responsivas.js"></script>
 

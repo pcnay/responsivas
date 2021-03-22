@@ -1,15 +1,14 @@
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Almacen
+        Administrar Cia Telefonica 
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Almacen</li>
+        <li class="active">Cia Telefonica</li>
       </ol>
     </section>
 
@@ -22,8 +21,8 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarAlmacen">
-            Agregar Almacen
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarTelefonia">
+            Agregar Cia Telefonica
           </button>       
         </div>
  
@@ -35,7 +34,7 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Almacenes</th>								
+                <th>Nombre</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -48,10 +47,10 @@
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$almacenes = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
-								// Probando mostrando lo que contiene la variable "$almacenes"
-								// var_dump($almacenes);
-								foreach ($almacenes as $key => $value)
+								$telefonia = ControladorTelefonias::ctrMostrarTelefonias($item,$valor);
+								// Probando mostrando lo que contiene la variable "$telefonias"
+								// var_dump($telefonias);
+								foreach ($telefonia as $key => $value)
 								{
 									echo '
 												<tr>
@@ -61,13 +60,13 @@
 													<td class="text-uppercase">'.$value["nombre"].'</td>							
 													<td>
 														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarAlmacen" para activar una ventana modal -->
-															<!-- "btnEditarAlmacen" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarAlmacen" idAlmacen="'.$value["id_almacen"].'" data-toggle="modal" data-target="#modalEditarAlmacen"><i class="fa fa-pencil"></i></button>';
+															<!-- data-toggle="modal" data-target="#modalEditarTelefonia" para activar una ventana modal -->
+															<!-- "btnEditarTelefonia" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarTelefonia" idTelefonia="'.$value["id_telefonia"].'" data-toggle="modal" data-target="#modalEditarTelefonia"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
-																echo '<!-- Se pasa btnEliminarAlmacen, idAlmacen="'.$value["id_almacen"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarAlmacen" idAlmacen="'.$value["id_almacen"].'"><i class="fa fa-times"></i></button>';
+																echo '<!-- Se pasa btnEliminarTelefonia, idTelefonia="'.$value["id_telefonia"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarTelefonia" idTelefonia="'.$value["id_telefonia"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>
@@ -94,11 +93,11 @@
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
+Cuando el usuario oprima el boton de "Agregar Telefonia" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarAlmacen" class="modal fade" role="dialog">
+<div id="modalAgregarTelefonia" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -110,9 +109,8 @@ Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Almacen</h4>
+          <h4 class="modal-title">Agregar Cia Telefonica</h4>
         </div>
-
 
         <div class="modal-body">
           <div class="box-body">
@@ -120,7 +118,7 @@ Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoAlmacen" placeholder = "Ingresar Almacen" id="nuevoAlmacen" required>
+                <input type="text" class="form-control input-lg" name="nuevaTelefonia" placeholder = "Ingresar Cia. Telefonica" id="nuevaTelefonia" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -132,13 +130,13 @@ Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Almacen</button>
+            <button type="submit" class="btn btn-primary">Guardar Cia Telefonica</button>
           </div>
 
 					<?php 
-						// Para grabar el Almacen
-						$crearAlmacen = new ControladorAlmacenes();
-						$crearAlmacen->ctrCrearAlmacen();
+						// Para grabar la Cia. Telefonica 
+						$crearTelefonia = new ControladorTelefonias();
+						$crearTelefonia->ctrCrearTelefonia();
 					?>
 
       </form>
@@ -147,17 +145,17 @@ Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarAlmacen" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarTelefonia" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Almacen" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Telefonia" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Almacen 
+	 Modal Editar Cia. Telefonicas 
 	====================================================
 -->
-<div id="modalEditarAlmacen" class="modal fade" role="dialog">
+<div id="modalEditarTelefonia" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -169,7 +167,7 @@ Cuando el usuario oprima el boton de "Editar Almacen" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Almacen</h4>
+          <h4 class="modal-title">Editar Cia Telefonica</h4>
         </div>
 
 
@@ -179,9 +177,9 @@ Cuando el usuario oprima el boton de "Editar Almacen" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarAlmacen"  id="editarAlmacen" required>
+                <input type="text" class="form-control input-lg" name="editarTelefonia"  id="editarTelefonia" required>
 								<!-- Se envía como campo oculto para enviar el "id" del Almacen -->
-								<input type="hidden"  name="idAlmacen"  id="idAlmacen" required>
+								<input type="hidden"  name="idTelefonia"  id="idTelefonia" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -198,8 +196,8 @@ Cuando el usuario oprima el boton de "Editar Almacen" se activa esta ventana.
 
 					<?php 
 						// Para grabar la modifiacion de Almacen.
-						$editarAlmacen = new ControladorAlmacenes();
-						$editarAlmacen->ctrEditarAlmacen();
+						$editarTelefonia = new ControladorTelefonias();
+						$editarTelefonia->ctrEditarTelefonia();
 					?>
 
       </form>
@@ -212,9 +210,9 @@ Cuando el usuario oprima el boton de "Editar Almacen" se activa esta ventana.
 
 <?php 
 	// =====================================================
-	// Para borrar Almacen
+	// Para borrar Cia. Telefonica
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarAlmacen = new ControladorAlmacenes();
-	$borrarAlmacen->ctrBorrarAlmacen();
+	$borrarTelefonia = new ControladorTelefonias();
+	$borrarTelefonia->ctrBorrarTelefonia();
 ?>

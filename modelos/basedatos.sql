@@ -113,7 +113,13 @@ CREATE TABLE t_Modelo
 CREATE TABLE t_Telefonia
 (
   id_telefonia SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR(45) NOT NULL
+  nombre VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE t_PlanTelefonia
+(
+  id_plan_tel SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE t_Usuarios
@@ -154,11 +160,6 @@ CREATE TABLE t_Depto
   descripcion VARCHAR(50) NOT NULL	
 );
 
-CREATE TABLE t_Telefonia
-(
-  id_telefonia SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  descripcion VARCHAR(50) NOT NULL	
-);
 
 CREATE TABLE t_Centro_Costos
 (
@@ -202,7 +203,9 @@ CREATE TABLE t_Productos
 	id_periferico SMALLINT UNSIGNED NOT NULL,
 	id_empleado SMALLINT UNSIGNED NOT NULL,
 	id_telefonia SMALLINT UNSIGNED NOT NULL,
+	id_plan_tel SMALLINT UNSIGNED NOT NULL,
 	num_tel VARCHAR(25) NULL,
+	cuenta VARCHAR(45) NULL,	
   nomenclatura VARCHAR(45) NULL,
 	num_serie VARCHAR(45) NOT NULL,
 	imagen_producto VARCHAR(100) NOT NULL,
@@ -211,7 +214,7 @@ CREATE TABLE t_Productos
 	precio_venta decimal(10,2) DEFAULT NULL,
 	cuantas_veces TINYINT DEFAULT NULL,
 	fecha_arribo DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	especificaciones TEXT NULL,
+	especificaciones TEXT DEFAULT NULL,
 	comentarios TEXT NULL,
 	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -226,8 +229,9 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_telefonia) REFERENCES t_Telefonia(id_telefonia)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_plan_tel) REFERENCES t_PlanTelefonia(id_plan_tel)
 	ON DELETE RESTRICT ON UPDATE CASCADE
-
 );
 
 CREATE TABLE t_Responsivas
@@ -236,10 +240,10 @@ CREATE TABLE t_Responsivas
 	id_empleado SMALLINT UNSIGNED NOT NULL,
 	id_usuario SMALLINT UNSIGNED NOT NULL,
 	id_almacen SMALLINT UNSIGNED NOT NULL,	
-  activa CHAR(1) NOT NULL,	
+  activa CHAR(1) NOT NULL,
 	num_folio SMALLINT UNSIGNED NOT NULL,
 	modalidad_entrega VARCHAR(25) NOT NULL,	
-	ticket VARCHAR(30) NULL,
+	num_ticket VARCHAR(30) NULL,
 	responsiva_firmada VARCHAR(100) NULL,
 	comentario TEXT,
 	comentario_devolucion TEXT,
