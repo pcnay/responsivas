@@ -122,9 +122,9 @@
 										</a>
 									</li>	
 									<li>
-										<a href="plan_telefonia">
+										<a href="plan-telefonia">
 											<i class="fa fa-circle-o"></i>
-											<span>Plan De Telefonia</span>
+											<span>Plan Telefonia</span>
 										</a>
 									</li>	
 									<li>								
