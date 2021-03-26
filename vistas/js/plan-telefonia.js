@@ -10,7 +10,7 @@ $(".btnEditarPlanTelefonia").click(function(){
 	datos.append("idPlanTelefonia",idPlanTelefonia); // Se crea la variable "POST", "idTelefonia"
 
 	$.ajax({
-		url:"ajax/plantelefonia.ajax.php",
+		url:"ajax/plan-telefonia.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
@@ -64,7 +64,7 @@ $("#nuevoPlanTelefonia").change(function(){
 	// Genera 
 	datos.append("validarPlanTelefonia",planTelefonia);
 	$.ajax({
-		url:"ajax/plantelefonia.ajax.php",
+		url:"ajax/plan-telefonia.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,

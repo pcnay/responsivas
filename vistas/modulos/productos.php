@@ -413,13 +413,13 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							<div class="form-group">							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoTelefonia" name="nuevoTelefonia" required>
+	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia" required>
 	                  <option value="">Telefonia</option>
 										<?php
 											// Se obtendrán la compañia telefonicadesdes la base de datos.
 											$item = null;
 											$valor = null;
-											$telefonia = ControladorTelefonicas::ctrMostrarTelefonicas($item,$valor);
+											$telefonia = ControladorTelefonias::ctrMostrarTelefonias($item,$valor);
 											foreach ($telefonia as $key => $value)
 											{
 												echo '<option value = "'.$value["id_telefonia"].'">'.$value["nombre"].'</option>';
@@ -636,38 +636,24 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 
 						</div> <!-- <div class="form-group">  -->
 
-						<!-- Captura el Empleado asignado al producto. -->
-						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoEmpleado" name="nuevoEmpleado" required>
-	                  <option value="">Seleccionar Empleado</option>
-										<?php
-											// Se obtendrán la Marca desdes la base de datos.
-											$item = null;
-											$valor = null;
-											$orden = "apellidos";
-											$Empleado = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
-											foreach ($Empleado as $key => $value)
-											{
-												echo '<option value = "'.$value["id_empleado"].'">'.$value["nombre"].'</option>';
-											}
-										?>
-	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class = "form-group"> -->           	
-            </div> <!-- <div class= "col-xs-12 col-sm-6"> -->
-					
+						<!-- Captura el Empleado asignado al producto. Este campo solo se utiliza para mostrar el nombre completo del empleado .-->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <input type="text" class="form-control input-lg" name="nombreEmpleado" placeholder = "Asignado : " id="nombreEmpleado" required>
+              </div> <!-- <div class = "input-group"> -->           
 
-						<!-- Captura el Nuevo Porcentaje -->
+            </div> <!-- <div class="form-group"> -->
+          				
+
+						<!-- Captura el Nuevo Porcentaje 
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
 	              <div class = "input-group">	                
-									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="0" required>
+									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="0" required readonly >
 										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
-	              </div> <!-- <div class = "input-group"> -->           
-	            </div> <!-- <div class="form-group"> -->
+	              </div> <!-- <div class = "input-group"> 
+	            </div> <!-- <div class="form-group"> 
 						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
 
 						<!-- 
@@ -679,8 +665,8 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						-->
 
 						<div class="form-group">
-						  <label for="comentarios">Comentarios:</label>
-						  <textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
+							<label for="comentarios">Comentarios:</label>
+							<textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
 							</textarea>
 						</div>
 

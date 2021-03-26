@@ -201,7 +201,7 @@ CREATE TABLE t_Productos
 	id_marca SMALLINT UNSIGNED NOT NULL,
 	id_modelo SMALLINT UNSIGNED NOT NULL,
 	id_periferico SMALLINT UNSIGNED NOT NULL,
-	id_empleado SMALLINT UNSIGNED NOT NULL,
+	id_empleado SMALLINT UNSIGNED NULL,
 	id_telefonia SMALLINT UNSIGNED NOT NULL,
 	id_plan_tel SMALLINT UNSIGNED NOT NULL,
 	num_tel VARCHAR(25) NULL,
@@ -213,8 +213,8 @@ CREATE TABLE t_Productos
 	precio_compra decimal(10,2) DEFAULT NULL,
 	precio_venta decimal(10,2) DEFAULT NULL,
 	cuantas_veces TINYINT DEFAULT NULL,
+	asignado CHAR(1) DEFAULT 'N',	
 	fecha_arribo DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	especificaciones TEXT DEFAULT NULL,
 	comentarios TEXT NULL,
 	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -225,8 +225,6 @@ CREATE TABLE t_Productos
 	FOREIGN KEY(id_modelo) REFERENCES t_Modelo(id_modelo)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_periferico) REFERENCES t_Periferico(id_periferico)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_telefonia) REFERENCES t_Telefonia(id_telefonia)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
