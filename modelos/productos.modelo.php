@@ -71,23 +71,27 @@
 			/*
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,stock,precio_compra,precio_venta,nomenclatura,especificaciones,comentarios,imagen_producto,cuantas_veces) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:stock,:precio_compra,:precio_venta,:nomenclatura,:especificaciones,:comentarios,:imagen_producto,:cuantas_veces)");
 			*/
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,imagen_producto,stock,precio_compra,precio_venta,especificaciones,comentarios) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:imagen_producto,:stock,:precio_compra,:precio_venta,:especificaciones,:comentarios)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_telefonia,id_plan_tel,num_tel,cuenta,direcc_mac_tel,imei_tel,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,stock,precio_compra,precio_venta,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_telefonia,:id_plan_tel,:num_tel,:cuenta,:direcc_mac_tel,:imei_tel,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:stock,:precio_compra,:precio_venta,:comentarios,:imagen_producto)");
 
 			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
 			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);
+			$stmt->bindParam(":id_telefonia",$datos["id_telefonia"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_plan_tel",$datos["id_plan_tel"],PDO::PARAM_INT);
+			$stmt->bindParam(":num_tel",$datos["num_tel"],PDO::PARAM_INT);
+			$stmt->bindParam(":cuenta",$datos["cuenta"],PDO::PARAM_STR);
+			$stmt->bindParam(":direcc_mac_tel",$datos["direcc_mac_tel"],PDO::PARAM_STR);
+			$stmt->bindParam(":imei_tel",$datos["imei_tel"],PDO::PARAM_STR);
 			$stmt->bindParam(":id_marca",$datos["id_marca"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_modelo",$datos["id_modelo"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_edo_epo",$datos["id_edo_epo"],PDO::PARAM_INT);			
 			$stmt->bindParam(":id_empleado",$datos["id_empleado"],PDO::PARAM_INT);
 			$stmt->bindParam(":nomenclatura",$datos["nomenclatura"],PDO::PARAM_STR);
-			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);
 			$stmt->bindParam(":stock",$datos["stock"],PDO::PARAM_STR);
 			$stmt->bindParam(":precio_compra",$datos["precio_compra"],PDO::PARAM_STR);
 			$stmt->bindParam(":precio_venta",$datos["precio_venta"],PDO::PARAM_STR);
-			$stmt->bindParam(":especificaciones",$datos["especificaciones"],PDO::PARAM_STR);
 			$stmt->bindParam(":comentarios",$datos["comentarios"],PDO::PARAM_STR);
-			
+			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);		
 
 			if ($stmt->execute())
 			{

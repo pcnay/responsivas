@@ -107,23 +107,29 @@
           }
 
 					// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.		
-					$veces = 1;			
+					$veces = 0;			
 					$tabla = "t_Productos";
+					// "id_empleado" Solo se utiliza para guardar su ID, pero no se relacionan con la tabla "t_Empleados", para asignar nombre de quien lo tiene asignado.
 					$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
 												"num_serie" =>$_POST["nuevoSerial"],
+												"id_telefonia" =>$_POST["nuevaTelefonia"],
+												"id_plan_tel" =>$_POST["nuevoPlanTelefonia"],
+												"num_tel" =>$_POST["nuevoNumTel"],
+												"cuenta" =>$_POST["nuevaCuenta"],
+												"direcc_mac_tel" =>$_POST["nuevaDireccMac"],
+												"imei_tel" =>$_POST["nuevoImei"],
 												"id_marca" =>$_POST["nuevoMarca"],
 												"id_modelo" =>$_POST["nuevoModelo"],
 												"id_almacen" =>$_POST["nuevoAlmacen"],
 												"id_edo_epo" =>$_POST["nuevoEdoEpo"],
-												"id_empleado" =>$_POST["nuevoEmpleado"],
-												"stock" =>$_POST["nuevoStock"],
 												"nomenclatura" =>$_POST["nuevaNomenclatura"],
+												"stock" =>$_POST["nuevoStock"],												
 												"precio_compra" =>$_POST["nuevoPrecioCompra"],
-												"precio_venta" =>$_POST["nuevoPrecioVenta"],
-												"especificaciones" =>rtrim($_POST["nuevaEspecif"]),
+												"precio_venta" =>$_POST["nuevoPrecioVenta"],												
 												"comentarios" =>rtrim($_POST["nuevoComent"]),
-												"cuantas_veces" =>$veces,
+												"cuantas_veces" =>$veces,												
 												"imagen" =>$ruta);
+					
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);
 
 					if ($respuesta == "ok")

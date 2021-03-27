@@ -413,7 +413,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							<div class="form-group">							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia" required>
+	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia">
 	                  <option value="">Telefonia</option>
 										<?php
 											// Se obtendrán la compañia telefonicadesdes la base de datos.
@@ -471,6 +471,28 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevaCuenta" name="nuevaCuenta" placeholder = "Num. Cuenta ">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar Direccion MAC del Telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevaDireccMac" name="nuevaDireccMac" placeholder = "MAC Address Tel ">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar Direccion IMEI del Telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoImei" name="nuevoImei" placeholder = "IMEI Tel">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -606,22 +628,22 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						</div> <!-- <div class="form-group row"> -->
 
 							<!-- Captura de Precio Venta -->
-							<!-- Clases de BootStrap para las formularios-->
-							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							<!-- Clases de BootStrap para las formularios -->
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores 
 
-						<div class="form-group"> <!-- <div class="form-group row">-->
+						<div class="form-group"> <!-- <div class="form-group row"> -->
 							<div class="col-xs-12 col-sm-6">							
 
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
 									<!-- min="0" Para que solo permita números positivos. 
-										step="any" = Para que acepte decimales.
-									-->
+										step="any" = Para que acepte decimales. -->
+									
 									<input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0" step="any" placeholder = "Ingresar Precio Venta" required>
 								</div> <!-- <div class = "input-group"> -->   
 								<br>
 
-						</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class="form-group"> 
 
 						<!-- Checkbox para porcentaje 
 						<div class="form-group">
@@ -640,7 +662,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nombreEmpleado" placeholder = "Asignado : " id="nombreEmpleado" required>
+                <input type="text" class="form-control input-lg" name="nombreEmpleado" placeholder = "Asignado : " id="nombreEmpleado">
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
