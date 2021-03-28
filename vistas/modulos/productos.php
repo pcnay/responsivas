@@ -296,7 +296,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								<div class= "col-xs-12 col-sm-6">
 			            <div class="form-group">
 										<div class="input-group">
-											<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+											<input type="number" class="form-control input-lg editarPorcentaje" min="0" value="40" required>
 											<span class="input-group-addon"><i class="fa fa-percent"></i></span>
 										</div> <!-- <div class="input-group"> -->
 									</div> <!-- <div class="form-group"> -->
@@ -304,13 +304,13 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 
 								<div class="form-group">
 									<label for="especificaciones">Especificiones:</label>
-									<textarea class="form-control" rows="5" name="nuevaEspecif" id="nuevaEspecif">
+									<textarea class="form-control" rows="5" name="editarEspecif" id="editarEspecif">
 									</textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="comentarios">Comentarios:</label>
-									<textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
+									<textarea class="form-control" rows="5" name="editarComent" id="editarComent">
 									</textarea>
 								</div>
 
@@ -413,7 +413,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 							<div class="form-group">							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia">
+	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia" required>
 	                  <option value="">Telefonia</option>
 										<?php
 											// Se obtendrán la compañia telefonicadesdes la base de datos.
@@ -604,7 +604,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" min="0"  placeholder = "Ingresar Cantidad" required>
+									<input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" min="1"  placeholder = "Ingresar Cantidad" required>
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -659,14 +659,24 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 						</div> <!-- <div class="form-group">  -->
 
 						<!-- Captura el Empleado asignado al producto. Este campo solo se utiliza para mostrar el nombre completo del empleado .-->
-            <div class="form-group">
+					<?php	
+						$item = "id_empleado";
+						$valor = 1;
+						$orden = "apellidos";
+						$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
+						$completo = $respuesta["nombre"].$respuesta["apellidos"];
+						//var_dump($respuesta); Muestra el contenido del arreglo
+						//print_r($completo); Muestra el contenido de la variable
+						
+					
+            echo '<div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nombreEmpleado" placeholder = "Asignado : " id="nombreEmpleado">
+                <input type="text" class="form-control input-lg" name="nombreEmpleado" id="nombreEmpleado" placeholder = "'.$respuesta["nombre"].' '.$respuesta["apellidos"].'" readonly>
               </div> <!-- <div class = "input-group"> -->           
 
-            </div> <!-- <div class="form-group"> -->
-          				
+            </div> <!-- <div class="form-group"> -->'
+          ?>		
 
 						<!-- Captura el Nuevo Porcentaje 
 						<div class= "col-xs-12 col-sm-6">
@@ -688,7 +698,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
 
 						<div class="form-group">
 							<label for="comentarios">Comentarios:</label>
-							<textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent">
+							<textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent" placeholder="Comentarios">
 							</textarea>
 						</div>
 

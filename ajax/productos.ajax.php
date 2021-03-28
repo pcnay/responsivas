@@ -20,6 +20,33 @@
 
 		}
 
+		// Validar si existe el Numero de Telefono
+		public $validarNumTel;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarNumTel()
+		{
+			$item = "num_tel";
+			$valor = $this->validarNumTel;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+
+		// Validar si existe la Direccion MAC del telefono
+		public $validarDireccMac;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarDireccMac()
+		{
+			$item = "direcc_mac_tel";
+			$valor = $this->validarDireccMac;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
 
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
@@ -99,5 +126,20 @@
 		$valSerial->ajaxValidarSerial();
 	}
 
+	// Validar que NO se repita el Numero de Telefono.
+	if (isset($_POST["validarNumTel"]))
+	{
+		$valNumTel = new AjaxProductos();
+		$valNumTel->validarNumTel = $_POST["validarNumTel"];
+		$valNumTel->ajaxValidarNumTel();
+	}
+
+	// Validar que NO se repita la Direccion MAC del Tel.
+	if (isset($_POST["validarDireccMac"]))
+	{
+		$valDireccMac = new AjaxProductos();
+		$valDireccMac->validarDireccMac = $_POST["validarDireccMac"];
+		$valDireccMac->ajaxValidarDireccMac();
+	}
 
 ?>

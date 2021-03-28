@@ -74,7 +74,7 @@ INSERT INTO t_Centro_Costos (id_centro_costos,num_centro_costos,descripcion) VAL
 	(0,'NumCentroCostosTres','DescripcionTres');
 
 INSERT INTO t_Empleados (id_empleado,id_ubicacion,id_puesto,id_supervisor,id_depto,id_centro_costos,nombre,apellidos,ntid,correo_electronico,foto,fecha) VALUES
-  (0,1,1,1,1,1,'NombreEmpleadoUno','ApellidosEmpleadoUno','NTIDUno','correoElectronicoUno','FotoUno',CURRENT_TIMESTAMP),
+  (0,1,1,1,1,1,'Depto TI','Depto TI','NTIDUno','correoElectronicoUno','FotoUno',CURRENT_TIMESTAMP),
 	(0,1,1,1,1,1,'NombreEmpleadoDos','ApellidosEmpleadoDos','NTIDDos','correoElectronicoDos','FotoDos',CURRENT_TIMESTAMP),
 	(0,1,1,1,1,1,'NombreEmpleadoTres','ApellidosEmpleadoTres','NTIDTres','correoElectronicoTres','FotoTres',CURRENT_TIMESTAMP);
 

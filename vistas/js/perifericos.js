@@ -38,7 +38,7 @@ $("#nuevoPeriferico").change(function(){
 	$(".alert").remove();
 				
 	// Obtienedo el valor del id=nuevoPeriferico.
-	var categoria = $(this).val();
+	var periferico = $(this).val();
 	
 	//console.log("Ubicacion",periferico);
 

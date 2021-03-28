@@ -67,7 +67,7 @@ $("#nuevoSerial").change(function(){
 	// Obtienedo el valor del id=nuevoSerial.
 	var serial = $(this).val();
 	
-	//console.log("Serial",marca);
+	//console.log("Serial",serial);
 
 	// Obtener datos de la base de datos
 	var datos = new FormData();
@@ -83,6 +83,7 @@ $("#nuevoSerial").change(function(){
 		dataType:"json",
 		success:function(respuesta){			
 			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
 			if (respuesta)
 			{
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
@@ -92,8 +93,84 @@ $("#nuevoSerial").change(function(){
 
 		}
 	})
- 
+
 }) // $("#nuevoSerial").change(function(){
+
+// Revisando que el "Numero de Telefono" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoNumTel" id="nuevoNumTel" placeholder = "Ingresar el Numero de Telefono" required>
+$("#nuevoNumTel").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoNumTel.
+	var num_tel = $(this).val();
+	
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNumTel",num_tel);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoNumTel").parent().after('<div class="alert alert-warning" >Ya existe el numero de Telefono </div>');
+				$("#nuevoNumTel").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoNumTel").change(function(){
+
+// Revisando que la MAC Address del Telefono no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaDireccMac" id="nuevaDireccMac" placeholder = "Ingresar la Direccion Mac del Telefono" required>
+$("#nuevaDireccMac").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevaDireccMac.
+	var direcc_mac = $(this).val();
+	
+	//console.log("Direccion Mac",direcc_mac);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarDireccMac",direcc_mac);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevaDireccMac").parent().after('<div class="alert alert-warning" >Ya existe la Direccion MAC del Telefono </div>');
+				$("#nuevaDireccMac").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevaDirecc").change(function(){
 
 /*
 // Se agrega el código para obtener el último número del codigo a utilizar

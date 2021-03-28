@@ -15,7 +15,7 @@
 		static public function ctrMostrarProductos($item,$valor)
 		{
 			$tabla = "t_Productos";
-			$orden = "apellidos";
+			$orden = "nomenclatura";
 			$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
 			return $respuesta;			
 		}
@@ -118,6 +118,7 @@
 												"cuenta" =>$_POST["nuevaCuenta"],
 												"direcc_mac_tel" =>$_POST["nuevaDireccMac"],
 												"imei_tel" =>$_POST["nuevoImei"],
+												"id_empleado" =>1,
 												"id_marca" =>$_POST["nuevoMarca"],
 												"id_modelo" =>$_POST["nuevoModelo"],
 												"id_almacen" =>$_POST["nuevoAlmacen"],
