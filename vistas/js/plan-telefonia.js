@@ -72,7 +72,7 @@ $("#nuevoPlanTelefonia").change(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){			
-			console.log("Respuesta",respuesta);
+			//console.log("Respuesta",respuesta);
 			// Si "respuesta = Valor, Verdadero "
 			if (respuesta)
 			{

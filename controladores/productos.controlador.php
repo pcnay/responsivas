@@ -23,9 +23,10 @@
 		// Crear producto
 		static public function ctrCrearProducto()
 		{
-			if (isset($_POST["nuevoSerial"]))
+			if (isset($_POST["nuevoPeriferico"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]))
+				// if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]))
+				if (preg_match('/^[A-Z0-9-]+$/',$_POST["nuevoSerial"]) && preg_match('/^[0-9-]+$/',$_POST["nuevoNumTel"]))
 				{
 					/*
 					(preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]) &&
@@ -148,10 +149,8 @@
 										window.location="productos";
 									}
 		
-									});
-			
+									});			
 							</script>';          
-
 					}
 					else
 					{
@@ -173,23 +172,27 @@
 							</script>';          	
 					}
 				}
-				else
+				else // if (preg_match('/^[A-Z0-9-]+$/',$_POST["nuevoSerial"]) && preg_match('/^[0-9-]+$/',$_POST ....
 				{
 					echo '<script>           
-					Swal.fire ({
-						type: "error",
-						title: "El producto no puede ir con los campos vacios o llevar caracteres especiales ",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar",
-						closeOnConfirm: false
-						}).then(function(result){
-							if (result.value)
-							{
-								window.location="productos";
-							}
-
-							});
-		
+						Swal.fire ({
+							title: "Esta seguro de Borrar el Empleado ",
+							text : "De lo contrario puede cancelar la Acción ",
+							type:"warning",
+							showCancelButton:true,		
+							confirmButtonColor: "#3085d6",
+							cancelButtonColor: "#d33",
+							cancelButtonText: "Cancelar",
+							confirmButtonText:"Si Para Borrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="index.php?ruta=empleados&idEmpleado="+idEmpleado+"&imagen="+imagen+"&apellidos="+apellidos;
+								}
+					
+								});					
+											
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  

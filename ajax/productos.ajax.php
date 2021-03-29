@@ -48,6 +48,34 @@
 
 		}
 
+		// Validar si existe el IMEI del telefono
+		public $validarImei;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarImei()
+		{
+			$item = "imei_tel";
+			$valor = $this->validarImei;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+		}
+
+		// Validar si existe la Cuenta asignada al Telefono
+		public $validarCuenta;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarCuenta()
+		{
+			$item = "cuenta";
+			$valor = $this->validarCuenta;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+		
+
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
 		public $idProducto;
@@ -142,4 +170,20 @@
 		$valDireccMac->ajaxValidarDireccMac();
 	}
 
+	// Validar que NO se repita el Imei del Tel.
+	if (isset($_POST["validarImei"]))
+	{
+		$valImei = new AjaxProductos();
+		$valImei->validarImei = $_POST["validarImei"];
+		$valImei->ajaxValidarImei();
+	}
+
+	// Validar que NO se repita la Cuenta del Tel.
+	if (isset($_POST["validarNumCta"]))
+	{
+		$valCtaTel = new AjaxProductos();
+		$valCtaTel->validarCuenta = $_POST["validarNumCta"];
+		$valCtaTel->ajaxValidarCuenta();
+	}
+	
 ?>

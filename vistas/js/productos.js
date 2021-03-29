@@ -58,15 +58,52 @@ $('.tabla').DataTable({
 });
 */ 
 
+// Aplicando expresiones regulares para validar campos del formulario
+function validarCampo(campoValid,queCampo)
+{
+	$(".alert").remove();
+	
+	switch (queCampo)
+	{
+		case ('Num_Tel'):
+			cadenaComparar = "^[0-9]";
+			etiqueta = "#nuevoNumTel";			
+			break;
+		case ('Num_Serial'):
+			cadenaComparar = "^[A-Z0-9]";
+			etiqueta = "#nuevoSerial";
+			break;
+		case ('Num_Cta'):
+			cadenaComparar = "^[0-9]";
+			etiqueta = "#nuevaCuenta";
+		break;
+		case ('DireccMac'):
+			cadenaComparar = "^[0-9A-Z:]";
+			etiqueta = "#nuevaDireccMac";
+		break;
+
+	
+	}
+
+	let expresionreg = new RegExp(cadenaComparar);
+	if (!expresionreg.test(campoValid))
+	{
+		//console.log("Valor ",expreg.test(campoValid));
+		$(etiqueta).parent().after('<div class="alert alert-warning" >NO Cumple la condicion</div>');
+		//$("#nuevoSerial").val("");		
+	}
+}
+
 // Revisando que el "Serial" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
 $("#nuevoSerial").change(function(){
 	// Remueve los mensajes de alerta. 
-	$(".alert").remove();
-				
+	$(".alert").remove();	
+
 	// Obtienedo el valor del id=nuevoSerial.
 	var serial = $(this).val();
-	
+	validarCampo(serial,'Num_Serial');
+
 	//console.log("Serial",serial);
 
 	// Obtener datos de la base de datos
@@ -104,7 +141,8 @@ $("#nuevoNumTel").change(function(){
 				
 	// Obtienedo el valor del id=nuevoNumTel.
 	var num_tel = $(this).val();
-	
+	validarCampo(num_tel,'Num_Tel');
+
 	//console.log("Serial",serial);
 	
 	// Obtener datos de la base de datos
@@ -134,6 +172,45 @@ $("#nuevoNumTel").change(function(){
  
 }) // $("#nuevoNumTel").change(function(){
 
+// Revisando que la Cuenta no este repetida
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaCuenta" id="nuevaCuenta" placeholder = "Ingresar el Numero de Cuenta" >
+$("#nuevaCuenta").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevaCeunta.
+	var num_cta = $(this).val();
+	validarCampo(num_cta,'Num_Cta');
+
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNumCta",num_cta);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevaCuenta").parent().after('<div class="alert alert-warning" >Ya existe el numero de Cuenta </div>');
+				$("#nuevaCuenta").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevaCuenta").change(function(){
+
 // Revisando que la MAC Address del Telefono no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaDireccMac" id="nuevaDireccMac" placeholder = "Ingresar la Direccion Mac del Telefono" required>
 $("#nuevaDireccMac").change(function(){
@@ -143,6 +220,8 @@ $("#nuevaDireccMac").change(function(){
 	// Obtienedo el valor del id=nuevaDireccMac.
 	var direcc_mac = $(this).val();
 	
+	validarCampo(direcc_mac,'DireccMac');
+
 	//console.log("Direccion Mac",direcc_mac);
 	
 	// Obtener datos de la base de datos
@@ -170,7 +249,46 @@ $("#nuevaDireccMac").change(function(){
 		}
 	})
  
-}) // $("#nuevaDirecc").change(function(){
+}) // $("#nuevaDireccMac").change(function(){
+
+// Revisando que la IMEI del Telefono no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaImei" id="nuevoImei" placeholder = "Ingresar el IMEMEI del Telefono" required>
+$("#nuevoImei").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevaDireccMac.
+	var Imei = $(this).val();
+	
+	//console.log("Imei",Imei);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarImei",Imei);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoImei").parent().after('<div class="alert alert-warning" >Ya existe el IMEI del Telefono </div>');
+				$("#nuevoImei").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevaImei").change(function(){
+
 
 /*
 // Se agrega el código para obtener el último número del codigo a utilizar
