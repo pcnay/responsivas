@@ -26,7 +26,7 @@
 			if (isset($_POST["nuevoPeriferico"]))
 			{
 				// if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSerial"]))
-				if (preg_match('/^[A-Z0-9-]+$/',$_POST["nuevoSerial"]) && preg_match('/^[0-9-]+$/',$_POST["nuevoNumTel"]))
+				if (preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]))
 				{
 					/*
 					(preg_match('/^[0-9]+$/',$_POST["nuevoPeriferico"]) &&
@@ -175,27 +175,20 @@
 				else // if (preg_match('/^[A-Z0-9-]+$/',$_POST["nuevoSerial"]) && preg_match('/^[0-9-]+$/',$_POST ....
 				{
 					echo '<script>           
-						Swal.fire ({
-							title: "Esta seguro de Borrar el Empleado ",
-							text : "De lo contrario puede cancelar la Acción ",
-							type:"warning",
-							showCancelButton:true,		
-							confirmButtonColor: "#3085d6",
-							cancelButtonColor: "#d33",
-							cancelButtonText: "Cancelar",
-							confirmButtonText:"Si Para Borrar",
-							closeOnConfirm: false
-							}).then(function(result){
-								if (result.value)
-								{
-									window.location="index.php?ruta=empleados&idEmpleado="+idEmpleado+"&imagen="+imagen+"&apellidos="+apellidos;
-								}
-					
-								});					
-											
-						</script>';          
+					Swal.fire ({
+						type: "success",
+						title: "Error al Capturar Datos",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+						closeOnConfirm: false
+						}).then(function(result){
+							if (result.value)
+							{
+								window.location="productos";
+							}
 
-				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
+							});			
+					</script>';				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
 
 			} //if (isset($_POST["nuevaDescripcion"]))
 		

@@ -75,6 +75,16 @@
 
 		}
 		
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarNomenclatura()
+		{
+			$item = "nomenclatura";
+			$valor = $this->validarNomenclatura;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
 
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
@@ -186,4 +196,11 @@
 		$valCtaTel->ajaxValidarCuenta();
 	}
 	
+	// Validar que NO se repita la Nomenclatura.
+	if (isset($_POST["validarNomenclatura"]))
+	{
+		$valNomenclatura = new AjaxProductos();
+		$valNomenclatura->validarNomenclatura = $_POST["validarNomenclatura"];
+		$valNomenclatura->ajaxValidarNomenclatura();
+	}
 ?>

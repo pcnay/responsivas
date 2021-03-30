@@ -81,7 +81,10 @@ function validarCampo(campoValid,queCampo)
 			cadenaComparar = "^[0-9A-Z:]";
 			etiqueta = "#nuevaDireccMac";
 		break;
-
+		case ('Nomenclatura'):
+			cadenaComparar = "^[0-9A-Z]";
+			etiqueta = "#nuevaNomenclatura";
+		break;
 	
 	}
 
@@ -289,6 +292,43 @@ $("#nuevoImei").change(function(){
  
 }) // $("#nuevaImei").change(function(){
 
+// Revisando que la "Nomenclatura" no este repetida
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaNomenclatura" id="nuevaNomenclatura" placeholder = "Ingresar la Nomenclatura" >
+$("#nuevaNomenclatura").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevaNomenclatura.
+	var nomenclatura = $(this).val();
+	validarCampo(nomenclatura,'Nomenclatura');
+
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNomenclatura",nomenclatura);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevaNomenclatura").parent().after('<div class="alert alert-warning" >Ya existe la Nomenclatura </div>');
+				$("#nuevaNomenclatura").val("");
+			}
+		}
+	})
+ 
+}) // $("#nuevaNomenclatura").change(function(){
 
 /*
 // Se agrega el código para obtener el último número del codigo a utilizar
@@ -345,11 +385,11 @@ $("#nuevoPrecioCompra, #editarPrecioCompra").change(function(){
 		var precioVentaConIvaEditado = Number(($("#editarPrecioCompra").val()*valorPorcentaje)/100)+Number($("#editarPrecioCompra").val());
 
 		//console.log ("valorPorcentaje",precioVentaConIva);
-		$("#nuevoPrecioVenta").val(precioVentaConIva);
-		$("#nuevoPrecioVenta").prop("readonly",true); 
+		//$("#nuevoPrecioVenta").val(precioVentaConIva);
+		//$("#nuevoPrecioVenta").prop("readonly",true); 
 		// Para que no se pueda modificar.
-		$("#editarPrecioVenta").val(precioVentaConIvaEditado);
-		$("#editarPrecioVenta").prop("readonly",true); 
+		//$("#editarPrecioVenta").val(precioVentaConIvaEditado);
+		//$("#editarPrecioVenta").prop("readonly",true); 
 
 
 	}
@@ -371,12 +411,12 @@ $(".nuevoPorcentaje").change(function(){
 		var precioVentaConIvaEditado = Number(($("#editarPrecioCompra").val()*valorPorcentaje)/100)+Number($("#editarPrecioCompra").val());
 
 		//console.log ("valorPorcentaje",precioVentaConIva);
-		$("#nuevoPrecioVenta").val(precioVentaConIva);
-		$("#nuevoPrecioVenta").prop("readonly",true); 
+		//$("#nuevoPrecioVenta").val(precioVentaConIva);
+		//$("#nuevoPrecioVenta").prop("readonly",true); 
 		// Para que no se pueda modificar.
 
-		$("#editarPrecioVenta").val(precioVentaConIvaEditado);
-		$("#editarPrecioVenta").prop("readonly",true); 
+		//$("#editarPrecioVenta").val(precioVentaConIvaEditado);
+		//$("#editarPrecioVenta").prop("readonly",true); 
 
 	}
 
@@ -385,15 +425,15 @@ $(".nuevoPorcentaje").change(function(){
 // Se utiliza este comando ya que la etiqueta check se esta utilizando con un componente "ickecked"
 $(".porcentaje").on("ifUnchecked",function(){
 	// Para activarlo nuevamente el "checkbox"
-	$("#nuevoPrecioVenta").prop("readonly",false); 
+	//$("#nuevoPrecioVenta").prop("readonly",false); 
 	// Se modifica para cuando se esta editando y se activa el CheckBox
-	$("#editarPrecioVenta").prop("readonly",false); 
+	//$("#editarPrecioVenta").prop("readonly",false); 
 })
 $(".porcentaje").on("ifChecked",function(){
 	// Para Desactivarlo nuevamente el "checkbox"
-	$("#nuevoPrecioVenta").prop("readonly",true); 
+	//$("#nuevoPrecioVenta").prop("readonly",true); 
 	// Se modifica para cuando se esta editando y se desactiva el CheckBox
-	$("#editarPrecioVenta").prop("readonly",true); 
+	//$("#editarPrecioVenta").prop("readonly",true); 
 })
 
 // Se agrega la foto del articulo, viene desde el formulario de captura (vistas/modulos/productos.php)
