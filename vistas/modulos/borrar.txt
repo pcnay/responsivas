@@ -1,0 +1,312 @@
+<!-- // Editar productos. -->
+<!-- Modal -->
+<div id="modalEditarProducto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <!-- enctype= "multipart/form-data = Para subir archivos. -->
+      <form role="form" method="post" enctype= "multipart/form-data">
+    
+        <!-- La franja azul de la ventana modal -->
+        <div class="modal-header" style= "background:#3c8dbc; color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar Producto</h4>
+        </div>
+
+				<!-- CUERPO DE LA VENTANA MODAL -->
+				<div class="modal-body">
+          <div class="box-body">
+
+						<!-- Los valores se cargaran desdes Javascritp -->		
+					
+						<!-- Capturar Periferico -->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg"  name="editarPeriferico" required>
+	                  <option id="editarPeriferico"></option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar el Número De Serie -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarSerial" name="editarSerial">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar Compañia Telefonica-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg"  name="editarTelefonia" required>
+	                  <option id="editarTelefonia"> </option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+						<!-- Capturar Plan Telefonia-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" name="editarPlanTelefonia" required>
+	                  <option id= "editarPlanTelefonia"></option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar numero de telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarNumTel" name="editarNumTel" >
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar numero de Cuenta. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarCuenta" name="editarCuenta">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar Direccion MAC del Telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarDireccMac" name="editarDireccMac">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar Direccion IMEI del Telefono. -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarImei" name="editarImei">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Captura el Marca -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" name="editarMarca" required>
+	                  <option id= "editarMarca"></option>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class = "form-group"> -->           	
+            </div> <!-- <div class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Captura el Modelo -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" name="editarModelo" required>
+	                  <option id= "editarModelo"></option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+						<!-- Captura el Almacen -->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" name="editarAlmacen" required>
+	                  <option id= "editarAlmacen"></option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+
+						<!-- Captura el Estado Del Equipo -->
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg"  name="editarEdoEpo" required>
+	                  <option id= "editarEdoEpo"></option>
+	                </select>                
+
+	              </div> <!-- <div class = "input-group"> -->  								         
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->
+
+            <!-- Clases de BootStrap para las formularios-->
+						<!-- Capturar la Nomenclatura -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarNomenclatura" name="editarNomenclatura">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Captura del Stock del producto -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="number" class="form-control input-lg" id="editarStock" name="editarStock" required>
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura de Precio Compra -->
+						<!-- Clases de BootStrap para las formularios-->
+						<!-- Se realizara un cambio en estos dos campos, colocando uno a lado del otro, además cuando se teclee el precio compra, calcule de forma automática el precio de venta. -->
+						<div class="form-group"> <!-- <div class="form-group row">-->
+							
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales.
+									-->
+									<input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" required>
+								</div> <!-- <div class = "input-group"> -->
+							</div> <!-- 	<div class="col-xs-6">	-->
+						</div> <!-- <div class="form-group row"> -->
+
+							<!-- Captura de Precio Venta -->
+							<!-- Clases de BootStrap para las formularios -->
+							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+
+						<div class="form-group"> <!-- <div class="form-group row"> -->
+							<div class="col-xs-12 col-sm-6">							
+
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+									<!-- min="0" Para que solo permita números positivos. 
+										step="any" = Para que acepte decimales. -->
+									
+									<input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" min="0" step="any" placeholder = "Ingresar Precio Venta" required>
+								</div> <!-- <div class = "input-group"> -->   
+								<br>
+
+						</div> <!-- <div class="form-group"> -->
+
+						<!-- Captura el Empleado asignado al producto. Este campo solo se utiliza para mostrar el nombre completo del empleado .-->
+					<?php	
+						
+
+
+
+						
+						$item = "id_empleado";
+						$valor = 1;
+						$orden = "apellidos";
+						$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
+						$completo = $respuesta["nombre"].$respuesta["apellidos"];
+						//var_dump($respuesta); Muestra el contenido del arreglo
+						//print_r($completo); Muestra el contenido de la variable
+						
+					
+            echo '<div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <input type="text" class="form-control input-lg" name="nombreEmpleado" id="nombreEmpleado" placeholder = "'.$respuesta["nombre"].' '.$respuesta["apellidos"].'" readonly>
+              </div> <!-- <div class = "input-group"> -->           
+
+            </div> <!-- <div class="form-group"> -->'
+          ?>		
+
+						<!-- Captura el Nuevo Porcentaje 
+						<div class= "col-xs-12 col-sm-6">
+	            <div class="form-group">
+	              <div class = "input-group">	                
+									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="0" required readonly >
+										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
+	              </div> <!-- <div class = "input-group"> 
+	            </div> <!-- <div class="form-group"> 
+						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
+
+						<!-- 
+						<div class="form-group">
+						  <label for="especificaciones">Especificiones:</label>
+						  <textarea class="form-control" rows="5" name="nuevaEspecif" id="nuevaEspecif">
+							</textarea>
+						</div>
+						-->
+
+						<div class="form-group">
+							<label for="comentarios">Comentarios:</label>
+							<textarea class="form-control" rows="5" name="nuevoComent" id="nuevoComent" placeholder="Comentarios">
+							</textarea>
+						</div>
+
+						<!-- Subir Imagen del producto 
+						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del producto.
+						-->
+            <div class="form-group">
+              <div class="panel text-up">SUBIR IMAGEN DEL PRODUCTO</div> 
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
+              <p class="help-block">Peso Máximo de la foto 2 Mb</p>
+              <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width = "100px">
+
+            </div> <!-- <div class="form-group"> -->
+
+
+					</div> <!-- <div class="box-body">  -->	
+				</div> <!-- <div class="modal-body">  -->				
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+          </div>
+
+        </form>
+
+				<!-- Para Guardar la información. -->
+				<?php
+					$crearProducto = new ControladorProductos();
+					$crearProducto->ctrCrearProducto();
+					
+				?>
+
+    </div> <!-- <div class="modal-content"> -->
+
+  </div> <!-- <div class="modal-dialog"> -->
+
+</div> <!-- <div id="modalAgregarProducto" class="modal fade" role="dialog"> -->

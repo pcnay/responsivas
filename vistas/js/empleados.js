@@ -232,7 +232,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				dataType:"json",
 				success:function(puesto)
 				{
-					// console.log("respuesta",respuesta);		
+					console.log("respuesta",puesto);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
 					$("#editarPuesto").val(puesto["id_puesto"]);
 					$("#editarPuesto").html(puesto["descripcion"]);		

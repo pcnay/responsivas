@@ -89,6 +89,7 @@
 					// Enviar la información al Modelo.
 					$tabla = "t_Puesto";
 					// Se pasan los valores para  la consulta en la base de datos.
+					// $_POST["idPuesto"], se origino en el "Input "hidden" de "puestos.php"
 					$datos = array("descripcion"=>$_POST["editarPuesto"],
 													"id_puesto"=>$_POST["idPuesto"]);
 

@@ -68,7 +68,8 @@
             $nuevoAlto = 500;
 
             // Crear el directorio donde se guardara la foto del producto
-						$directorio = "vistas/img/productos/".$_POST["nuevoSerial"];
+						// $directorio = "vistas/img/productos/".$_POST["nuevoPeriferico"];
+						$directorio = "vistas/img/productos/varios";
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
             mkdir ($directorio,0777);
 
@@ -76,7 +77,8 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/jpeg")
             {
               $aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-              $ruta = "vistas/img/productos/".$_POST["nuevoSerial"]."/".$aleatorio.".jpg";
+							// $ruta = "vistas/img/productos/".$_POST["nuevoPeriferico"]."/".$aleatorio.".jpg";
+							$ruta = "vistas/img/productos/varios"."/".$aleatorio.".jpg";
               $origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 							$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -93,7 +95,7 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/png")
             {
               $aleatorio = mt_rand(100,999);
-              $ruta = "vistas/img/productos/".$_POST["nuevoSerial"]."/".$aleatorio.".png";
+              $ruta = "vistas/img/productos/varios"."/".$aleatorio.".png";
               $origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
               $destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -196,18 +198,15 @@
 
 
 	// ******************************************************************
-	// Eliminar Producto
+	// Editar
 	// ******************************************************************
 
 	// Editar Producto
 	static public function ctrEditarProducto()
 	{
-		if (isset($_POST["editarDescripcion"]))
+		if (isset($_POST["editarPeriferico"]))
 		{
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarCategoria"]) &&
-				preg_match('/^[0-9]+$/',$_POST["editarStock"]) &&
-				preg_match('/^[0-9.]+$/',$_POST["editarPrecioCompra"]) &&
-				preg_match('/^[0-9.]+$/',$_POST["editarPrecioVenta"]))
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPeriferico"]))
 			{
 				$tabla = "t_Productos";
 
@@ -221,7 +220,7 @@
 				2.- En la base de datos solo se guardara la ruta donde esta almacenada la foto en el servidor.
 					*/
 				
-				// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/usuarios.php" seccion de "modalAgregarUsuario" etiqueta tipo "File" "nuevaImagen"
+				// Validando que se encuentre la foto en la etiqueta de "vistas/modulos/productos.php" seccion de "modalEditarProducto" etiqueta tipo "File" "nuevaImagen"
 				// Se agrega otra condicion "!empty($_FIL...." para que cuando no se modifique la foto no realize de nuevo el proceso 
 				if (isset($_FILES["editarImagen"]["tmp_name"]) && !empty($_FILES["editarImagen"]["tmp_name"]))
 				{
@@ -237,9 +236,9 @@
 
 
 					// Crear el directorio donde se guardara la foto del producto
-					$directorio = "vistas/img/productos/".$_POST["editarCodigo"];
+					$directorio = "vistas/img/productos/varios";
 					
-					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/empleados/default/anonymous.png"))
+					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"))
 					{
 						// Borrar la foto
 						unlink ($_POST["imagenActual"]);
@@ -248,14 +247,14 @@
 					{
 						// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos" 0755.
 						// mkdir ($directorio,0755);
-						mkdir ($directorio,0775);
+						mkdir ($directorio,0777);
 					}
 					
 					// De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
 					if ($_FILES["editarImagen"]["type"] == "image/jpeg")
 					{
 						$aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-						$ruta = "vistas/img/empleados/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/productos/varios"."/".$aleatorio.".jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -272,7 +271,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/png")
 					{
 						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/productos/".$_POST["editarCodigo"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/productos/varios"."/".$aleatorio.".png";
 						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -287,15 +286,31 @@
 				}
 
 				// Estos campos se extraen de las etiquetas de la captura de form de los productos, y se colocan en un arreglo.					
-				$datos = array("id_categoria" =>$_POST["editarCategoria"],
-											"codigo" =>$_POST["editarCodigo"],
-											"descripcion" =>$_POST["editarDescripcion"],
+				$datos = array("id_producto" => $_POST["IdProducto"],
+											"id_periferico" =>$_POST["editarPeriferico"],
+											"num_serie" =>$_POST["editarSerial"],
+											"id_telefonia" =>$_POST["editarTelefonia"],
+											"id_plan_tel" =>$_POST["editarPlanTelefonia"],
+											"num_tel" =>$_POST["editarNumTel"],
+											"cuenta" =>$_POST["editarCuenta"],
+											"direcc_mac_tel" =>$_POST["editarDireccMac"],
+											"imei" =>$_POST["editarImei"],
+											"id_marca" =>$_POST["editarMarca"],
+											"id_modelo" =>$_POST["editarModelo"],
+											"id_almacen" =>$_POST["editarAlmacen"],
+											"id_edo_epo" =>$_POST["editarEdoEpo"],
+											"nomenclatura" =>$_POST["editarNomenclatura"],
 											"stock" =>$_POST["editarStock"],
 											"precio_compra" =>$_POST["editarPrecioCompra"],
 											"precio_venta" =>$_POST["editarPrecioVenta"],
+											"comentarios" =>$_POST["editarComent"],
 											"imagen" =>$ruta);
-				$respuesta = ModeloProductos::mdlEditarProducto($tabla,$datos);
 
+				//var_dump($datos);
+				//return;
+							
+				$respuesta = ModeloProductos::mdlEditarProducto($tabla,$datos);
+				
 				if ($respuesta == "ok")
 				{
 					echo '<script>           

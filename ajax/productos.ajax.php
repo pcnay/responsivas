@@ -94,12 +94,13 @@
 
 		public function ajaxEditarProducto()
 		{
-
-			if($this->nombreProducto != "")
-			{
-				// Para poder obtener el registro que se selecciono del ComboBox.
-			}	
-
+			$item = "id_producto";
+			$valor = $this->idProducto;
+			$orden = "nombre";
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
+			echo json_encode($respuesta);
+			
+			/*
 			// Para el caso de que se edita utilizando un dispositivo movil
 			if ($this->traerProductos == "ok")
 			{
@@ -126,6 +127,8 @@
 				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 				echo json_encode($respuesta);
 			}
+			*/
+
 				
 		} // public function ajaxEditarProducto()
 
@@ -136,7 +139,8 @@
 	if (isset($_POST["idProducto"]))
 	{
 		$editarProducto = new AjaxProductos();
-		$editarProducto->idProducto = $_POST["idProducto"];
+		// Se genero en "productos.js" "btnEditarProducto", datos.append....
+		$editarProducto->idProducto = $_POST["idProducto"]; 
 		$editarProducto->ajaxEditarProducto();
 	}
 	

@@ -46,7 +46,7 @@
 	{
 		$plan_telefonia = new AjaxPlanTelefonia();
 		$plan_telefonia->idPlanTelefonia = $_POST["idPlanTelefonia"];
-		$plan_telefonia->ajaxValidarPlanTelefonia();
+		$plan_telefonia->ajaxEditarPlanTelefonia();
 	}
 
 	// Validar que NO se repita el Plan de Telefonia.
