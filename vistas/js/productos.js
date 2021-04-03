@@ -895,119 +895,24 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		
 	} // success:function(producto)
 
-
-			/*
-			// Obtener el Marca.
-			var datosMarcas = new FormData();
-			datosMarcas.append("idMarca",respuesta["id_marca"]);
-			$.ajax
-			({
-				url:"ajax/marcas.ajax.php",
-				method:"POST",
-				data:datosMarcas,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(marcas)
-				{					
-					$("#editarMarca").val(marcas["id_marca"]);
-					$("#editarMarca").html(marcas["descripcion"]);		
-				}		
-			})		
-			// Obtener el Modelo.
-			var datosModelos = new FormData();
-			datosModelos.append("idModelo",respuesta["id_modelo"]);
-			$.ajax
-			({
-				url:"ajax/modelos.ajax.php",
-				method:"POST",
-				data:datosModelos,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(modelos)
-				{					
-					$("#editarModelo").val(modelos["id_modelo"]);
-					$("#editarModelo").html(modelos["descripcion"]);		
-				}		
-			})		
-			// Obtener el Almacen.
-			var datosAlmacen = new FormData();
-			datosAlmacen.append("idAlmacen",respuesta["id_almacen"]);
-			$.ajax
-			({
-				url:"ajax/almacen.ajax.php",
-				method:"POST",
-				data:datosAlmacen,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(almacen)
-				{					
-					$("#editarAlmacen").val(almacen["id_almacen"]);
-					$("#editarAlmacen").html(almacen["nombre"]);		
-				}		
-			})		
-
-			// Obtener el Edo del Epo.
-			var datosEdoEpo = new FormData();
-			datosEdoEpo.append("idEdoEpo",respuesta["id_edo_epo"]);
-			$.ajax
-			({
-				url:"ajax/edo-epo-ajax.php",
-				method:"POST",
-				data:datosEdoEpo,
-				cache:false,
-				contentType:false,
-				processData:false,
-				dataType:"json",
-				success:function(edo_epo)
-				{					
-					$("#editarEdoEpo").val(almacen["id_edo_epo"]);
-					$("#editarEdoEpo").html(almacen["descripcion"]);		
-				}		
-			})		
-
-
-			// SE van asignar los valores a las editas del producto a Editar.
-			$("#editarSerial").val(respuesta["num_serie"]);
-			$("#editarNomenclatura").val(respuesta["nomenclatura"]);
-			$("#editarStock").val(respuesta["stock"]);
-			$("#editarPrecioCompra").val(respuesta["precio_compra"]);
-			$("#editarPrecioVenta").val(respuesta["precio_venta"]);
-			if (respuesta["imagen"] != "")
-			{
-				$("#imagenActual").val(respuesta["imagen"]);
-				//console.log("imagen",respuesta["imagen"]);
-				
-				$(".previsualizar").attr("src",respuesta["imagen"]);
-			}
-
-		}
-*/
 	})	// $.ajax({		
 
-}) // $(".tablaProductos tbody").on("click", ...
-
-
-// Borrar Producto
+}) // $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
+	
+//Borrar Producto
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 	var idProducto = $(this).attr("idProducto");
-	// console.log("idProducto",idProducto);
+	//console.log("idProducto",idProducto);
 	// Obtener el codigo del producto y la ruta de la imagen que esta grabada en la Tabla.
-	var codigo = $(this).attr("codigo");
-	var imagen = $(this).attr("imagen");
+	//var codigo = $(this).attr("codigo");
+	var imagen = $(this).attr("Imagen");
 
 	
 	Swal.fire ({
-		type: "success",
-		title: "La categoria ha sido borrada correctamente ",
-		text : "De lo contrario puede cancelar la Acción ",
-		type:'warning',
+		type: "warning",
+		title: "Esta seguro(a) de Borrar el Producto",
+		text : "De lo contrario puede cancelar la Acción ",		
 		showCancelButton:true,		
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
@@ -1017,9 +922,11 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 		}).then(function(result){
 			if (result.value)
 			{
-				window.location="index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen+"&codigo="+codigo;
+				// window.location="index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen+"&codigo="+codigo;
+				window.location="index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen;
 			}
 
 			});	
+
 
 })

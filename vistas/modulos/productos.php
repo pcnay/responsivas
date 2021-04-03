@@ -847,4 +847,9 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
   </div> <!-- <div class="modal-dialog"> -->
 
 </div> <!-- <div id="modalEditarProducto" class="modal fade" role="dialog"> -->
+<?php
+	// Eliminar producto.
+	$eliminarProducto = new ControladorProductos();
+	$eliminarProducto->ctrEliminarProducto();					
 
+?>

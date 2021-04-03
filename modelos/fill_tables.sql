@@ -89,7 +89,7 @@ INSERT INTO t_Productos (id_producto,id_almacen,id_edo_epo,id_marca,id_modelo,id
 		(0,1,1,1,'N',3,'modalidadEntregaTres','numTicketTres','responsivas_firmadaTres','ComentarioTres','ComentarioDevolucionTres','productosTres','10','100','110',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 
-	INSERT INTO t_Tareas (id_tarea,id_producto,id_empleado,id_almacen,id_usuario,tarea_asignada,ticket,comentario1,comentario2,fecha_inicio,fecha_fin) VALUES
-		(0,1,1,1,1,'tareaAsignadaUno','TicketUno','comentario1Uno','comentario2Uno',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
-		(0,1,1,1,1,'tareaAsignadaDos','TicketDos','comentario1Dos','comentario2Dos',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
-		(0,1,1,1,1,'tareaAsignadaTres','TicketTres','comentario1Tres','comentario2Tres',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+	INSERT INTO t_Tareas (id_tarea,id_empleado,id_almacen,id_usuario,tarea_asignada,ticket,comentario1,comentario2,fecha_inicio,fecha_fin) VALUES
+		(0,1,1,1,'tareaAsignadaUno','TicketUno','comentario1Uno','comentario2Uno',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
+		(0,1,1,1,'tareaAsignadaDos','TicketDos','comentario1Dos','comentario2Dos',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
+		(0,1,1,1,'tareaAsignadaTres','TicketTres','comentario1Tres','comentario2Tres',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

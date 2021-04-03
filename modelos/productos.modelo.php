@@ -178,7 +178,7 @@
 		// ==============================================================================
 		static public function mdlEliminarProductos($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_producto = :id");
 			$stmt->bindParam(":id",$datos,PDO::PARAM_INT);
 			if ($stmt->execute())
 			{

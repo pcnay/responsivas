@@ -265,8 +265,7 @@ CREATE TABLE t_Responsivas
 
 CREATE TABLE t_Tareas
 (
-  id_tarea SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  
-	id_producto SMALLINT UNSIGNED NOT NULL,
+  id_tarea SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  	
 	id_empleado SMALLINT UNSIGNED NOT NULL,
 	id_almacen SMALLINT UNSIGNED NOT NULL,	
 	id_usuario SMALLINT UNSIGNED NOT NULL,	  
@@ -276,8 +275,6 @@ CREATE TABLE t_Tareas
 	comentario2 TEXT,
 	fecha_inicio DATE NULL,
 	fecha_fin DATE NULL,
-	FOREIGN KEY(id_producto) REFERENCES t_Productos(id_producto)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)

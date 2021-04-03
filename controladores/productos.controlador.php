@@ -374,7 +374,7 @@
 				unlink ($_GET["imagen"]);
 				//$borrar_directorio = new EliminarDirectorio();
 				//$borrar_directorio->eliminar_directorio('vistas/img/productos/'.$_GET["codigo"]);
-				rmdir('vistas/img/productos/'.$_GET["codigo"]);				
+				rmdir($_GET["imagen"]);				
 			}
 
 			$respuesta = ModeloProductos::mdlEliminarProductos($tabla,$datos);
