@@ -106,7 +106,7 @@ $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
 	//$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpleado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
 
 	var idEmpleado = $(this).attr("idEmpleado");
-	//console.log("idEmpleado",idEmpleado);
+	console.log("idEmpleado",idEmpleado);
 	// Desactivar el boton "Agregar", solo se activa una sola vez.
 	//$(this).removeClass("btn-primary agregarEmpleado");
 	//$(this).addClass("btn-default");
@@ -571,7 +571,7 @@ $("#nuevoMetodoPago").change(function(){
 				'<div class="form-group col-xs-4">'+
 						'<!-- <span class="input-group-addon"></span> -->'+
 						'<label>Fecha Asignado</label>'+
-						'<input type="date" class="form-control" id="nuevaFechaAsignado" required >'+					
+						'<input type="date" class="form-control" name="nuevaFechaAsignado" id="nuevaFechaAsignado" required >'+					
 				'</div>'+
 			'</div>'+	
 
@@ -657,6 +657,23 @@ $("#nuevoMetodoPago").change(function(){
 
 
 })
+
+$(".formularioResponsiva").on("change","input#nuevaFechaDevolucion",function(){
+	$('.alert').remove();
+	
+	// Se convierte a objeto fecha para poder realizar orpaciones.
+	let fecha_dev = new Date($("#nuevaFechaDevolucion").val());
+	let fecha_asign = new Date($("#nuevaFechaAsignado").val());
+
+
+	if (fecha_asign > fecha_dev)
+	{
+		$("#nuevaFechaDevolucion").after('<div class="alert alert-warning" >Fecha Devolucion Equivocada</div>');
+		$("#nuevaFechaDevolucion").val("");	
+	}
+
+	
+});
 
 // =======================================================================
 // Cambio en Efectivo 

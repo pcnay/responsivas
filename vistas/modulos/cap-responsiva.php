@@ -55,13 +55,15 @@
 													// Se obtiene el último numero de responsiva.
 													$item = null;
 													$valor = null;
-													$responsiva= ControladorResponsivas::ctrMostrarResponsivas($item,$valor);
+													$ordenar = 'id_responsiva';													
+													$responsiva= ControladorResponsivas::ctrMostrarResponsivas($item,$valor, $ordenar);
 													if (!$responsiva)
 													{
-														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="1" readonly>';
+														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value=1 readonly>';
 													}
 													else 
 													{
+														// Lee todo el arreglo se sale del ciclo en el ultimo registro, que contiene el ultimo numero de folio que se grabo.
 														foreach ($responsiva as $key => $value)
 														{
 														}
@@ -100,14 +102,17 @@
 											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
-													<input type="text" class="form-control" id="nuevoTicket" name="nuevoTicket" placeholder="Agregar Ticket" required>
+													<input type="text" class="form-control" id="nuevoTicket" name="nuevoTicket" placeholder="Agregar Ticket">
+												</div> <!-- <div class="input-group">-->
+											</div> <!-- <div class="col-xs-4"> -->
 
-
-													<!-- 
-													<select class="form-control input-lg" id= "nuevaPlanta" name="nuevaPlanta" required>
+													<!-- Para crear el metodo de pago. -->
+											<div class="col-lg-8"> <!-- Se reduce de tamano de 6 a 4, utilizando  --> 
+												<div class="input-group">												
+													<select class="form-control input" id= "nuevaPlanta" name="nuevaPlanta" required>
 														<option value="">Planta</option>
 														<?php
-														/*
+													
 															// Se obtendrán el Almacen.
 															$item = null;
 															$valor = null;
@@ -116,25 +121,23 @@
 															foreach ($Almacen as $key => $value)
 															{
 																echo '<option value = "'.$value["id_almacen"].'">'.$value["nombre"].'</option>';
-															}
-															*/
+															}																
 														?>
-													</select>  -->
+													</select> 
+													</div> <!-- <div class="input-group"> -->
+												</div> <!-- <div class="col-xs-8"> -->
+											</div> <!-- <div class="form-group row"> -->
 
-												</div> <!-- <div class="input-group"> -->
-											</div> <!-- <div class="col-xs-4"> -->	
+											<div class="form-group">
+												<div class = "input-group">								
+													<span class="input-group-addon"><i class="fa fa-users"></i></span>
+															
+													<!-- <label for="comentarios">Comentarios:</label> -->
+													<textarea class="form-control" rows="2" cols="40" name="nuevoComentario" id="nuevoComentario">Comentarios
+													</textarea>
+												</div> <!-- <div class="input-group" -->														
+											</div> <!-- <div class="form-group row">  -->
 
-													<div class="col-xs-8">
-														<div class="input-group">
-															<!-- <label for="comentarios">Comentarios:</label> -->
-															<textarea class="form-control" rows="1" cols="60" name="nuevoComentario" id="nuevoComentario">Comentarios
-															</textarea>
-														</div> <!-- <div class="input-group" -->		
-
-											</div> <!-- <div class="col-xs-4"> -->							
-										</div> <!-- <div class="form-group row">  -->
-										
-											
 									
 									<!-- En esta seccion es para capturar los productos de forma dinamica en la Responsiva 
 									=========================================================================
@@ -247,7 +250,6 @@
 					<?php
 						$guardarResponsiva = new ControladorResponsivas();
 						$guardarResponsiva->ctrCrearResponsiva();
-
 					?>
 				</div> <!-- <div class="box box-success"> -->
 					

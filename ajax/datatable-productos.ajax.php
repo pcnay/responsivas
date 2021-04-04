@@ -47,11 +47,11 @@
 					
 
 					// Se utilizara un color para determinar el "Stock" de los productos.
-					if ($productos[$i]["Stock"] <= 10)
+					if ($productos[$i]["Stock"] == 0)
 					{
 						$stock = "<button class='btn btn-danger'>".$productos[$i]["Stock"]."</button>";
 					}
-					else if ($productos[$i]["Stock"] > 11 && $productos[$i]["Stock"] <=15)
+					else if ($productos[$i]["Stock"] > 2 && $productos[$i]["Stock"] <=4)
 					{
 						$stock = "<button class='btn btn-warning'>".$productos[$i]["Stock"]."</button>";
 					}
@@ -59,6 +59,7 @@
 					{
 						$stock = "<button class='btn btn-success'>".$productos[$i]["Stock"]."</button>";
 					}
+
 					$precio_venta = $productos[$i]["Precio_Venta"];
 					
 
@@ -90,7 +91,7 @@
 							"'.$productos[$i]["Periferico"].'",
 							"'.$productos[$i]["Serial"].'",
 							"'.$productos[$i]["Marca"].'",
-							"'.$productos[$i]["Modelo"].'", 							
+							"'.$productos[$i]["num_tel"].'", 							
 							"'.$stock.'",							
 							"'.$productos[$i]["Edo_Epo"].'", 
 							"'.$productos[$i]["Ntid"].'", 

@@ -38,7 +38,7 @@
                 <th>Descripcion</th>
                 <th>Serial</th>
                 <th>Marca</th>
-								<th>Modelo</th>
+								<th>Num Tel</th>
                 <th>Stock</th>
 								<th>Edo_Epo</th>
 								<th>NTID</th>

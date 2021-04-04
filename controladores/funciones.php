@@ -1,4 +1,5 @@
 <?php
+
 	class EliminarDirectorio
 	{
  
@@ -34,7 +35,8 @@
 				}
 				return $result;
 		}
-
-
 	}
+	
+
+
 ?>
