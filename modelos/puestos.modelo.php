@@ -92,7 +92,7 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
 				$stmt->execute();
 
-				return $stmt->fetchAll(); // Retorna solo una linea.	
+				return $stmt->fetchAll(); // Retorna todas linea.	
 
 			}
 

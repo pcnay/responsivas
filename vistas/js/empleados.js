@@ -102,6 +102,34 @@ $('.tablaEmpleados').DataTable({
 */
 
 
+// Aplicando expresiones regulares para validar campos del formulario
+function validarCampoEmp(campoValid,queCampo,Editar)
+{
+	$(".alert").remove();
+	
+	switch (queCampo)
+	{
+		case ('NT_ID'):
+			cadenaComparar = "^[A-Z0-9]";
+			Editar == 'S'?etiqueta = "#editar_ntid":etiqueta = "#nuevo_ntid";
+			break;
+		case ('Correo_Elect'):
+			cadenaComparar = "^[a-zA-Z0-9_@.]";
+			Editar == 'S'?etiqueta = "#editarCorreoElect":etiqueta = "#nuevoCorreoElect";
+			break;	
+	}
+
+	let expresionreg = new RegExp(cadenaComparar);
+	if (!expresionreg.test(campoValid))
+	{
+		//console.log("Valor ",expreg.test(campoValid));
+		$(etiqueta).parent().after('<div class="alert alert-warning" >NO Cumple la condicion</div>');
+		//$("#nuevoSerial").val("");		
+	}
+
+} // function validarCampoEmp(campoValid,queCampo,Editar)
+
+
 
 // Se agrega el código para obtener el último número del codigo a utilizar
 $("#nuevaCategoria").change(function(){
@@ -394,3 +422,85 @@ $(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
 
 
 })
+
+// Revisando que el "NTID" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevo_ntid" id="nuevo_ntid" placeholder = "Ingresar el NT Id del Usuario" required>
+$("#nuevo_ntid").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevo_ntid.
+	let nt_id = $(this).val();
+	
+	let Editar = 'N';
+	validarCampoEmp(nt_id,'NT_ID',Editar);
+
+	//console.log("NT Id",nt_id);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validaNtid",nt_id);
+	$.ajax({
+		url:"ajax/empleados.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevo_ntid").parent().after('<div class="alert alert-warning" >Este NTID Existe !! </div>');
+				$("#nuevo_ntid").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevo_ntid").change(function(){
+
+// Revisando que el "Correo Electronico" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoCorreoElect" id="nuevoCorreoElect" placeholder = "Ingresar el Correo Electronico" required>
+$("#nuevoCorreoElect").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevo_ntid.
+	let correo_elect = $(this).val();
+	
+	let Editar = 'N';
+	validarCampoEmp(correo_elect,'Correo_Elect',Editar);
+
+	//console.log("NT Id",nt_id);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validaCorreoElect",correo_elect);
+	$.ajax({
+		url:"ajax/empleados.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoCorreoElect").parent().after('<div class="alert alert-warning" >Ya existe el Correo Electronico !! </div>');
+				$("#nuevoCorreoElect").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoDepto").change(function(){
+
+

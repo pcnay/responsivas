@@ -12,17 +12,53 @@ var perfilOculto = $("#perfilOculto").val();
 //	}
 //})
 
-/* Cargar los datos - Productos de forma dinamica */
+/* Cargar los datos - Responsivas de forma dinamica */
 
 // Para hacer que las variables de sesion se puedan usar en Datatable.
-
 
 
 // Verificar que los datos Json estan correctos.
 // En esta parte se agrega la tabla a la plugin "DataTable" y no quema en el HTML el contenido de los campos.
 // Se agregan tres propiedades últimas para mejorar el desempeño en la carga de la páginas.
 // defenderRender, retrieve, proccesing
-// ?perfilOculto="+perfilOculto = Se manda como variable GET a "datatable-productos.ajax.php"
+// ?perfilOculto="+perfilOculto = Se manda como variable GET a "datatable-responsivas.ajax.php"
+
+$('.tablaResponsivas').DataTable({
+	"ajax":"ajax/datatable-responsivas.ajax.php?perfilOculto="+perfilOculto,
+	"defenderRender":true,
+	"retrieve":true,
+	"processing":true,
+	"pageLength":10,
+	"lengthMenu": [10, 25, 50, 75, 100 ],
+  "language":{ 
+    "sProcessing": "Procesando ...",
+    "sLengthMenu": "Mostrar _MENU_ registros",
+    "sZeroRecords": "No se encontraron resultados",
+    "sEmptyTable": "Ningún dato disponible en esta tabla",
+    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered": "(filtrado de un total de _MAX_ registros",
+    "sInfoPostFix": "",
+    "sSearch": "Buscar",
+    "sUrl": "",
+    "sInfoThousands": ",",
+    "sLoadingRecords": "Cargando ...",
+    "oPaginate":{
+      "sFirst": "Primero",
+      "sLast": "Ultimo",
+      "sNext": "Siguiente",
+      "sPrevious": "Anterior",
+		},
+		"oAria": {
+      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		},
+	}
+
+});
+
+
+
 $('.tablaResponsivasProd').DataTable({
 	"ajax":"ajax/datatable-responsivasProd.ajax.php?perfilOculto="+perfilOculto,
 	"defenderRender":true,
@@ -106,7 +142,7 @@ $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
 	//$botones = "<div class='btn-group'><button class='btn btn-primary agregarEmpleado recuperarBoton' idEmpleado='".$empleados[$i]["id_empleado"]."'>Agregar </button></div>";
 
 	var idEmpleado = $(this).attr("idEmpleado");
-	console.log("idEmpleado",idEmpleado);
+	//console.log("idEmpleado",idEmpleado);
 	// Desactivar el boton "Agregar", solo se activa una sola vez.
 	//$(this).removeClass("btn-primary agregarEmpleado");
 	//$(this).addClass("btn-default");

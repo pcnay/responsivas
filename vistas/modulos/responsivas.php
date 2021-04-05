@@ -32,39 +32,24 @@
         <div class="box-body">
 
 					<!-- Es la tabla donde se mostrara los datos iniciales para la Venta. -->
-          <table class="table table-bordered table-striped dt-responsive tablas">
+          <table class="table table-bordered table-striped dt-responsive tablaResponsivas" width="100%">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Num Responsiva</th>
-								<th># Empleado</th>								
-								<th>Nombre</th>
-								<th>Equipo</th>
-								<th>Asignacion</th>
+                <th>Num Resp.</th>
+								<th># Empleado</th>
+								<th>Apellidos</th>
+								<th>Modalidad</th>
+								<th>Fecha Asignado</th>								
 								<th>Fecha Devolucion</th>
                 <th>Acciones </th>								
               </tr>
             </thead>
 						
             <!-- Cuerpo de la Tabla -->
-            <tbody>
+            <!-- <tbody> -->
 							<!-- Se va ha utilizar el quemado de datos en el HTML, dado el volumen de los datos, pero se puede arreglar para que se utilize el "TDataTable"-->
-							<tr>
-								<td>1</td>
-								<td>10102</td>
-								<td>2572434</td>
-								<td>Juan Perez Perez</td>
-								<td>Laptop</td>
-								<td>Prestamo</td>
-								<td>10/Feb/21</td>															
-									<td>
-										<div class="btn-group">
-											<!-- Imprimir la transacción --> 
-											<button class="btn btn-info"><i class="fa fa-print"></i></button>
-											<button class="btn btn-danger"><i class="fa fa-times"></i></button>
-										</div>
-									</td>
-							</tr>						
+						
 
 							<?php 
 							/*
@@ -103,6 +88,8 @@
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
+					
+					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 

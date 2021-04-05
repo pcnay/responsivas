@@ -96,6 +96,33 @@
 
 					$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b,$valor1b,$valor);
 
+					// Asignando el empleado que tiene el "Periferico". 
+					
+					$item1b = "id_empleado"; // Es el campo que se modificara
+					$valor1b = $_POST["idEmpleado"]; // Se asigna el empleado que tiene el periferico(renglons de la responsiva).
+
+					$empleadoAsignado = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b,$valor1b,$valor);
+					
+					if ($empleadoAsignado == "error")
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "error",
+							title: "Error al asignar al empleado",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="cap-responsivas";
+								}
+
+								});
+			
+							</script>';          
+					}
+
 
 				} // foreach ($listarProductos as $key => $value)
 

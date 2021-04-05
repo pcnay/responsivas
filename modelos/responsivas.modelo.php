@@ -4,11 +4,10 @@
 	class ModeloResponsivas
 	{
 		// Mostrar Responsivas
-		static public function mdlMostrarResponsivas($tabla, $item, $valor,$ordenar)
+		static public function mdlMostrarResponsivas($tabla,$item,$valor,$ordenar)
 		{
 			if ($item != null)
 			{
-
 				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE $item = :$item ORDER BY fecha_asignado ASC");
 				$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 				$stmt->execute();
@@ -25,16 +24,23 @@
 					break;
 					case ('por_fecha'):
 						$condicion = 'fecha_asignado';
-						$sube_baja = '	DESC';
+						$sube_baja = 'DESC';
 					break;	
-				}				
+
+		
+				}	// switch ($ordenar)			
 
 				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla ORDER BY $condicion $sube_baja");
 				$stmt->execute();
+				
 				return $stmt->fetchAll();
-			}
-			$stmt->close();
-			$stmt=null;
+				
+				$stmt->close();
+				$stmt=null;
+
+				
+			} // if ($item != null)
+
 
 		} // static public function mdlMostrarVentas($tabla, $item, $valor)
 

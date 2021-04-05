@@ -6,20 +6,37 @@
 
 	class AjaxEmpleados
 	{
-		// Generar código a partir de ID Categoría 
-		/*
-		public $idCategoria;
-		public function ajaxCrearCodigoProducto()
+
+		// Validar si existe un NTID
+		public $validarNTID;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarNTid()
 		{
-			$item = "id_categoria";
-			$valor = $this->idCategoria;
-			$orden = "id";
-			 
-			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
+			$item = "ntid";
+			$valor = $this->validarNTID;
+			$orden = "apellidos";
+
+			$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
 			echo json_encode($respuesta);
-			 
+
 		}
-		*/
+
+		// Validar si existe un Correo Electronico
+		public $validarCorreoElect;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarCorreoElect()
+		{
+			$item = "correo_electronico";
+			$valor = $this->validarCorreoElect;
+			$orden = "apellidos";
+
+			$respuesta = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
+			echo json_encode($respuesta);
+
+		}
+
 
 
 		// Editar "Empleado"
@@ -85,6 +102,22 @@
 		$traerEmpleado = new AjaxEmpleados();
 		$traerEmpleado->nombreEmpleado = $_POST["nombreEmpleado"];
 		$traerEmpleado->ajaxEditarEmpleado();
+	}
+
+	// Validar que NO se repita el NTID.
+	if (isset($_POST["validaNtid"]))
+	{
+		$valNTID = new AjaxEmpleados();
+		$valNTID->validarNTID = $_POST["validaNtid"];
+		$valNTID->ajaxValidarNTid();
+	}
+
+	// Validar que NO se repita el Correo Electronico.
+	if (isset($_POST["validaCorreoElect"]))
+	{
+		$valCorreoElect = new AjaxEmpleados();
+		$valCorreoElect->validarCorreoElect = $_POST["validaCorreoElect"];
+		$valCorreoElect->ajaxValidarCorreoElect();
 	}
 
 ?>

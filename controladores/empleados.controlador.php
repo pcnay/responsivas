@@ -18,7 +18,7 @@
 			{
 				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
-					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["nuevoCorreoElect"]))
+					preg_match('/^[a-zA-Z0-9@_ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["nuevoCorreoElect"]))
 				{
 					$tabla = "t_Empleados";
 
