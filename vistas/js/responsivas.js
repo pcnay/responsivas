@@ -795,3 +795,34 @@ function listarMetodos()
 	}
 
 } // function listarMetodos()
+
+// Editar la responsiva, se llamara a la ventana de captura.
+$(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
+	// "idResponsiva", viene desde el boton 
+	//..... <button class='btn btn-warning btnEditarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]. 
+	var id_Responsiva = $(this).attr("idResponsiva");
+	console.log("idResponsiva",id_Responsiva);
+	window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+
+	/*
+	Swal.fire ({
+	    title: "Esta seguro de Borrar la Cinta ",
+		text : "De lo contrario puede cancelar la Acción ",
+		type:'warning',
+		showCancelButton:true,		
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Cancelar',
+		confirmButtonText:'Si Para Borrar',
+		closeOnConfirm: false
+		}).then(function(result){
+			if (result.value)
+			{
+				window.location="index.php?ruta=cintas&idCinta="+idCinta;
+			}
+
+			});	
+
+*/
+
+})
