@@ -4,11 +4,11 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Crear Responsiva     
+			Editar Responsiva     
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-			<li class="active">Crear Responsiva</li>
+			<li class="active">Editar Responsiva</li>
 		</ol>
 	</section>
 
@@ -35,15 +35,23 @@
 							<div class="box-body">
 
 									<div class="box">
+										<?php
+											$item = "id_responsiva";
+											$valor = $_GET["idResponsiva"];
+											$orden = "ConsultaCompleja";
+											$responsiva = ControladorResponsivas::ctrMostrarResponsivas($item,$valor,$orden);
+											//var_dump($responsiva);
+										?>
+
 
 										<!-- Corresponde a la entrada del Usuario  -->
 										<div class="form-group">
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
-												<input type="text" class="form-control" id="nuevoUsuario" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
+												<input type="text" class="form-control" name="editarUsuario" id="editarUsuario" value ="<?php echo $responsiva["nombre_usuario"]; ?>"readonly>
 
 												<!-- Este valor se va a guardar en la tabla de Responsiva .-->
-												<input type="hidden" name = "idUsuario" value ="<?php echo $_SESSION["id"]; ?>">
+												<input type="hidden" name = "idUsuario" id = "idUsuario" value="<?php echo $responisva["id_usuario"]; ?>">
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
 
@@ -51,28 +59,7 @@
 										<div class="form-group">
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
-												<?php
-													// Se obtiene el último numero de responsiva.
-													$item = null;
-													$valor = null;
-													$ordenar = 'id_responsiva';													
-													$responsiva= ControladorResponsivas::ctrMostrarResponsivas($item,$valor, $ordenar);
-													if (!$responsiva)
-													{
-														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value=1 readonly>';
-													}
-													else 
-													{
-														// Lee todo el arreglo se sale del ciclo en el ultimo registro, que contiene el ultimo numero de folio que se grabo.
-														foreach ($responsiva as $key => $value)
-														{
-														}
-														$num_responsiva = $value["num_folio"]+1;
-														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="'.$num_responsiva.'" readonly>';
-
-													}
-
-												?>
+														<input type="text" class="form-control" id="editarNumResp" name="editarNumResp" value ="<?php echo $responsiva["num_folio"]; ?>" readonly>
 												
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
@@ -82,9 +69,9 @@
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-												<input type="text" class="form-control" id="agregarEmpleado" name="agregarEmpleado" placeholder="Agregar Empleado" required>
+												<input type="text" class="form-control" id="editarEmpleado" name="editarEmpleado" value ="<?php echo $responsiva["nombre_empleado"].' '.$responsiva["apellidos_empleado"]; ?>" required>
 												<!-- Para obtener el Id Empleado, que se utilizara para grabarlo en la base de datos -->
-												<input type="hidden" name="idEmpleado" id="idEmpleado">
+												<input type="hidden" name="idEmpleado" id="idEmpleado" value ="<?php echo $responsiva["id_empleado"]; ?>">
 
 												<!-- Revisar esta etiqueta para la utilizacion 
 												<select class="form-control" id="seleccionarEmpleado" name="seleccionarEmpleado" required> 
@@ -102,15 +89,15 @@
 											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
-													<input type="text" class="form-control" id="nuevoTicket" name="nuevoTicket" placeholder="Agregar Ticket">
+													<input type="text" class="form-control" id="editarTicket" name="editarTicket" value ="<?php echo $responsiva["num_ticket"]; ?>">
 												</div> <!-- <div class="input-group">-->
 											</div> <!-- <div class="col-xs-4"> -->
 
-													<!-- Para crear el metodo de pago. -->
+													<!-- Para editar la planta -->
 											<div class="col-lg-8"> <!-- Se reduce de tamano de 6 a 4, utilizando  --> 
 												<div class="input-group">												
-													<select class="form-control input" id= "nuevaPlanta" name="nuevaPlanta" required>
-														<option value="">Planta</option>
+													<select class="form-control input" id= "editarPlanta" name="editarPlanta"  required>
+														<option value="<?php echo $responsiva["id_almacen"]; ?>"><?php echo $responsiva["nombre_planta"]; ?></option>
 														<?php
 													
 															// Se obtendrán el Almacen.
@@ -133,7 +120,7 @@
 													<span class="input-group-addon"><i class="fa fa-users"></i></span>
 															
 													<!-- <label for="comentarios">Comentarios:</label> -->
-													<textarea class="form-control" rows="2" cols="40" name="nuevoComentario" id="nuevoComentario">Comentarios
+													<textarea class="form-control" rows="2" cols="40" name="editarComentario" id="editarComentario" value ="<?php echo $responsiva["comentario"]; ?>">
 													</textarea>
 												</div> <!-- <div class="input-group" -->														
 											</div> <!-- <div class="form-group row">  -->
@@ -145,9 +132,53 @@
 									-->
 
 									<!-- Entrada del Producto, renglon de cada producto que se agrega a la responsiva -->
-									<div class="form-group row nuevoProducto">
-										
+									<div class="form-group row nuevoProducto">										
 										<!-- Para cada renglon que se agregue de los productos, a través de JavaScript -->				
+										<?php
+											// Decodificarlo de formato JSon a Arreglo.
+											$listaProducto = json_decode($responsiva["productos"],true);
+											//var_dump($listaProducto);
+
+											foreach ($listaProducto as $key => $value)
+											{
+												$item = "id_producto";
+												$valor = $value["id"];
+												$orden = " ";
+												$producto = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
+												//var_dump($producto["Stock"]);
+												//var_dump($value["cantidad"]);
+												$stockAnterior = $producto["Stock"]+$value["cantidad"];
+
+												echo '<div class ="row" style="padding:5px 15px">
+																<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->
+																<div class="col-xs-6" style="padding-right:0px">
+																	<div class="input-group">
+																		<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'.$value["id"].'" ><i class="fa fa-times"></i></button></span>
+						
+																		<input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value ="'.$value["descripcion"].'" readonly required>
+						
+																	</div> <!-- <div class="input-group"> -->
+						
+																</div> <!-- <div class="col-xs-6" style="padding-right:0px"> -->
+						
+																<!-- Columna de la "cantidad" -->
+																<div class="col-xs-3 ingresoCantidad">
+																	<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock = "'.$stockAnterior.'" nuevoStock="'.$value["stock"].'" required>
+																</div> <!-- <div class="col-xs-3"> -->
+												
+																<!-- Columna del "Precio" -->
+																<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->
+																<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+																		<input type="text" class="form-control nuevoPrecioProducto" precioReal="'.$producto["precio_venta"].'" name="nuevoPrecioProducto" value ="'.$value["total"].'" readonly required>
+																	</div>	<!-- <div class="input-group">  -->
+						
+																</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->
+						
+															</div> <!-- <div clss="form-group row nuevoProducto"> -->';
+											}
+										?>
 
 									</div> <!-- <div clss="form-group row nuevoProducto" -->
 									
@@ -179,8 +210,8 @@
 															<div class="input-group">														
 																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" >
 																<!-- Se agrega este "input hidden" para que se pueda grabar en la base de datos. -->
-																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto">
-																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto">
+																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" value ="<?php echo $responsiva["impuesto"]; ?>">
+																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" value ="<?php echo $responsiva["neto"]; ?>">
 
 																<span class="input-group-addon"><i class="fa fa-percent "></i></span>
 																
@@ -189,11 +220,11 @@
 														<td style="width: 50%">
 															<div class="input-group">
 																<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-																<input type="text" class="form-control input-lg"  id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
+																<input type="text" class="form-control input-lg"  id="nuevoTotalVenta" name="nuevoTotalVenta" total="" placeholder="00000" value ="<?php echo $responsiva["total"]; ?>" readonly required>
 
 																<!-- Se utilizara un input "hidden" para gurdar el el importe de la venta sin formato.-->
 
-																<input type="hidden" name="totalVenta" id="totalVenta">
+																<input type="hidden" name="totalVenta" id="totalVenta" value ="<?php echo $responsiva["total"]; ?>">
 
 																
 															</div>
@@ -217,14 +248,47 @@
 												<div class="input-group">
 													<label>Entrega Epo</label>
 													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
-														<option value="">Modalidad</option>
+													<option value="<?php echo $responsiva["modalidad_entrega"]; ?>"><?php echo $responsiva["modalidad_entrega"]; ?></option>
+
 														<option value="Permanente">Permanente</option>
 														<option value="Prestamo">Prestamo</option>													
 													</select>
 												</div> <!-- <div class="input-group"> -->									
 											</div> <!-- <div class="col-xs-6"> -->
 											<!-- En esta parte estaba la seccion para "Tipo De Pago"  -->
-											
+											<?php											
+												
+												if ( $responsiva["modalidad_entrega"] == "Permanente")
+												{
+													//var_dump($responsiva["fecha_asignado"]);
+
+													echo '<div class="form-row">
+																	<div class="form-group col-xs-4">
+																		<!-- <span class="input-group-addon"></span> -->
+																		<label id="etiq_fecAsignado">Fecha Asignado</label>
+																		<input type="date" class="form-control" name="nuevaFechaAsignado" id="nuevaFechaAsignado" value="'.$responsiva["fecha_asignado"].'">
+																	</div>
+																</div>';
+												}
+												else
+												{
+													echo '<div class="form-row">
+																	<div class="form-group col-xs-4">
+																		<!-- <span class="input-group-addon"></span> -->
+																		<label id="etiq_fecAsignado">Fecha Asignado</label>
+																		<input type="date" class="form-control" name="nuevaFechaAsignado" id="nuevaFechaAsignado" value="'.$responsiva["fecha_asignado"].'">
+																	</div>
+																</div>';
+													echo '<div class="form-row">
+																	<div class="form-group col-xs-4">
+																	<!-- <span class="input-group-addon"></span> -->
+																	<label id="etiq_fecDevolucion">Fecha Devolucion</label>
+																	<input type="date" class="form-control" name="nuevaFechaDevolucion" id="nuevaFechaDevolucion" value="'.$responsiva["fecha_devolucion"].'">
+																</div>
+															</div>';											
+
+												}
+											?>
 											<!-- Se utiliza JavaScript para agregar datos en esta Seccion del DIV -->
 											<div class="cajasMetodoPago">														
 											</div>
@@ -242,14 +306,14 @@
 
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">						
-								<button type="submit" class="btn btn-primary pull-right" >Guardar Responsiva</button>
+								<button type="submit" class="btn btn-primary pull-right" >Guardar Cambios</button>
 							</div>
 
 					</form>
 					<!-- Para generar la Responsiva -->
 					<?php
-						$guardarResponsiva = new ControladorResponsivas();
-						$guardarResponsiva->ctrCrearResponsiva();
+						$editarResponsiva = new ControladorResponsivas();
+						$editarResponsiva->ctrEditarResponsiva();
 					?>
 				</div> <!-- <div class="box box-success"> -->
 					

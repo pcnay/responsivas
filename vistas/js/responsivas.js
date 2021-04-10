@@ -595,6 +595,11 @@ $("#nuevoTotalVenta").number(true,2);
 $("#nuevoMetodoPago").change(function(){
 	//Obtiene el valor del "select" (NO el Id)
 	var metodo = $(this).val();
+	$("#nuevaFechaAsignado").remove();
+	$("#etiq_fecAsignado").remove();
+	$("#etiq_fecDevolucion").remove();
+	$("#nuevaFechaDevolucion").remove();
+
 	if (metodo == "Prestamo")
 	{
 		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
@@ -606,7 +611,7 @@ $("#nuevoMetodoPago").change(function(){
 			'<div class="form-row">'+
 				'<div class="form-group col-xs-4">'+
 						'<!-- <span class="input-group-addon"></span> -->'+
-						'<label>Fecha Asignado</label>'+
+						'<label id="etiq_fecAsignado">Fecha Asignado</label>'+
 						'<input type="date" class="form-control" name="nuevaFechaAsignado" id="nuevaFechaAsignado" required >'+					
 				'</div>'+
 			'</div>'+	
@@ -614,7 +619,7 @@ $("#nuevoMetodoPago").change(function(){
 			'<div class="form-row">'+
 				'<div class="form-group col-xs-4">'+
 					'<!-- <span class="input-group-addon"></span> -->'+
-					'<label>Fecha Devolucion</label>'+
+					'<label id="etiq_fecDevolucion">Fecha Devolucion</label>'+
 					'<input type="date" class="form-control" id="nuevaFechaDevolucion" name="nuevaFechaDevolucion" required >'+
 				'</div>'+
 			'</div>'
@@ -800,29 +805,42 @@ function listarMetodos()
 $(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
 	// "idResponsiva", viene desde el boton 
 	//..... <button class='btn btn-warning btnEditarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]. 
+	
 	var id_Responsiva = $(this).attr("idResponsiva");
-	console.log("idResponsiva",id_Responsiva);
 	window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	//console.log("idResponsiva",id_Responsiva);
+	
+	// Se utilizara Ajax para obtener la información de la "responsiva" desde la base de datos.
+	// Se esta agregando un dato al Ajax.
+	var datos = new FormData();
+	datos.append("idResponsiva",id_Responsiva);
+	$.ajax
+	({
+		url:"ajax/responsivas.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(responsiva)
+		{
+			console.log("Responsiva a editar ",responsiva["nombre_usuario"]);			
 
-	/*
-	Swal.fire ({
-	    title: "Esta seguro de Borrar la Cinta ",
-		text : "De lo contrario puede cancelar la Acción ",
-		type:'warning',
-		showCancelButton:true,		
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		cancelButtonText: 'Cancelar',
-		confirmButtonText:'Si Para Borrar',
-		closeOnConfirm: false
-		}).then(function(result){
-			if (result.value)
-			{
-				window.location="index.php?ruta=cintas&idCinta="+idCinta;
-			}
+			// Asignando el valor a los campos
+			$("#editarUsuario").val(responsiva["nombre_usuario"]);			
+			$("#idUsuario").val(responsiva["id_usuario"]);
+			$("#editarNumResp").val(responsiva["num_folio"]);
 
-			});	
+			// console.log("id_Empleado javaScript ",respuesta["id_empleado"]);
 
-*/
+		} // success:function(respuesta) 
 
-})
+
+	});
+
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+
+}) // $(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
+	

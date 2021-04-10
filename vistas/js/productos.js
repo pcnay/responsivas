@@ -677,7 +677,7 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		dataType:"json",
 		success:function(producto)
 		{
-			console.log("respuesta",producto);
+			// console.log("respuesta",producto);
 			// Asignando el valor al $_POST["IdProducto"] generado en "productos.php" en el Input "Hidden"
 			$("#IdProducto").val(id_Producto);
 

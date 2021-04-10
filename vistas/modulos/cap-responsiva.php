@@ -215,7 +215,7 @@
 											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
-													<label>Entrega Epo</label>
+													<label>Entrega Epo</labid="etiq_fecAsingado"el>
 													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
 														<option value="">Modalidad</option>
 														<option value="Permanente">Permanente</option>

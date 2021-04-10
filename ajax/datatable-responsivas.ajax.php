@@ -63,11 +63,11 @@
 					// recuperarBoton = Se utiliza cuando se quita un producto de la lista y vuelva estar activo.
 					if ((isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Admin") || $_GET["perfilOculto"] == "Administrador")
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-info btnImpResponsiva' idresponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idCinta = '".$cintas[$i]["id_cintas"]."'><i class='fa fa-times'></i></button></div>";						
+						$botones = "<div class='btn-group'><button class='btn btn-info btnImpResponsiva' idresponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCinta' idResponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-times'></i></button></div>";						
 					}
 					else
 					{
-						$botones = "<div class='btn-group'><button class='btn btn-info btnImpResponsiva' idresponsiva = '".$responsivas[$i]["id_responsiva"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarCinta' idCinta = '".$cintas[$i]["id_cintas"]."' data-toggle='modal' data-target = '#modalEditarCinta'><i class='fa fa-pencil'></i></button></div>";
+						$botones = "<div class='btn-group'><button class='btn btn-info btnImpResponsiva' idresponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]."'><i class='fa fa-pencil'></i></button>";
 					}					
 
 					$datosJson  .= '[
