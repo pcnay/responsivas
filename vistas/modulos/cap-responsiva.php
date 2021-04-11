@@ -177,7 +177,7 @@
 													<tr>
 														<td style="width: 50%">
 															<div class="input-group">														
-																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" >
+																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" readonly>
 																<!-- Se agrega este "input hidden" para que se pueda grabar en la base de datos. -->
 																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto">
 																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto">
@@ -215,7 +215,7 @@
 											<div class="col-xs-4"> <!-- Se reduce de tamano de 6 a 4, utilizando JavaScript-->
 												<!-- Para crear el metodo de pago. -->
 												<div class="input-group">
-													<label>Entrega Epo</labid="etiq_fecAsingado"el>
+													<label>Entrega Epo</label>
 													<select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
 														<option value="">Modalidad</option>
 														<option value="Permanente">Permanente</option>

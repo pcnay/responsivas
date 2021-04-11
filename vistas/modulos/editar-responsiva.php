@@ -51,7 +51,7 @@
 												<input type="text" class="form-control" name="editarUsuario" id="editarUsuario" value ="<?php echo $responsiva["nombre_usuario"]; ?>"readonly>
 
 												<!-- Este valor se va a guardar en la tabla de Responsiva .-->
-												<input type="hidden" name = "idUsuario" id = "idUsuario" value="<?php echo $responisva["id_usuario"]; ?>">
+												<input type="hidden" name = "idUsuario" id = "idUsuario" value="<?php echo $responsiva["id_usuario"]; ?>">
 											</div> <!-- <div class = "input-group"> -->
 										</div> <!-- <div class="form-group"> -->
 
@@ -69,7 +69,7 @@
 											<div class = "input-group">								
 												<span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-												<input type="text" class="form-control" id="editarEmpleado" name="editarEmpleado" value ="<?php echo $responsiva["nombre_empleado"].' '.$responsiva["apellidos_empleado"]; ?>" required>
+												<input type="text" class="form-control" id="agregarEmpleado" name="agregarEmpleado" value ="<?php echo $responsiva["nombre_empleado"].' '.$responsiva["apellidos_empleado"]; ?>" required>
 												<!-- Para obtener el Id Empleado, que se utilizara para grabarlo en la base de datos -->
 												<input type="hidden" name="idEmpleado" id="idEmpleado" value ="<?php echo $responsiva["id_empleado"]; ?>">
 
@@ -120,7 +120,7 @@
 													<span class="input-group-addon"><i class="fa fa-users"></i></span>
 															
 													<!-- <label for="comentarios">Comentarios:</label> -->
-													<textarea class="form-control" rows="2" cols="40" name="editarComentario" id="editarComentario" value ="<?php echo $responsiva["comentario"]; ?>">
+													<textarea class="form-control" rows="2" cols="40" name="editarComentario" id="editarComentario" ><?php echo $responsiva["comentario"]; ?>
 													</textarea>
 												</div> <!-- <div class="input-group" -->														
 											</div> <!-- <div class="form-group row">  -->
@@ -171,7 +171,7 @@
 																<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">
 																	<div class="input-group">
 																		<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-																		<input type="text" class="form-control nuevoPrecioProducto" precioReal="'.$producto["precio_venta"].'" name="nuevoPrecioProducto" value ="'.$value["total"].'" readonly required>
+																		<input type="text" class="form-control nuevoPrecioProducto" precioReal="'.$producto["Precio_Venta"].'" name="nuevoPrecioProducto" value ="'.$value["total"].'" readonly required>
 																	</div>	<!-- <div class="input-group">  -->
 						
 																</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->
@@ -208,7 +208,7 @@
 													<tr>
 														<td style="width: 50%">
 															<div class="input-group">														
-																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" >
+																<input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" readonly >
 																<!-- Se agrega este "input hidden" para que se pueda grabar en la base de datos. -->
 																<input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" value ="<?php echo $responsiva["impuesto"]; ?>">
 																<input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" value ="<?php echo $responsiva["neto"]; ?>">

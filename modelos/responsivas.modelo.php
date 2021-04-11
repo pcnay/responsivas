@@ -89,6 +89,43 @@
 
 	} // static public function mdlIngresarResponsiva($tabla,$datos)
 
+
+// $respuesta = ModeloResponsivas::mdlIngresarResponsiva($tabla,$datos);
+		// Guardar Responsiva en la Tabla 
+		static public function mdlEditarResponsiva($tabla,$datos)
+		{
+			$stmt = Conexion::conectar()->prepare ("UPDATE $tabla SET id_empleado=:id_empleado,id_usuario=:id_usuario,id_almacen=:id_almacen,activa=:activa,num_folio=:num_folio,modalidad_entrega=:modalidad_entrega,num_ticket=:num_ticket,comentario=:comentario,productos=:productos,impuesto=:impuesto,neto=:neto,total=:total,fecha_devolucion=:fecha_devolucion,fecha_asignado=:fecha_asignado WHERE id_responsiva = :id_responsiva");
+
+			$stmt->bindParam(":id_responsiva",$datos["id_responsiva"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_empleado",$datos["id_empleado"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_usuario",$datos["id_usuario"],PDO::PARAM_INT);
+			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);
+			$stmt->bindParam(":activa",$datos["activa"],PDO::PARAM_STR);
+			$stmt->bindParam(":num_folio",$datos["num_folio"],PDO::PARAM_INT);			
+			$stmt->bindParam(":modalidad_entrega",$datos["modalidad_entrega"],PDO::PARAM_STR);
+			$stmt->bindParam(":num_ticket",$datos["num_ticket"],PDO::PARAM_STR);
+			$stmt->bindParam(":comentario",$datos["comentarios"],PDO::PARAM_STR);
+			$stmt->bindParam(":productos",$datos["productos"],PDO::PARAM_STR);
+			$stmt->bindParam(":impuesto",$datos["impuesto"],PDO::PARAM_STR);
+			$stmt->bindParam(":neto",$datos["neto"],PDO::PARAM_STR);
+			$stmt->bindParam(":total",$datos["total"],PDO::PARAM_STR);
+			$stmt->bindParam(":fecha_devolucion",$datos["fecha_devolucion"],PDO::PARAM_STR);
+			$stmt->bindParam(":fecha_asignado",$datos["fecha_asignado"],PDO::PARAM_STR);
+
+			if ($stmt->execute())
+			{
+				return "ok";				
+			}
+			else
+			{
+				return "error";
+			}
+			$stmt->close();
+			$stmt = null;
+
+	} // static public function mdlEditarResponsiva($tabla,$datos)
+
+
 }	// 	class ModeloResponsivas
 
 ?>
