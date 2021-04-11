@@ -844,3 +844,65 @@ $(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
 
 }) // $(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
 	
+
+// Borrar la responsiva, se llamara a la ventana de captura.
+$(".tablaResponsivas tbody").on("click","button.btnEliminarResponsiva",function(){
+	// "idResponsiva", viene desde el boton 
+	//..... <button class='btn btn-warning btnEliminarResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]. 
+	
+	var id_Responsiva = $(this).attr("idResponsiva");
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	//console.log("idResponsiva",id_Responsiva);
+	Swal.fire ({
+		type: "warning",
+		title: "Esta seguro(a) de Borrar la  Responsiva",
+		text : "De lo contrario puede cancelar la Acción ",		
+		showCancelButton:true,		
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Cancelar',
+		confirmButtonText:'Si Para Borrar',
+		closeOnConfirm: false
+		}).then(function(result){
+			if (result.value)
+			{
+				window.location="index.php?ruta=responsivas&idResponsiva="+id_Responsiva;
+			}
+
+			});	
+	
+
+	/*
+	// Se utilizara Ajax para obtener la información de la "responsiva" desde la base de datos.
+	// Se esta agregando un dato al Ajax.
+	var datos = new FormData();
+	datos.append("idResponsiva",id_Responsiva);
+	$.ajax
+	({
+		url:"ajax/responsivas.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(responsiva)
+		{
+			console.log("Responsiva a editar ",responsiva["nombre_usuario"]);			
+
+			// Asignando el valor a los campos
+			$("#editarUsuario").val(responsiva["nombre_usuario"]);			
+			$("#idUsuario").val(responsiva["id_usuario"]);
+			$("#editarNumResp").val(responsiva["num_folio"]);
+
+			// console.log("id_Empleado javaScript ",respuesta["id_empleado"]);
+
+		} // success:function(respuesta) 
+
+
+	});
+*/
+
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+
+}) // $(".tablaResponsivas tbody").on("click","button.btnEliminarResponsiva",function(){

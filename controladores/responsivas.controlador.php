@@ -475,5 +475,155 @@
 			} // if (isset($_POST["editarNumResp"]))
 
 		} // static public functio ctrEditarResponsiva()
+
 		
+		// Eliminar Responsiva
+		static public function ctrEliminarResponsiva()
+		{
+			if(isset($_GET["idResponsiva"]))
+			{
+				/*
+				$tabla = "t_Responsivas";
+				$item = "id_responsiva";
+				$valor = $_GET["idResponsiva"];
+				$ordenar = "ConsultaSencilla";
+				$traerResponsiva = ModeloResponsivas::mdlMostrarResponsivas($tabla,$item,$valor,$ordenar);
+				*/
+
+
+				// Se obtienen los productos desde la tabla de acuerdo al "id_producto" seleccionado, del contenido de la responsivas, es decir articulo por articulo, para actualizarlo en la base de datos, que corresponda.
+				$tabla = "t_Responsivas";
+				$item = "id_responsiva";
+				$valor = $_GET["idResponsiva"];
+				$orden = "ConsultaCompleja";
+				$traerResponsiva = ModeloResponsivas::mdlMostrarResponsivas($tabla,$item,$valor,$orden);
+
+				$prodActualizar = json_decode($traerResponsiva["productos"],true);
+
+				// Actualizar la tabla de productos con los productos que tiene la responsiva antes de que se agregen los que estan en la edicion de la responsiva.
+				foreach ($prodActualizar as $key => $value)
+				{
+					$tablaProducto = "t_Productos";
+					$item = "id_producto";
+					$valor = $value["id"];
+					$orden = "nombre";
+					$traerProducto = ModeloProductos::mdlMostrarProductos($tablaProducto,$item,$valor,$orden);
+
+					// Para actualizar cuantas veces se ha utilizado este producto.
+					$item1a = "cuantas_veces";
+					$valor1a = $traerProducto["Cuantas_veces"] - $value["cantidad"];
+
+					$cuantasVeces = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1a,$valor1a,$valor);	
+
+					// Actualizar el "Stock" en Productos con la existencia antes de aplicar si se modificaron en la edicion de la Responsiva.
+
+					// Modificacion del "Stock". 					
+					$tablaProducto = "t_Productos";
+					$item1b = "stock"; // Es el campo que se modificara
+					$valor1b = $value["cantidad"]+$traerProducto["Stock"]; // Es el stock actual (utilizado en los renglones de la responsiva).
+
+					$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b,$valor1b,$valor);	
+				
+				}
+				
+				// Actualizar las compras del Empleado.
+				
+				// Reducir el Stock y Aumentar las ventas de los productos. Si se modificaron en la responsivas.
+				// Convertirlo de formato JSon a Arreglo, para poder accesar al contenido del detalle de las responsivas.
+
+		/*		
+				$listarProductos_2 = json_decode($listaProductos,true);
+				//var_dump($listarProductos);
+
+					// Se obtiene los productos que se utilizan en la responsiva
+				// $listarProductos_2 = Contiene los renglones(productos) de la responsiva.
+				foreach ($listarProductos_2 as $key => $value)
+				{
+					// Se obtienen los productos desde la tabla de acuerdo al "id_producto" seleccionado, del contenido de la responsivas, es decir articulo por articulo, para actualizarlo en la base de datos, que corresponda.
+					$tablaProducto_2 = "t_Productos";
+					$item_2 = "id_producto";
+					$valor_2 = $value["id"];
+					$orden_2 = "nombre";
+					$traerProducto_2 = ModeloProductos::mdlMostrarProductos($tablaProducto_2,$item_2,$valor_2,$orden_2);
+					// Tomar en encuenta la consulta, ya que tiene valores diferentes de la consulta.
+					
+					// var_dump($traerProducto_2);
+					// Muestra el contenido del campo "Serial"
+					// var_dump($traerProducto_2["Serial"]);
+
+					// Actualizando la existencia y el numero de veces que se ha vendido.
+				
+
+					$item1a_2 = "cuantas_veces";
+					$valor1a_2 = $value["cantidad"]+$traerProducto_2["Cuantas_veces"];
+
+					// Actualizar "cuantas veces" en la tabla de "Productos"
+					// $valor_2 = Es el contenido del "Id"
+					// $item1a_2 = "cuantas_veces" es el campo que se utilizara a modificar
+					// $valor1a_2 = Es el nuevo valor de "Cuantas_veces".
+
+					// static public function mdlActualizarProducto($tabla,$item1,$valor1,$valor2)
+
+					$cuantasVeces_2 = ModeloProductos::mdlActualizarProducto($tablaProducto_2,$item1a_2,$valor1a_2,$valor_2);
+
+					if ($cuantasVeces_2=="error")
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "error",
+							title: "Error al actualizar cuantas veces ",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="productos";
+								}
+
+								});
+			
+							</script>';          
+					}
+
+
+					// Modificacion del "Stock". 					
+					$item1b_2 = "stock"; // Es el campo que se modificara
+					$valor1b_2 = $value["stock"]; // Es el stock actual (utilizado en los renglones de la responsiva ya que se actualiza automaticamente.).
+
+					$nuevoStock_2 = ModeloProductos::mdlActualizarProducto($tablaProducto_2,$item1b_2,$valor1b_2,$valor_2);
+
+
+				} // foreach ($listarProductos_2 as $key => $value)
+		*/
+				$item = "id_responsiva";
+				$datos = $_GET["idResponsiva"];
+	//			print_r ($valor);
+	//			return;
+		
+				$respuesta = ModeloResponsivas::mdlEliminarResponsiva($tabla,$datos);
+
+				if ($respuesta == "ok")
+				{
+					echo '<script>           
+					Swal.fire ({
+						type: "success",
+						title: "La venta ha sido borrada correctamente",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+						closeOnConfirm: false
+						}).then(function(result){
+							if (result.value)
+							{
+								window.location="responsivas";
+							}
+
+						});		
+						</script>';          
+				}
+
+			}	// if(isset($_GET["idResponsiva"]))
+
+		} // 		static public function ctrEliminarResponsiva()
+
 	} // class ControladorResponsivas

@@ -91,6 +91,13 @@
 					
 					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
+					<!-- Para que se pueda mostrar arriba de la tabla -->
+					<?php 
+						$eliminarResponsiva = new ControladorResponsivas();
+						$eliminarResponsiva->ctrEliminarResponsiva();
+						
+					?>
+
         </div> <!-- <div class="box-body"> -->
 
         <!-- /.box-body -->

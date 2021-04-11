@@ -125,6 +125,23 @@
 
 	} // static public function mdlEditarResponsiva($tabla,$datos)
 
+	// Eliminar Responsiva.
+	static public function mdlEliminarResponsiva($tabla,$datos)
+	{
+		$stmt = Conexion::conectar()->prepare ("DELETE FROM $tabla WHERE id_responsiva = :id_responsiva");
+		$stmt->bindParam(":id_responsiva",$datos,PDO::PARAM_INT);
+		if ($stmt->execute())
+		{
+			return "ok";
+		}
+		else
+		{
+			return "error";
+		}
+		$stmt->close();
+		$stmt=null;
+
+	}
 
 }	// 	class ModeloResponsivas
 
