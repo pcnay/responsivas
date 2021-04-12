@@ -906,3 +906,19 @@ $(".tablaResponsivas tbody").on("click","button.btnEliminarResponsiva",function(
 	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
 
 }) // $(".tablaResponsivas tbody").on("click","button.btnEliminarResponsiva",function(){
+
+// =============================================================
+// Imprimir las Responsivas.
+$(".tablaResponsivas tbody").on("click","button.btnImpResponsiva",function(){
+	// "idResponsiva", viene desde el boton 
+	//..... <button class='btn btn-warning btnImpResponsiva' idResponsiva = '".$responsivas[$i]["id_responsiva"]. 
+	
+	var id_Responsiva = $(this).attr("idResponsiva");
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	// console.log("idResponsiva",id_Responsiva);
+	
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+window.open("extensiones/tcpdf/pdf/responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+
+
+})
