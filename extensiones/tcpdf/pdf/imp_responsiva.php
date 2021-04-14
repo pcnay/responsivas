@@ -1,8 +1,12 @@
 <?php
-
+require_once ('tcpdf_include.php');
 require_once "../../../controladores/responsivas.controlador.php";
-require_once "../../../modelos/responsivas.modelo.php";
-require_once ('tcpdf_include.php'); 	
+require_once "../../../modelos/responsivas.modelo.php"; 	
+require_once "../../../controladores/usuarios.controlador.php";
+require_once "../../../modelos/usuarios.modelo.php";
+require_once "../../../controladores/empleados.controlador.php";
+require_once "../../../modelos/empleados.modelo.php";
+
 
 // No se debe tabular las lineas de codigo.
 
@@ -26,16 +30,26 @@ public function traerImpresionResponsiva()
 	// Funciona este "var_dump" en TCPDF, solo que no despliega el PDF
 	//var_dump($respuestaResponsiva["fecha_asignado"]);
 	
-	$fecha = $respuestaResponsiva["fecha_asignado"];
+	//$fecha_asig = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
+	$fecha = date("m-d-Y",strtotime($respuestaResponsiva["fecha_asignado"]));
+
 	$productos = json_decode($respuestaResponsiva["productos"]);
 	$neto = number_format($respuestaResponsiva["neto"],2);
 	$impuesto = number_format($respuestaResponsiva["impuesto"],2);
 	$total = number_format($respuestaResponsiva["total"],2);
 
 	// Traer la informacion del Empleado
-
-	// Traer la informacion del Usuario.
+	$itemEmp = "id_empleado";
+	$valorEmp = $respuestaResponsiva["id_empleado"];
+	$ordenarEmp = "apellidos";
+	$respuestaEmp = ControladorEmpleados::ctrMostrarEmpleados($itemEmp,$valorEmp,$ordenarEmp);
 	
+	// Traer la informacion del Usuario.
+	$itemUsuario = "id_usuario";
+	$valorUsuario = $respuestaResponsiva["id_usuario"];
+	$respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario,$valorUsuario);
+
+
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -53,7 +67,7 @@ $bloque1 = <<<EOF
 		<tr>
 			<td style="width:150px"><img src="images/logo_jabil1.png"></td>
 			<td style="background-color:white; width:90px">
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">	
+				<div style="font-size:9.5px; text-align:right; line-height:15px;">	
 					No. Maquila : 411 Baja
 					<br>
 						Direccion: 
@@ -63,7 +77,7 @@ $bloque1 = <<<EOF
 				</div>
 			</td>
 			<td style="background-color:white; width:140px">
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">					
+				<div style="font-size:9.5px; text-align:right; line-height:15px;">					
 					Telefono : 999-999-99-99
 					<br>
 					info@jabil.com
@@ -77,16 +91,67 @@ $bloque1 = <<<EOF
 		</tr>
 		<tr>
 			<td style="background-color:white; width:540px">
-				<div style="font-size:14.5px; color:blue; text-align:center; line-height:15px;">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color:white; width:540px">
+				<div style="font-size:13.5px; color:blue; text-align:center; line-height:15px;">
 					Recibo De Propiedad De La Compañia NPA De Mexico, S. de R.L. De C.V.
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td style="background-color:white; width:540px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+				</div>
+			</td>
+		</tr>
+
 
 	</table>
 EOF;
-
 $pdf->writeHTML($bloque1,false,false,false,false,'');
+/*
+	Para insertar un espacio en la hoja 
+ 	<table>
+		<tr>
+		<td style="width:540px"><img src="images/back.jpg"></td>
+	</tr>
+</table>
+*/
+
+
+// Imprimira los datos del Empleado.
+$bloque2 = <<<EOF
+	<table style="font-size:10px; padding:5px 10px;">
+		<tr>
+			<td style="border: 1px solid #666; background-color:white; width:390px">
+				Cliente: $respuestaEmp[nombre]  $respuestaEmp[apellidos]
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:150px; text-align:right">
+				Fecha: $fecha
+			</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid #666; background-color:white; width:540px">Usuario :$respuestaUsuario[nombre] </td>
+		</tr>
+	</table>
+
+EOF;
+
+$pdf->writeHTML($bloque2,false,false,false,false,'');
+
+// Imprimira la Responsivas.
+$bloque3 = <<<EOF
+
+EOF;
+
+
+$pdf->writeHTML($bloque3,false,false,false,false,'');
+
+
 // Salida del Archivo.
 $pdf->Output ('Responsiva.pdf');
 

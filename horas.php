@@ -27,6 +27,12 @@
 	$mes =  $semana/30;
 	echo "Expresado en Meses ".$mes;
 */
+
+// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
+$fecha_asig = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
+$fecha_devol = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
+
+
 $mifecha= date('Y-m-d H:i:s'); 
 $NuevaFecha = strtotime ( '+5 hour' , strtotime ($mifecha) ) ; 
 $NuevaFecha = strtotime ( '+18 minute' , $NuevaFecha ) ; 
@@ -35,6 +41,8 @@ $NuevaFecha = date ( 'Y-m-d H:i:s' , $NuevaFecha);
 echo $NuevaFecha;
 echo "<br/>";
 echo "<br/>";
+
+
 
 echo "Diferencias de dias ";
 

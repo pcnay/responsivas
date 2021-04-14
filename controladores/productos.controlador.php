@@ -129,7 +129,7 @@
 												"nomenclatura" =>$_POST["nuevaNomenclatura"],
 												"stock" =>$_POST["nuevoStock"],												
 												"precio_compra" =>$_POST["nuevoPrecioCompra"],
-												"precio_venta" =>$_POST["nuevoPrecioVenta"],												
+												"precio_venta" =>$_POST["nuevoPrecioVenta"],									
 												"comentarios" =>rtrim($_POST["nuevoComent"]),
 												"cuantas_veces" =>$veces,												
 												"imagen" =>$ruta);

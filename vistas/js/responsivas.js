@@ -918,7 +918,7 @@ $(".tablaResponsivas tbody").on("click","button.btnImpResponsiva",function(){
 	// console.log("idResponsiva",id_Responsiva);
 	
 	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
-window.open("extensiones/tcpdf/pdf/responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
 
 
 })
