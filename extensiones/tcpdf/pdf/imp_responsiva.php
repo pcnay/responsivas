@@ -44,7 +44,7 @@ public function traerImpresionResponsiva()
 	if ($respuestaResponsiva["fecha_devolucion"] == null)
 	{
 		$fecha_devolucionResp = "";
-		$fechas = $fecha_asignadoResp. $fecha_devolucionResp;
+		$fechas = $fecha_asignadoResp.$fecha_devolucionResp;
 	}
 	else
 	{
@@ -165,9 +165,6 @@ $bloque2 = <<<EOF
 			</td>
 		</tr>
 		<tr>
-			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
-		</tr>
-		<tr>
 			<td style="border: 1px solid #666; background-color:white; width:540px text-align:center;
 			color:green">
 				<div style="font-size:12.5px; text-align:center; line-height:15px;">							
@@ -175,10 +172,6 @@ $bloque2 = <<<EOF
 				</div>
 			</td>
 		</tr>
-		<tr>
-			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
-		</tr>
-
 	</table>
 
 EOF;
@@ -227,6 +220,17 @@ for ($i =0;$i<count($productosResp);$i++)
 	
 	$cantidad = $productosResp[$i]["cantidad"];
 	$precio = number_format($productosResp[$i]["precio"],2);
+	//$impHostname = $productosResp[$i]["hostname"];
+
+	if (($respuestaProductos["nomenclatura"] != null) || ($respuestaProductos["nomenclatura"] != ""))
+	{
+		$impHostname = $respuestaProductos["nomenclatura"];
+	}
+	else 
+	{
+		$impHostname = "NO CUMPLE ";
+	}
+
 	//$precio = $respuestaProductos["Precio_Venta"];
 
 
@@ -264,39 +268,68 @@ $pdf->writeHTML($bloque4,false,false,false,false,'');
 //</tr>
 
 // Imprimir el total de la Responsiva 
+/* Para insertar una columna de 350 para posicionar las columnas de "Importe" y "Total",
+45 + 95 + 210 = 350 que son las sumnas de las tres columnas de la tabla donde se imprime los productos de las responsiva.
+
+			<td style="background-color:white; width:350px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+				</div>
+			</td>
+
+*/
+
 $bloque5 = <<<EOF
 	<table style ="font-size:10px; padding:5px 10px;">
 		<tr>
-			<td style="border:1px solid #666;background-color:white; width:140px; text-align:left">
-				Modalidad : $respuestaResponsiva[modalidad_entrega]
+			<td style="background-color:white; width:350px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+				</div>
 			</td>
-			<td style="border:1px solid #666;background-color:white; width:210px; text-align:left">
-				Fecha : $fechas
-			</td>			
+
 			<td style="border: 1px solid #666; background-color:white; width:110px; text-align:center">
 				Importe:
 			</td>
 			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:right">
 				$total
 			</td>
-
-		</tr>
-		
+		</tr>	
 	</table>
-
 
 EOF;
 $pdf->writeHTML($bloque5,false,false,false,false,'');
 
 // Imprimir el texto y la seccion de firmas
 $bloque6 = <<<EOF
-<table>
-	<tr>
-		<td style="background-color:white; width:540px">
-			<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+	<table>	
+		<tr>
+			<td style="background-color:white; width:540px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
 			</div>
 		</td>
-	</tr>
+		</tr>
+		<tr>
+			<td style="background-color:white; width:140px; text-align:left">
+				<div style="font-size:10.5px; text-align:left line-height:10px;">	
+					Modalidad : $respuestaResponsiva[modalidad_entrega]
+				</div>
+			</td>
+			<td style="background-color:white; width:210px; text-align:left">
+				<div style="font-size:10.5px; text-align:left line-height:10px;">	
+					Fecha : $fechas	
+				</div>
+			</td>			
+			<td style="background-color:white; width:190px">
+				<div style="font-size:10.5px; text-align:right; line-height:10px;">	
+					Hostname : $impHostname
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color:white; width:540px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+				</div>
+			</td>
+		</tr>
 	<tr>
 		<td style="background-color:white; width:540px">
 			<div style="font-size:10.0px; text-align:left; line-height:15px;">	
@@ -306,12 +339,12 @@ $bloque6 = <<<EOF
 
 			</div>			
 		</td>		
-	</tr>
+	</tr>	
 <tr>
 	<td style="background-color:white; width:270px">
 		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
 			ENTREGO
-			<br><br>
+			<br>
 			_________________________________
 			<br>
 			Firma Rubrica y Fecha
@@ -321,7 +354,7 @@ $bloque6 = <<<EOF
 	<td style="background-color:white; width:270px">
 		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
 			RECIBIO			
-			<br><br>
+			<br>
 			_________________________________
 			<br>
 			Firma Rubrica y Fecha
@@ -349,8 +382,7 @@ $bloque6 = <<<EOF
 		<td style="background-color:white; width:540px">
 			<div style="font-size:12.0px; text-align:center; line-height:15px;">	
 					A T E N T A M E N T E					
-					<br>
-					<br>
+				<br>
 			</div>			
 		</td>		
 	</tr>
