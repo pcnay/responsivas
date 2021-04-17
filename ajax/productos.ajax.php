@@ -88,6 +88,7 @@
 
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
+		// Esta se reutiliza en "Responsiva.js" para agregar los productos en la responsiva, ya que se genera de forma dinamica.
 		public $idProducto;
 		public $traerProductos;
 		public $nombreProducto;

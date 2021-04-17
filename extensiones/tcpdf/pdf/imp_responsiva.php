@@ -6,6 +6,8 @@ require_once "../../../controladores/usuarios.controlador.php";
 require_once "../../../modelos/usuarios.modelo.php";
 require_once "../../../controladores/empleados.controlador.php";
 require_once "../../../modelos/empleados.modelo.php";
+require_once "../../../controladores/productos.controlador.php";
+require_once "../../../modelos/productos.modelo.php";
 
 
 // No se debe tabular las lineas de codigo.
@@ -28,21 +30,34 @@ public function traerImpresionResponsiva()
 	
 	$respuestaResponsiva = ControladorResponsivas::ctrMostrarResponsivas($item,$valor_responsiva,$ordenar);
 	// Funciona este "var_dump" en TCPDF, solo que no despliega el PDF
-	//var_dump($respuestaResponsiva["fecha_asignado"]);
+	//var_dump($respuestaResponsiva["productos_asignado"]);
 	
 	//$fecha_asig = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
-	$fecha = date("m-d-Y",strtotime($respuestaResponsiva["fecha_asignado"]));
+	
 
-	$productos = json_decode($respuestaResponsiva["productos"]);
+	$productosResp = json_decode($respuestaResponsiva["productos"],true);
 	$neto = number_format($respuestaResponsiva["neto"],2);
 	$impuesto = number_format($respuestaResponsiva["impuesto"],2);
 	$total = number_format($respuestaResponsiva["total"],2);
+	$fecha_asignadoResp = date("m-d-Y",strtotime($respuestaResponsiva["fecha_asignado"]));
+
+	if ($respuestaResponsiva["fecha_devolucion"] == null)
+	{
+		$fecha_devolucionResp = "";
+		$fechas = $fecha_asignadoResp. $fecha_devolucionResp;
+	}
+	else
+	{
+		$fecha_devolucionResp = date("m-d-Y",strtotime($respuestaResponsiva["fecha_devolucion"]));
+		$fechas = $fecha_asignadoResp.' - '.$fecha_devolucionResp;
+	}
+
+//	var_dump($productosResp[0]["id"]);
 
 	// Traer la informacion del Empleado
 	$itemEmp = "id_empleado";
-	$valorEmp = $respuestaResponsiva["id_empleado"];
-	$ordenarEmp = "apellidos";
-	$respuestaEmp = ControladorEmpleados::ctrMostrarEmpleados($itemEmp,$valorEmp,$ordenarEmp);
+	$valorEmp = $respuestaResponsiva["id_empleado"];	
+	$respuestaEmp = ControladorEmpleados::ctrMostrarEmpleadosImpResp($itemEmp,$valorEmp);
 	
 	// Traer la informacion del Usuario.
 	$itemUsuario = "id_usuario";
@@ -65,25 +80,19 @@ $pdf->AddPage();
 $bloque1 = <<<EOF
 	<table>
 		<tr>
-			<td style="width:150px"><img src="images/logo_jabil1.png"></td>
-			<td style="background-color:white; width:90px">
-				<div style="font-size:9.5px; text-align:right; line-height:15px;">	
-					No. Maquila : 411 Baja
+			<td style="width:160px;"><img src="images/logo_jabil1.png"></td>
+			<td style="background-color:white; width:255px">
+				<div style="font-size:9.0px; text-align:left; line-height:15px;">	
+					       No. Maquila : 411 Baja	
 					<br>
-						Direccion: 
-						Blvd. Terarn Teran No. 20662 L-388
-						Fracc. Murua Oriente
-						Tijuana, B.C. Mexico
+								    Blvd. Terarn Teran No. 20662 L-388 Fracc. 
+								 Murua Oriente,      Tel.: 999-999-99-99, email:info@jabil.com
+					<br>
+								 Tijuana, B.C. Mexico
+						     
 				</div>
 			</td>
-			<td style="background-color:white; width:140px">
-				<div style="font-size:9.5px; text-align:right; line-height:15px;">					
-					Telefono : 999-999-99-99
-					<br>
-					info@jabil.com
-				</div>
-			</td>
-			<td style="background-color:white; width:160px; text-align:right; color:red">				
+			<td style="background-color:white; width:120px; text-align:right; color:red">				
 				<div style="font-size:12.5px; text-align:right; line-height:15px;">				
 						Responsiva No. $valor_responsiva
 				</div>
@@ -108,9 +117,8 @@ $bloque1 = <<<EOF
 				</div>
 			</td>
 		</tr>
-
-
 	</table>
+
 EOF;
 $pdf->writeHTML($bloque1,false,false,false,false,'');
 /*
@@ -127,35 +135,258 @@ $pdf->writeHTML($bloque1,false,false,false,false,'');
 $bloque2 = <<<EOF
 	<table style="font-size:10px; padding:5px 10px;">
 		<tr>
-			<td style="border: 1px solid #666; background-color:white; width:390px">
-				Cliente: $respuestaEmp[nombre]  $respuestaEmp[apellidos]
+			<td style="border: 1px solid #666; background-color:white; width:135px">
+				NTI: $respuestaEmp[ntid]
 			</td>
-			<td style="border: 1px solid #666; background-color:white; width:150px; text-align:right">
-				Fecha: $fecha
+			<td style="border: 1px solid #666; background-color:white; width:405px">
+				Nombre : $respuestaEmp[nombre]  $respuestaEmp[apellidos]
 			</td>
 		</tr>
 		<tr>
-			<td style="border: 1px solid #666; background-color:white; width:540px">Usuario :$respuestaUsuario[nombre] </td>
+			<td style="border: 1px solid #666; background-color:white; width:240px">
+				Depto : $respuestaEmp[depto]
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:200px">
+				E-Mail : $respuestaEmp[correo_electronico]
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:100px">
+				CC. : $respuestaEmp[num_centro_costos]
+			</td>
 		</tr>
+		<tr>
+			<td style="border: 1px solid #666; background-color:white; width:200px">
+				Puesto : $respuestaEmp[puesto]
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:220px">
+				Jefe : $respuestaEmp[supervisor]
+			</td>
+			<td style="border: 1px solid #666; background-color:white; width:120px">
+				Fecha : $fecha_asignadoResp
+			</td>
+		</tr>
+		<tr>
+			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid #666; background-color:white; width:540px text-align:center;
+			color:green">
+				<div style="font-size:12.5px; text-align:center; line-height:15px;">							
+					Entrego Por :$respuestaUsuario[nombre]
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-bottom: 1px solid #666; background-color:white; width:540px"></td>
+		</tr>
+
 	</table>
 
 EOF;
 
 $pdf->writeHTML($bloque2,false,false,false,false,'');
 
-// Imprimira la Responsivas.
+// Imprimira los Encabezados de los renglones de las responsivas.
 $bloque3 = <<<EOF
+	<table style="font-size:10px; padding:5px 10px;">
+		<tr>
+			<td style="border:1px solid #666;background-color:white; width:45px; text-align:center">Cant</td>
+			<td style="border:1px solid #666;background-color:white; width:95px; text-align:center">Componente</td>
+			<td style="border:1px solid #666;background-color:white; width:210px; text-align:center">Descripcion</td>
+			<td style="border:1px solid #666;background-color:white; width:110px; text-align:center">Serial</td>
+			<td style="border:1px solid #666;background-color:white; width:80px; text-align:center">Costo</td>
+		</tr>
+
+	</table>
 
 EOF;
-
-
 $pdf->writeHTML($bloque3,false,false,false,false,'');
 
 
-// Salida del Archivo.
-$pdf->Output ('Responsiva.pdf');
+/* De esta manera NO Funciona
+foreach ($productosResp as $key => $item)
+{
+	$itemProducto = "id_producto";
+	$valorIdProducto = $item["id"]; // Id del Producto a buscar.
+	//var_dump ($productosResp["id"]);
 
-}
+	//$respuestaProductos = ControladorProductos::ctrMostrarProductos($itemProducto,$valorIdProducto);
+
+	// Imprimira el Contenido de los renglones de las responsivas.
+*/
+
+// Se van a recoger los productos que se encuentran en el campo de tipo Json en la Base de datos.
+
+for ($i =0;$i<count($productosResp);$i++)
+{
+	$itemProducto = "id_producto";
+	$valorIdProducto = $productosResp[$i]["id"];
+	//print_r ($productosResp[$i]["id"]);
+	//var_dump($productosResp[$i]["id"]);
+	
+	$respuestaProductos = ControladorProductos::ctrMostrarProductos($itemProducto,$valorIdProducto);
+	
+	$cantidad = $productosResp[$i]["cantidad"];
+	$precio = number_format($productosResp[$i]["precio"],2);
+	//$precio = $respuestaProductos["Precio_Venta"];
+
+
+$bloque4 = <<<EOF
+	<table style="font-size:10px; padding:5px 10px;">
+		<tr>
+			<td style="border:1px solid #666;background-color:white; width:45px; text-align:center">
+				$cantidad
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:95px; text-align:center">
+				$respuestaProductos[Periferico]
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:210px; text-align:center">
+				$respuestaProductos[Marca] $respuestaProductos[Modelo]
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:110px; text-align:center">
+				$respuestaProductos[Serial]
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:80px; text-align:right">
+				$precio
+			</td>			
+		</tr>
+
+	</table>
+EOF;
+
+$pdf->writeHTML($bloque4,false,false,false,false,'');
+
+} // for ($i =0;$i<count($productosResp);$i++)
+
+// <td style="color:#333; background-color:white; width:350px; text-align:center"></td>			
+//<tr>			
+//<td style="border-bottom: 1px solid #666; background-color:white; width:80px; text-align:center"></td>			
+//<td style="border-bottom: 1px solid #333; background-color:white; width:110px; text-align:center"></td>			
+//</tr>
+
+// Imprimir el total de la Responsiva 
+$bloque5 = <<<EOF
+	<table style ="font-size:10px; padding:5px 10px;">
+		<tr>
+			<td style="border:1px solid #666;background-color:white; width:140px; text-align:left">
+				Modalidad : $respuestaResponsiva[modalidad_entrega]
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:210px; text-align:left">
+				Fecha : $fechas
+			</td>			
+			<td style="border: 1px solid #666; background-color:white; width:110px; text-align:center">
+				Importe:
+			</td>
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:right">
+				$total
+			</td>
+
+		</tr>
+		
+	</table>
+
+
+EOF;
+$pdf->writeHTML($bloque5,false,false,false,false,'');
+
+// Imprimir el texto y la seccion de firmas
+$bloque6 = <<<EOF
+<table>
+	<tr>
+		<td style="background-color:white; width:540px">
+			<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="background-color:white; width:540px">
+			<div style="font-size:10.0px; text-align:left; line-height:15px;">	
+				Comentario en el Caso de recibir Equipo De Prestamo :
+				<br>
+				_________________________________________________________________________________________________
+
+			</div>			
+		</td>		
+	</tr>
+<tr>
+	<td style="background-color:white; width:270px">
+		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
+			ENTREGO
+			<br><br>
+			_________________________________
+			<br>
+			Firma Rubrica y Fecha
+
+		</div>			
+	</td>		
+	<td style="background-color:white; width:270px">
+		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
+			RECIBIO			
+			<br><br>
+			_________________________________
+			<br>
+			Firma Rubrica y Fecha
+
+		</div>			
+	</td>		
+</tr>
+</table>
+<table>
+	<tr>
+		<td style="background-color:white; width:540px">
+			<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="background-color:white; width:540px">
+			<div style="font-size:10.0px; text-align:left; line-height:15px;">	
+				Reconozco que recibo el equipo antes mencionado como propiedad de la empresa. Covengo en mantener el equipo en buenas condiciones y regresarlo cuando deje de laborar oara la empresa, o si los represenante de la misma lo requieran.
+					Prometo reportar cualquier pérdida o daño inmediatamente. Estoy de acuerdo en utilizar dicha propiedad solo para propósitos relacionados con el trabajo.CONCUERDO EN CUBRIR HASTA EL VALOR ESPECIFICO O EL DEDUCIBLE SEGUN APLIQUE, EN CASO DE PERDIDA, DAÑO Y/O ROBO DEL EQUIPO
+			</div>			
+		</td>		
+	</tr>
+	<tr>
+		<td style="background-color:white; width:540px">
+			<div style="font-size:12.0px; text-align:center; line-height:15px;">	
+					A T E N T A M E N T E					
+					<br>
+					<br>
+			</div>			
+		</td>		
+	</tr>
+	<tr>
+	<td style="background-color:white; width:270px">
+		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
+			
+			_________________________________
+			<br>
+			Firma Rubrica, Fecha Del Empleado
+
+		</div>			
+	</td>		
+	<td style="background-color:white; width:270px">
+		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
+
+		_________________________________
+			<br>
+			Firma Rubrica, Decha Del Jefe Inmediato
+
+		</div>			
+	</td>		
+</tr>
+
+</table>
+
+
+EOF;
+$pdf->writeHTML($bloque6,false,false,false,false,'');
+
+
+
+// Salida del Archivo.
+$pdf->Output ('Responsiva-'.$valor_responsiva.'.pdf');
+ 
+} // public function traerImpresionResponsiva()
 
 } // class imprimirResponsiva
 

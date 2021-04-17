@@ -1,3 +1,12 @@
+[{"id":"3",
+"descripcion":"NombrePerifericoDos",
+"cantidad":"1",
+"stock":"29",
+"precio":"16.00",
+"total":"16.00"}]
+
+
+
 <header class="main-header">
     <!-- Logo -->
     <a href="vistas/index2.html" class="logo">

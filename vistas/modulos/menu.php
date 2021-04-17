@@ -142,7 +142,7 @@
 						<li class="treeview">
 							<a href="responsivas">
 								<i class="fa fa-list-ul"></i>
-								<span>Capturar Responsivas</span>
+								<span>Administrar Responsivas</span>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right"></i>
 								</span>           
@@ -175,7 +175,7 @@
 								<li>
 									<a href="responsivas">
 										<i class="fa fa-circle-o"></i>
-										<span>Responsivas</span>
+										<span>Capturar Responsivas</span>
 									</a>
 								</li>
 

@@ -11,6 +11,14 @@
 			return $respuesta;			
 		}
 
+		// Imprimir Responsiva  Empleado
+		static public function ctrMostrarEmpleadosImpResp($item,$valor)
+		{
+			$respuesta = ModeloEmpleados::mdlMostrarEmpleadosImpResp($item,$valor);
+			return $respuesta;			
+		}
+
+
 		// Crear Empleado
 		static public function ctrCrearEmpleado()
 		{

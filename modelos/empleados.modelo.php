@@ -22,6 +22,19 @@
 			$stmt=null;
 		}
 
+		static public function mdlMostrarEmpleadosImpResp($item,$valor)
+		{
+			if ($item != null)
+			{
+				$stmt = Conexion::conectar()->prepare("SELECT emp.nombre,emp.apellidos,emp.ntid,emp.correo_electronico,pto.descripcion AS puesto, depto.descripcion AS depto, superv.descripcion AS supervisor,cc.num_centro_costos FROM t_Empleados emp INNER JOIN t_Puesto pto ON emp.id_puesto = pto.id_puesto INNER JOIN t_Depto depto ON emp.id_depto = depto.id_depto INNER JOIN t_Supervisor superv ON emp.id_supervisor = superv.id_supervisor INNER JOIN t_Centro_Costos cc ON emp.id_centro_costos = cc.id_centro_costos WHERE $item = :$item");
+				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
+				$stmt->execute();
+				return $stmt->fetch();
+			}
+			$stmt->close();
+			$stmt=null;
+		}
+
 		// Guardar el Empleado, en la tabla "t_Empleados"
 		static public function mdlIngresarEmpleado($tabla,$datos)
 		{

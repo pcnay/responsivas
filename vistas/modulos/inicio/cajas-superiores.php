@@ -29,12 +29,13 @@
 			<div class="inner">
 				<h3>$<?php echo number_format($ventas["total"],2); ?></h3>
 
-				<p>Ventas</p>
+				<p>Laptop Instaladas</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-social-usd"></i>
 			</div>
-			<a href="ventas" class="small-box-footer">Mas Ventas<i class="fa fa-arrow-circle-right"></i></a>
+			<a href="#" class="small-box-footer">Mas Ventas<i class="fa fa-arrow-circle-right"></i></a>
+			<!-- <a href="ventas" class="small-box-footer">Mas Ventas<i class="fa fa-arrow-circle-right"></i></a> -->
 		</div>
 	</div>
 	<!-- ./col -->
@@ -45,12 +46,12 @@
 			<div class="inner">
 				<h3><?php echo number_format($totalPerifericos); ?></h3>
 
-				<p>Perifericos</p>
+				<p>Desktop Instaladas</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-clipboard"></i>
 			</div>
-			<a href="perifericos" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
+			<a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
 	<!-- ./col -->
@@ -60,12 +61,12 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3><?php echo number_format($totalClientes); ?></h3>
-				<p>Clientes</p>
+				<p>Monitores Instalados</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a href="clientes" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
+			<a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
 	<!-- ./col -->
@@ -75,12 +76,12 @@
 		<div class="small-box bg-red">
 			<div class="inner">
 				<h3><?php echo number_format($totalProductos); ?></h3>
-				<p>Productos</p>
+				<p>Laptop Descompuestas</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-ios-cast"></i>
 			</div>
-			<a href="productos" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
+			<a href="#" class="small-box-footer">Mas info <i class="fa fa-arrow-circle-right"></i></a>
 		</div>
 	</div>
 	<!-- ./col -->

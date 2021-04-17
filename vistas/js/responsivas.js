@@ -196,6 +196,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 		dataType:"json",
 		success:function(respuesta){
 			//console.log("respuesta",respuesta);
+			var Id_Producto = respuesta["id_producto"];
 			var descripcion = respuesta["Periferico"];
 			var stock = respuesta["Stock"];			
 			var precio = respuesta["Precio_Venta"];
@@ -254,7 +255,7 @@ $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 					'</div> <!-- <div clss="form-group row nuevoProducto"> --> '
 			); 
 			
-			// Sumar totalpreicos
+			// Sumar totalprecios
 			sumarTotalPrecios();
 			agregarImpuesto();
 
@@ -307,7 +308,7 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 
 	if (localStorage.getItem("quitarProducto")== null)
 	{
-		idQuitarProducto = [];
+		var idQuitarProducto = [];
 
 	}
 	else
@@ -752,7 +753,9 @@ function listarProductos()
 	
 	// Estos valores se obtienen de la etiqueta:  $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 	//var id =
+	
 	// Contine todos los productos de la resposivas
+	var id_Producto = $("#Id_Productos");
 	var descripcion = $(".nuevaDescripcionProducto");
 	var cantidad = $(".nuevaCantidadProducto");
 	var precio = $(".nuevoPrecioProducto");
