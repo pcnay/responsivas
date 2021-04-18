@@ -61,6 +61,19 @@
 			echo json_encode($respuesta);
 		}
 
+		// Validar si existe la IP
+		public $validarNumIp;
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarNumIp()
+		{
+			$item = "num_ip";
+			$valor = $this->validarNumIp;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+		}
+	
 		// Validar si existe la Cuenta asignada al Telefono
 		public $validarCuenta;
 
@@ -191,6 +204,14 @@
 		$valImei = new AjaxProductos();
 		$valImei->validarImei = $_POST["validarImei"];
 		$valImei->ajaxValidarImei();
+	}
+
+	// Validar que NO se repita la IP.
+	if (isset($_POST["validarNumIp"]))
+	{
+		$valNumIp = new AjaxProductos();
+		$valNumIp->validarNumIp = $_POST["validarNumIp"];
+		$valNumIp->ajaxValidarNumIp();
 	}
 
 	// Validar que NO se repita la Cuenta del Tel.

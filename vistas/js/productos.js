@@ -89,6 +89,10 @@ function validarCampo(campoValid,queCampo,Editar)
 			cadenaComparar = "^[0-9]";
 			Editar == 'S'?etiqueta = "#editarImei":etiqueta = "#nuevoImei";
 		break;
+		case ('Num_Ip'):
+			cadenaComparar = "^[0-9.]";
+			Editar == 'S'?etiqueta = "#editarNumIp":etiqueta = "#nuevoNumIp";
+		break;
 	
 	}
 
@@ -469,6 +473,83 @@ $("#editarImei").change(function(){
  
 }) // $("#editarImei").change(function()
 
+$("#nuevoNumIp").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();	
+
+	// Obtienedo el valor del id=nuevoSerial.
+
+	let num_ip = $(this).val();
+	let Editar = 'N';
+	validarCampo(num_ip,'Num_Ip',Editar);
+	
+	//console.log("Num IP",num_ip);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNumIp",num_ip);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoNumIp").parent().after('<div class="alert alert-warning" >La IP Ya Existe </div>');
+				$("#nuevoNumIp").val("");
+			}
+
+		}
+	})
+
+}) // $("#nuevNumIp").change(function(){
+
+// Revisando que la "IP" no este repetida. Cuando se edita el Producto
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarNumIp" id="editarNumIp">
+$("#editarNumIp").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=editarNumIp.
+	let num_ip = $(this).val();
+	let Editar = 'S';
+	validarCampo(num_ip,'Num_Ip',Editar);
+
+	//console.log("num_ip",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNumIp",num_ip);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarNumIp").parent().after('<div class="alert alert-warning" >La IP Ya existe </div>');
+				$("#editarNumIp").val("");
+			}
+		}
+	})
+ 
+}) // $("#editarNumIp").change(function(){
 
 // Revisando que la "Nomenclatura" no este repetida
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaNomenclatura" id="nuevaNomenclatura" placeholder = "Ingresar la Nomenclatura" >
@@ -854,6 +935,12 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		});
 
 		//console.log ("Nomenclatura",producto["nomenclatura"]);
+		
+		//$("#editarPeriferico").val(perifericos["id_periferico"]); //Id
+		//$("#editarPeriferico").html(perifericos["nombre"]);		// Html (de la etiqueta Select)
+		$("#editarEdoTel").val(producto["edo_tel"]); // Se requiere este campo solomante para el "Select"
+
+		$("#editarNumIp").val(producto["num_ip"]);
 		$("#editarNomenclatura").val(producto["nomenclatura"]);
 		$("#editarStock").val(producto["Stock"]);
 		$("#editarPrecioCompra").val(producto["precio_compra"]);

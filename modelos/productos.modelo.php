@@ -55,6 +55,9 @@
 				case ('imei_tel'):
 					$condicion = 'tp.imei_tel';
 				break;
+				case ('num_ip'):
+					$condicion = 'tp.num_ip';
+				break;
 				case ('cuenta'):
 					$condicion = 'tp.cuenta';
 				break;
@@ -66,7 +69,7 @@
 
 			if ($item != null)
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE $condicion = :$item ORDER BY tperif.nombre ASC");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				//$stmt->bindParam(":".$comparar, $condicion,PDO::PARAM_STR);
@@ -75,7 +78,7 @@
 			}
 			else
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.nombre AS Periferico,tp.num_serie AS Serial,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, emp.apellidos AS Empleado, emp.ntid AS Ntid, tp.num_tel FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico ORDER BY tperif.nombre ASC");
 
 				/*
@@ -96,7 +99,7 @@
 			/*
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,stock,precio_compra,precio_venta,nomenclatura,especificaciones,comentarios,imagen_producto,cuantas_veces) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:stock,:precio_compra,:precio_venta,:nomenclatura,:especificaciones,:comentarios,:imagen_producto,:cuantas_veces)");
 			*/
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_telefonia,id_plan_tel,num_tel,cuenta,direcc_mac_tel,imei_tel,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,stock,precio_compra,precio_venta,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_telefonia,:id_plan_tel,:num_tel,:cuenta,:direcc_mac_tel,:imei_tel,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:stock,:precio_compra,:precio_venta,:comentarios,:imagen_producto)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_telefonia,id_plan_tel,num_tel,cuenta,direcc_mac_tel,imei_tel,edo_tel,num_ip,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,stock,precio_compra,precio_venta,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_telefonia,:id_plan_tel,:num_tel,:cuenta,:direcc_mac_tel,:imei_tel,:edo_tel,:num_ip,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:stock,:precio_compra,:precio_venta,:comentarios,:imagen_producto)");
 
 			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
 			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);
@@ -106,6 +109,8 @@
 			$stmt->bindParam(":cuenta",$datos["cuenta"],PDO::PARAM_STR);
 			$stmt->bindParam(":direcc_mac_tel",$datos["direcc_mac_tel"],PDO::PARAM_STR);
 			$stmt->bindParam(":imei_tel",$datos["imei_tel"],PDO::PARAM_STR);
+			$stmt->bindParam(":edo_tel",$datos["edo_tel"],PDO::PARAM_STR);
+			$stmt->bindParam(":num_ip",$datos["num_ip"],PDO::PARAM_STR);
 			$stmt->bindParam(":id_marca",$datos["id_marca"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_modelo",$datos["id_modelo"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);
@@ -136,7 +141,7 @@
 
 		static public function mdlEditarProducto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto WHERE id_producto= :id_producto");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,edo_tel =:edo_tel,num_ip = :num_ip,id_marca = :id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto WHERE id_producto= :id_producto");
 
 
 			$stmt->bindParam(":id_producto",$datos["id_producto"],PDO::PARAM_INT);
@@ -148,6 +153,8 @@
 			$stmt->bindParam(":cuenta",$datos["cuenta"],PDO::PARAM_STR);
 			$stmt->bindParam(":direcc_mac_tel",$datos["direcc_mac_tel"],PDO::PARAM_STR);
 			$stmt->bindParam(":imei_tel",$datos["imei"],PDO::PARAM_STR);
+			$stmt->bindParam(":edo_tel",$datos["edo_tel"],PDO::PARAM_STR);
+			$stmt->bindParam(":num_ip",$datos["num_ip"],PDO::PARAM_STR);
 			$stmt->bindParam(":id_marca",$datos["id_marca"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_modelo",$datos["id_modelo"],PDO::PARAM_INT);
 			$stmt->bindParam(":id_almacen",$datos["id_almacen"],PDO::PARAM_INT);

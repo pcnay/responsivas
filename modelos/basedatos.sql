@@ -217,6 +217,8 @@ CREATE TABLE t_Productos
 	cuantas_veces TINYINT DEFAULT NULL,
 	asignado CHAR(1) DEFAULT 'N',	
 	fecha_arribo DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	edo_tel VARCHAR(15) NULL,
+	num_ip VARCHAR(20) NULL,
 	comentarios TEXT NULL,
 	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -242,7 +244,7 @@ CREATE TABLE t_Responsivas
 	id_empleado SMALLINT UNSIGNED NOT NULL,
 	id_usuario SMALLINT UNSIGNED NOT NULL,
 	id_almacen SMALLINT UNSIGNED NOT NULL,	
-  activa CHAR(1) NOT NULL,
+  activa CHAR(1) DEFAULT 'S' NOT NULL,
 	num_folio SMALLINT UNSIGNED NOT NULL,
 	modalidad_entrega VARCHAR(25) NOT NULL,	
 	num_ticket VARCHAR(30) NULL,

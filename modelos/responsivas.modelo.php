@@ -10,13 +10,13 @@
 			{
 				if ($ordenar == 'ConsultaSencilla')
 				{
-					$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE $item = :$item ORDER BY fecha_asignado ASC");
+					$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE $item = :$item && activa = 'S' ORDER BY fecha_asignado ASC");
 					$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 					$stmt->execute();	
 				}
 				if ($ordenar == 'ConsultaCompleja')
 				{
-					$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva,tr.id_empleado,tu.id_usuario,tu.nombre AS  nombre_usuario,tr.num_folio,tr.modalidad_entrega,tr.productos,tr.num_ticket,tr.id_empleado,tr.comentario,tr.impuesto,tr.neto,tr.total,tr.fecha_devolucion,tr.fecha_asignado,te.nombre AS nombre_empleado,te.apellidos AS apellidos_empleado,tr.id_almacen,ta.nombre AS nombre_planta FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado INNER JOIN t_Almacen ta ON tr.id_almacen = ta.id_almacen INNER JOIN t_Usuarios tu ON tr.id_usuario = tu.id_usuario WHERE $item = :$item ");
+					$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva,tr.id_empleado,tu.id_usuario,tu.nombre AS  nombre_usuario,tr.num_folio,tr.activa,tr.modalidad_entrega,tr.productos,tr.num_ticket,tr.id_empleado,tr.comentario,tr.impuesto,tr.neto,tr.total,tr.fecha_devolucion,tr.fecha_asignado,te.nombre AS nombre_empleado,te.apellidos AS apellidos_empleado,tr.id_almacen,ta.nombre AS nombre_planta FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado INNER JOIN t_Almacen ta ON tr.id_almacen = ta.id_almacen INNER JOIN t_Usuarios tu ON tr.id_usuario = tu.id_usuario WHERE $item = :$item && tr.activa = 'S' ");
 					$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 					$stmt->execute();
 				}
@@ -40,7 +40,7 @@
 		
 				}	// switch ($ordenar)			
 
-				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla ORDER BY $condicion $sube_baja");
+				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE activa = 'S' ORDER BY $condicion $sube_baja");
 				$stmt->execute();
 				
 				return $stmt->fetchAll();
@@ -126,9 +126,13 @@
 	} // static public function mdlEditarResponsiva($tabla,$datos)
 
 	// Eliminar Responsiva.
+/*
+	$stmt = Conexion::conectar()->prepare ("UPDATE $tabla SET id_empleado=:id_empleado,id_usuario=:id_usuario,id_almacen=:id_almacen,activa=:activa,num_folio=:num_folio,modalidad_entrega=:modalidad_entrega,num_ticket=:num_ticket,comentario=:comentario,productos=:productos,impuesto=:impuesto,neto=:neto,total=:total,fecha_devolucion=:fecha_devolucion,fecha_asignado=:fecha_asignado WHERE id_responsiva = :id_responsiva");
+*/
 	static public function mdlEliminarResponsiva($tabla,$datos)
 	{
-		$stmt = Conexion::conectar()->prepare ("DELETE FROM $tabla WHERE id_responsiva = :id_responsiva");
+		//$stmt = Conexion::conectar()->prepare ("DELETE FROM $tabla WHERE id_responsiva = :id_responsiva");
+		$stmt = Conexion::conectar()->prepare ("UPDATE $tabla SET activa = 'N' WHERE id_responsiva = :id_responsiva");
 		$stmt->bindParam(":id_responsiva",$datos,PDO::PARAM_INT);
 		if ($stmt->execute())
 		{

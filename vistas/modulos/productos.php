@@ -254,6 +254,32 @@
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
+						<!-- Estado del Telefono-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevoEdoTel" name="nuevoEdoTel">
+	                  <option value="">Estado Linea Tel</option>										
+										<option value="Disponible">Disponible</option>
+										<option value="NO Disponible">NO Disponible</option>
+										<option value="NO Aplica">NO Aplica</option>
+									</select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+						<!-- Numero de IP -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoNumIp" name="nuevoNumIp" placeholder = "Numero de IP">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
@@ -640,6 +666,31 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarImei" name="editarImei">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Estado del Telefono-->
+            <div class= "col-xs-12 col-sm-6">
+							<div class="form-group">							
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "editarEdoTel" name="editarEdoTel" required>
+	                  <option value="">Estado Linea Tel</option>										
+										<option value="Disponible">Disponible</option>
+										<option value="NO Disponible">NO Disponible</option>
+										<option value="NO Aplica">NO Aplica</option>
+									</select>                
+	              </div> <!-- <div class = "input-group"> -->           							
+            	</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+						<!-- Numero de IP -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->

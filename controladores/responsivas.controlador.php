@@ -608,7 +608,7 @@
 					echo '<script>           
 					Swal.fire ({
 						type: "success",
-						title: "La venta ha sido borrada correctamente",
+						title: "La Responsiva ha sido borrada correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
