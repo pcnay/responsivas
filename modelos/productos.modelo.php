@@ -229,14 +229,36 @@
 			$stmt = null;
 
 		} // 		static public function mdlActualizarProducto.......
-
-		static public function mdlMostrarSumaVentas($tabla)
+		
+		static public function mdlMostrarSumaPerifericos($id_periferico,$id_edo_epo,$tabla)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(ventas) as total FROM $tabla");
+			//ON tp.id_periferico = tperif.id_periferico  WHERE $condicion = :$item ORDER BY tperif.nombre ASC");
+			//	$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
+
+			$stmt = Conexion::conectar()->prepare("SELECT SUM(stock) as total FROM $tabla WHERE id_periferico = :item1 && id_edo_epo = :item2");
+
+			$stmt->bindParam(":item1", $id_periferico,PDO::PARAM_INT);
+			$stmt->bindParam(":item2", $id_edo_epo,PDO::PARAM_INT);
+
 			$stmt->execute();
+			
 			return $stmt->fetch();
 			$stmt->close();
 			$stmt = null;
+/*
+			:imagen_producto WHERE id_producto= :id_producto");
+
+
+			$stmt->bindParam(":id_producto",$datos["id_producto"],PDO::PARAM_INT);
+
+			$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
+			tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE $condicion = :$item ORDER BY tperif.nombre ASC");
+			$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
+			//$stmt->bindParam(":".$comparar, $condicion,PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetch();
+*/
+
 		}
 	
 	} // class ModeloProductos

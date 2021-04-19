@@ -409,10 +409,11 @@
 	// ===================================================
 	// Mostrar Suma De Ventas 
 	// ===================================================
-	static public function ctrMostrarSumaVentas()
+	
+	static public function ctrSumaTotalPerifericos($id_periferico,$id_edo_epo)
 	{
 		$tabla = "t_Productos";
-		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
+		$respuesta = ModeloProductos::mdlMostrarSumaPerifericos($id_periferico,$id_edo_epo,$tabla);
 		return $respuesta;
 	}
 	

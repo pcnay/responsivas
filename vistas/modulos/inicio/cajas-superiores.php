@@ -1,11 +1,37 @@
 <?php
+	//require_once "../../../controladores/productos.controlador.php";
+	//require_once "../../../modelos/productos.modelo.php";
+
+	// Sumando las Desktop que se tienen en e Inventario y operables
+	$id_periferico = 1;
+	$id_edo_epo = 1;
+	$productosDesktop = ControladorProductos::ctrSumaTotalPerifericos($id_periferico,$id_edo_epo);
+	
+	// Sumando las Desktop que estan en el Inventario y NO operables
+	$id_periferico = 1;
+	$id_edo_epo = 2;
+	$productosDesktopDescomp = ControladorProductos::ctrSumaTotalPerifericos($id_periferico,$id_edo_epo);
+	
+	// Sumando las Laptops que se tienen en e Inventario y operables
+	$id_periferico = 2;
+	$id_edo_epo = 1;
+	$productosLaptop = ControladorProductos::ctrSumaTotalPerifericos($id_periferico,$id_edo_epo);
+
+	// Sumando las Laptops que se tienen en e Inventario y NO operables
+	$id_periferico = 2;
+	$id_edo_epo = 2;
+	$productosLaptopDescomp = ControladorProductos::ctrSumaTotalPerifericos($id_periferico,$id_edo_epo);
+	
+	
 	/*
-	$ventas = ControladorVentas::ctrSumaTotalVentas();
 	$item = null;
 	$valor = null;
+
 	$perifericos = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
 	// var_dump($Perifericos);
 	$totalPerifericos = count($perifericos);
+
+/*
 
 	$clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
 	$totalClientes = count($clientes);
@@ -14,10 +40,8 @@
 	$productos = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 	$totalProductos = count($productos);
 	*/
+		
 	
-	$ventas["total"] = 0;
-	$perifericos = 0;
-	$totalPerifericos = 0;
 	$totalClientes = 0;
 	$totalProductos = 0;
 ?>
@@ -27,9 +51,9 @@
 		<!-- small box -->
 		<div class="small-box bg-aqua">
 			<div class="inner">
-				<h3>$<?php echo number_format($ventas["total"],2); ?></h3>
+				<h3><?php echo $productosDesktop["total"]; ?></h3>
 
-				<p>Laptop Instaladas</p>
+				<p>Desktop</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-social-usd"></i>
@@ -44,9 +68,9 @@
 		<!-- small box -->
 		<div class="small-box bg-green">
 			<div class="inner">
-				<h3><?php echo number_format($totalPerifericos); ?></h3>
+				<h3><?php echo $productosLaptop["total"]; ?></h3>
 
-				<p>Desktop Instaladas</p>
+				<p>Laptopss</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-clipboard"></i>
@@ -60,8 +84,8 @@
 		<!-- small box -->
 		<div class="small-box bg-yellow">
 			<div class="inner">
-				<h3><?php echo number_format($totalClientes); ?></h3>
-				<p>Monitores Instalados</p>
+				<h3><?php echo $productosDesktopDescomp["total"]; ?></h3>
+				<p>Desktop Descompuestas</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
@@ -75,7 +99,7 @@
 		<!-- small box -->
 		<div class="small-box bg-red">
 			<div class="inner">
-				<h3><?php echo number_format($totalProductos); ?></h3>
+				<h3><?php echo $productosLaptopDescomp["total"]; ?></h3>
 				<p>Laptop Descompuestas</p>
 			</div>
 			<div class="icon">
