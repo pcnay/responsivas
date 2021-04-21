@@ -9,7 +9,7 @@
       {
         // Validando solo letras y números, para proteger la Base De Datos SQL Inyection
         // preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]
-        if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]))
+        if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["ingPassword"]))
         {
 
           // Este valor  '$2a$07$usesomesillystringforsalt$' es fijo, se utilizar para descriptar e encriptar la clave.
@@ -117,7 +117,7 @@
         // preg_match('/^[a-zA-ZO-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-ZO-9]+$/',$_POST["nuevoUsuario"]) &&
 						 //preg_match('/^[a-zA-Z0-9]+$/',$_POST["nuevoNombre"])
 				// Validando que lo que tecleo el usuario sea valido con la sig. expresion regular.
-        if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["nuevoUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["nuevoPassword"]))
+        if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-Z0-9 ]+$/',$_POST["nuevoUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["nuevoPassword"]))
         {
           /* Para guardar las fotos, sera de la siguiente manera: 
           1.- En una carpeta del servidor se subira la foto
@@ -377,7 +377,7 @@
 					$tabla = "t_Usuarios";
 					if ($_POST["editarPassword"] != "") // Tiene información, se cambiara la clave
 					{
-						if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["editarPassword"])) // Valida  la nueva contraseña que solo tengan letras y numeros.
+						if (preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["editarPassword"])) // Valida  la nueva contraseña que solo tengan letras y numeros.
 						{ 
 								$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 						}

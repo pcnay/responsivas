@@ -2,7 +2,7 @@ USE bd_responsivas;
 
 INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
   (1,'Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-
+/*
 INSERT INTO t_Cintas (id_cintas,num_serial,fecha_inic,fecha_final,ubicacion,comentarios) VALUES
   (0,'SerialCintaUno',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'UbicacionUno','Comentarios VariosUno'),
 	(0,'SerialCintaDos',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'UbicacionDos','Comentarios VariosDos'),
@@ -93,3 +93,6 @@ INSERT INTO t_Productos (id_producto,id_almacen,id_edo_epo,id_marca,id_modelo,id
 		(0,1,1,1,'tareaAsignadaUno','TicketUno','comentario1Uno','comentario2Uno',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
 		(0,1,1,1,'tareaAsignadaDos','TicketDos','comentario1Dos','comentario2Dos',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP),
 		(0,1,1,1,'tareaAsignadaTres','TicketTres','comentario1Tres','comentario2Tres',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+		*/
+		

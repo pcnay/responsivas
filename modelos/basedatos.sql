@@ -180,6 +180,7 @@ CREATE TABLE t_Empleados
 	apellidos VARCHAR(45) NOT NULL,
 	ntid VARCHAR(20) NOT NULL,
 	correo_electronico VARCHAR(50) NOT NULL,
+	rol VARCHAR(25) NULL,
 	foto VARCHAR(100) NOT NULL,	
 	fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion)

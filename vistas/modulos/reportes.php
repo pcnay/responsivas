@@ -1,7 +1,7 @@
 <?php
 	// Solo el administrador puede entrar a Reportes
 	// Se realiza para que no entren desde la URL de la barra de direcciones
-	if ($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" )
+	if ($_SESSION["perfil"] == "Operador")
 	{
 		echo '
 			<script>

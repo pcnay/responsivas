@@ -198,9 +198,9 @@
 						</a>
 						<ul class="treeview-menu">
 							<li>
-								<a href="#">
+								<a href="https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php" target="_blank">
 									<i class="fa fa-circle-o"></i>
-									<span>Marcas</span>
+									<span>Empleados</span>
 								</a>
 							</li>
 						</ul> <!-- <ul class="treeview-menu"> -->

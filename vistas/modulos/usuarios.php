@@ -200,9 +200,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
                   <option value="">Seleccionar perfil</option>
 									<option value="Administrador">Administrador</option>
                   <option value="Supervisor">Supervisor</option>
-                  <option value="Ingeniero">Ingeniero</option>
-                  <option value="Soporte">Soporte</option>
-									<option value="Banca Talento">Banca Talento</option>
+                  <option value="Operador">Operador</option>
                 </select>                
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
