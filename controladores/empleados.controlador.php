@@ -11,6 +11,14 @@
 			return $respuesta;			
 		}
 
+		// Imprimir Empleados
+		static public function ctrMostrarEmpleadosRep($item,$valor)
+		{
+			$tabla = "t_Empleados";
+			$respuesta = ModeloEmpleados::mdlMostrarEmpleadosRep($tabla,$item,$valor);
+			return $respuesta;			
+		}
+		
 		// Imprimir Responsiva  Empleado
 		static public function ctrMostrarEmpleadosImpResp($item,$valor)
 		{
