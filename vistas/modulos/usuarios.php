@@ -1,6 +1,6 @@
 <?php
-	// El Usuario administrador solo puede entrar a esta ventana 
-	if ($_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Banca Talento" )
+	// El Usuario "Operador"
+	if ($_SESSION["perfil"] == "Operador")
 	{
 		echo '
 			<script>
@@ -168,7 +168,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
+                <input type="text" class="form-control input-lg" name="nuevoNombre" id="nuevoNombre" placeholder = "Ingresar Nombre" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -187,7 +187,7 @@ Cuando el usuario oprima el boton de "Agregar Usuario" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder = "Ingresar Contraseña" 
+                <input type="password" class="form-control input-lg" id="nuevoPassword" name="nuevoPassword" placeholder = "Ingresar Contraseña" 
 								required>								
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->

@@ -116,6 +116,17 @@ $("#nuevoSerial").bind('keypress', function(event) {
   }
 });
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarSerial").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9-]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que el "Serial" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
 $("#nuevoSerial").change(function(){
@@ -156,6 +167,47 @@ $("#nuevoSerial").change(function(){
 	})
 
 }) // $("#nuevoSerial").change(function(){
+
+// Revisando que el "Serial" no este repetido, cuando se edita el numero de serie.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
+$("#editarSerial").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();	
+
+	// Obtienedo el valor del id=nuevoSerial.
+
+	let serial = $(this).val();
+	//let Editar = 'N';
+	//validarCampo(serial,'Num_Serial',Editar);
+	
+	//console.log("Serial",serial);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarSerial",serial);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarSerial").parent().after('<div class="alert alert-warning" >Este Serial Existe </div>');
+				$("#editarSerial").val("");
+			}
+
+		}
+	})
+
+}) // $("#editarSerial").change(function(){
 
 // Validar los caracteres permitidos 
 // Validar la entrada.

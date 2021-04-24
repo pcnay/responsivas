@@ -54,6 +54,16 @@
 
 		}
 
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.		
+		public $validarUsuario_nom;
+		public function ajaxValidarUsuario_nom()
+		{
+			$item = "nombre";
+			$valor = $this->validarUsuario_nom;
+
+			$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
+			echo json_encode($respuesta);
+		}
 	} // class AjaxUsuarios
 
 
@@ -83,4 +93,11 @@
 		$valUsuario->ajaxValidarUsuario();
 	}
 
+	// Validar que NO se repita el nombre de Usuario.
+	if (isset($_POST["validarUsuario_nom"]))
+	{
+		$valUsuario_nom = new AjaxUsuarios();
+		$valUsuario_nom->validarUsuario_nom = $_POST["validarUsuario_nom"];
+		$valUsuario_nom->ajaxValidarUsuario_nom();
+	}
 ?>

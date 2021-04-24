@@ -166,6 +166,124 @@ $(document).on("click",".btnActivar",function(){
 	}
 })
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoNombre").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarNombre").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Revisando que el Nombre del usuario no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoNombre" id="nuevoNombre" placeholder = "Ingresar Usuario" required>
+$("#nuevoNombre").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+
+	// Obtienedo el valor del id=nuevoUsuario.
+	var usuario_nom = $(this).val();
+	//console.log ("usuario desde la etiqueta ",usuario);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	datos.append("validarUsuario_nom",usuario_nom);
+	$.ajax({
+		url:"ajax/usuarios.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				// "parent" sale del "div" y se coloca fuera del recuadro.
+				$("#nuevoNombre").parent().after('<div class="alert alert-warning" >El Nombre Del Usuario Ya Existe </div>');
+				$("#nuevoNombre").val("");
+			}
+
+		}
+	})
+ 
+}); // $("#nuevoNombre").change(function(){
+
+// Revisando que el Nombre del Usuario no este repetido, cuando se edita.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoNombre" id="nuevoNombre" placeholder = "Ingresar Usuario" required>
+$("#editarNombre").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+
+	// Obtienedo el valor del id=nuevoUsuario.
+	var usuario_nom = $(this).val();
+	//console.log ("usuario desde la etiqueta ",usuario);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	datos.append("validarUsuario_nom",usuario_nom);
+	$.ajax({
+		url:"ajax/usuarios.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				// "parent" sale del "div" y se coloca fuera del recuadro.
+				$("#editarNombre").parent().after('<div class="alert alert-warning" >El Nombre Del Usuario Ya Existe </div>');
+				$("#editarNombre").val("");
+			}
+
+		}
+	})
+ 
+}); // $("#editarNombre").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoUsuario").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarUsuario").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que el usuario no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoUsuario" id="nuevoUsuario" placeholder = "Ingresar Usuario" required>
 $("#nuevoUsuario").change(function(){
@@ -203,6 +321,64 @@ $("#nuevoUsuario").change(function(){
  
 })
 
+// Revisando que el usuario no este repetido, cuando se edite.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoUsuario" id="nuevoUsuario" placeholder = "Ingresar Usuario" required>
+$("#editarUsuario").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+
+	// Obtienedo el valor del id=nuevoUsuario.
+	var usuario = $(this).val();
+	//console.log ("usuario desde la etiqueta ",usuario);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	datos.append("validarUsuario",usuario);
+	$.ajax({
+		url:"ajax/usuarios.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				// "parent" sale del "div" y se coloca fuera del recuadro.
+				$("#editarUsuario").parent().after('<div class="alert alert-warning" >Este Usuario Ya Existe </div>');
+				$("#editarUsuario").val("");
+			}
+
+		}
+	})
+ 
+})
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoPassword").bind('keypress', function(event) {	
+  var regex = new RegExp("^[A-Za-z0-9*-@+/]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarPassword").bind('keypress', function(event) {	
+  let regex = new RegExp("^[A-Za-z0-9*-@+/]+$");
+  let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // ================================================
 // Eliminar USUARIO.
