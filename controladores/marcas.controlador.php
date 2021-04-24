@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevaMarca"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaMarca"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaMarca"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Marca";
 
@@ -50,8 +50,9 @@
 							</script>';          
 	
 					}
-				}
-				else
+				//}
+				//else
+				/*
 				{
 					echo '<script>           
 					Swal.fire ({
@@ -71,6 +72,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaMarca"]))
+				*/
 
 			}
 
@@ -84,8 +86,8 @@
 		{
 			if (isset($_POST["editarMarca"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarMarca"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarMarca"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Marca";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -113,7 +115,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -134,7 +137,8 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaMarca"]))
-
+				*/
+				
 			}
 
 		} // static public function ctrCrearMarcas()

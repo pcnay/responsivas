@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevoEdo_Epo"]))
 			{
-				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoEdo_Epo"]))
-				{
+				//if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoEdo_Epo"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Edo_epo";
 
@@ -50,7 +50,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -71,6 +72,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoEdo_Epo"]))
+				*/
 
 			}
 
@@ -84,8 +86,8 @@
 		{
 			if (isset($_POST["editarEdo_Epo"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarEdo_Epo"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarEdo_Epo"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Edo_epo";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -113,7 +115,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -133,7 +136,8 @@
 		
 						</script>';          
 
-				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoEdo_Epo"]))
+				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["neditarEdo_Epo"]))
+				*/
 
 			}
 

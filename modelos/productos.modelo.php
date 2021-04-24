@@ -61,7 +61,7 @@
 				case ('cuenta'):
 					$condicion = 'tp.cuenta';
 				break;
-				case ('Nomenclatura'):
+				case ('nomenclatura'):
 					$condicion = 'tp.nomenclatura';
 				break;
 

@@ -420,8 +420,25 @@ $(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
 
 			});	
 
-
 })
+
+$("#nuevo_ntid").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+$("#editar_ntid").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que el "NTID" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevo_ntid" id="nuevo_ntid" placeholder = "Ingresar el NT Id del Usuario" required>
@@ -432,8 +449,8 @@ $("#nuevo_ntid").change(function(){
 	// Obtienedo el valor del id=nuevo_ntid.
 	let nt_id = $(this).val();
 	
-	let Editar = 'N';
-	validarCampoEmp(nt_id,'NT_ID',Editar);
+	//let Editar = 'N';
+	//validarCampoEmp(nt_id,'NT_ID',Editar);
 
 	//console.log("NT Id",nt_id);
 
@@ -463,6 +480,28 @@ $("#nuevo_ntid").change(function(){
  
 }) // $("#nuevo_ntid").change(function(){
 
+
+// Valida los caracteres del correo electronico.
+	$("#nuevoCorreoElect").bind('keypress', function(event) {
+		var regex = new RegExp("^[A-Z0-9@_.]+$");
+		var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		if (!regex.test(key)) {
+			event.preventDefault();
+			return false;
+		}
+	});
+
+// Valida los caracteres del correo electronico.
+$("#editarCorreoElect").bind('keypress', function(event) {
+	var regex = new RegExp("^[A-Z0-9@_.]+$");
+	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	if (!regex.test(key)) {
+		event.preventDefault();
+		return false;
+	}
+});
+
+	
 // Revisando que el "Correo Electronico" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoCorreoElect" id="nuevoCorreoElect" placeholder = "Ingresar el Correo Electronico" required>
 $("#nuevoCorreoElect").change(function(){
@@ -473,7 +512,7 @@ $("#nuevoCorreoElect").change(function(){
 	let correo_elect = $(this).val();
 	
 	let Editar = 'N';
-	validarCampoEmp(correo_elect,'Correo_Elect',Editar);
+	//validarCampoEmp(correo_elect,'Correo_Elect',Editar);
 
 	//console.log("NT Id",nt_id);
 
@@ -501,6 +540,84 @@ $("#nuevoCorreoElect").change(function(){
 		}
 	})
  
-}) // $("#nuevoDepto").change(function(){
+}) // $("#nuevoCorreoElect").change(function(){
 
+// Revisando que el "Correo Electronico" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoCorreoElect" id="nuevoCorreoElect" placeholder = "Ingresar el Correo Electronico" required>
+$("#editarCorreoElect").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevo_ntid.
+	let correo_elect = $(this).val();
+	
+	//let Editar = 'N';
+	//validarCampoEmp(correo_elect,'Correo_Elect',Editar);
 
+	//console.log("NT Id",nt_id);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validaCorreoElect",correo_elect);
+	$.ajax({
+		url:"ajax/empleados.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarCorreoElect").parent().after('<div class="alert alert-warning" >Ya existe el Correo Electronico !! </div>');
+				$("#editarCorreoElect").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoCorreoElect").change(function(){
+
+// Valida los caracteres del Nombre.
+$("#nuevoNombre").bind('keypress', function(event) {
+	var regex = new RegExp("^[A-ZÑ ]+$");
+	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	if (!regex.test(key)) {
+		event.preventDefault();
+		return false;
+	}
+});
+
+// Valida los caracteres permitidos para Nombre.
+$("#editarNombre").bind('keypress', function(event) {
+	var regex = new RegExp("^[A-ZÑ ]+$");
+	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	if (!regex.test(key)) {
+		event.preventDefault();
+		return false;
+	}
+});
+
+// Valida los caracteres de los Apellidos.
+$("#nuevoApellido").bind('keypress', function(event) {
+	var regex = new RegExp("^[A-ZÑ ]+$");
+	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	if (!regex.test(key)) {
+		event.preventDefault();
+		return false;
+	}
+});
+
+// Valida los caracteres de los Apellidos.
+$("#editarApellido").bind('keypress', function(event) {
+	var regex = new RegExp("^[A-ZÑ ]+$");
+	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	if (!regex.test(key)) {
+		event.preventDefault();
+		return false;
+	}
+});

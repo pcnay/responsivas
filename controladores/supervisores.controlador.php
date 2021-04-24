@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevoSupervisor"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSupervisor"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSupervisor"]))
+				//{
 					// Enviar la información al Supervisor.
 					$tabla = "t_Supervisor";
 
@@ -50,7 +50,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -71,6 +72,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSupervisor"]))
+				*/
 
 			}
 
@@ -84,8 +86,8 @@
 		{
 			if (isset($_POST["editarSupervisor"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarSupervisor"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarSupervisor"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Supervisor";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -113,7 +115,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -134,7 +137,8 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoSupervisor"]))
-
+				*/
+				
 			}
 
 		} // static public function ctrCrearSupervisores()

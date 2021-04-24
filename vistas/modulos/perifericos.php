@@ -1,4 +1,5 @@
 <?php
+	/*
 	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
@@ -6,8 +7,10 @@
 			<script>
 				window.location = "inicio";
 			</script>';
-			return;			
+			return;				
 	}
+	*/
+	
 ?>
 
   <!-- Content Wrapper. Contains page content -->

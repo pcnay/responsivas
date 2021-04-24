@@ -1,4 +1,6 @@
+
 <?php
+/*
 	// El vendedor no puede entrar a Modelos
 	if ($_SESSION["perfil"] == "Vendedor" )
 	{
@@ -8,6 +10,8 @@
 			</script>';
 			return;			
 	}
+	*/
+	
 ?>
 
   <!-- Content Wrapper. Contains page content -->

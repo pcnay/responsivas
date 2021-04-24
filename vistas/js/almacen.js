@@ -30,6 +30,26 @@ $(".btnEditarAlmacen").click(function(){
 })  // $(":btnEditarAlmacen")
 
 
+// Validar la entrada.
+$("#nuevoAlmacen").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar la entrada.
+$("#editarAlmacen").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que el "Almacen" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoAlmacen" id="nuevoAlmacen" placeholder = "Ingresar un Almacen" required>
 $("#nuevoAlmacen").change(function(){

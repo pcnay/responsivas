@@ -74,7 +74,7 @@
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarPuesto" para activar una ventana modal -->
 															<!-- "btnEditarPuesto" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarPuerto" idPuesto="'.$value["id_puesto"].'" data-toggle="modal" data-target="#modalEditarPuesto"><i class="fa fa-pencil"></i></button>';
+															<button class="btn btn-warning btnEditarPuesto" idPuesto="'.$value["id_puesto"].'" data-toggle="modal" data-target="#modalEditarPuesto"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
 																echo '<!-- Se pasa btnEliminarPuesto, idPuesto="'.$value["id_puesto"].'" para utilizarlo con Ajax, como variable GET en la URL -->

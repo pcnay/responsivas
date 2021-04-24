@@ -1,3 +1,26 @@
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoEdo_Epo").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarEdo_Epo").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // =======================================
 // Editar Estado De Equipo:
 // ======================================
@@ -58,8 +81,44 @@ $("#nuevoEdo_Epo").change(function(){
 			if (respuesta)
 			{
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
-				$("#nuevoEdo_Epo").parent().after('<div class="alert alert-warning" >Este EStado Equipo Existe </div>');
+				$("#nuevoEdo_Epo").parent().after('<div class="alert alert-warning" >Este Estado Equipo Existe </div>');
 				$("#nuevoEdo_Epo").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoEdo_Epo").change(function(){
+
+
+// Revisando que la "Estado Del Equipo" no este repetido, cuando se edite "Estado Equipo"
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoEdo_Epo" id="nuevoEdo_Epo" placeholder = "Ingresar un Estado de Equipo" required>
+$("#editarEdo_Epo").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoEdo_Epo.
+	var edo_epo = $(this).val();
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarEdo_Epo",edo_epo);
+	$.ajax({
+		url:"ajax/edo-epo-ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarEdo_Epo").parent().after('<div class="alert alert-warning" >Este Estado Equipo Existe </div>');
+				$("#editarEdo_Epo").val("");
 			}
 
 		}

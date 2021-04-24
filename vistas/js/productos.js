@@ -105,6 +105,17 @@ function validarCampo(campoValid,queCampo,Editar)
 	}
 }
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoSerial").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9-]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que el "Serial" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
 $("#nuevoSerial").change(function(){
@@ -114,8 +125,8 @@ $("#nuevoSerial").change(function(){
 	// Obtienedo el valor del id=nuevoSerial.
 
 	let serial = $(this).val();
-	let Editar = 'N';
-	validarCampo(serial,'Num_Serial',Editar);
+	//let Editar = 'N';
+	//validarCampo(serial,'Num_Serial',Editar);
 	
 	//console.log("Serial",serial);
 
@@ -146,6 +157,17 @@ $("#nuevoSerial").change(function(){
 
 }) // $("#nuevoSerial").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoNumTel").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que el "Numero de Telefono" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoNumTel" id="nuevoNumTel" placeholder = "Ingresar el Numero de Telefono" required>
 $("#nuevoNumTel").change(function(){
@@ -154,8 +176,8 @@ $("#nuevoNumTel").change(function(){
 				
 	// Obtienedo el valor del id=nuevoNumTel.
 	var num_tel = $(this).val();
-	let Editar = 'N';
-	validarCampo(num_tel,'Num_Tel',Editar);
+	//let Editar = 'N';
+	//validarCampo(num_tel,'Num_Tel',Editar);
 
 	//console.log("Serial",serial);
 	
@@ -185,6 +207,17 @@ $("#nuevoNumTel").change(function(){
 	})
  
 }) // $("#nuevoNumTel").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarNumTel").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que el "Numero de Telefono" no este repetido, cuando se edite
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarNumTel" id="editarNumTel" required>
@@ -218,12 +251,23 @@ $("#editarNumTel").change(function(){
 			{
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
 				$("#editarNumTel").parent().after('<div class="alert alert-warning" >Ya existe el numero de Telefono </div>');
-				// $("#editarNumTel").val("");
+				$("#editarNumTel").val("");
 			}
 		}
 	})
  
 }) // $("#editarNumTel").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaCuenta").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que la Cuenta no este repetida
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaCuenta" id="nuevaCuenta" placeholder = "Ingresar el Numero de Cuenta" >
@@ -233,9 +277,9 @@ $("#nuevaCuenta").change(function(){
 				
 	// Obtienedo el valor del id=nuevaCeunta.
 	let num_cta = $(this).val();
-	let Editar = 'N';
+//	let Editar = 'N';
 
-	validarCampo(num_cta,'Num_Cta',Editar);
+	//validarCampo(num_cta,'Num_Cta',Editar);
 
 	//console.log("Serial",serial);
 	
@@ -266,6 +310,17 @@ $("#nuevaCuenta").change(function(){
  
 }) // $("#nuevaCuenta").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarCuenta").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la Cuenta no este repetida, cuando se edite.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarCuenta" id="editarCuenta">
 $("#editarCuenta").change(function(){
@@ -274,9 +329,9 @@ $("#editarCuenta").change(function(){
 				
 	// Obtienedo el valor del id=nuevaCuenta.
 	let num_cta = $(this).val();
-	let Editar = 'S';
+	//let Editar = 'S';
 
-	validarCampo(num_cta,'Num_Cta',Editar);
+	//validarCampo(num_cta,'Num_Cta',Editar);
 
 	//console.log("Serial",serial);
 	
@@ -307,6 +362,16 @@ $("#editarCuenta").change(function(){
  
 }) // $("#editarCuenta").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaDireccMac").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z:]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que la MAC Address del Telefono no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaDireccMac" id="nuevaDireccMac" placeholder = "Ingresar la Direccion Mac del Telefono" required>
@@ -316,9 +381,9 @@ $("#nuevaDireccMac").change(function(){
 				
 	// Obtienedo el valor del id=nuevaDireccMac.
 	var direcc_mac = $(this).val();
-	let Editar = 'N';
+	//let Editar = 'N';
 
-	validarCampo(direcc_mac,'DireccMac',Editar);
+	//validarCampo(direcc_mac,'DireccMac',Editar);
 
 	//console.log("Direccion Mac",direcc_mac);
 	
@@ -349,6 +414,17 @@ $("#nuevaDireccMac").change(function(){
  
 }) // $("#nuevaDireccMac").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarDireccMac").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z:]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la MAC Address del Telefono no este repetido. Cuando se edite.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarDireccMac" id="editarDireccMac" >
 $("#editarDireccMac").change(function(){
@@ -357,9 +433,9 @@ $("#editarDireccMac").change(function(){
 				
 	// Obtienedo el valor del id=editarDireccMac.
 	let direcc_mac = $(this).val();
-	let Editar = 'S';
+	//let Editar = 'S';
 	
-	validarCampo(direcc_mac,'DireccMac',Editar);
+	//validarCampo(direcc_mac,'DireccMac',Editar);
 
 	//console.log("Direccion Mac",direcc_mac);
 	
@@ -390,6 +466,17 @@ $("#editarDireccMac").change(function(){
  
 }) // $("#editarDireccMac").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoImei").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la IMEI del Telefono no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaImei" id="nuevoImei" placeholder = "Ingresar el IMEMEI del Telefono" required>
 $("#nuevoImei").change(function(){
@@ -398,9 +485,9 @@ $("#nuevoImei").change(function(){
 				
 	// Obtienedo el valor del id=nuevoImei
 	let Imei = $(this).val();	
-	let Editar = 'N';
+	//let Editar = 'N';
 		
-		validarCampo(Imei,'Imei',Editar);
+		//validarCampo(Imei,'Imei',Editar);
 	
 	//console.log("Imei",Imei);
 	
@@ -431,6 +518,16 @@ $("#nuevoImei").change(function(){
  
 }) // $("#editarImei").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarImei").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que la IMEI del Telefono no este repetido. Cuando no se edite
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarImei" id="editarImei" required>
@@ -440,9 +537,9 @@ $("#editarImei").change(function(){
 				
 	// Obtienedo el valor del id=editarImei
 	let Imei = $(this).val();	
-	let Editar = 'S';
+	//let Editar = 'S';
 		
-		validarCampo(Imei,'Imei',Editar);
+		//validarCampo(Imei,'Imei',Editar);
 	
 	//console.log("Imei",Imei);
 	
@@ -473,6 +570,18 @@ $("#editarImei").change(function(){
  
 }) // $("#editarImei").change(function()
 
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoNumIp").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9.]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 $("#nuevoNumIp").change(function(){
 	// Remueve los mensajes de alerta. 
 	$(".alert").remove();	
@@ -480,8 +589,8 @@ $("#nuevoNumIp").change(function(){
 	// Obtienedo el valor del id=nuevoSerial.
 
 	let num_ip = $(this).val();
-	let Editar = 'N';
-	validarCampo(num_ip,'Num_Ip',Editar);
+	//let Editar = 'N';
+	//validarCampo(num_ip,'Num_Ip',Editar);
 	
 	//console.log("Num IP",num_ip);
 
@@ -510,7 +619,18 @@ $("#nuevoNumIp").change(function(){
 		}
 	})
 
-}) // $("#nuevNumIp").change(function(){
+}) // $("#nuevoNumIp").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarNumIp").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9.]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que la "IP" no este repetida. Cuando se edita el Producto
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarNumIp" id="editarNumIp">
@@ -520,8 +640,8 @@ $("#editarNumIp").change(function(){
 				
 	// Obtienedo el valor del id=editarNumIp.
 	let num_ip = $(this).val();
-	let Editar = 'S';
-	validarCampo(num_ip,'Num_Ip',Editar);
+	//let Editar = 'S';
+	//validarCampo(num_ip,'Num_Ip',Editar);
 
 	//console.log("num_ip",serial);
 	
@@ -551,6 +671,17 @@ $("#editarNumIp").change(function(){
  
 }) // $("#editarNumIp").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaNomenclatura").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9-]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la "Nomenclatura" no este repetida
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaNomenclatura" id="nuevaNomenclatura" placeholder = "Ingresar la Nomenclatura" >
 $("#nuevaNomenclatura").change(function(){
@@ -559,10 +690,10 @@ $("#nuevaNomenclatura").change(function(){
 				
 	// Obtienedo el valor del id=nuevaNomenclatura.
 	let nomenclatura = $(this).val();
-	let Editar = 'N';
-	validarCampo(nomenclatura,'Nomenclatura',Editar);
+	//let Editar = 'N';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
 
-	//console.log("Serial",serial);
+	console.log("Nomenclatura",nomenclatura);
 	
 	// Obtener datos de la base de datos
 	var datos = new FormData();
@@ -590,6 +721,17 @@ $("#nuevaNomenclatura").change(function(){
  
 }) // $("#nuevaNomenclatura").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarNomenclatura").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9-]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la "Nomenclatura" no este repetida. Cuando se edita el Producto
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarNomenclatura" id="editarNomenclatura">
 $("#editarNomenclatura").change(function(){
@@ -598,8 +740,8 @@ $("#editarNomenclatura").change(function(){
 				
 	// Obtienedo el valor del id=editarNomenclatura.
 	let nomenclatura = $(this).val();
-	let Editar = 'S';
-	validarCampo(nomenclatura,'Nomenclatura',Editar);
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
 
 	//console.log("Serial",serial);
 	
@@ -1014,6 +1156,4 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 			}
 
 			});	
-
-
 })

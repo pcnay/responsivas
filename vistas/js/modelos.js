@@ -1,3 +1,25 @@
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoModelo").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarModelo").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // =======================================
 // Editar Modelos:
 // ======================================
@@ -61,6 +83,43 @@ $("#nuevoModelo").change(function(){
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
 				$("#nuevoModelo").parent().after('<div class="alert alert-warning" >Esta Modelo Existe </div>');
 				$("#nuevoModelo").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoModelo").change(function(){
+
+// Revisando que el "modelo" no este repetido, cuando se edita.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoModelo" id="nuevoModelo" placeholder = "Ingresar un Modelo" required>
+$("#editarModelo").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoModelo.
+	var modelo = $(this).val();
+	
+	//console.log("descripcion",modelo);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarModelo",modelo);
+	$.ajax({
+		url:"ajax/modelos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarModelo").parent().after('<div class="alert alert-warning" >Esta Modelo Existe </div>');
+				$("#editarModelo").val("");
 			}
 
 		}

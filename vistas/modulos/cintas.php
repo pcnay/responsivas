@@ -1,6 +1,6 @@
 <?php
 // Los perfiles que no tiene permitido 
-	if ($_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Banca Talento" )
+	if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Operador" )
 	{
 		echo '
 			<script>

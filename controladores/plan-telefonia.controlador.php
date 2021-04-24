@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevoPlanTelefonia"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPlanTelefonia"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPlanTelefonia"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_PlanTelefonia";
 
@@ -50,7 +50,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -71,6 +72,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPlanTelefonia"]))
+				*/
 
 			}
 
@@ -84,8 +86,8 @@
 		{
 			if (isset($_POST["editarPlanTelefonia"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPlanTelefonia"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPlanTelefonia"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_PlanTelefonia";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -112,7 +114,8 @@
 			
 							</script>';	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -133,7 +136,8 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPlanTelefonia"]))
-
+				*/
+				
 			}
 
 		} // static public function ctrCrearPlanTelefonia()

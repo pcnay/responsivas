@@ -134,7 +134,8 @@
 
 						<!-- Capturar Periferico -->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="cap_periferico">Periferico:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
@@ -158,6 +159,7 @@
 						<!-- Capturar el Número De Serie -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_serial">Serial:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
@@ -167,7 +169,8 @@
 
 						<!-- Capturar Compañia Telefonica-->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">				
+							<label for="cap_cia_tel">Cia. Telefonica:</label>						
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia" required>
@@ -190,7 +193,8 @@
 
 						<!-- Capturar Plan Telefonia-->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="cap_plan_tel">Plan Telefono:</label>								
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoPlanTelefonia" name="nuevoPlanTelefonia" required>
@@ -214,6 +218,7 @@
 						<!-- Capturar numero de telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_num_tel">Número De Telefono:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevoNumTel" name="nuevoNumTel" placeholder = "Ingresar Numero Telefonico">
@@ -225,6 +230,7 @@
 						<!-- Capturar numero de Cuenta. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_cuenta_tel">Cuenta Del Telefono:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevaCuenta" name="nuevaCuenta" placeholder = "Num. Cuenta ">
@@ -236,6 +242,7 @@
 						<!-- Capturar Direccion MAC del Telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_direcc_mac">Direccion MAC Tel:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevaDireccMac" name="nuevaDireccMac" placeholder = "MAC Address Tel ">
@@ -244,9 +251,10 @@
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
             <!-- Clases de BootStrap para las formularios-->
-						<!-- Capturar Direccion IMEI del Telefono. -->
+						<!-- Capturar IMEI del Telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_imei">IMEI Tel. :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevoImei" name="nuevoImei" placeholder = "IMEI Tel">
@@ -256,7 +264,8 @@
 
 						<!-- Estado del Telefono-->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="cap_edot_tel">Estado Del Telefono:</label>									
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoEdoTel" name="nuevoEdoTel">
@@ -272,6 +281,7 @@
 						<!-- Numero de IP -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_num_ip">IP Del Periferico:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevoNumIp" name="nuevoNumIp" placeholder = "Numero de IP">
@@ -283,6 +293,7 @@
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="cap_marca">Marca:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoMarca" name="nuevoMarca" required>
@@ -305,6 +316,7 @@
 						<!-- Captura el Modelo -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="cap_modelo">Modelo:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoModelo" name="nuevoModelo" required>
@@ -326,7 +338,8 @@
 
 						<!-- Captura el Almacen -->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="cap_almacen">Almacen:</label>										
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoAlmacen" name="nuevoAlmacen" required>
@@ -350,6 +363,7 @@
 						<!-- Captura el Estado Del Equipo -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="cap_edo_epo">Estado Del Periferico:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoEdoEpo" name="nuevoEdoEpo" required>
@@ -373,6 +387,7 @@
 						<!-- Capturar la Nomenclatura -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="cap_nomenclatura">Nomenclatura:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "nuevaNomenclatura" name="nuevaNomenclatura" placeholder = "Ingresar Nomenclatura">
@@ -384,6 +399,7 @@
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
 							<div class="form-group">
+								<label for="cap_stock">Stock:</label>			
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
@@ -398,7 +414,8 @@
 						<div class="form-group"> <!-- <div class="form-group row">-->
 							
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
-							<div class="col-xs-12 col-sm-6">							
+							<div class="col-xs-12 col-sm-6">
+								<label for="cap_precio_compra">Precio Compra:</label>										
 
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
@@ -415,7 +432,8 @@
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores  -->
 
 						<div class="form-group"> <!-- <div class="form-group row"> -->
-							<div class="col-xs-12 col-sm-6">							
+							<div class="col-xs-12 col-sm-6">
+								<label for="cap_precio_venta">Precio Venta:</label>			
 
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
@@ -452,7 +470,8 @@
 						//print_r($completo); Muestra el contenido de la variable
 						
 					
-            echo '<div class="form-group">
+						echo '<div class="form-group">
+							<label for="cap_empleado_asignado">Usuario Asignado:</label>			
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                 <input type="text" class="form-control input-lg" name="nombreEmpleado" id="nombreEmpleado" placeholder = "'.$respuesta["nombre"].' '.$respuesta["apellidos"].'" readonly>
@@ -549,10 +568,12 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Los valores se cargaran desdes Javascritp -->		
 						
 						<!-- Editar Periferico -->
-            <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+						
+            <div class= "col-xs-12 col-sm-6">							
+							<div class="form-group">			
+								<label for="periferico">Periferico:</label>				
 	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+									<span class="input-group-addon"><i class="fa fa-th"></i></span>									
 	                <select class="form-control input-lg"  name="editarPeriferico" required>
 	                  <option id="editarPeriferico"></option>
 										<?php
@@ -575,6 +596,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar el Número De Serie -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="serial">Serial:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarSerial" name="editarSerial">
@@ -584,7 +606,8 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 
 						<!-- Editar Compañia Telefonica-->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="telefonia">Cia. Telefonica:</label>							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg"  name="editarTelefonia" required>
@@ -607,6 +630,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Capturar Plan Telefonia-->
             <div class= "col-xs-12 col-sm-6">
 							<div class="form-group">							
+							<label for="plan_celular">Plan Celular:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" name="editarPlanTelefonia" required>
@@ -630,6 +654,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar numero de telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="num_tel">Número Tel:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarNumTel" name="editarNumTel" >
@@ -641,6 +666,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar numero de Cuenta. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="plan_celular">Numero Cta. Celular:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarCuenta" name="editarCuenta">
@@ -652,6 +678,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar Direccion MAC del Telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="direcc_mac">Direccion MAC Celular:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarDireccMac" name="editarDireccMac">
@@ -663,7 +690,8 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar Direccion IMEI del Telefono. -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
-	              <div class = "input-group">
+								<label for="imei_tel">IMEI Celular:</label>
+	              <div class = "input-group">									
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarImei" name="editarImei">
 	              </div> <!-- <div class = "input-group"> -->           
@@ -672,7 +700,8 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 
 						<!-- Estado del Telefono-->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="edo_tel">Estado Telefono:</label>							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "editarEdoTel" name="editarEdoTel" required>
@@ -688,6 +717,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Numero de IP -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+							<label for="perif_ip">IP Periferico:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
@@ -698,6 +728,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar el Marca -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="marca">Marca :</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" name="editarMarca" required>
@@ -719,6 +750,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar el Modelo -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="modelo">Modelo:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" name="editarModelo" required>
@@ -740,7 +772,8 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 
 						<!-- Editar el Almacen -->
             <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">							
+							<div class="form-group">
+								<label for="almacen">Almacen:</label>							
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" name="editarAlmacen" required>
@@ -764,6 +797,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar el Estado Del Equipo -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
+								<label for="edo_epo">Estado Equipo:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg"  name="editarEdoEpo" required>
@@ -787,6 +821,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Editar la Nomenclatura -->
 						<div class= "col-xs-12 col-sm-6">
             	<div class="form-group">
+								<label for="nomenclatura">Nomenclatura:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarNomenclatura" name="editarNomenclatura">
@@ -798,6 +833,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
 							<div class="form-group">
+								<label for="stock">Stock:</label>
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
@@ -812,8 +848,9 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<div class="form-group"> <!-- <div class="form-group row">-->
 							
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							
 							<div class="col-xs-12 col-sm-6">							
-
+							<label for="precio_compra">Precio Compra:</label>					
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
 									<!-- min="0" Para que solo permita números positivos. 
@@ -830,8 +867,9 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<div class="form-group"> <!-- <div class="form-group row">-->
 							
 							<!-- "col-xs-6" = Se cambia debido a que cuando se utiliza cel. o tablet se pierden los valores -->
+							
 							<div class="col-xs-12 col-sm-6">							
-
+								<label for="precio_venta">Precio Venta:</label>
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
 									<!-- min="0" Para que solo permita números positivos. 
@@ -846,8 +884,9 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 						<!-- Captura el Empleado asignado al producto. Este campo solo se utiliza para mostrar el nombre completo del empleado .-->
 					
 					<div class="form-group row">
-						<div class="col-lg-12 col-sm-12">			
-							<div class = "input-group">
+						<div class="col-lg-12 col-sm-12">
+							<label for="empleado_asignado">Empleado Asignado:</label>			
+							<div class = "input-group">								
 								<span class="input-group-addon"><i class="fa fa-th"></i></span>
 								<input type="text" class="form-control input-lg" name="editarNombreEmpleado_E" id="editarNombreEmpleado_E" readonly>
 							</div> <!-- <div class = "input-group"> -->           

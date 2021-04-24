@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevoPuesto"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPuesto"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPuesto"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Puesto";
 
@@ -50,7 +50,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -71,7 +72,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPuesto"]))
-
+				*/
 			}
 
     } // static public function ctrCrearPuesto()
@@ -84,8 +85,8 @@
 		{
 			if (isset($_POST["editarPuesto"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPuesto"]))
-				{
+			//	if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPuesto"]))
+			//	{
 					// Enviar la información al Modelo.
 					$tabla = "t_Puesto";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -114,7 +115,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -135,8 +137,10 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoPuesto"]))
-
+				*/
+				
 			}
+
 
 		} // static public function ctrCrearPuesto()
 

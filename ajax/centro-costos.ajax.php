@@ -21,6 +21,18 @@
 			echo json_encode($respuesta);
 
 		}
+
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarDescripCentro_Costos()
+		{
+			$item = "descripcion";
+			$valor = $this->validarDescripCentro_Costos;
+
+			$respuesta = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
 		// ==========================================
 		// Editar Centro De Costos
 		// ==========================================
@@ -56,6 +68,14 @@
 		$valCentro_Costos = new AjaxCentro_Costos();
 		$valCentro_Costos->validarCentro_Costos = $_POST["validarCentro_Costos"];
 		$valCentro_Costos->ajaxValidarCentro_Costos();
+	}
+
+	// Validar que NO se repita la descripcion del Centro de Costos.
+	if (isset($_POST["validarDescripCentro_Costos"]))
+	{
+		$valDescripCentro_Costos = new AjaxCentro_Costos();
+		$valDescripCentro_Costos->validarDescripCentro_Costos = $_POST["validarDescripCentro_Costos"];
+		$valDescripCentro_Costos->ajaxValidarDescripCentro_Costos();
 	}
 
 ?>

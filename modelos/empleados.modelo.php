@@ -30,7 +30,7 @@
 			}
 			else
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT emp.ntid,emp.apellidos,emp.nombre,emp.correo_electronico,cc.num_centro_costos,puesto.descripcion AS Puesto FROM t_Empleados emp INNER JOIN t_Centro_Costos cc ON emp.id_centro_costos = cc.id_centro_costos INNER JOIN t_Puesto puesto ON emp.id_puesto = puesto.id_puesto ORDER BY emp.apellidos ASC");
+				$stmt = Conexion::conectar()->prepare("SELECT emp.ntid,emp.apellidos,emp.nombre,emp.correo_electronico,cc.num_centro_costos,puesto.descripcion AS Puesto,depto.descripcion AS Depto FROM t_Empleados emp INNER JOIN t_Centro_Costos cc ON emp.id_centro_costos = cc.id_centro_costos INNER JOIN t_Puesto puesto ON emp.id_puesto = puesto.id_puesto INNER JOIN t_Depto depto ON emp.id_depto = depto.id_depto ORDER BY emp.apellidos ASC");
 				$stmt->execute();
 				return $stmt->fetchAll();
 			}

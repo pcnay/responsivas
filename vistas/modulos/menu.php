@@ -22,7 +22,7 @@
 						</li>';
 				}	
 
-				if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"] == "Banca Talento" || $_SESSION["perfil"] == "Administrador")
+				if ( $_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Supervisor" )
 				{
 					echo '
 						<li class="treeview">
@@ -183,7 +183,7 @@
 
 						</li> <!-- <li class="treeview"> -->';		
 						
-				} // if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Ingeniero" || $_SESSION["perfil"] == "Soporte" || $_SESSION["perfil"]....
+				} // if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador" || ....
 
 				if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador")
 				{

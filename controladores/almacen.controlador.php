@@ -20,43 +20,20 @@
     {
 			if (isset($_POST["nuevoAlmacen"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoAlmacen"]))
-				{
-					// Enviar la información al Modelo.
-					$tabla = "t_Almacen";
+				// Enviar la información al Modelo.
+				$tabla = "t_Almacen";
 
-					$datos=array();									
-					$datos = array("nuevoAlmacen"=>$_POST["nuevoAlmacen"]);
+				$datos=array();									
+				$datos = array("nuevoAlmacen"=>$_POST["nuevoAlmacen"]);
 
-					$respuesta = ModeloAlmacenes::mdlIngresarAlmacen($tabla,$datos);
+				$respuesta = ModeloAlmacenes::mdlIngresarAlmacen($tabla,$datos);
 
-					if ($respuesta == "ok")
-					{
-						echo '<script>           
-						Swal.fire ({
-							type: "success",
-							title: "El Almacen ha sido guardada correctamente ",
-							showConfirmButton: true,
-							confirmButtonText: "Cerrar",
-							closeOnConfirm: false
-							}).then(function(result){
-								if (result.value)
-								{
-									window.location="almacen";
-								}
-	
-								});
-			
-							</script>';          
-	
-					}
-				}
-				else
+				if ($respuesta == "ok")
 				{
 					echo '<script>           
 					Swal.fire ({
-						type: "error",
-						title: "El Nombre del Almacen no puede ir vacia o llevar caracteres especiales ",
+						type: "success",
+						title: "El Almacen ha sido guardada correctamente ",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
@@ -69,10 +46,9 @@
 							});
 		
 						</script>';          
+				} // 
 
-				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoAlmacen"]))
-
-			}
+			} //if (isset($_POST["nuevoAlmacen"]))
 
     } // static public function ctrCrearAlmacen()
 
@@ -84,8 +60,8 @@
 		{
 			if (isset($_POST["editarAlmacen"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarAlmacen"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarAlmacen"]))
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Almacen";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -113,9 +89,10 @@
 							</script>';          
 	
 					}
-				}
-				else
-				{
+				//}
+				//else
+				//{
+					/*
 					echo '<script>           
 					Swal.fire ({
 						type: "error",
@@ -134,7 +111,8 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoAlmacen"]))
-
+				*/
+				
 			}
 
 		} // static public function ctrCrearAlmacen()

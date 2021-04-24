@@ -1,4 +1,26 @@
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoPeriferico").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarPeriferico").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // =======================================
 // Editar Perifericos:
 // ======================================
@@ -67,6 +89,43 @@ $("#nuevoPeriferico").change(function(){
 	})
  
 }) // $("#nuevoPeriferico").change(function(){
+
+// Revisando que la "periferico" no este repetido, cuando se edita.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoPeriferico" id="nuevoPeriferico" placeholder = "Ingresar un Periferico" required>
+$("#editarPeriferico").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoPeriferico.
+	var periferico = $(this).val();
+	
+	//console.log("Ubicacion",periferico);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarPeriferico",periferico);
+	$.ajax({
+		url:"ajax/perifericos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarPeriferico").parent().after('<div class="alert alert-warning" >Este Periferico Ya Existe </div>');
+				$("#editarPeriferico").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#editarPeriferico").change(function(){
 
 //=======================================================
 // Eliminar Periferico.

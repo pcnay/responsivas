@@ -144,6 +144,29 @@ $(".nuevaImagen").change(function(){
 })
 */
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nueva_cinta").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editar_num_serial").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
 // Revisando que el "Numero de Serie" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nueva_cinta" id="nueva_cinta" placeholder = "Ingresar una Cinta" required>
 $("#nueva_cinta").change(function(){

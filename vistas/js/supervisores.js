@@ -30,6 +30,17 @@ $(".btnEditarSupervisor").click(function(){
 })  // $(":btnEditarSupervisor")
 
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoSupervisor").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Revisando que la "Supervisor" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSupervisor" id="nuevoSupervisor" placeholder = "Ingresar un Supervisor" required>
 $("#nuevoSupervisor").change(function(){
@@ -66,6 +77,55 @@ $("#nuevoSupervisor").change(function(){
 	})
  
 }) // $("#nuevoSupervisor").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarSupervisor").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Revisando que la "Supervisor" no este repetido, cuando se edita
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarSupervisor" id="editarSupervisor"  required>
+$("#editarSupervisor").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoSupervisor.
+	var supervisor = $(this).val();
+	
+	console.log("Supervisor",supervisor);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarSupervisor",supervisor);
+	$.ajax({
+		url:"ajax/supervisores.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarSupervisor").parent().after('<div class="alert alert-warning" >Este Supervisor Existe </div>');
+				$("#editarSupervisor").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#editarSupervisor").change(function(){
+
 
 //=======================================================
 // Eliminar Supervisor.

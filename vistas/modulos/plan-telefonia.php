@@ -1,3 +1,18 @@
+<?php
+	/*
+	// El vendedor no puede entrar a Perifericos
+	if ($_SESSION["perfil"] == "Operador")
+	{
+		echo '
+			<script>
+				window.location = "inicio";
+			</script>';
+			return;				
+	}
+	*/
+	
+?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -32,6 +32,44 @@ $(".btnEditarCentro_Costos").click(function(){
 
 })  // $(":btnEditarCentro_Costos")
 
+// Validar la entrada.
+$("#nuevoCentro_Costos").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
+$("#nuevaDesc_cc").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+$("#editarDesc_cc").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+$("#editarCentro_Costos").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 
 // Revisando que el "Centro De Costos" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoCentro_Costos" id="nuevoCentro_Costos" placeholder = "Ingresar un Centro de Costos" required>
@@ -61,6 +99,78 @@ $("#nuevoCentro_Costos").change(function(){
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
 				$("#nuevoCentro_Costos").parent().after('<div class="alert alert-warning" >Centro de Costos Existe </div>');
 				$("#nuevoCentro_Costos").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoCentro_Costos").change(function(){
+
+// Revisando que la descripcion del "Centro De Costos" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarCentro_Costos" id="editarCentro_Costos" 
+
+$("#editarCentro_Costos").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoCentro_Costos.
+	var centro_costos = $(this).val();
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarCentro_Costos",centro_costos);
+	$.ajax({
+		url:"ajax/centro-costos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarCentro_Costos").parent().after('<div class="alert alert-warning" >El Centro de Costos Existe </div>');
+				$("#nuevoCentro_Costos").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoCentro_Costos").change(function(){
+
+// Revisando que la descripcion del "Centro De Costos" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarCentro_Costos" id="editarCentro_Costos" 
+
+$("#editarDesc_cc").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=editarDescr_cc.
+	var descrip_centro_costos = $(this).val();
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarDescripCentro_Costos",descrip_centro_costos);
+	$.ajax({
+		url:"ajax/centro-costos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarDesc_cc").parent().after('<div class="alert alert-warning" >La Descripcion Del Centro de Costos Existe </div>');
+				$("#editarDesc_cc").val("");
 			}
 
 		}

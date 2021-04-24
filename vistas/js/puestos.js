@@ -4,7 +4,8 @@
 $(".btnEditarPuesto").click(function(){
 	// Se obtiene el valor de "idPuesto"
 	var idPuesto = $(this).attr("idPuesto");
-
+	
+	console.log("id_Puesto",idPuesto);
 	// Para agregar datos 
 	var datos = new FormData();
 	datos.append("idPuesto",idPuesto); // Se crea la variable "POST", "idPuesto"
@@ -29,6 +30,27 @@ $(".btnEditarPuesto").click(function(){
 
 })  // $(":btnEditarPuesto")
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoPuesto").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarPuesto").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 // Revisando que el "puesto" no este repetido.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoPuesto" id="nuevoPuesto" placeholder = "Ingresar un Puesto" required>
@@ -60,6 +82,43 @@ $("#nuevoPuesto").change(function(){
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
 				$("#nuevoPuesto").parent().after('<div class="alert alert-warning" >Este Puesto Existe </div>');
 				$("#nuevoPuesto").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevoPuesto").change(function(){
+
+// Revisando que el "puesto" no este repetido, cuando se edita
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoPuesto" id="nuevoPuesto" placeholder = "Ingresar un Puesto" required>
+$("#editarPuesto").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoPuesto.
+	var puesto = $(this).val();
+	
+	//console.log("Ubicacion",periferico);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarPuesto",puesto);
+	$.ajax({
+		url:"ajax/puestos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarPuesto").parent().after('<div class="alert alert-warning" >Este Puesto Existe </div>');
+				$("#editarPuesto").val("");
 			}
 
 		}

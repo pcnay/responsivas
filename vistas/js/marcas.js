@@ -1,3 +1,26 @@
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaMarca").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarMarca").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z- ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // =======================================
 // Editar Marcas:
 // ======================================
@@ -60,6 +83,43 @@ $("#nuevaMarca").change(function(){
 				// Coloca una barra con mensaje de advertencia  en la etiqueta.
 				$("#nuevaMarca").parent().after('<div class="alert alert-warning" >Esta Marca Existe </div>');
 				$("#nuevaMarca").val("");
+			}
+
+		}
+	})
+ 
+}) // $("#nuevaMarca").change(function(){
+
+// Revisando que la "marca" no este repetido, cuando se edite.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevaMarca" id="nuevaMarca" placeholder = "Ingresar una Marca" required>
+$("#editarMarca").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevaMarca.
+	var marca = $(this).val();
+	
+	//console.log("Ubicacion",periferico);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarMarca",marca);
+	$.ajax({
+		url:"ajax/marcas.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarMarca").parent().after('<div class="alert alert-warning" >Esta Marca Existe </div>');
+				$("#editarMarca").val("");
 			}
 
 		}

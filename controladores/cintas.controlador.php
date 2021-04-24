@@ -19,9 +19,9 @@
     {
 			if (isset($_POST["nueva_cinta"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9- ]+$/',$_POST["nueva_cinta"])) //&&
+				//if (preg_match('/^[a-zA-Z0-9- ]+$/',$_POST["nueva_cinta"])) //&&
 				//preg_match('/^[a-zA-Z0-9,- ]+$/',$_POST["nueva_ubic"])			
-				{
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Cintas";
 
@@ -55,7 +55,8 @@
 							</script>';          
 	
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -76,7 +77,8 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nueva_cinta"]))
-
+				*/
+				
 			}
 
     } // static public function ctrCrearCintas()
@@ -89,9 +91,9 @@
 		{
 			if (isset($_POST["editar_num_serial"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_num_serial"]))
+				//if (preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_num_serial"]))
 				// && 	preg_match('/^[a-zA-Z0-9-]+$/',$_POST["editar_ubicacion"]))
-				{
+				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Cintas";
 					// Se pasan los valores para  la consulta en la base de datos.
@@ -146,7 +148,8 @@
 							</script>';          
 
 					}
-				}
+				//}
+				/*
 				else
 				{
 					echo '<script>           
@@ -167,6 +170,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nueva_Cinta"])....)
+				*/
 
 			}
 

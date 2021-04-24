@@ -28,7 +28,8 @@
       $this->Cell(35,5,'NOMBRE',1,0,'C',0);
 			$this->Cell(60,5,'CORREO ELECT',1,0,'C',0);  
 			$this->Cell(50,5,'PUESTO',1,0,'C',0);
-      $this->Cell(35,5,'C.C.',1,1,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(25,5,'C.C.',1,0,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(25,5,'Depto',1,1,'C',0); // 1,1 = Salto de Linea
     }
     function Footer()
     {
@@ -81,7 +82,8 @@
 		$pdf->Cell(35,5,$empleados[$n]['nombre'],0,0,'L',0);
 		$pdf->Cell(60,5,$empleados[$n]['correo_electronico'],0,0,'L',0);
 		$pdf->Cell(50,5,$empleados[$n]['Puesto'],0,0,'L',0);
-		$pdf->Cell(35,5,$empleados[$n]['num_centro_costos'],0,1,'L',0);
+		$pdf->Cell(25,5,$empleados[$n]['num_centro_costos'],0,0,'L',0);
+		$pdf->Cell(25,5,$empleados[$n]['Depto'],0,1,'L',0);
 		
 		/*
 		$pdf->Cell(25,5,$datos2[$n]['num_parte'],0,0,'L',0);
