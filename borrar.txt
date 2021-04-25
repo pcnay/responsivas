@@ -1,6 +1,14 @@
+array(60) { 
+	["id_producto"]=> string(1) "2" 
+	[0]=> string(1) "2" ["id_telefonia"]=> string(1) "2" 
+	[1]=> string(1) "2" ["id_plan_tel"]=> string(1) "2" 
+	[2]=> string(1) "2" ["id_empleado"]=> string(1) "1" 
+	[3]=> string(1) "1" ["Imagen"]=> string(42) "vistas/img/productos/default/anonymous.png" 
+	[4]=> string(42) "vistas/img/productos/default/anonymous.png" 
+	["Cuantas_veces"]=> NULL [5]=> NULL 
+	["id_periferico"]=> string(1) "2" [6]=> string(1) "2" ["Periferico"]=> string(6) "LAPTOP" [7]=> string(6) "LAPTOP" ["Serial"]=> string(12) "CNC9483948DF" [8]=> string(12) "CNC9483948DF" ["num_tel"]=> string(10) "6643459034" [9]=> string(10) "6643459034" ["direcc_mac_tel"]=> string(0) "" [10]=> string(0) "" ["imei_tel"]=> string(0) "" [11]=> string(0) "" ["edo_tel"]=> string(9) "NO Aplica" [12]=> string(9) "NO Aplica" ["num_ip"]=> string(0) "" [13]=> string(0) "" ["comentarios"]=> string(36) "ESTE EQUIPO ES MAQUINA DE PRODUCCION" [14]=> string(36) "ESTE EQUIPO ES MAQUINA DE PRODUCCION" ["id_marca"]=> string(1) "1" [15]=> string(1) "1" ["id_almacen"]=> string(1) "1" [16]=> string(1) "1" ["id_modelo"]=> string(1) "1" [17]=> string(1) "1" ["cuenta"]=> string(0) "" [18]=> string(0) "" ["id_edo_epo"]=> string(1) "2" [19]=> string(1) "2" ["nomenclatura"]=> string(14) "MXTIJH2345433L" [20]=> string(14) "MXTIJH2345433L" ["Marca"]=> string(2) "HP" [21]=> string(2) "HP" ["Modelo"]=> string(16) "ELITEBOOK 845 G5" [22]=> string(16) "ELITEBOOK 845 G5" ["Edo_Epo"]=> string(11) "NO OPERABLE" [23]=> string(11) "NO OPERABLE" ["Stock"]=> string(2) "10" [24]=> string(2) "10" ["Precio_Venta"]=> string(6) "150.00" [25]=> string(6) "150.00" ["precio_compra"]=> string(6) "130.00" [26]=> string(6) "130.00" ["Nom_emp"]=> string(8) "DEPTO TI" [27]=> string(8) "DEPTO TI" ["Empleado"]=> string(8) "DEPTO TI" [28]=> string(8) "DEPTO TI" ["Ntid"]=> string(8) "23434504" [29]=> string(8) "23434504" }	
 	
-	
-	
+	SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 	
 	
 	<!-- Inicio para borrar  -->

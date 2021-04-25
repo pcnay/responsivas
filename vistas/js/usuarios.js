@@ -265,7 +265,7 @@ $("#editarNombre").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoUsuario").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z]+$");
+  var regex = new RegExp("^[a-zA-Z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -276,7 +276,7 @@ $("#nuevoUsuario").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarUsuario").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z]+$");
+  var regex = new RegExp("^[a-zA-Z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

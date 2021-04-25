@@ -58,8 +58,8 @@
   :"SELECT epo.id_epo,epo.num_serie,epo.num_inv,epo.num_parte,epo.id_tipo_componente,tc.descripcion AS componente,epo.id_marca,marca.descripcion AS marca,epo.id_modelo,modelo.descripcion AS modelo,epo.existencia,epo.comentarios FROM t_Equipo AS epo 
   INNER JOIN t_Tipo_Componente AS tc ON epo.id_tipo_componente = tc.id_tipo_componente
   INNER JOIN t_Marca AS marca ON epo.id_marca = marca.id_marca
-  INNER JOIN t_Modelo AS modelo ON epo.id_modelo = modelo.id_modelo";
   mar.descripcion AS mar.marca, mod.id_modelo AS mod.modelo FROM t_Refaccion AS r INNER JOIN t_Marca AS mar ON r.id_marca = mar.id_marca INNER JOIN t_Modelo AS mod ON r.id_modelo = mod.id_modelo
+  INNER JOIN t_Modelo AS modelo ON epo.id_modelo = modelo.id_modelo";
   INNER JOIN t_Modelo AS mod ON r.id_modelo = mod.id_modelo
 */
 /*

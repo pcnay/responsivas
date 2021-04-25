@@ -16,8 +16,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Reportes
-        
+        Reportes Varios
       </h1>
       <ol class="breadcrumb">
         <li><a href="Inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -27,81 +26,109 @@
 
     <!-- Main content -->
     <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-					<div class="input-group">
-						<!-- Agregando el boton para la captura de rangos de ventas realizadas.-->
-						<button type="button" class="btn btn-default" id="daterange-btn2">
-							<span>
-								<i class="fa fa-calendar"></i>  Rango De Fecha   
-							</span>
-							<i class="fa fa-caret-down"></i>
-						</button>
+			<div class="row">
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+						<label>Por Almacen: </label>						
 					</div>
 
-					<!-- El boton para exportar a Excel -->
-          <div class="box-tools pull-right">
-						<?php
-							if (isset($_GET["fechaInicial"]))
-							{
-								echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
-							}
-							else
-							{
-								echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
-							}							
-						?>
-						
-							<button class="btn btn-success" style="margin-top:5px">Descargar Reporte En Excel</button>
-						</a>
-					</div>
+				<!-- enctype= "multipart/form-data = Para subir archivos. -->
+				
+					<!-- Captura el Almacen -->
+					<div class= "col-xs-12 col-sm-5">
+						<div class="form-group">							
+							<div class = "input-group">
+								<span class="input-group-addon"><i class="fa fa-th"></i></span>
+								<select class="form-control input-lg" id= "rep_Almacen" name="rep_Almacen" required>
+									<option value="">Seleccionar Almacen</option>
+									<?php
+										// Se obtendrán el Almacen desdes la base de datos.
+										$item = null;
+										$valor = null;
+										$almacen = ControladorAlmacenes::ctrMostrarAlmacenes($item,$valor);
+										foreach ($almacen as $key => $value)
+										{
+											echo '<option value = "'.$value["id_almacen"].'">'.$value["nombre"].'</option>';
+										}
+									?>
+								</select>                							
 
-        </div>
-        <div class="box-body">
-					<!-- Se inicia el codigo para los gráficos que se utilizan en los reportes. -->
-					<div class="row">
-						<!-- Se utiliza para dispositivos grandes -->
-						<div class="col-xs-12">
+							</div> <!-- <div class = "input-group"> -->  
+							<br>         							
 							<?php
-								include "reportes/graficos-ventas.php";
+								//echo '<a href="/responsivas/extensiones/tcpdf/pdf/rep-cintas.php?id_Almacen='.$value["id_almacen"].'" target="_blank" >';
 							?>
-						</div>
+							<button class="btn btn-success btnImpProdAlm" id="imp_cintas">
+								Imprimir
+							</button>       
+							</a>
 
-						<!-- Se utiliza para el gráfico de pastel. 
-							Pantalla para dispositivo mobiles y tablet vertical 
-						-->
-						<div class="col-md-6 col-xs-12">
-							<?php
-								include "reportes/productos-mas-vendidos.php";
-							?>							
-						</div>
+							<!--<button type="submit" class='btn btn-info btnImpProdAlm'>Imprimir					
+							</button>       -->
+										
+						</div> <!-- <div class="form-group"> -->
 
-						<!-- Se utiliza para el gráfico de Barras, el que mas vende. (quien vende mas)
-							Pantalla para dispositivo mobiles y tablet vertical 
-						-->
-						<div class="col-md-6 col-xs-12">
-							<?php
-								include "reportes/vendedores.php";
-							?>							
-						</div>
+					</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
-						<!-- Se utiliza para el gráfico de Barras, para los compradores (quien compra mas).
-							Pantalla para dispositivo mobiles y tablet vertical 
-						-->
-						<div class="col-md-6 col-xs-12">
-							<?php
-								include "reportes/compradores.php";
-							?>							
-						</div>
 
+					
+				</div>
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
 					</div>
-        </div>
-        <!-- /.box-body -->
+				</div>
 
-      </div>
-      <!-- /.box -->
+			</div> <!-- <div class="row"> -->
+			
+			<div class="row">
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+
+			</div> <!-- <div class="row"> -->
+			<div class="row">
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+
+			</div> <!-- <div class="row"> -->
+			<div class="row">
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+					</div>
+				</div>
+
+			</div> <!-- <div class="row"> -->
 
     </section>
     <!-- /.content -->

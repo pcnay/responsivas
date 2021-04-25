@@ -189,7 +189,7 @@
 				{
 					echo '
 					<li class="treeview">
-						<a href="reportes">
+						<a href="#">
 							<i class="fa fa-list-ul"></i>
 							<span>Reportes Varios</span>
 							<span class="pull-right-container">
@@ -201,6 +201,13 @@
 								<a href="https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php" target="_blank">
 									<i class="fa fa-circle-o"></i>
 									<span>Empleados</span>
+								</a>
+							</li>
+
+							<li>
+								<a href="reportes" target="_blank">
+									<i class="fa fa-circle-o"></i>
+									<span>Reportes</span>
 								</a>
 							</li>
 						</ul> <!-- <ul class="treeview-menu"> -->

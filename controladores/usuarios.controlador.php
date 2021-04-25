@@ -9,8 +9,8 @@
       {
         // Validando solo letras y números, para proteger la Base De Datos SQL Inyection
         // preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]
-        if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["ingPassword"]))
-        {
+        //if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["ingPassword"]))
+        //{
 
           // Este valor  '$2a$07$usesomesillystringforsalt$' es fijo, se utilizar para descriptar e encriptar la clave.
           $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
@@ -94,7 +94,7 @@
             echo '<br><div class="alert alert-danger">Usuario y/o Clave Erronea </div>';            
 					} // if (($respuesta["usuario"] == $_POST["ingUsuario"]) && ($respuesta["clave"] == $encriptar))
 					
-				} // if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]))
+				//} // if (preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"]))
 				
       } //if (isset($_POST["ingUsuario"]))
 
@@ -117,8 +117,8 @@
         // preg_match('/^[a-zA-ZO-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-ZO-9]+$/',$_POST["nuevoUsuario"]) &&
 						 //preg_match('/^[a-zA-Z0-9]+$/',$_POST["nuevoNombre"])
 				// Validando que lo que tecleo el usuario sea valido con la sig. expresion regular.
-        if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-Z0-9 ]+$/',$_POST["nuevoUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["nuevoPassword"]))
-        {
+        //if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^[a-zA-Z0-9 ]+$/',$_POST["nuevoUsuario"]) && preg_match('/^[a-zA-Z0-9-#@ ]+$/',$_POST["nuevoPassword"]))
+        //{
           /* Para guardar las fotos, sera de la siguiente manera: 
           1.- En una carpeta del servidor se subira la foto
           2.- En la base de datos solo se guardara la ruta donde esta almacenada la foto en el servidor.
@@ -246,7 +246,8 @@
             
 					}
           
-        }
+				//}
+				/*
         else // if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && preg_match('/^....
         {
           // Este plugins se baja de : https://www.jsdelivr.com/package/npm/sweetalert2, se copia en un archivo el contenido y se agrega en la carpeta "Vistas/plugins/sweetalert2/sweetalert2.all.js"
@@ -271,6 +272,7 @@
 
 
         } // if ( preg_match('/^[a-zA-Z0-9ñÑáé....
+				*/
 
       } // if (isset($_POST["nuevoUsuario"]))
 
@@ -297,8 +299,8 @@
 
 			if (isset($_POST["editarUsuario"]))
 			{
-				if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))						
-				{
+				//if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))						
+				//{
 					//echo '<script>alert("Entro a ctrEditarUsuario");</script>';
 					// Se suprime el "editarPassword" dado que cuando el usuario no modifica la clave, el campo sera en blanco y no nunca se cumple la condicion,
 					// De igual forma se suprime "editarUsuario" porque se crean carpetas por cada usuario nuevo por lo que se estaran creando carpetas innecesarias, ocupando espacios en el servidor.
@@ -442,7 +444,8 @@
  						
 					}
 
-				} // if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))
+				//} // if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))
+				/*
 				else
 				{
 					echo '<script>
@@ -463,7 +466,8 @@
 						</script>';          						
 			
 				} // if ( preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]))
-
+				*/
+				
 			} // if (isset($_POST["editarUsuario"]))
 
 		} // static public function ctrEditarUsuario()

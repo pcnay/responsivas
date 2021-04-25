@@ -19,7 +19,17 @@
 			$respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
 			return $respuesta;			
 		}
-		
+			
+		// Mostrar productos DataTable
+		static public function ctrMostrarProductosImpAlm($item,$valor)
+		{
+			$tabla = "t_Productos";
+			$orden = "nomenclatura";
+			$respuesta = ModeloProductos::mdlMostrarProductosImpAlm($tabla,$item,$valor,$orden);
+			return $respuesta;			
+		}
+
+
 		// Crear producto
 		static public function ctrCrearProducto()
 		{
