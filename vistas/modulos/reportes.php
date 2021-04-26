@@ -63,7 +63,7 @@
 							<button class="btn btn-success btnImpProdAlm" id="imp_cintas">
 								Imprimir
 							</button>       
-							</a>
+							<!-- </a> -->
 
 							<!--<button type="submit" class='btn btn-info btnImpProdAlm'>Imprimir					
 							</button>       -->
@@ -79,7 +79,11 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
+						<label>Telefonos Asignado: </label>						
 					</div>
+
+					<button class="btn btn-success btnImpTelAsig" id="imp_tel">Imprimir</button>
+
 				</div>
 
 			</div> <!-- <div class="row"> -->
@@ -89,8 +93,13 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
+						<label>Existencia de Perifericos: </label>
+						<br>
 					</div>
+					
+					<button class="btn btn-success btnExistenciaPerif" id="exist_perif">Imprimir</button>
 				</div>
+
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">

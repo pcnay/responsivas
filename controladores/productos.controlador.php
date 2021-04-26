@@ -29,6 +29,22 @@
 			return $respuesta;			
 		}
 
+		// Mostrar Telefonos Asignados.
+		static public function ctrMostrarProductosTelAsig($item,$valor)
+		{
+			$tabla = "t_Productos";			
+			$respuesta = ModeloProductos::mdlMostrarProductosTelAsig($tabla,$item,$valor);
+			return $respuesta;			
+		}
+
+		// Mostrar Existencia De Perifericos.
+		static public function ctrMostrarProductosExistPerif($item,$valor)
+		{
+			$tabla = "t_Productos";			
+			$respuesta = ModeloProductos::mdlMostrarProductosExistPerif($tabla,$item,$valor);
+			return $respuesta;			
+		}
+
 
 		// Crear producto
 		static public function ctrCrearProducto()

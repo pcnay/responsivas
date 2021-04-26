@@ -1,4 +1,5 @@
 <?php
+
 require_once ('tcpdf_include.php');
 require_once "../../../controladores/responsivas.controlador.php";
 require_once "../../../modelos/responsivas.modelo.php"; 	
@@ -208,7 +209,7 @@ foreach ($productosResp as $key => $item)
 */
 
 // Se van a recoger los productos que se encuentran en el campo de tipo Json en la Base de datos.
-
+$contador = 0;
 for ($i =0;$i<count($productosResp);$i++)
 {
 	$itemProducto = "id_producto";
@@ -222,15 +223,14 @@ for ($i =0;$i<count($productosResp);$i++)
 	$precio = number_format($productosResp[$i]["precio"],2);
 	//$impHostname = $productosResp[$i]["hostname"];
 
-	if (($respuestaProductos["nomenclatura"] != null) || ($respuestaProductos["nomenclatura"] != ""))
+	if ($contador == 0)
 	{
-		$impHostname = $respuestaProductos["nomenclatura"];
+		if (($respuestaProductos["nomenclatura"] != null) || ($respuestaProductos["nomenclatura"] != ""))
+		{
+			$impHostname = $respuestaProductos["nomenclatura"];
+			$contador = 1;
+		}
 	}
-	else 
-	{
-		$impHostname = "NO CUMPLE ";
-	}
-
 	//$precio = $respuestaProductos["Precio_Venta"];
 
 

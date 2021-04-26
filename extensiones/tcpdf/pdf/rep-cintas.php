@@ -1,4 +1,14 @@
 <?php
+// El "Operador" no puede accesar.
+if ($_SESSION["perfil"] == "Operador")
+{
+	echo '
+		<script>
+			window.location = "inicio";
+		</script>';
+		return;			
+}
+
 // Para llegar a este archivo, se regresan tres carpetas : /pdf/tcpdf/extenciones
 
 require_once("../../../controladores/cintas.controlador.php");

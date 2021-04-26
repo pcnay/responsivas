@@ -137,3 +137,19 @@ $(".btnImpProdAlm").click(function(){
 
 })
 
+// Reporte De Telefonos Asignados
+$(".btnImpTelAsig").click(function(){
+	window.open("extensiones/fpdf183/reportes/rep_tel_asig.php","_blank");
+
+	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_tel_asig.php
+
+});
+
+// Reporte De Existencia de Perifericos 
+$(".btnExistenciaPerif").click(function(){
+	window.open("extensiones/fpdf183/reportes/rep_exist_perif.php","_blank");
+
+	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_tel_asig.php
+
+});
+

@@ -14,14 +14,14 @@
   require_once('../fpdf.php');
 	require_once('../../../controladores/productos.controlador.php');
 	require_once('../../../modelos/productos.modelo.php');
-	require_once('../../../controladores/almacen.controlador.php');
-	require_once('../../../modelos/almacen.modelo.php');
+	/*
 	require_once('../../../controladores/perifericos.controlador.php');
 	require_once('../../../modelos/perifericos.modelo.php');
 	require_once('../../../controladores/empleados.controlador.php');
 	require_once('../../../modelos/empleados.modelo.php');
-	require_once('../../../controladores/modelos.controlador.php');
-	require_once('../../../modelos/modelos.modelo.php');
+	require_once('../../../controladores/plan-telefonia.controlador.php');
+	require_once('../../../modelos/plan-telefonia.modelo.php');
+*/
 
 	
   while (ob_get_level())
@@ -34,16 +34,15 @@
 	//$fecha_devol = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
 
 	// Imprimir los datos.
-	$item = "id_almacen"; 
-	// Este valor se mando desde reportes.js, en “windows.open (extensiones…….)
-	$valor = $_GET["num_AlmImp"];
+	$item = null; 
+	$valor = null; 
 	
 	//print_r($valor);
 	// IMPORTANTE SE DEBE GENERAR LAS CONSULTAS PARA LOS REPORTES, YA QUE ESTE VALOR DEBE RETORNAR:
 	// return $stmt->fetchAll(); YA QUE COMO SE CONSULTA PARA UN SOLO VALOR SE DEBE COLOCAR "ALL"
 	
-	$Por_almacen = ControladorProductos::ctrMostrarProductosImpAlm($item,$valor);
-	//var_dump($Por_almacen);
+	$tel_Asignados = ControladorProductos::ctrMostrarProductosTelAsig($item,$valor);
+	//var_dump($tel_Asignados);
 
 	class PDF extends FPDF
   {
@@ -57,17 +56,17 @@
 			$this->Cell(60);
 			
       // Este valor "135" es para centrar, independiente del texto escrito
-      $this->Cell(135,10,'REPORTE PRODUCTOS POR ALMACEN',0,0,'C');
+      $this->Cell(135,10,'REPORTE TELEFONOS ASIGNADOS',0,0,'C');
 			$this->Ln(5);
 			
 			$this->Cell(135,5,date(),0,1,'C',0);
       //$this->Cell(10,5,'ID',1,0,'C',0);
-      $this->Cell(30,5,'PERIFERICO',1,0,'C',0);
-			$this->Cell(25,5,'NTID',1,0,'C',0);
-			$this->Cell(60,5,'ASIGNADO',1,0,'C',0);      
-			$this->Cell(45,5,'MODELO',1,0,'C',0);  
-			$this->Cell(35,5,'NUM. SERIE',1,0,'C',0);
-			$this->Cell(42,5,'NOMENCLATURA',1,0,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(25,5,'MARCA',1,0,'C',0);
+			$this->Cell(40,5,'MODELO',1,0,'C',0);
+			$this->Cell(60,5,'EMPLEADO',1,0,'C',0);		
+			$this->Cell(30,5,'NUM. TEL',1,0,'C',0);
+			$this->Cell(45,5,'NUM. SERIE',1,0,'C',0);  						
+			$this->Cell(45,5,'NUM. IMEI',1,0,'C',0); 
 			$this->Cell(18,5,'P.VTA',1,1,'C',0); // 1,1 = Salto de Linea
     }
     function Footer()
@@ -85,20 +84,21 @@
 	$pdf->SetFont('Arial','',12);
 	
 		//Cell(Ancho,Alto,Texto,Border=1,SigLinea=1 0=SinSaltoLinea,'Centrado,Left,Right',Relleno 0=Sin 1=Con)
-	$pdf->SetFont('Arial','B',14);
-	$pdf->Cell(30,5,$Por_almacen[0]['Almacen'],0,1,'L',0);
-	$pdf->Ln(5);
+	
 	$pdf->SetFont('Arial','',12);
-  for ($n=0;$n<count($Por_almacen);$n++)
+
+  for ($n=0;$n<count($tel_Asignados);$n++)
   {
-    //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-		$pdf->Cell(30,5,$Por_almacen[$n]['Periferico'],0,0,'L',0);
-		$pdf->Cell(25,5,$Por_almacen[$n]['Ntid'],0,0,'L',0);
-		$pdf->Cell(60,5,$Por_almacen[$n]['Nom_emp'].$Por_almacen[$n]['Empleado'],0,0,'L',0);
-		$pdf->Cell(45,5,$Por_almacen[$n]['Modelo'],0,0,'L',0);
-		$pdf->Cell(35,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
-		$pdf->Cell(42,5,$Por_almacen[$n]['nomenclatura'],0,0,'L',0);
-		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'L',0);
+		//$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
+		$pdf->Cell(25,5,$tel_Asignados[$n]['Marca'],0,0,'L',0);
+		$pdf->Cell(40,5,$tel_Asignados[$n]['Modelo'],0,0,'L',0);
+		$pdf->Cell(60,5,$tel_Asignados[$n]['Nom_emp'].' '.$tel_Asignados[$n]['Apellidos_emp'],0,0,'L',0);
+		$pdf->Cell(30,5,$tel_Asignados[$n]['num_tel'],0,0,'L',0);
+		$pdf->Cell(45,5,$tel_Asignados[$n]['num_serie'],0,0,'L',0);
+		$pdf->Cell(45,5,$tel_Asignados[$n]['imei_tel'],0,0,'L',0);
+		$pdf->Cell(18,5,$tel_Asignados[$n]['precio_venta'],0,1,'L',0);
+		
+		
 
 		/*
     // MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))
