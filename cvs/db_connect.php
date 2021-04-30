@@ -1,9 +1,9 @@
 <?php
 	/* Database connection start */
 	$servername = "localhost";
-	$username = "ventas-pos";
-	$password = "pcnay2003";
-	$dbname = "pos";
+	$username = "usuario_responsiva";
+	$password = "responsivas-2020";
+	$dbname = "bd_responsivas";
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 	if (mysqli_connect_errno())
 	{

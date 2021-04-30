@@ -7,7 +7,7 @@
 		// Mostrar las responsivas que tiene el empleado asignadas
 		static public function mdlMostrarResponsivasPerifAsign($tabla,$item,$valor)
 		{
-			$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla  WHERE (activa = 'S' && id_empleado = :$item && modalidad_entrega = 'Permanente') ORDER BY num_folio ASC");
+			$stmt = Conexion::conectar()->prepare ("SELECT r.id_empleado,r.num_folio,e.ntid,r.num_folio,r.fecha_asignado,r.productos FROM t_Responsivas r INNER JOIN t_Empleados e ON r.id_empleado = e.id_empleado  WHERE (activa = 'S' && e.ntid = :$item && r.modalidad_entrega = 'Permanente') ORDER BY r.num_folio ASC");
 			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();	
 			return $stmt->fetchAll();				

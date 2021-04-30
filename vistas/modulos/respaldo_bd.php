@@ -7,9 +7,9 @@
 	//
 	echo "Iniciando el respaldo ... ";
   $db_host = 'localhost';
-  $db_name = 'pos';
-  $db_user = 'ventas-pos';
-  $db_pass = 'pcnay2003';
+  $db_name = 'bd_responsivas';
+  $db_user = 'usuario_responsiva';
+  $db_pass = 'responsivas-2020';
 
   $fecha = date("Ymd-His");
   $salida_sql = $db_name.'-'.$fecha.'.sql';
