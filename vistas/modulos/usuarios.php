@@ -104,10 +104,14 @@
 											<td>
 												<div class="btn-group">
 													<!-- Para utilizar una ventana de tipo modal, "data-toggle"= Para activar ventana Modal; "data-target=#modalEditarUsario" = Se indica en donde se activara la ventana esta
-													 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... -->
+													 "#modalEditarUsuario" se define mas adelante en el archivo., btnEditarUsuario, idUsuario= ... Se utiliza Javascript para utilizar AJAX y conectarse a la base de datos, en el archivo "usuario.js", en este archivo se crea un evento $(".btnEditarUsuario").click... -->';
 													
-													<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id_usuario"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>';
-													if ($_SESSION["perfil"] == "Administrador")
+													if ($value["id_usuario"] != 1)
+													{
+														echo '<button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id_usuario"].'" data-toggle="modal" data-target= "#modalEditarUsuario" ><i class="fa fa-pencil"></i></button>';
+													}
+
+													if ($_SESSION["perfil"] == "Administrador" && $value["id_usuario"] != 1)
 													{
 														echo '<!-- Para borrar usuario se coloca una clase llamada "btnEliminarUsuario"-->
 														<button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id_usuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>';

@@ -104,7 +104,21 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
+						<label>Equipos Entregado Al Usuario: </label>
+						<br>
 					</div>
+
+					<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_num_tel">Capturar Numero Empleado:</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "numEmp" name="numEmp" placeholder = "Ingresar Numero Empleado">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+					<button class="btn btn-success btnEpoEntregEmp" id="id_EpoEntregEmp">Imprimir</button>
 				</div>
 
 			</div> <!-- <div class="row"> -->

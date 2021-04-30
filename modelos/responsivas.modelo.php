@@ -3,6 +3,17 @@
 	
 	class ModeloResponsivas
 	{
+
+		// Mostrar las responsivas que tiene el empleado asignadas
+		static public function mdlMostrarResponsivasPerifAsign($tabla,$item,$valor)
+		{
+			$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla  WHERE (activa = 'S' && id_empleado = :$item && modalidad_entrega = 'Permanente') ORDER BY num_folio ASC");
+			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
+			$stmt->execute();	
+			return $stmt->fetchAll();				
+
+		}
+
 		// Mostrar Responsivas
 		static public function mdlMostrarResponsivas($tabla,$item,$valor,$ordenar)
 		{

@@ -82,6 +82,7 @@ $(document).on("click",".btnEditarUsuario",function(){
 			$("#editarPerfil").html(respuesta["perfil"]); // Es un etiqueta <option>
 			$("#editarPerfil").val(respuesta["perfil"]); // Para mantener el valor del perfil, cuando no se cambie.			
 			$("#passwordActual").val(respuesta["clave"]);
+		
 			$("#fotoActual").val(respuesta["foto"]); // Para mantener el valor del perfil, cuando no se cambie.
 
 			if (respuesta["foto"] != "")

@@ -1,3 +1,13 @@
+$respuesta["productos"]
+[{ "id":"5", ==> Producto
+	"descripcion":"HEADSET",
+	"cantidad":"1",
+	"stock":"0",
+	"precio":"60.00",
+	"total":"60.00"
+	}]
+
+
 array(60) { 
 	["id_producto"]=> string(1) "2" 
 	[0]=> string(1) "2" ["id_telefonia"]=> string(1) "2" 

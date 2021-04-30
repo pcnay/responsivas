@@ -117,8 +117,13 @@
 		// =================================================
 		static public function mdlBorrarUsuario($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id");
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id AND id_usuario != 1");
 			$stmt->bindParam(":id",$datos,PDO::PARAM_INT);
+			if ($datos == 1)
+			{
+				return "error";
+			}
+			
 			if ($stmt->execute())
 			{
 				return "ok";

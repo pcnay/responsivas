@@ -153,3 +153,34 @@ $(".btnExistenciaPerif").click(function(){
 
 });
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#numEmp").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
+$(".btnEpoEntregEmp").click(function(){
+
+	// Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"
+ 	// let Num_Emp = document.getElementById("numEmp");
+	// Para obtener el numero de empleado. Esta variable viene desde "reportes.php" donde se define el Boton.
+	 let Num_Emp= $("#numEmp").val();
+	 
+	 console.log("Click Boton ObtenerResp ",Num_Emp);
+
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	// console.log("idResponsiva",id_Responsiva);
+	
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+	window.open("extensiones/tcpdf/pdf/rep_perif_asign.php?num_Emp="+Num_Emp,"_blank");
+	//window.open("extensiones/fpdf183/reportes/rep_perif_asign.php?num_Emp="+Num_Emp,"_blank");
+
+	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php
+
+})

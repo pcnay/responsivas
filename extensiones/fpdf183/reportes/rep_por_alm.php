@@ -63,11 +63,11 @@
 			$this->Cell(135,5,date(),0,1,'C',0);
       //$this->Cell(10,5,'ID',1,0,'C',0);
       $this->Cell(30,5,'PERIFERICO',1,0,'C',0);
-			$this->Cell(25,5,'NTID',1,0,'C',0);
-			$this->Cell(60,5,'ASIGNADO',1,0,'C',0);      
+			$this->Cell(22,5,'NTID',1,0,'C',0);
+			$this->Cell(72,5,'ASIGNADO',1,0,'C',0);      
 			$this->Cell(45,5,'MODELO',1,0,'C',0);  
-			$this->Cell(35,5,'NUM. SERIE',1,0,'C',0);
-			$this->Cell(42,5,'NOMENCLATURA',1,0,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(43,5,'NUM. SERIE',1,0,'C',0);
+			$this->Cell(38,5,'NOMENCLATURA',1,0,'C',0); // 1,1 = Salto de Linea
 			$this->Cell(18,5,'P.VTA',1,1,'C',0); // 1,1 = Salto de Linea
     }
     function Footer()
@@ -93,11 +93,11 @@
   {
     //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
 		$pdf->Cell(30,5,$Por_almacen[$n]['Periferico'],0,0,'L',0);
-		$pdf->Cell(25,5,$Por_almacen[$n]['Ntid'],0,0,'L',0);
-		$pdf->Cell(60,5,$Por_almacen[$n]['Nom_emp'].$Por_almacen[$n]['Empleado'],0,0,'L',0);
+		$pdf->Cell(22,5,$Por_almacen[$n]['Ntid'],0,0,'L',0);
+		$pdf->Cell(72,5,$Por_almacen[$n]['Nom_emp'].$Por_almacen[$n]['Empleado'],0,0,'L',0);
 		$pdf->Cell(45,5,$Por_almacen[$n]['Modelo'],0,0,'L',0);
-		$pdf->Cell(35,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
-		$pdf->Cell(42,5,$Por_almacen[$n]['nomenclatura'],0,0,'L',0);
+		$pdf->Cell(43,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
+		$pdf->Cell(38,5,$Por_almacen[$n]['nomenclatura'],0,0,'L',0);
 		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'L',0);
 
 		/*

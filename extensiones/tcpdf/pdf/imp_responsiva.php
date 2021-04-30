@@ -221,7 +221,7 @@ for ($i =0;$i<count($productosResp);$i++)
 	
 	$cantidad = $productosResp[$i]["cantidad"];
 	$precio = number_format($productosResp[$i]["precio"],2);
-	//$impHostname = $productosResp[$i]["hostname"];
+	$impHostname = "";
 
 	if ($contador == 0)
 	{

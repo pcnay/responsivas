@@ -11,6 +11,13 @@
 			return $respuesta;
 		}
 
+		static public function ctrMostrarResponsivasPerifAsign($item,$valor)
+		{
+			$tabla = "t_Responsivas";
+			$respuesta = ModeloResponsivas::mdlMostrarResponsivasPerifAsign($tabla,$item,$valor);
+			return $respuesta;
+		}
+
 		// Crear Responsiva.
 		static public function ctrCrearResponsiva()
 		{
@@ -169,8 +176,8 @@
 					}).then(function(result){
 						if (result.value)
 						{
-							// window.location="responsivas";
-							window.location="cap-responsiva";
+							window.location="responsivas";
+							//window.location="cap-responsiva";
 						}
 
 						});
