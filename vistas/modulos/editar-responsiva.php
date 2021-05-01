@@ -382,6 +382,7 @@
 									<th>Imagen</th>
 									<th>Descripcion</th>
 									<th>Serial</th>
+									<th>Telefono</th>
 									<th>Stock</th>
 									<th>Acciones</th>
 								</tr>

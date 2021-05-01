@@ -186,7 +186,7 @@
 
 		static public function mdlEditarProducto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,edo_tel =:edo_tel,num_ip = :num_ip,id_marca = :id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto,asset = :asset,loftware = :loftware,area = :area,linea = :linea,estacion = :estacion,npa = :npa,idf = :idf,patch_panel = :patch_panel,puerto = :puerto,funcion = :funcion WHERE id_producto= :id_producto");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,edo_tel =:edo_tel,num_ip = :num_ip,id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto,asset = :asset,loftware = :loftware,area = :area,linea = :linea,estacion = :estacion,npa = :npa,idf = :idf,patch_panel = :patch_panel,puerto = :puerto,funcion = :funcion WHERE id_producto= :id_producto");
 
 
 			$stmt->bindParam(":id_producto",$datos["id_producto"],PDO::PARAM_INT);
@@ -218,6 +218,7 @@
 			$stmt->bindParam(":npa",$datos["npa"],PDO::PARAM_STR);
 			$stmt->bindParam(":idf",$datos["idf"],PDO::PARAM_STR);
 			$stmt->bindParam(":patch_panel",$datos["patch_panel"],PDO::PARAM_STR);
+			$stmt->bindParam(":puerto",$datos["puerto"],PDO::PARAM_STR);
 			$stmt->bindParam(":funcion",$datos["funcion"],PDO::PARAM_STR);
 
 			if ($stmt->execute())

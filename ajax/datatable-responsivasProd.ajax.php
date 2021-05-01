@@ -97,6 +97,7 @@
 							"'.$imagen.'",
 							"'.$productos[$i]["Periferico"].'",
 							"'.$productos[$i]["Serial"].'",
+							"'.$productos[$i]["num_tel"].'",
 							"'.$stock.'",							
 							"'.$botones.'"
 						],';

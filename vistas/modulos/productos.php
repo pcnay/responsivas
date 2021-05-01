@@ -270,8 +270,8 @@
 	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 	                <select class="form-control input-lg" id= "nuevoEdoTel" name="nuevoEdoTel">
 	                  <option value="">Estado Linea Tel</option>										
-										<option value="Disponible">Disponible</option>
-										<option value="NO Disponible">NO Disponible</option>
+										<option value="Disponible">Disponible</option>										
+										<option value="Asignado">Asignado</option>
 										<option value="NO Aplica">NO Aplica</option>
 									</select>                
 	              </div> <!-- <div class = "input-group"> -->           							
@@ -808,7 +808,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 	                <select class="form-control input-lg" id= "editarEdoTel" name="editarEdoTel" required>
 	                  <option value="">Estado Linea Tel</option>										
 										<option value="Disponible">Disponible</option>
-										<option value="NO Disponible">NO Disponible</option>
+										<option value="Asignado">Asignado</option>
 										<option value="NO Aplica">NO Aplica</option>
 									</select>                
 	              </div> <!-- <div class = "input-group"> -->           							
