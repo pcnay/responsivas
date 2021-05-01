@@ -1,6 +1,6 @@
 <?php
 	// El Usuario "Operador"
-	if ($_SESSION["perfil"] == "Operador")
+	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
 	{
 		echo '
 			<script>

@@ -99,6 +99,39 @@
 
 		}
 
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarAsset()
+		{
+			$item = "asset";
+			$valor = $this->validarAsset;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+		
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarLoftware()
+		{
+			$item = "loftware";
+			$valor = $this->validarLoftware;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+
+		// No declarar "static" en esta funcion, no la soporte el servidor Cloud de Google.
+		public function ajaxValidarNpa()
+		{
+			$item = "npa";
+			$valor = $this->validarNpa;
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor);
+			echo json_encode($respuesta);
+
+		}
+
 		// Editar "Productos"
 		// Para obtener un producto que se va a editar.
 		// Esta se reutiliza en "Responsiva.js" para agregar los productos en la responsiva, ya que se genera de forma dinamica.
@@ -228,5 +261,29 @@
 		$valNomenclatura = new AjaxProductos();
 		$valNomenclatura->validarNomenclatura = $_POST["validarNomenclatura"];
 		$valNomenclatura->ajaxValidarNomenclatura();
+	}
+
+	// Validar que NO se repita el Asset.
+	if (isset($_POST["validarAsset"]))
+	{
+		$valAsset = new AjaxProductos();
+		$valAsset->validarAsset = $_POST["validarAsset"];
+		$valAsset->ajaxValidarAsset();
+	}
+
+	// Validar que NO se repita el Loftware.
+	if (isset($_POST["validarLoftware"]))
+	{
+		$valLoftware = new AjaxProductos();
+		$valLoftware->validarLoftware = $_POST["validarLoftware"];
+		$valLoftware->ajaxValidarLoftware();
+	}
+
+	// Validar que NO se repita el NPA.
+	if (isset($_POST["validarNpa"]))
+	{
+		$valNpa = new AjaxProductos();
+		$valNpa->validarNpa = $_POST["validarNpa"];
+		$valNpa->ajaxValidarNpa();
 	}
 ?>

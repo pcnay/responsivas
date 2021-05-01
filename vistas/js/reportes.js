@@ -184,3 +184,10 @@ $(".btnEpoEntregEmp").click(function(){
 	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php
 
 })
+
+$(".btnSubirCinta").click(function(){
+
+	window.open("csv/subir_cintas.php","_blank");
+	
+
+})

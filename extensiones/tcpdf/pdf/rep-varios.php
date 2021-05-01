@@ -1,4 +1,14 @@
 <?php
+	// Solo el administrador puede entrar a Reportes
+	// Se realiza para que no entren desde la URL de la barra de direcciones
+	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
+	{
+		echo '
+			<script>
+				window.location = "inicio";
+			</script>';
+			return;			
+	}
 // Para llegar a este archivo, se regresan tres carpetas : /pdf/tcpdf/extenciones
 
 require_once("../../../controladores/cintas.controlador.php");

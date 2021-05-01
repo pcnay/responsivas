@@ -823,6 +823,465 @@ $("#editarNomenclatura").change(function(){
  
 }) // $("#editarNomenclatura").change(function(){
 
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaArea").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarArea").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaLinea").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarLinea").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaEstacion").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarEstacion").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoIdf").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarIdf").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoPatchPanel").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarPatchPanel").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoPuerto").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarPuerto").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaFuncion").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarFuncion").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoAsset").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarAsset").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+
+// Revisando que el "Asset" no este repetida. Cuando se edita el Producto
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoAsset" id="nuevoAsset">
+$("#nuevoAsset").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoAsset.
+	let asset = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarAsset",asset);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoAsset").parent().after('<div class="alert alert-warning" >Ya existe el Asset </div>');
+				$("#nuevoAsset").val("");
+			}
+		}
+	})
+ 
+}) // $("#nuevoAsset").change(function(){
+
+// Revisando que el "Asset" no este repetida. Cuando se edita
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarAsset" id="editarAsset">
+$("#editarAsset").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=editarAsset.
+	let asset = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Asset",asset);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarAsset",asset);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarAsset").parent().after('<div class="alert alert-warning" >Ya existe el Asset </div>');
+				$("#editarAsset").val("");
+			}
+		}
+	})
+ 
+}) // $("#editarAsset").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoLoftware").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarLoftware").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Revisando que el "Loftware" no este repetida. Cuando se edita el Producto
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoLoftware" id="nuevoLoftware">
+$("#nuevoLoftware").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoAsset.
+	let loftware = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarLoftware",loftware);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoLoftware").parent().after('<div class="alert alert-warning" >Ya existe el numero de Loftware </div>');
+				$("#nuevoLoftware").val("");
+			}
+		}
+	})
+ 
+}) // $("#nuevoLoftware").change(function(){
+
+// Revisando que el "Loftware" no este repetida. Cuando se edita
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarLoftware" id="editarLoftware">
+$("#editarLoftware").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=editarLoftware
+	let loftware = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Asset",asset);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarLoftware",loftware);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarLoftware").parent().after('<div class="alert alert-warning" >Ya existe el número Loftware </div>');
+				$("#editarLoftware").val("");
+			}
+		}
+	})
+ 
+}) // $("#editarLoftware").change(function(){
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevaNpa").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarNpa").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Revisando que el "NPA" no este repetida. Cuando se edita el Producto
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoNpa" id="nuevoNpa">
+$("#nuevoNpa").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=nuevoAsset.
+	let npa = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Serial",serial);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNpa",npa);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#nuevoNpa").parent().after('<div class="alert alert-warning" >Ya existe el NPA </div>');
+				$("#nuevoNpa").val("");
+			}
+		}
+	})
+ 
+}) // $("#nuevoNpa").change(function(){
+
+// Revisando que el "NPA" no este repetida. Cuando se edita
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="editarNpa" id="editarNpa">
+$("#editarNpa").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();
+				
+	// Obtienedo el valor del id=editarNpa
+	let npa = $(this).val();
+	//let Editar = 'S';
+	//validarCampo(nomenclatura,'Nomenclatura',Editar);
+
+	//console.log("Asset",asset);
+	
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarNpa",npa);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#editarNpa").parent().after('<div class="alert alert-warning" >Ya existe el NPA</div>');
+				$("#editarNpa").val("");
+			}
+		}
+	})
+ 
+}) // $("#editarNpa").change(function(){
+
+
 // Agregando Precio de Venta.
 // Se esta agregando otra clase, para cuando se edite un producto.
 $("#nuevoPrecioCompra, #editarPrecioCompra").change(function(){
@@ -1136,6 +1595,16 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 
 		$("#editarNumIp").val(producto["num_ip"]);
 		$("#editarNomenclatura").val(producto["nomenclatura"]);
+		$("#editarAsset").val(producto["asset"]);
+		$("#editarLoftware").val(producto["loftware"]);
+		$("#editarArea").val(producto["area"]);
+		$("#editarLinea").val(producto["linea"]);
+		$("#editarEstacion").val(producto["estacion"]);
+		$("#editarNpa").val(producto["npa"]);
+		$("#editarIdf").val(producto["idf"]);
+		$("#editarPatchPanel").val(producto["patch_panel"]);
+		$("#editarPuerto").val(producto["puerto"]);
+		$("#editarFuncion").val(producto["funcion"]);
 		$("#editarStock").val(producto["Stock"]);
 		$("#editarPrecioCompra").val(producto["precio_compra"]);
 		$("#editarPrecioVenta").val(producto["Precio_Venta"]);

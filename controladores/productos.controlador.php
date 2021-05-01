@@ -159,6 +159,16 @@
 												"precio_compra" =>$_POST["nuevoPrecioCompra"],
 												"precio_venta" =>$_POST["nuevoPrecioVenta"],									
 												"comentarios" =>rtrim($_POST["nuevoComent"]),
+												"asset" =>$_POST["nuevoAsset"],
+												"loftware" =>$_POST["nuevoLoftware"],
+												"area" =>$_POST["nuevaArea"],
+												"linea" =>$_POST["nuevaLinea"],
+												"estacion" =>$_POST["nuevaEstacion"],
+												"npa" =>$_POST["nuevoNpa"],
+												"idf" =>$_POST["nuevoIdf"],
+												"patch_panel" =>$_POST["nuevoPatchPanel"],
+												"puerto" =>$_POST["nuevoPuerto"],
+												"funcion" =>$_POST["nuevaFuncion"],
 												"cuantas_veces" =>$veces,												
 												"imagen" =>$ruta);
 					
@@ -334,6 +344,16 @@
 											"precio_compra" =>$_POST["editarPrecioCompra"],
 											"precio_venta" =>$_POST["editarPrecioVenta"],
 											"comentarios" =>$_POST["editarComent"],
+											"asset" =>$_POST["editarAsset"],
+											"loftware" =>$_POST["editarLoftware"],
+											"area" =>$_POST["editarArea"],
+											"linea" =>$_POST["editarLinea"],
+											"estacion" =>$_POST["editarEstacion"],
+											"npa" =>$_POST["editarNpa"],
+											"idf" =>$_POST["editarIdf"],
+											"patch_panel" =>$_POST["editarPatchPanel"],
+											"puerto" =>$_POST["editarPuerto"],
+											"funcion" =>$_POST["editarFuncion"],
 											"imagen" =>$ruta);
 
 				//var_dump($datos);

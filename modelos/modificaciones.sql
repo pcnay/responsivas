@@ -14,9 +14,21 @@
 */
 
 USE bd_responsivas;
-
+/* Para agregar una columna a la tabla t_Empleados. */
+	ALTER TABLE t_Productos ADD asset VARCHAR(15) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD loftware VARCHAR(10) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD area VARCHAR(20) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD linea VARCHAR(25) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD estacion VARCHAR(50) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD npa VARCHAR(15) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD idf VARCHAR(5) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD patch_panel VARCHAR(5) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD puerto VARCHAR(5) DEFAULT NULL;
+	ALTER TABLE t_Productos ADD funcion VARCHAR(20) DEFAULT NULL;
+/*
 INSERT INTO t_Usuarios (id_usuario,nombre,usuario,clave,perfil,vendedor,foto,estado,ultimo_login,fecha) VALUES
   (1,'Administrador','admin','Resp2020Ene','Administrador','','',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+*/
 
 /*
  Para agregar una columna a la tabla t_Empleados. 

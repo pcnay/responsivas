@@ -67,12 +67,20 @@
 				case ('id_almacen'):
 					$condicion = 'tp.id_almacen';	
 				break;
-
+				case ('asset'):
+					$condicion = 'tp.asset';	
+				break;
+				case ('loftware'):
+					$condicion = 'tp.loftware';	
+				break;
+				case ('npa'):
+					$condicion = 'tp.npa';	
+				break;
 			}
 
 			if ($item != null)
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces, tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces,tp.asset,tp.loftware,tp.area,tp.linea,tp.estacion,tp.npa,tp.idf,tp.patch_panel,tp.puerto,tp.funcion,tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Marca tm ON
 				tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE $condicion = :$item ORDER BY tperif.nombre ASC");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				//$stmt->bindParam(":".$comparar, $condicion,PDO::PARAM_STR);
@@ -126,7 +134,7 @@
 			/*
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_marca,id_modelo,id_almacen,id_edo_epo,stock,precio_compra,precio_venta,nomenclatura,especificaciones,comentarios,imagen_producto,cuantas_veces) VALUES (:id_periferico,:num_serie,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:stock,:precio_compra,:precio_venta,:nomenclatura,:especificaciones,:comentarios,:imagen_producto,:cuantas_veces)");
 			*/
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_telefonia,id_plan_tel,num_tel,cuenta,direcc_mac_tel,imei_tel,edo_tel,num_ip,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,stock,precio_compra,precio_venta,comentarios,imagen_producto) VALUES (:id_periferico,:num_serie,:id_telefonia,:id_plan_tel,:num_tel,:cuenta,:direcc_mac_tel,:imei_tel,:edo_tel,:num_ip,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:stock,:precio_compra,:precio_venta,:comentarios,:imagen_producto)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_periferico,num_serie,id_telefonia,id_plan_tel,num_tel,cuenta,direcc_mac_tel,imei_tel,edo_tel,num_ip,id_marca,id_modelo,id_almacen,id_edo_epo,id_empleado,nomenclatura,stock,precio_compra,precio_venta,comentarios,imagen_producto,asset,loftware,area,linea,estacion,npa,idf,patch_panel,puerto,funcion) VALUES (:id_periferico,:num_serie,:id_telefonia,:id_plan_tel,:num_tel,:cuenta,:direcc_mac_tel,:imei_tel,:edo_tel,:num_ip,:id_marca,:id_modelo,:id_almacen,:id_edo_epo,:id_empleado,:nomenclatura,:stock,:precio_compra,:precio_venta,:comentarios,:imagen_producto,:asset,:loftware,:area,:linea,:estacion,:npa,:idf,:patch_panel,:puerto,:funcion)");
 
 			$stmt->bindParam(":id_periferico",$datos["id_periferico"],PDO::PARAM_INT);
 			$stmt->bindParam(":num_serie",$datos["num_serie"],PDO::PARAM_STR);
@@ -148,7 +156,17 @@
 			$stmt->bindParam(":precio_compra",$datos["precio_compra"],PDO::PARAM_STR);
 			$stmt->bindParam(":precio_venta",$datos["precio_venta"],PDO::PARAM_STR);
 			$stmt->bindParam(":comentarios",$datos["comentarios"],PDO::PARAM_STR);
-			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);		
+			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);
+			$stmt->bindParam(":asset",$datos["asset"],PDO::PARAM_STR);		
+			$stmt->bindParam(":loftware",$datos["loftware"],PDO::PARAM_STR);
+			$stmt->bindParam(":area",$datos["area"],PDO::PARAM_STR);
+			$stmt->bindParam(":linea",$datos["linea"],PDO::PARAM_STR);
+			$stmt->bindParam(":estacion",$datos["estacion"],PDO::PARAM_STR);
+			$stmt->bindParam(":npa",$datos["npa"],PDO::PARAM_STR);
+			$stmt->bindParam(":idf",$datos["idf"],PDO::PARAM_STR);
+			$stmt->bindParam(":patch_panel",$datos["patch_panel"],PDO::PARAM_STR);
+			$stmt->bindParam(":puerto",$datos["puerto"],PDO::PARAM_STR);
+			$stmt->bindParam(":funcion",$datos["funcion"],PDO::PARAM_STR);
 
 			if ($stmt->execute())
 			{
@@ -168,7 +186,7 @@
 
 		static public function mdlEditarProducto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,edo_tel =:edo_tel,num_ip = :num_ip,id_marca = :id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto WHERE id_producto= :id_producto");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_periferico = :id_periferico,num_serie = :num_serie,id_telefonia = :id_telefonia,id_plan_tel = :id_plan_tel,num_tel = :num_tel,cuenta = :cuenta,direcc_mac_tel = :direcc_mac_tel,imei_tel = :imei_tel,edo_tel =:edo_tel,num_ip = :num_ip,id_marca = :id_marca = :id_marca,id_modelo = :id_modelo,id_almacen = :id_almacen,id_edo_epo = :id_edo_epo,nomenclatura = :nomenclatura,stock = :stock,precio_compra = :precio_compra,precio_venta = :precio_venta,comentarios = :comentarios,imagen_producto = :imagen_producto,asset = :asset,loftware = :loftware,area = :area,linea = :linea,estacion = :estacion,npa = :npa,idf = :idf,patch_panel = :patch_panel,puerto = :puerto,funcion = :funcion WHERE id_producto= :id_producto");
 
 
 			$stmt->bindParam(":id_producto",$datos["id_producto"],PDO::PARAM_INT);
@@ -192,6 +210,15 @@
 			$stmt->bindParam(":precio_venta",$datos["precio_venta"],PDO::PARAM_STR);
 			$stmt->bindParam(":comentarios",$datos["comentarios"],PDO::PARAM_STR);
 			$stmt->bindParam(":imagen_producto",$datos["imagen"],PDO::PARAM_STR);
+			$stmt->bindParam(":asset",$datos["asset"],PDO::PARAM_STR);
+			$stmt->bindParam(":loftware",$datos["loftware"],PDO::PARAM_STR);
+			$stmt->bindParam(":area",$datos["area"],PDO::PARAM_STR);
+			$stmt->bindParam(":linea",$datos["linea"],PDO::PARAM_STR);
+			$stmt->bindParam(":estacion",$datos["estacion"],PDO::PARAM_STR);
+			$stmt->bindParam(":npa",$datos["npa"],PDO::PARAM_STR);
+			$stmt->bindParam(":idf",$datos["idf"],PDO::PARAM_STR);
+			$stmt->bindParam(":patch_panel",$datos["patch_panel"],PDO::PARAM_STR);
+			$stmt->bindParam(":funcion",$datos["funcion"],PDO::PARAM_STR);
 
 			if ($stmt->execute())
 			{

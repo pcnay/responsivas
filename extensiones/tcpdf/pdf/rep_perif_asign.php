@@ -1,15 +1,15 @@
 <?php
 
-// El "Operador" no puede accesar.
-if ($_SESSION["perfil"] == "Operador")
-{
-	echo '
-		<script>
-			window.location = "inicio";
-		</script>';
-		return;			
-}
-
+// Solo el administrador puede entrar a Reportes
+	// Se realiza para que no entren desde la URL de la barra de direcciones
+	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
+	{
+		echo '
+			<script>
+				window.location = "inicio";
+			</script>';
+			return;			
+	}
 require_once ('tcpdf_include.php');
 require_once "../../../controladores/responsivas.controlador.php";
 require_once "../../../modelos/responsivas.modelo.php"; 	

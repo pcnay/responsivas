@@ -1,6 +1,7 @@
 <?php
-	// El "Operador" no puede accesar.
-	if ($_SESSION["perfil"] == "Operador")
+	// Solo el administrador puede entrar a Reportes
+	// Se realiza para que no entren desde la URL de la barra de direcciones
+	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
 	{
 		echo '
 			<script>
@@ -8,7 +9,7 @@
 			</script>';
 			return;			
 	}
-
+	
 //ob_start();
   //ob_clean();
   require_once('../fpdf.php');

@@ -278,18 +278,6 @@
             	</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
-						<!-- Numero de IP -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-								<label for="cap_num_ip">IP Del Periferico:</label>			
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevoNumIp" name="nuevoNumIp" placeholder = "Numero de IP">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
-
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
@@ -395,6 +383,137 @@
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
+						<!-- Captura el Asset del producto -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_asset">Asset:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="text" class="form-control input-lg" id="nuevoAsset" name="nuevoAsset"  placeholder = "Ingresar Asset">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura el NPA -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_npa">NPA:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="text" class="form-control input-lg" id="nuevoNpa" name="nuevoNpa"  placeholder = "Ingresar El NPA">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura el Número de Loftware que le corresponde en la impresora -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_lower">No. Loftware:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="text" class="form-control input-lg" id="nuevoLoftware" name="nuevoLoftware"  placeholder = "Ingresar No. Loftware">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura el Area, Ubicacion -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_area">Area, Ubicacion:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="text" class="form-control input-lg" id="nuevaArea" name="nuevaArea"  placeholder = "Ingresar Area, Ubicacion">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura el Linea -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_linea">Linea:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
+									<input type="text" class="form-control input-lg" id="nuevaLinea" name="nuevaLinea"  placeholder = "Ingresar Linea">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura la Estacion -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_estacion">Estacion:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
+									<input type="text" class="form-control input-lg" id="nuevaEstacion" name="nuevaEstacion"  placeholder = "Ingresar La Estacion">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Numero de IP -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_num_ip">IP :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoNumIp" name="nuevoNumIp" placeholder = "Numero de IP">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar el IDF -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_idf">IDF :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoIdf" name="nuevoIdf" placeholder = "Capturar de IDF">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar el Patch Panel -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_patchPanel">Patch Panel :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoPatchPanel" name="nuevoPatchPanel" placeholder = "Capturar Patch Panel">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar el Puerto -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_puerto">Puerto :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoPuerto" name="nuevoPuerto" placeholder = "Capturar Puerto">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar en que  funcion realiza en la linea -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_funcion">Funcion :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevaFuncion" name="nuevaFuncion" placeholder = "Capturar La Funcion">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
 						<!-- Captura del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
@@ -479,24 +598,6 @@
 
             </div> <!-- <div class="form-group"> -->'
           ?>		
-
-						<!-- Captura el Nuevo Porcentaje 
-						<div class= "col-xs-12 col-sm-6">
-	            <div class="form-group">
-	              <div class = "input-group">	                
-									<input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="0" required readonly >
-										<span class="input-group-addon"><i class="fa fa-percent"></i></span>
-	              </div> <!-- <div class = "input-group"> 
-	            </div> <!-- <div class="form-group"> 
-						</div> <!-- <div class= "col-xs-12 col-sm-6" -->
-
-						<!-- 
-						<div class="form-group">
-						  <label for="especificaciones">Especificiones:</label>
-						  <textarea class="form-control" rows="5" name="nuevaEspecif" id="nuevaEspecif">
-							</textarea>
-						</div>
-						-->
 
 						<div class="form-group">
 							<label for="comentarios">Comentarios:</label>
@@ -714,17 +815,6 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
             	</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
-						<!-- Numero de IP -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-							<label for="perif_ip">IP Periferico:</label>
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
 						<!-- Editar el Marca -->
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
@@ -825,6 +915,134 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
 	                <input type="text" class="form-control input-lg" id = "editarNomenclatura" name="editarNomenclatura">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el Asset del producto -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="editar_asset">Asset:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>
+									<!-- min="0" Para que solo permita números positivos. -->
+									<input type="text" class="form-control input-lg" id="editarAsset" name="editarAsset">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Editar el NPA -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="editar_npa">NPA:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
+									<input type="text" class="form-control input-lg" id="editarNpa" name="editarNpa">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Captura el Número de Loftware que le corresponde en la Impresora -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="cap_lower">No. Loftware:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
+									<input type="text" class="form-control input-lg" id="editarLoftware" name="editarLoftware">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Editar el Area, Ubicacion -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="editar_area">Area, Ubicacion:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
+									<input type="text" class="form-control input-lg" id="editarArea" name="editarArea">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Editar la Linea -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="editar_linea">Linea:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
+									<input type="text" class="form-control input-lg" id="editarLinea" name="editarLinea">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Editar la Estacion -->
+						<!-- Clases de BootStrap para las formularios-->
+						<div class= "col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label for="editar_estacion">Estacion:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
+									<input type="text" class="form-control input-lg" id="editarEstacion" name="editarEstacion">
+								</div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+
+						<!-- Numero de IP -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+							<label for="perif_ip">IP Periferico:</label>
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el IDF -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="editar_idf">IDF :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarIdf" name="editarIdf">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el Patch Panel -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="editar_patchPanel">Patch Panel :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarPatchPanel" name="editarPatchPanel" placeholder = "Capturar Patch Panel">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el Puerto -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="editar_puerto">Puerto :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarPuerto" name="editarPuerto">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar en que  funcion realiza en la linea -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="editar_funcion">Funcion :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarFuncion" name="editarFuncion">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->

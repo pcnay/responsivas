@@ -1,7 +1,7 @@
 <?php
 	// Solo el administrador puede entrar a Reportes
 	// Se realiza para que no entren desde la URL de la barra de direcciones
-	if ($_SESSION["perfil"] == "Operador")
+	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
 	{
 		echo '
 			<script>
@@ -127,7 +127,10 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
+						<label>Subir Archivos CSV Cintas Respaldo: </label>
+						<br>
 					</div>
+					<button class="btn btn-success btnSubirCinta" id="subir_cinta">Subir</button>					
 				</div>
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
