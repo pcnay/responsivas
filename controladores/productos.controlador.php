@@ -169,6 +169,8 @@
 												"patch_panel" =>$_POST["nuevoPatchPanel"],
 												"puerto" =>$_POST["nuevoPuerto"],
 												"funcion" =>$_POST["nuevaFuncion"],
+												"jls" =>$_POST["nuevoJls"],
+												"qdc" =>$_POST["nuevoQdc"],
 												"cuantas_veces" =>$veces,												
 												"imagen" =>$ruta);
 					
@@ -354,6 +356,8 @@
 											"patch_panel" =>$_POST["editarPatchPanel"],
 											"puerto" =>$_POST["editarPuerto"],
 											"funcion" =>$_POST["editarFuncion"],
+											"jls" =>$_POST["editarJls"],
+											"qdc" =>$_POST["editarQdc"],
 											"imagen" =>$ruta);
 
 				//var_dump($datos);

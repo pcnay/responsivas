@@ -1,35 +1,55 @@
-<?php
-/*
-	// Solo el administrador puede entrar a Reportes
-	// Se realiza para que no entren desde la URL de la barra de direcciones
-	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
-	{
-		echo '
-			<script>
-				window.location = "inicio";
-			</script>';
-			return;			
-	}
-*/
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+  <title>Inventory System | Blank Page</title>
 
-require_once "../controladores/cintas.controlador.php";
-require_once "../modelos/cintas.modelo.php"; 	
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	<div class="panel panel-default">
+	<div class="panel-body">
+	<br>
+	<div class="row">
+	<form action="importar_cintas.php" method="post" enctype="multipart/form-data" id="import_form_cinta">
+	<div class="col-md-3">
+	<input type="file" name="file" />
+	</div>
+	<div class="col-md-5">
+	<input type="submit" class="btn btn-primary" name="import_data_cintas" value="IMPORT">
+	</div>
+	</form>
+	</div>
+	<br>
+	<div class="row">
+	<table class="table table-bordered">
+	<thead>
+	<tr>
+	<th>Id</th>
+	<th>Id_categoria</th>
+	<th>codigo</th>
+	<th>descripcion</th>
+	<th>imagen</th>
+	<th>stock</th>
+	<th>precio_compra</th>
+	<th>precio_venta</th>
+	<th>venta</th>
+	<th>fecha</th>
+	</tr>
+	</thead>
+	<tbody>
+		</tbody>
 
-// No se debe tabular las lineas de codigo.
+	</table>
 
-
-class subirCintas
-{
-	public function GrabarCintasTabla()
-	{
-		echo "Entro";
-		
-		
-	} // public function traerImpresionResponsiva()
-
-} // class imprimirResponsiva
-
-$subir_Cintas = new subirCintas();
-$subir_Cintas->GrabarCintasTabla();
-?>
+	</div>
+	</div>
+	</div>
+	</div>
+</body>

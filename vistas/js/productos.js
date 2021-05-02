@@ -1281,6 +1281,50 @@ $("#editarNpa").change(function(){
  
 }) // $("#editarNpa").change(function(){
 
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoJls").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z. ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarJls").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z. ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#nuevoQdc").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z. ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#editarQdc").bind('keypress', function(event) {
+  var regex = new RegExp("^[0-9A-Z. ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 
 // Agregando Precio de Venta.
 // Se esta agregando otra clase, para cuando se edite un producto.
@@ -1605,6 +1649,8 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 		$("#editarPatchPanel").val(producto["patch_panel"]);
 		$("#editarPuerto").val(producto["puerto"]);
 		$("#editarFuncion").val(producto["funcion"]);
+		$("#editarJls").val(producto["jls"]);
+		$("#editarQdc").val(producto["qdc"]);
 		$("#editarStock").val(producto["Stock"]);
 		$("#editarPrecioCompra").val(producto["precio_compra"]);
 		$("#editarPrecioVenta").val(producto["Precio_Venta"]);

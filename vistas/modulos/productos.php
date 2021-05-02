@@ -514,6 +514,28 @@
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
+						<!-- Capturar el JLS -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_jls">JLS :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoJls" name="nuevoJls" placeholder = "Capturar El JLS">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Capturar el QDC -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_qdc">QDC :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "nuevoQdc" name="nuevoQdc" placeholder = "Capturar El QDC">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
 						<!-- Captura del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
@@ -1046,6 +1068,29 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el JLS -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_jls">JLS :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarJls" name="editarJls">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+						<!-- Editar el QDC -->
+						<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_qdc">QDC :</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "editarQdc" name="editarQdc">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
 
 						<!-- Editar del Stock del producto -->
 						<!-- Clases de BootStrap para las formularios-->

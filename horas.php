@@ -55,5 +55,6 @@ $date2 = date_create($fecha_actual);
 $interval = date_diff($date1,$date2);
 echo "Dias ".$interval->format('%a');
 
+//phpinfo();
 
 ?>
