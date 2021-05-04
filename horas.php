@@ -41,7 +41,10 @@ $NuevaFecha = date ( 'Y-m-d H:i:s' , $NuevaFecha);
 echo $NuevaFecha;
 echo "<br/>";
 echo "<br/>";
-
+echo "Imprimir Fecha sin Año ";
+$fecha_verif = '';
+$fecha_incompleta = date("Y-m-d",strtotime($fecha_verif));
+echo $fecha_incompleta;
 
 
 echo "Diferencias de dias ";
@@ -49,6 +52,7 @@ echo "Diferencias de dias ";
 $date1 = new DateTime("2020-01-02");
 
 $fecha_actual = date('Y-m-d');
+
 $date2 = date_create($fecha_actual);
 //$date2 = date('Y-m-d');
 

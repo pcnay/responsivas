@@ -118,6 +118,7 @@ require_once "controladores/centro-costos.controlador.php";
 require_once "controladores/responsivas.controlador.php";
 require_once "controladores/telefonia.controlador.php";
 require_once "controladores/plan-telefonia.controlador.php";
+require_once "controladores/subir-csv.controlador.php";
 
 require_once "modelos/perifericos.modelo.php";
 require_once "modelos/clientes.modelo.php";
@@ -141,7 +142,7 @@ require_once "modelos/centro-costos.modelo.php";
 require_once "modelos/telefonia.modelo.php";
 require_once "modelos/plan-telefonia.modelo.php";
 require_once "modelos/responsivas.modelo.php";
-
+require_once "modelos/subir-csv.modelo.php";
 
 
 $plantilla = new ControladorPlantilla();

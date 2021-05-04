@@ -187,7 +187,7 @@ $(".btnEpoEntregEmp").click(function(){
 
 $(".btnSubirCinta").click(function(){
 
-	window.open("csv/subir_cintas.php","_blank");
+	window.open("index.php?ruta=subir_cintas","_blank");
 	
 
 })

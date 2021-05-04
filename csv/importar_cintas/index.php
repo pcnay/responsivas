@@ -1,3 +1,7 @@
+<?php
+	require_once("db_connect.php")
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +21,7 @@
 	<div class="panel-body">
 	<br>
 	<div class="row">
-	<form action="importar_cintas.php" method="post" enctype="multipart/form-data" id="import_form_cinta">
+	<form action="subir_cintas.php" method="post" enctype="multipart/form-data" id="import_form_cinta">
 	<div class="col-md-3">
 	<input type="file" name="file" />
 	</div>
@@ -31,20 +35,34 @@
 	<table class="table table-bordered">
 	<thead>
 	<tr>
-	<th>Id</th>
-	<th>Id_categoria</th>
-	<th>codigo</th>
-	<th>descripcion</th>
-	<th>imagen</th>
-	<th>stock</th>
-	<th>precio_compra</th>
-	<th>precio_venta</th>
-	<th>venta</th>
-	<th>fecha</th>
+		<th>Numero Serie</th>
+	<th>Fecha Inicio</th>
+	<th>Fecha Fin</th>
+	<th>Ubicacion</th>
+	<th>comentarios</th>
 	</tr>
 	</thead>
 	<tbody>
-		</tbody>
+	<?php
+		$sql = "SELECT num_serial,fecha_inic,fecha_final,ubicacion,comentarios FROM t_Cintas ORDER BY num_serial DESC";
+		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+		if(mysqli_num_rows($resultset)) {
+		while( $rows = mysqli_fetch_assoc($resultset) )
+		 {
+			?>
+				<tr>
+				<td><?php echo $rows['num_serial']; ?></td>
+				<td><?php echo $rows['fecha_inic']; ?></td>
+				<td><?php echo $rows['fecha_final']; ?></td>
+				<td><?php echo $rows['ubicacion']; ?></td>
+				<td><?php echo $rows['comentarios']; ?></td>
+				</tr>
+			<?php } }
+			 else { ?>
+		<tr><td colspan="5">No records to display.....</td></tr>
+		<?php } ?>
+
+	</tbody>
 
 	</table>
 
