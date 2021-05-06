@@ -12,7 +12,8 @@
 
 			Borrar tabla: DROP TABLE <nombre Tabla>
 			Borrar Base Datos : DROP DATABASE <nombre Base Datos>
-			
+			Borrar el contenido de la tabla : 
+					truncate table nombre-tabla;
 */
 
 /* DROP DATABASE IF EXISTS bd_responsivas; */

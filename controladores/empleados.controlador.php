@@ -32,9 +32,9 @@
 		{
 			if (isset($_POST["nuevoNombre"]))
 			{
-				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
-					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
-					preg_match('/^[a-zA-Z0-9@_ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["nuevoCorreoElect"]))
+		//		if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
+		//			preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoApellido"]) &&
+		//			preg_match('/^[a-zA-Z0-9@_ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["nuevoCorreoElect"]))
 				{
 					$tabla = "t_Empleados";
 
@@ -138,6 +138,7 @@
 
 					}
 				}
+/*
 				else // if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) && ...
 				{
 					echo '<script>           
@@ -158,7 +159,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevo_ntid"] && ..... ))  
-
+*/
 			} //if (isset($_POST["nuevoNombre"]))
 		
 		} // 	static public function ctrCrearEmpleado() 
@@ -172,6 +173,7 @@
 		// Se toma este campo como referencia, ya que esta validado para que no deje espacios y se utiliza para determinar que existe datos en los Text de la forma y validaro los campos
 		if (isset($_POST["editarNombre"]))
 		{
+			/*
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarPuesto"]) && 
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarDepto"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarSupervisor"]) &&
@@ -180,9 +182,10 @@
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editar_ntid"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
 					preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]) &&
-					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["editarCorreoElect"]) &&					
+					preg_match('/^[a-zA-Z0-9@ñÑáéíóúÁÉÍÓÚ. ]+$/',$_POST["editarCorreoElect"]) &&
 					preg_match('/^[0-9]+$/',$_POST["id_empleado"]))				
 			{
+*/				
 				$tabla = "t_Empleados";
 
 				// "vistas/img/empleados/default/anonymous.png"; se cambia por es la misma foto
@@ -318,6 +321,7 @@
 	
 	
 				}
+/*	
 			}
 			else
 			{
@@ -338,6 +342,7 @@
 					</script>';          
 
 			} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarApellido"]).....)  
+*/
 
 		} //if (isset($_POST["editarApellido"]))
 	

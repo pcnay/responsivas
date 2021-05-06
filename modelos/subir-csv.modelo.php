@@ -6,11 +6,7 @@
 		// Subir Cintas.
 		static public function mdlSubirCsv($tabla,$datos)
 		{
-			// Para el "id_marca" se agrega de forma ascedente de forma automatica
 			
-			//var_dump($datos);
-			//exit;
-
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_cintas,num_serial,fecha_inic,fecha_final,ubicacion,comentarios) VALUES (0,:num_serial,:fecha_inic,:fecha_final,:ubicacion,:comentarios)");
 			$stmt->bindParam(":num_serial",$datos["num_serial"],PDO::PARAM_STR); 
 			$stmt->bindParam(":fecha_inic",$datos["fecha_inic"],PDO::PARAM_STR); 
@@ -20,18 +16,30 @@
 
 			if ($stmt->execute())
 			{
-				$stmt->close();
-				$stmt = null;
+				//$stmt->close();
+				//$stmt = null;
 				return "ok";				
 			}
 			else
 			{
-				$stmt->close();
-				$stmt = null;
+				//$stmt->close();
+				//$stmt = null;
 				return "error";
 			}
 			
 		} // static public function mdlIngresarMarca($tabla,$datos)
+
+		// Localizar Cintas.
+		static public function localizarCinta($tabla,$datos)
+		{
+			$stmt = Conexion::conectar()->prepare("SELECT num_serial,fecha_inic,fecha_final,ubicacion FROM  $tabla WHERE num_serial = :num_serial ");
+			$stmt->bindParam(":num_serial",$datos["num_serial"],PDO::PARAM_STR); 
+			$stmt->execute();
+
+			return $stmt->fetch(); // Retorna solo una linea.	
+			
+		} // static public function localizarCinta($tabla,$datos)
+		
 
 	} //	class ModeloSubirCsv
 ?>

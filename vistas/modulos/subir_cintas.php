@@ -58,11 +58,11 @@
 
 						$fecha_inic = date("Y-m-d",strtotime($cinta_record[1]));
 						$fecha_final = date("Y-m-d",strtotime($cinta_record[2]));
-						$comentario_adic = $cinta_record[5];
+						$comentario_adic = $cinta_record[4];
 
 						if ($cinta_record[1] == null || $cinta_record[1] == "" || strlen($cinta_record[1]) <= 6)
 						{						
-							$comentario_adic = $cinta_record[5].'       <===> Fecha Incompleta '.$cinta_record[1];
+							$comentario_adic = $cinta_record[4].'       <===> Fecha Incompleta '.$cinta_record[1];
 						}
 
 						if ($cinta_record[2] == null || $cinta_record[2] == "" || strlen($cinta_record[2]) <= 6)
@@ -72,7 +72,7 @@
 							}
 							else
 							{
-								$comentario_adic = $cinta_record[5].'       <===> Fecha Incompleta '.$cinta_record[2];
+								$comentario_adic = $cinta_record[4].'       <===> Fecha Incompleta '.$cinta_record[2];
 							}
 						}
 						/*
@@ -90,13 +90,37 @@
 						$datos = array("num_serial"=>$cinta_record[0],
 														"fecha_inic"=>$fecha_inic,
 														"fecha_final"=>$fecha_final,
-														"ubicacion"=>$cinta_record[4],
+														"ubicacion"=>$cinta_record[3],
 														"comentarios"=>$comentario_adic);
 	
-						var_dump($datos);								
-
-						//$respuesta = ModeloDeptos::mdlIngresarDepto($tabla,$datos);
+						//var_dump($datos);								
 	
+					$localizar_Cinta = ModeloSubirCsv::localizarCinta($tabla,$datos);	
+					
+					if (!$localizar_Cinta)
+					{
+						$respuesta = ModeloSubirCsv::mdlSubirCsv($tabla,$datos);
+						/*
+						echo '<script>           
+						Swal.fire ({
+							type: "success",
+							title: "La Cinta fue encontrada ",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									//window.location="cintas";
+								}
+	
+								});
+			
+							</script>';          	
+						exit;
+						*/
+
+					}
 
 				} //while(($cinta_record = fgetcsv($csv_file)) !== FALSE)
 
