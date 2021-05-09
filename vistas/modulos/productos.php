@@ -422,30 +422,51 @@
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
 
-						<!-- Captura el Area, Ubicacion -->
-						<!-- Clases de BootStrap para las formularios-->
+						<!-- Captura el Area -->
 						<div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="cap_area">Area, Ubicacion:</label>			
-								<div class = "input-group">
-									<span class="input-group-addon"><i class="fa fa-check"></i></span>
-									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="text" class="form-control input-lg" id="nuevaArea" name="nuevaArea"  placeholder = "Ingresar Area, Ubicacion">
-								</div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+	            <div class="form-group">
+								<label for="cap_ubicacion">Area:</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevaArea" name="nuevaArea" required>
+	                  <option value="">Seleccionar Area</option>
+										<?php
+											// Se obtendrán la Ubicacion desde la base de datos.
+											$item = null;
+											$valor = null;
+											$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+											foreach ($ubicacion as $key => $value)
+											{
+												echo '<option value = "'.$value["id_ubicacion"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Captura el Linea -->
-						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
+	            <div class="form-group">
 								<label for="cap_linea">Linea:</label>			
-								<div class = "input-group">
-									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
-									<input type="text" class="form-control input-lg" id="nuevaLinea" name="nuevaLinea"  placeholder = "Ingresar Linea">
-								</div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" id= "nuevaLinea" name="nuevaLinea" required>
+	                  <option value="">Seleccionar Linea</option>
+										<?php
+											// Se obtendrán la Linea desde la base de datos.
+											$item = null;
+											$valor = null;
+											$linea = ControladorLineas::ctrMostrarLineas($item,$valor);
+											foreach ($linea as $key => $value)
+											{
+												echo '<option value = "'.$value["id_linea"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Captura la Estacion -->
 						<!-- Clases de BootStrap para las formularios-->
@@ -966,7 +987,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
 
-						<!-- Captura el Número de Loftware que le corresponde en la Impresora -->
+						<!-- Editar el Número de Loftware que le corresponde en la Impresora -->
 						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
 							<div class="form-group">
@@ -978,29 +999,51 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
 
-						<!-- Editar el Area, Ubicacion -->
-						<!-- Clases de BootStrap para las formularios-->
+						<!-- Editar el Area -->
 						<div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="editar_area">Area, Ubicacion:</label>			
-								<div class = "input-group">
-									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
-									<input type="text" class="form-control input-lg" id="editarArea" name="editarArea">
-								</div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+	            <div class="form-group">
+								<label for="cap_ubicacion">Area:</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg"  name="editarArea" required>
+	                  <option id= "editarArea"></option>
+										<?php
+											// Se obtendrán la Ubicacion desde la base de datos.
+											$item = null;
+											$valor = null;
+											$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+											foreach ($ubicacion as $key => $value)
+											{
+												echo '<option value = "'.$value["id_ubicacion"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Editar la Linea -->
-						<!-- Clases de BootStrap para las formularios-->
 						<div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="editar_linea">Linea:</label>			
-								<div class = "input-group">
-									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
-									<input type="text" class="form-control input-lg" id="editarLinea" name="editarLinea">
-								</div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
+	            <div class="form-group">
+								<label for="cap_linea">Linea:</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+	                <select class="form-control input-lg" name="editarLinea" required>
+	                  <option id= "editarLinea"></option>
+										<?php
+											// Se obtendrán la Linea desde la base de datos.
+											$item = null;
+											$valor = null;
+											$linea = ControladorLineas::ctrMostrarLineas($item,$valor);
+											foreach ($linea as $key => $value)
+											{
+												echo '<option value = "'.$value["id_linea"].'">'.$value["descripcion"].'</option>';
+											}
+										?>
+	                </select>                
+	              </div> <!-- <div class = "input-group"> -->           
+	            </div> <!-- <div class="form-group"> -->
+						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Editar la Estacion -->
 						<!-- Clases de BootStrap para las formularios-->

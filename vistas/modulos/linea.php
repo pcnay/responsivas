@@ -1,5 +1,6 @@
 <?php
-	// El vendedor no puede entrar a Ubicacion
+	/*
+	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
 		echo '
@@ -8,6 +9,8 @@
 			</script>';
 			return;			
 	}
+	*/
+	
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -15,12 +18,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Ubicaciones
+        Administrar Lineas De Produccion
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Ubicacion</li>
+        <li class="active">Administrar Lineas Produccion</li>
       </ol>
     </section>
 
@@ -32,9 +35,9 @@
         
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
-
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarUbicacion">
-            Agregar Ubicacion
+					
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarLineas">
+            Agregar Lineas
           </button>       
         </div>
  
@@ -46,7 +49,7 @@
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Ubicacion</th>								
+                <th>Nombre</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -59,10 +62,10 @@
 								// Se asignan nulo para que extraiga todos los registros.
 								$item = null;
 								$valor = null;
-								$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
-								// Probando mostrando lo que contiene la variable "$ubicaciones"
-								// var_dump($ubicaciones);
-								foreach ($ubicacion as $key => $value)
+								$lineas = ControladorLineas::ctrMostrarLineas($item,$valor);
+								// Probando mostrando lo que contiene la variable "$marcas"
+								// var_dump($marcas);
+								foreach ($lineas as $key => $value)
 								{
 									echo '
 												<tr>
@@ -72,13 +75,13 @@
 													<td class="text-uppercase">'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditaUbicacion" para activar una ventana modal -->
-															<!-- "btnEditarUbicacion" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarUbicacion" idUbicacion="'.$value["id_ubicacion"].'" data-toggle="modal" data-target="#modalEditarUbicacion"><i class="fa fa-pencil"></i></button>';
+															<!-- data-toggle="modal" data-target="#modalEditarLinea" para activar una ventana modal -->
+															<!-- "btnEditarLinea" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarLinea" idLinea="'.$value["id_linea"].'" data-toggle="modal" data-target="#modalEditarLinea"><i class="fa fa-pencil"></i></button>';
 															if ($_SESSION["perfil"] == "Administrador")
 															{
-																echo '<!-- Se pasa btnEliminarUbicacion, idUbicacion="'.$value["id_ubicacion"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarUbicacion" idUbicacion="'.$value["id_ubicacion"].'"><i class="fa fa-times"></i></button>';
+																echo '<!-- Se pasa btnEliminarLinea, idLinea="'.$value["id_linea"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarLinea" idLinea="'.$value["id_linea"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>
@@ -105,11 +108,11 @@
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
+Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarUbicacion" class="modal fade" role="dialog">
+<div id="modalAgregarLineas" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -121,7 +124,7 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Ubicacion</h4>
+          <h4 class="modal-title">Agregar Linea</h4>
         </div>
 
 
@@ -131,7 +134,7 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaUbicacion" placeholder = "Ingresar Ubicacion" id="nuevaUbicacion" required>
+                <input type="text" class="form-control input-lg" name="nuevaLinea" placeholder = "Ingresar Linea De Produccion" id="nuevaLinea" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -143,13 +146,13 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Ubicacion</button>
+            <button type="submit" class="btn btn-primary">Guardar Linea</button>
           </div>
 
 					<?php 
-						// Para grabar la Ubicacion.
-						$crearUbicacion = new ControladorUbicaciones();
-						$crearUbicacion->ctrCrearUbicacion();
+						// Para grabar la Marcas.
+						$crearLinea = new ControladorLineas();
+						$crearLinea->ctrCrearLinea();
 					?>
 
       </form>
@@ -158,17 +161,17 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarUbicacion" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarLinea" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Ubicacion
+	 Modal Editar 
 	====================================================
 -->
-<div id="modalEditarUbicacion" class="modal fade" role="dialog">
+<div id="modalEditarLinea" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -180,7 +183,7 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Ubicacion</h4>
+          <h4 class="modal-title">Editar Linea</h4>
         </div>
 
 
@@ -190,9 +193,9 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarUbicacion"  id="editarUbicacion" required>
-								<!-- Se envía como campo oculto para enviar el "id" de la Ubicacion -->
-								<input type="hidden"  name="idUbicacion"  id="idUbicacion" required>
+                <input type="text" class="form-control input-lg" name="editarLinea"  id="editarLinea" required>
+								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
+								<input type="hidden"  name="idLinea"  id="idLinea" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -208,9 +211,9 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
           </div>
 
 					<?php 
-						// Para grabar la modifiacion de Marca.
-						$editarUbicacion = new ControladorUbicaciones();
-						$editarUbicacion->ctrEditarUbicacion();
+						// Para grabar la modifiacion de Linea.
+						$editarLinea = new ControladorLineas();
+						$editarLinea->ctrEditarLinea();
 					?>
 
       </form>
@@ -223,9 +226,9 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
 
 <?php 
 	// =====================================================
-	// Para borrar un Ubicacion.
+	// Para borrar un Marca.
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarUbicacion = new ControladorUbicaciones();
-	$borrarUbicacion->ctrBorrarUbicacion();
+	$borrarLinea = new ControladorLineas();
+	$borrarLinea->ctrBorrarLinea();
 ?>

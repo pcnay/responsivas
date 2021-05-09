@@ -32,14 +32,36 @@
 		// Localizar Cintas.
 		static public function localizarCinta($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT num_serial,fecha_inic,fecha_final,ubicacion FROM  $tabla WHERE num_serial = :num_serial ");
+			$stmt = Conexion::conectar()->prepare("SELECT num_serial,fecha_inic,fecha_final,ubicacion,comentarios FROM  $tabla WHERE num_serial = :num_serial");
 			$stmt->bindParam(":num_serial",$datos["num_serial"],PDO::PARAM_STR); 
 			$stmt->execute();
 
 			return $stmt->fetch(); // Retorna solo una linea.	
 			
 		} // static public function localizarCinta($tabla,$datos)
+
 		
+		// Actualizar el campo que se requiera de las "Cintas"
+		static public function actualizarCsvCinta($tabla,$item1,$valor1,$item2,$valor2)
+		{
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE $item2 = :$item2");
+			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
+			$stmt->bindParam(":".$item2, $valor2,PDO::PARAM_STR);
+
+			if($stmt->execute())
+			{
+				return "ok";
+			}
+			else
+			{
+				return "error";
+			}
+
+			$stmt->close();
+			$stmt = null;
+			
+		} // static public function localizarCinta($tabla,$datos)
+	
 
 	} //	class ModeloSubirCsv
 ?>

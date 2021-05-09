@@ -161,8 +161,8 @@
 												"comentarios" =>rtrim($_POST["nuevoComent"]),
 												"asset" =>$_POST["nuevoAsset"],
 												"loftware" =>$_POST["nuevoLoftware"],
-												"area" =>$_POST["nuevaArea"],
-												"linea" =>$_POST["nuevaLinea"],
+												"id_ubicacion" =>$_POST["nuevaArea"],
+												"id_linea" =>$_POST["nuevaLinea"],
 												"estacion" =>$_POST["nuevaEstacion"],
 												"npa" =>$_POST["nuevoNpa"],
 												"idf" =>$_POST["nuevoIdf"],
@@ -174,6 +174,8 @@
 												"cuantas_veces" =>$veces,												
 												"imagen" =>$ruta);
 					
+					//var_dump($datos);
+					//exit;
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);
 
 					if ($respuesta == "ok")
@@ -230,7 +232,9 @@
 							}
 
 							});			
-					</script>';				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
+					</script>';	
+				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaCategoria"]))  
+
 
 			} //if (isset($_POST["nuevaDescripcion"]))
 		
@@ -348,8 +352,8 @@
 											"comentarios" =>$_POST["editarComent"],
 											"asset" =>$_POST["editarAsset"],
 											"loftware" =>$_POST["editarLoftware"],
-											"area" =>$_POST["editarArea"],
-											"linea" =>$_POST["editarLinea"],
+											"id_ubicacion" =>$_POST["editarArea"],
+											"id_linea" =>$_POST["editarLinea"],
 											"estacion" =>$_POST["editarEstacion"],
 											"npa" =>$_POST["editarNpa"],
 											"idf" =>$_POST["editarIdf"],

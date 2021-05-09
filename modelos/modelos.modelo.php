@@ -81,7 +81,7 @@
 			// Determinar si se quiere un registro.
 			if ($item != null)
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
 	
@@ -89,7 +89,7 @@
 			}
 			else // Cuando son todos los registros
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY descripcion");
 				$stmt->execute();
 
 				return $stmt->fetchAll(); // Retorna solo una linea.	

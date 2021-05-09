@@ -286,7 +286,7 @@
 					echo '<script>           
 						Swal.fire ({
 							type: "success",
-							title: "El Cliente ha sido Editado correctamente ",
+							title: "El Empleado ha sido Editado correctamente ",
 							showConfirmButton: true,
 							confirmButtonText: "Cerrar",
 							closeOnConfirm: false

@@ -14,9 +14,11 @@
 */
 
 USE bd_responsivas;
+
+/*
 ALTER TABLE t_Productos ADD qdc VARCHAR(15) DEFAULT NULL;
 ALTER TABLE t_Productos ADD jls VARCHAR(15) DEFAULT NULL;
-/* Para agregar una columna a la tabla t_Empleados. 
+ Para agregar una columna a la tabla t_Empleados. 
 	ALTER TABLE t_Productos ADD asset VARCHAR(15) DEFAULT NULL;
 	ALTER TABLE t_Productos ADD loftware VARCHAR(10) DEFAULT NULL;
 	ALTER TABLE t_Productos ADD area VARCHAR(20) DEFAULT NULL;

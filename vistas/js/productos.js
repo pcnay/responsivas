@@ -1631,6 +1631,56 @@ $(".tablaProductos tbody").on("click","button.btnEditarProducto",function(){
 
 		});
 
+
+		// Obtener el Area 					
+		var datosUbic = new FormData();
+
+		// respuesta["id_edo_epo"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+		// "datosEdoEpo" = es una variable POST que se envia a "edo_epo.ajax.php".
+		datosUbic.append("idUbicacion",producto["id_ubicacion"]);
+		$.ajax
+		({
+			url:"ajax/ubicaciones.ajax.php",
+			method:"POST",
+			data:datosUbic,
+			cache:false,
+			contentType:false,
+			processData:false,
+			dataType:"json",
+			success:function(Area)
+			{
+				//console.log("respuesta Area ",Area);		
+				// Asignando el valor recuperado a la etiqueta de SELECT de "productos.php"		
+				$("#editarArea").val(Area["id_ubicacion"]);
+				$("#editarArea").html(Area["descripcion"]);		
+			}
+
+		});
+
+		// Obtener la Linea 					
+		var datosLinea = new FormData();
+
+		// respuesta["id_linea"] = Viene del Ajax Anterior, ya que retorna un arreglo.
+		// "datosLinea" = es una variable POST que se envia a "linea.ajax.php".
+		datosLinea.append("idLinea",producto["id_linea"]);
+		$.ajax
+		({
+			url:"ajax/lineas.ajax.php",
+			method:"POST",
+			data:datosLinea,
+			cache:false,
+			contentType:false,
+			processData:false,
+			dataType:"json",
+			success:function(linea)
+			{
+				//console.log("respuesta Linea ",linea);		
+				// Asignando el valor recuperado a la etiqueta de SELECT de "productos.php"		
+				$("#editarLinea").val(linea["id_linea"]);
+				$("#editarLinea").html(linea["descripcion"]);		
+			}
+		});
+
 		//console.log ("Nomenclatura",producto["nomenclatura"]);
 		
 		//$("#editarPeriferico").val(perifericos["id_periferico"]); //Id

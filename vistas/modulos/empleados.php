@@ -255,7 +255,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+            <button type="submit" class="btn btn-primary">Guardar Empleado</button>
           </div>
 
         </form>

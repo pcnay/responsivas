@@ -97,9 +97,53 @@
 	
 					$localizar_Cinta = ModeloSubirCsv::localizarCinta($tabla,$datos);	
 					
-					if (!$localizar_Cinta)
+					// En el caso de que exista la cinta, revisara cada campo para actualizar.
+
+					//if (!$localizar_Cinta)
+					if ($localizar_Cinta)
 					{
+						// Para actualizar cada campo de la tabla 
+						if ($datos["fecha_inic"] != $localizar_Cinta["fecha_inic"])
+						{
+							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
+	
+							$campoActualizar = 'fecha_inic';
+							$contenidoActualizar = date("Y-m-d",strtotime($datos["fecha_inic"]));
+							$campoCondicion = 'num_serial';
+							$valorCondicion = $datos["num_serial"];							
+							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
+						}
+	
+						if ($datos["fecha_final"] != $localizar_Cinta["fecha_final"])
+						{
+							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
+	
+							$campoActualizar = 'fecha_final';
+							$contenidoActualizar = date("Y-m-d",strtotime($datos["fecha_final"]));
+							$campoCondicion = 'num_serial';
+							$valorCondicion = $datos["num_serial"];							
+							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
+
+						}
+
+						if ($datos["ubicacion"] != $localizar_Cinta["ubicacion"])
+						{
+							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
+	
+							$campoActualizar = 'ubicacion';
+							$contenidoActualizar = $datos["ubicacion"];
+							$campoCondicion = 'num_serial';
+							$valorCondicion = $datos["num_serial"];							
+							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
+
+						}
+					}
+					else
+					{	
+						// Graba cada registro en la tabla
 						$respuesta = ModeloSubirCsv::mdlSubirCsv($tabla,$datos);
+					}
+
 						/*
 						echo '<script>           
 						Swal.fire ({
@@ -119,8 +163,6 @@
 							</script>';          	
 						exit;
 						*/
-
-					}
 
 				} //while(($cinta_record = fgetcsv($csv_file)) !== FALSE)
 
