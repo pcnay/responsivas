@@ -26,6 +26,7 @@
 
     <!-- Main content -->
     <section class="content">
+
 			<div class="row">
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
@@ -71,10 +72,9 @@
 						</div> <!-- <div class="form-group"> -->
 
 					</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
-
-
 					
 				</div>
+
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
@@ -104,6 +104,32 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
+						<label>Historial del Periferico: </label>						
+					</div>
+
+					<div class= "col-xs-12 col-sm-6">
+            	<div class="form-group">
+								<label for="cap_num_tel">Capturar El Serial Del Periferico</label>			
+	              <div class = "input-group">
+	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+	                <input type="text" class="form-control input-lg" id = "num_serie" name="num_serie" placeholder = "Ingresar Numero De Serie">
+	              </div> <!-- <div class = "input-group"> -->           
+							</div> <!-- <div class="form-group"> -->
+            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
+
+					<button class="btn btn-success btnHistPerif" id="imp_HistPerif">Imprimir</button>
+
+				</div>
+
+			</div> <!-- <div class="row"> -->
+
+
+			<div class="row">
+
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
 						<label>Equipos Entregado Al Usuario: </label>
 						<br>
 					</div>
@@ -121,8 +147,6 @@
 					<button class="btn btn-success btnEpoEntregEmp" id="id_EpoEntregEmp">Imprimir</button>
 				</div>
 
-			</div> <!-- <div class="row"> -->
-			<div class="row">
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
@@ -131,6 +155,19 @@
 						<br>
 					</div>
 					<button class="btn btn-success btnSubirCinta" id="subir_cinta">Subir</button>					
+				</div>
+				
+
+
+			</div> <!-- <div class="row"> -->
+			
+			<div class="row">
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>								
+					</div>
+					
 				</div>
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->

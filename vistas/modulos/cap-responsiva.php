@@ -56,7 +56,8 @@
 													$item = null;
 													$valor = null;
 													$ordenar = 'id_responsiva';													
-													$responsiva= ControladorResponsivas::ctrMostrarResponsivas($item,$valor, $ordenar);
+													$responsiva= ControladorResponsivas::ctrMostrarNumResponsiva($item,$valor, $ordenar);
+
 													if (!$responsiva)
 													{
 														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value=1 readonly>';
@@ -67,7 +68,7 @@
 														foreach ($responsiva as $key => $value)
 														{
 														}
-														$num_responsiva = $value["num_folio"]+1;
+														$num_responsiva = $value["ultima"]+1;
 														echo '<input type="text" class="form-control" id="nuevoNumResp" name="nuevoNumResp" value="'.$num_responsiva.'" readonly>';
 
 													}

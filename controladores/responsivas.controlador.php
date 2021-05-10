@@ -11,6 +11,13 @@
 			return $respuesta;
 		}
 
+		static public function ctrMostrarNumResponsiva()
+		{
+			$tabla = "t_Responsivas";
+			$respuesta = ModeloResponsivas::mdlMostrarNumResponsiva($tabla);
+			return $respuesta;
+		}
+
 		static public function ctrMostrarResponsivasPerifAsign($item,$valor)
 		{
 			$tabla = "t_Responsivas";

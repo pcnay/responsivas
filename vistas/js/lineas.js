@@ -1,21 +1,23 @@
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
-$("#nuevaLinea").bind('keypress', function(event) {
-	//var regex = new RegExp("^[A-Z0-9- ]+$");
-  let regex = new RegExp("^[A-Z0-9 ]+$");
-  let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-  if (!regex.test(key)) {
-    event.preventDefault();
-    return false;
-  }
-});
+
+	$("#nuevaLinea").bind('keypress', function(event) {
+		var regex = new RegExp("^[A-Z0-9 ]+$");
+		var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		if (!regex.test(key)) {
+			event.preventDefault();
+			return false;
+		}
+	});
+
+
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarLinea").bind('keypress', function(event) {
-  let regex = new RegExp("^[A-Z0-9 ]+$");
-  let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
     return false;

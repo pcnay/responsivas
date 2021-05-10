@@ -3,7 +3,6 @@
 	
 	class ModeloResponsivas
 	{
-
 		// Mostrar las responsivas que tiene el empleado asignadas
 		static public function mdlMostrarResponsivasPerifAsign($tabla,$item,$valor)
 		{
@@ -11,8 +10,26 @@
 			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();	
 			return $stmt->fetchAll();				
+		}
+
+		// Mostrar las responsivas activas e inactivas 
+		static public function mdlMostrarRespHistPerif($tabla)
+		{
+			$stmt = Conexion::conectar()->prepare ("SELECT r.id_responsiva,r.id_empleado,r.fecha_asignado,r.productos,r.num_folio FROM t_Responsivas r ");
+			
+			$stmt->execute();	
+			return $stmt->fetchAll();				
 
 		}
+
+		static public function mdlMostrarNumResponsiva($tabla)
+		{
+			$stmt = Conexion::conectar()->prepare ("SELECT MAX(id_responsiva) AS ultima FROM $tabla");
+			$stmt->execute();
+			return $stmt->fetchAll();				
+
+		}
+		
 
 		// Mostrar Responsivas
 		static public function mdlMostrarResponsivas($tabla,$item,$valor,$ordenar)
@@ -53,7 +70,7 @@
 
 				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE activa = 'S' ORDER BY $condicion $sube_baja");
 				$stmt->execute();
-				
+
 				return $stmt->fetchAll();
 				
 				$stmt->close();

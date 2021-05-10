@@ -14,7 +14,6 @@
 
 		} // static public function ctrMostrarPerifericos()
 
-
 		// Crear Periferico.
 		static public function ctrCrearPeriferico()
     {

@@ -29,6 +29,7 @@ class imprimirPerifAsign
 public $id_NumEmp;
 public function ObtenerPerifAsign()
 {
+	date_default_timezone_set('America/Tijuana');
 	$fecha_actual = date("m-d-Y");
 
 	// Traer la informacion de la Responsiva.
@@ -158,8 +159,6 @@ for ($n =0;$n<count($productosResp);$n++)
 	$item = "id_producto";
 	$valor = $productosResp[$n]["id"];
 	$producto = ControladorProductos::ctrMostrarProductos($item,$valor);
-
-
 
 $bloque3 = <<<EOF
 	<table style="font-size:10px; padding:5px 10px;">
