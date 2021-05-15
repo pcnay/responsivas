@@ -128,6 +128,29 @@
 			return $stmt->fetchAll();
 		}
 
+
+		static public function mdlMostrarProductosLineas($tabla,$item,$valor)
+		{
+			
+			if ($valor != null)
+			{
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_linea,tm.descripcion AS Marca, tmod.descripcion AS Modelo,tp.num_serie,tu.descripcion AS Ubicacion, tp.asset,tp.npa,tp.loftware,tp.estacion,tp.num_ip,tl.descripcion AS Linea FROM t_Productos tp INNER JOIN t_Marca tm ON tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Ubicacion tu ON tp.id_ubicacion = tu.id_ubicacion INNER JOIN t_Linea tl ON tp.id_linea = tl.id_linea WHERE tp.id_linea = :item");
+
+				$stmt->bindParam(":item", $valor,PDO::PARAM_INT);	
+			}
+			else
+			{
+				$stmt = Conexion::conectar()->prepare("SELECT tp.id_linea,tm.descripcion AS Marca, tmod.descripcion AS Modelo,tp.num_serie,tu.descripcion AS Ubicacion, tp.asset,tp.npa,tp.loftware,tp.estacion,tp.num_ip,tl.descripcion AS Linea FROM t_Productos tp INNER JOIN t_Marca tm ON tp.id_marca = tm.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Ubicacion tu ON tp.id_ubicacion = tu.id_ubicacion INNER JOIN t_Linea tl ON tp.id_linea = tl.id_linea WHERE tp.id_linea != 1 GROUP BY tp.id_linea");
+			}
+
+			$stmt->execute();
+			return $stmt->fetchAll();		
+
+		}
+
+
+
+
 		// Guardar el Producto, en la tabla "t_Productos"
 		static public function mdlIngresarProducto($tabla,$datos)
 		{

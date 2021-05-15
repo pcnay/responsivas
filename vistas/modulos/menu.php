@@ -116,6 +116,12 @@
 										</a>
 									</li>	
 									<li>
+										<a href="ubicaciones">
+											<i class="fa fa-circle-o"></i>
+											<span>Ubicacion</span>
+										</a>
+									</li>
+									<li>
 										<a href="linea">
 											<i class="fa fa-circle-o"></i>
 											<span>Linea Produccion</span>

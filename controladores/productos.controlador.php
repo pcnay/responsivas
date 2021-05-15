@@ -45,6 +45,13 @@
 			return $respuesta;			
 		}
 
+		// Mostrar Lineas De Produccion.
+		static public function ctrMostrarProductosLineas($item,$valor)
+		{
+			$tabla = "t_Productos";			
+			$respuesta = ModeloProductos::mdlMostrarProductosLineas($tabla,$item,$valor);
+			return $respuesta;
+		}
 
 		// Crear producto
 		static public function ctrCrearProducto()

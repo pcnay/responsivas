@@ -89,7 +89,7 @@
 			}
 			else // Cuando son todos los registros
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY descripcion ");
 				$stmt->execute();
 
 				return $stmt->fetchAll(); // Retorna solo una linea.	

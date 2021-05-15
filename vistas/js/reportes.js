@@ -221,3 +221,20 @@ $(".btnSubirCinta").click(function(){
 	
 
 })
+
+$(".btnPerifProd").click(function(){
+
+// Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"
+let Select = document.getElementById("rep_LineaProd");
+//let Opcion = document.getElementsByTagName("option");
+
+	//console.log("Click Boton Imprimirr ",Select.value);
+
+//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+// console.log("idResponsiva",id_Responsiva);
+
+// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+window.open("extensiones/fpdf183/reportes/rep_perif_linea.php?num_Linea="+Select.value,"_blank");
+
+})
