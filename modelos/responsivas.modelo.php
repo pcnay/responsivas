@@ -30,6 +30,13 @@
 
 		}
 		
+		static public function mdlMostrarRespEposPrestados()
+		{
+			$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva, te.ntid,te.nombre, te.apellidos,tr.fecha_asignado,tr.fecha_devolucion,tr.productos FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado WHERE tr.activa = 'S' AND modalidad_entrega = 'Permanente' ");
+			$stmt->execute();
+			return $stmt->fetchAll();				
+
+		}
 
 		// Mostrar Responsivas
 		static public function mdlMostrarResponsivas($tabla,$item,$valor,$ordenar)

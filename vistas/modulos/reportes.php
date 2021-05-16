@@ -179,7 +179,7 @@
 								//echo '<a href="/responsivas/extensiones/tcpdf/pdf/rep-cintas.php?id_Almacen='.$value["id_almacen"].'" target="_blank" >';
 							?>
 							<button class="btn btn-success btnPerifProd" id="perif_lineas">
-								Imprimirs
+								Imprimir
 							</button>       
 							<!-- </a> -->
 
@@ -196,25 +196,25 @@
 
 			</div> <!-- <div class="row"> -->
 			
-
-
 			<div class="row">
+			<div class = "col-lg-6 col-xs-12">
+				<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+				<div class="box box-success">
+					<div class="box-header with-border"></div>
+					<label>Equipos Prestados : </label>
+					<br>				
+				</div>									
+					<button class="btn btn-success btnEposPrestados" id="epo_prestado">Subir</button>					
+			</div>
+
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
 						<label>Subir Archivos CSV Cintas Respaldo: </label>
 						<br>				
-						<button class="btn btn-success btnSubirCinta" id="subir_cinta">Subir</button>					
-					</div>
-
-					
-				</div>
-				<div class = "col-lg-6 col-xs-12">
-					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
-					<div class="box box-success">
-						<div class="box-header with-border"></div>
-					</div>
+					</div>					
+						<!-- <button class="btn btn-success btnSubirCinta" id="subir_cinta">Subir</button> -->		
 				</div>
 
 			</div> <!-- <div class="row"> -->

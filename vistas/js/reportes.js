@@ -238,3 +238,14 @@ let Select = document.getElementById("rep_LineaProd");
 window.open("extensiones/fpdf183/reportes/rep_perif_linea.php?num_Linea="+Select.value,"_blank");
 
 })
+
+// Evento Click para Imprimir los equipos Prestado.
+$(".btnEposPrestados").click(function(){
+
+	
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+	//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+	window.open("extensiones/tcpdf/pdf/rep_epos_prestados.php","_blank");
+	
+	})
+	

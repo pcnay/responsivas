@@ -25,6 +25,13 @@
 			return $respuesta;
 		}
 
+		// Obtiene los equipos que estan prestados.
+		static public function ctrMostrarRespEposPrestados()
+		{
+			$respuesta = ModeloResponsivas::mdlMostrarRespEposPrestados();
+			return $respuesta;
+		}
+
 		// Crear Responsiva.
 		static public function ctrCrearResponsiva()
 		{
