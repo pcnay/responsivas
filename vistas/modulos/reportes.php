@@ -204,7 +204,7 @@
 					<label>Equipos Prestados : </label>
 					<br>				
 				</div>									
-					<button class="btn btn-success btnEposPrestados" id="epo_prestado">Subir</button>					
+					<button class="btn btn-success btnEposPrestados" id="epo_prestado">Imprimir</button>					
 			</div>
 
 				<div class = "col-lg-6 col-xs-12">

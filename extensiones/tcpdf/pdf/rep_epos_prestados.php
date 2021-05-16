@@ -35,51 +35,14 @@ public function ObtenerEposPrestados()
 	// Obtiene el "id_producto" del serial a Buscar.
 	$respuestaResponsivas = ControladorResponsivas::ctrMostrarRespEposPrestados();
 	//var_dump($respuestaResponsivas);
- 
-	for ($i=0;$i<count($respuestaResponsivas);$i++)
-	{
-		$productos = json_decode($respuestaResponsivas[$i]["productos"],true);
-				
-		// Obtener el contenido de la responsiva.
-		for ($n=0;$n<count($productos);$n++)
-		{			
-			//print_r ($id_ProductoResp);
-			//echo "<br>";
 
-			// Obtener los datos del periferico como : Nombre, Serial, Modelo
-			$item = "id_producto";
-			$valor = $productos[$n]["id"];
-			$periferico = ControladorProductos::ctrMostrarProductos($item,$valor);
-
-			// Calculando la diferencias de dias 
-			//echo "Diferencias de dias ";
-
-			$f_devolucion = new DateTime($respuestaResponsivas[$i]["fecha_asignado"]);
-
-			$fecha_actual = date('Y-m-d');
-
-			$fecha_hoy = date_create($fecha_actual);
-			//$date2 = date('Y-m-d');
-
-			$interval = date_diff($f_devolucion,$fecha_hoy);
-
-			print_r($periferico["Periferico"].' '.$periferico["Serial"].' '.$periferico["Modelo"].' Dias '.$interval->format('%a'));
-			echo "<br>";
-
-			//echo "Dias ".$interval->format('%a');
-
-		} // for ($n=0;$n<count($productos);$n++)
-
-	} // for ($i=0;$i<count($respuestaResponsivas);$i++)
-
-		
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // Para que permita varias paginas
 $pdf->startPageGroup();
-$pdf->AddPage();
+$pdf->AddPage('L'); // Para cambiar la orientacion a Horizontal 'Landscape'
 $pdf->SetLeftMargin(0);
 
 // Crear un primer bloque de maquetacion.
@@ -101,27 +64,27 @@ $bloque1 = <<<EOF
 									 
 					</div>
 				</td>
-				<td style="background-color:white; width:120px; text-align:right; color:red">				
+				<td style="background-color:white; width:380px; text-align:right; color:red">				
 					<div style="font-size:12.5px; text-align:right; line-height:15px;">				
 							Fecha : $fecha_actual
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color:white; width:540px">
+				<td style="background-color:white; width:810px">
 					<div style="font-size:8.5px; text-align:right; line-height:10px;">	
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color:white; width:540px">
+				<td style="background-color:white; width:810px">
 					<div style="font-size:13.5px; color:blue; text-align:center; line-height:15px;">
-						HISTORIAL DE PERIFERICO :  $nombre_periferico - $valor_serie 
+						E Q U I P O S  E N  P R E S T A M O S  
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color:white; width:540px">
+				<td style="background-color:white; width:810px">
 					<div style="font-size:8.5px; text-align:right; line-height:10px;">	
 					</div>
 				</td>
@@ -138,6 +101,150 @@ $bloque1 = <<<EOF
 		</tr>
 	</table>	
 	*/
+
+	$bloque2 = <<<EOF
+	<table style="font-size:10px; padding:3px 3px;">
+		<tr>
+			<td style="border:1px solid #666;background-color:white; width:50px; text-align:left">
+				<strong>NtId</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:180px; text-align:left">
+				<strong>Nombre Completo</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:40px; text-align:left">
+				<strong>Resp</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:130Px; text-align:left">
+				<strong>Periferico</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:115px; text-align:left">
+				<strong>Serial</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:115px; text-align:left">
+				<strong>Modelo</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:60px; text-align:left">
+				<strong>F. Entrega</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:60px; text-align:left">
+				<strong>F. Devol</strong>
+			</td>
+			<td style="border:1px solid #666;background-color:white; width:45px; text-align:left">
+				<strong>Vencido</strong>
+			</td>
+		</tr>		
+	</table>
+
+EOF;
+
+$pdf->writeHTML($bloque2,false,false,false,false,'');
+
+	for ($i=0;$i<count($respuestaResponsivas);$i++)
+	{
+		$productos = json_decode($respuestaResponsivas[$i]["productos"],true);
+				
+		// Obtener el contenido de la responsiva.
+		for ($n=0;$n<count($productos);$n++)
+		{			
+			//print_r ($id_ProductoResp);
+			//echo "<br>";
+
+			// Obtener los datos del periferico como : Nombre, Serial, Modelo
+			$item = "id_producto";
+			$valor = $productos[$n]["id"];
+			$perifericos = ControladorProductos::ctrMostrarProductos($item,$valor);
+
+
+		
+		// Imprimir el contenido de los equipos prestado al empleado.
+		
+		// Obtener los datos del empleado
+		//$item = "id_empleado";
+		//$valor = $respuestaResponsivas[$i]["id_empleado"];
+		//$orden = "apellidos";
+		//$empleado = ControladorEmpleados::ctrMostrarEmpleados($item,$valor,$orden);
+		$ntid_emp = $respuestaResponsivas[$i]["ntid"];
+		$nombre_emp = $respuestaResponsivas[$i]["nombre"].' '.$respuestaResponsivas[$i]["apellidos"];
+		$num_folio = $respuestaResponsivas[$i]["num_folio"];
+		$periferico = $perifericos["Periferico"];
+		$num_serie = $perifericos["Serial"];
+		$modelo = $perifericos["Modelo"];
+		
+		$fecha_asig = date("m-d-Y",strtotime($respuestaResponsivas[$i]["fecha_asignado"]));
+
+		if ($respuestaResponsivas[$i]["fecha_devolucion"] != null)
+		{
+			$fecha_devol = date("m-d-Y",strtotime($respuestaResponsivas[$i]["fecha_devolucion"]));
+		}
+		else
+		{
+			$fecha_devol = null;
+		}
+
+		// Calculando la diferencias de dias 
+		//echo "Diferencias de dias ";
+
+		$f_devolucion = new DateTime($respuestaResponsivas[$i]["fecha_asignado"]);
+
+		$fecha_actual = date('Y-m-d');
+
+		$fecha_hoy = date_create($fecha_actual);
+		//$date2 = date('Y-m-d');
+
+		$interval = date_diff($f_devolucion,$fecha_hoy);
+
+		//print_r($periferico["Periferico"].' '.$periferico["Serial"].' '.$periferico["Modelo"].' Dias '.$interval->format('%a'));
+		//echo "<br>";
+		//echo "Dias ".$interval->format('%a');
+		// Imprimiendo por usuario lo que tiene prestado
+
+		$dias_vencidos = $interval->format('%a')." Dias ";
+
+		$bloque3 = <<<EOF
+		<table style="font-size:10px; padding:3px 3px;">
+			<tr>
+				<td style="border:1px solid #666;background-color:white; width:50px; text-align:left">
+					$ntid_emp
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:180px; text-align:left">
+					$nombre_emp
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:40px; text-align:left">
+					$num_folio
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:130px; text-align:left">
+					$periferico
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:115px; text-align:left">
+					$num_serie
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:115px; text-align:left">
+					$modelo
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:60px; text-align:left">
+					$fecha_asig
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:60px; text-align:left">
+					$fecha_devol
+				</td>
+				<td style="border:1px solid #666;background-color:white; width:45px; text-align:left">
+					$dias_vencidos
+				</td>
+			</tr>		
+		</table>
+	
+	EOF;
+	
+	$pdf->writeHTML($bloque3,false,false,false,false,'');
+
+
+
+		} // for ($n=0;$n<count($productos);$n++)
+
+	} // for ($i=0;$i<count($respuestaResponsivas);$i++)
+
+
+
 
 // Salida del Archivo.
 $pdf->Output ('EposPrestados-'.'pdf');
