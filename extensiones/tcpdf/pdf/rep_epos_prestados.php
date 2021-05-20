@@ -184,21 +184,29 @@ $pdf->writeHTML($bloque2,false,false,false,false,'');
 		// Calculando la diferencias de dias 
 		//echo "Diferencias de dias ";
 
-		$f_devolucion = new DateTime($respuestaResponsivas[$i]["fecha_asignado"]);
+		$f_devolucion = new DateTime($respuestaResponsivas[$i]["fecha_devolucion"]);
 
 		$fecha_actual = date('Y-m-d');
 
 		$fecha_hoy = date_create($fecha_actual);
+		
 		//$date2 = date('Y-m-d');
 
+	
 		$interval = date_diff($f_devolucion,$fecha_hoy);
 
-		//print_r($periferico["Periferico"].' '.$periferico["Serial"].' '.$periferico["Modelo"].' Dias '.$interval->format('%a'));
-		//echo "<br>";
-		//echo "Dias ".$interval->format('%a');
 		// Imprimiendo por usuario lo que tiene prestado
 
-		$dias_vencidos = $interval->format('%a')." Dias ";
+		$dias_vencidos = $interval->format('%a');
+		if ($dias_vencidos > 0)
+		{
+			$dias_vencidos = '0'." Dias";
+		}
+		else
+		{
+			$dias_vencidosTexto = $interval->format('%a')." Dias ";
+		}
+	
 
 		$bloque3 = <<<EOF
 		<table style="font-size:10px; padding:3px 3px;">
