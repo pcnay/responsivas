@@ -827,7 +827,7 @@ $("#editarNomenclatura").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaArea").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z]+$");
+  var regex = new RegExp("^[A-Za-z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -838,7 +838,7 @@ $("#nuevaArea").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarArea").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z]+$");
+  var regex = new RegExp("^[A-Za-z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -849,7 +849,7 @@ $("#editarArea").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaLinea").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -860,7 +860,7 @@ $("#nuevaLinea").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarLinea").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -871,7 +871,7 @@ $("#editarLinea").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaEstacion").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var regex = new RegExp("^[A-Za-z0-9 ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -882,7 +882,7 @@ $("#nuevaEstacion").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarEstacion").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9 ]+$");
+  var regex = new RegExp("^[A-Za-z0-9 ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -960,7 +960,7 @@ $("#editarPuerto").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaFuncion").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -971,7 +971,7 @@ $("#nuevaFuncion").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarFuncion").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -1184,7 +1184,7 @@ $("#editarLoftware").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaNpa").bind('keypress', function(event) {
-  var regex = new RegExp("^[0-9]+$");
+  var regex = new RegExp("^[0-9A-Z-]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -1195,7 +1195,7 @@ $("#nuevaNpa").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarNpa").bind('keypress', function(event) {
-  var regex = new RegExp("^[0-9]+$");
+  var regex = new RegExp("^[0-9A-Z-]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

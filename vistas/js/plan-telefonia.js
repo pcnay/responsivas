@@ -1,7 +1,7 @@
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoPlanTelefonia").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var regex = new RegExp("^[A-Za-z0-9- ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -11,7 +11,7 @@ $("#nuevoPlanTelefonia").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarPlanTelefonia").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9- ]+$");
+  var regex = new RegExp("^[A-Za-z0-9- ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

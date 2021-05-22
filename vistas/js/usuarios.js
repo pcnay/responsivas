@@ -170,7 +170,7 @@ $(document).on("click",".btnActivar",function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoNombre").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z ]+$");
+  var regex = new RegExp("^[A-Za-z-Ññáéíóú ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -181,7 +181,7 @@ $("#nuevoNombre").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarNombre").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z ]+$");
+  var regex = new RegExp("^[A-Za-z-Ññáéíóú ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

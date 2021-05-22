@@ -483,7 +483,7 @@ $("#nuevo_ntid").change(function(){
 
 // Valida los caracteres del correo electronico.
 	$("#nuevoCorreoElect").bind('keypress', function(event) {
-		var regex = new RegExp("^[A-Z0-9@_.]+$");
+		var regex = new RegExp("^[A-Za-z0-9@_.]+$");
 		var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 		if (!regex.test(key)) {
 			event.preventDefault();
@@ -493,7 +493,7 @@ $("#nuevo_ntid").change(function(){
 
 // Valida los caracteres del correo electronico.
 $("#editarCorreoElect").bind('keypress', function(event) {
-	var regex = new RegExp("^[A-Z0-9@_.]+$");
+	var regex = new RegExp("^[A-Za-z0-9@_.]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();
@@ -584,7 +584,7 @@ $("#editarCorreoElect").change(function(){
 
 // Valida los caracteres del Nombre.
 $("#nuevoNombre").bind('keypress', function(event) {
-	var regex = new RegExp("^[A-ZÑ ]+$");
+	var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();
@@ -594,7 +594,7 @@ $("#nuevoNombre").bind('keypress', function(event) {
 
 // Valida los caracteres permitidos para Nombre.
 $("#editarNombre").bind('keypress', function(event) {
-	var regex = new RegExp("^[A-ZÑ ]+$");
+	var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();
@@ -604,7 +604,7 @@ $("#editarNombre").bind('keypress', function(event) {
 
 // Valida los caracteres de los Apellidos.
 $("#nuevoApellido").bind('keypress', function(event) {
-	var regex = new RegExp("^[A-ZÑ ]+$");
+	var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();
@@ -614,7 +614,7 @@ $("#nuevoApellido").bind('keypress', function(event) {
 
 // Valida los caracteres de los Apellidos.
 $("#editarApellido").bind('keypress', function(event) {
-	var regex = new RegExp("^[A-ZÑ ]+$");
+	var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();

@@ -33,7 +33,7 @@ $(".btnEditarSupervisor").click(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoSupervisor").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-ZÑñ ]+$");
+  var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -81,7 +81,7 @@ $("#nuevoSupervisor").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarSupervisor").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-ZÑñ ]+$");
+  var regex = new RegExp("^[A-Za-zÑñáéíóú ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

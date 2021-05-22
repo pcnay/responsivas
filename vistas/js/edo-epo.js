@@ -2,7 +2,7 @@
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoEdo_Epo").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z ]+$");
+  var regex = new RegExp("^[A-Za-z ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -13,7 +13,7 @@ $("#nuevoEdo_Epo").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarEdo_Epo").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z ]+$");
+  var regex = new RegExp("^[A-Za-z ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
