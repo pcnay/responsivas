@@ -22,8 +22,9 @@
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
           <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarProducto">
-            Agregar Producto 
-          </button>       
+						Agregar Productos
+					</button>       	
+
         </div>
  
         <div class="box-body">

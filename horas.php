@@ -1,4 +1,6 @@
 <?php
+	// Esta linea se agrego desde la rama branch "cap-telefono"
+	
 	//https://www.php.net/manual/es/function.getdate.php
 	//$hoy = getdate();
 	//print_r($hoy);

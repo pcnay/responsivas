@@ -629,7 +629,7 @@
 					echo '<script>           
 					Swal.fire ({
 						type: "success",
-						title: "La Responsiva ha sido borrada correctamente",
+						title: "La Responsiva Esta dada De Baja correctamente",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false

@@ -49,7 +49,7 @@
 		static public function ctrMostrarProductosLineas($item,$valor)
 		{
 			$tabla = "t_Productos";			
-			$respuesta = ModeloProductos::mdlMostrarProductosLineas($tabla,$item,$valor);
+			$respuesta = ModeloProductos::mdlMostrarProd150uctosLineas($tabla,$item,$valor);
 			return $respuesta;
 		}
 
@@ -246,7 +246,6 @@
 			} //if (isset($_POST["nuevaDescripcion"]))
 		
 		} // 	static public function ctrCrearProducto() 
-
 
 	// ******************************************************************
 	// Editar

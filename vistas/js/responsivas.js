@@ -858,7 +858,7 @@ $(".tablaResponsivas tbody").on("click","button.btnEliminarResponsiva",function(
 	//console.log("idResponsiva",id_Responsiva);
 	Swal.fire ({
 		type: "warning",
-		title: "Esta seguro(a) de Borrar la  Responsiva",
+		title: "Esta seguro(a) dar De Baja la  Responsiva",
 		text : "De lo contrario puede cancelar la Acción ",		
 		showCancelButton:true,		
 		confirmButtonColor: '#3085d6',
