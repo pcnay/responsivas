@@ -49,7 +49,7 @@
 		static public function ctrMostrarProductosLineas($item,$valor)
 		{
 			$tabla = "t_Productos";			
-			$respuesta = ModeloProductos::mdlMostrarProd150uctosLineas($tabla,$item,$valor);
+			$respuesta = ModeloProductos::mdlMostrarProductosLineas($tabla,$item,$valor);
 			return $respuesta;
 		}
 
@@ -476,7 +476,141 @@
 		$respuesta = ModeloProductos::mdlMostrarSumaPerifericos($id_periferico,$id_edo_epo,$tabla);
 		return $respuesta;
 	}
+
+	static public function ctrExpProductosExcel()
+	{
+		// Traer la información de los Productos.
+		$item = null;
+		$valor = null;
+		$tabla = "t_Productos";
+		$orden = "";
+		
+		$respuestaProductos = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+		//echo "Se proceso respuestaProductos ";
+
+		/* 
+		SELECT tp.id_producto AS id_producto,tp.id_telefonia,tp.id_plan_tel,tp.id_empleado,tp.imagen_producto AS Imagen, tp.cuantas_veces AS Cuantas_veces,tp.asset,tp.loftware,tp.id_ubicacion,tp.id_linea,tp.estacion,tp.npa,tp.idf,tp.patch_panel,tp.puerto,tp.funcion,tp.jls,tp.qdc,tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.num_tel,tp.direcc_mac_tel,tp.imei_tel,tp.edo_tel,tp.num_ip,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.cuenta,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo,tp.stock AS Stock,tp.precio_venta AS Precio_Venta, tp.precio_compra,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid
+
+		1 - asset
+		2 - nomenclatura
+		3 - Serial
+		4 - Periferico
+		5 - Marca
+		6 - Modelo
+		7 - Edo_Epo
+		8 - Stock
+		9 - precio_compra
+		10 - Precio_venta		
+		11 - num_tel
+		12 - direcc_mac_tel
+		13 - imei_tel
+		14 - edo_tel		
+		15 - Nom_linea
+		16 - Ubicacion
+		17 - estacion
+		18 - loftware		
+		19 - npa
+		20 - num_ip
+		21 - idf
+		22 - patch_panel
+		23 - puerto
+		24 - funcion
+		25 - jls
+		26 - qdc		
+		27 - comentarios
+*/
+
+		// ===========================
+		// Crear el archivo de Excel
+		// ==========================
+		$Name = 'Productos'.'.xls';
+		header('Expires: 0');
+		header('Cache-control: private');
+		header("Content-type: application/vnd.ms-excel");
+		header("Cache-Control: cache, must-revalidate");
+		header('Content-Description: File Transfer');
+		header('Last-Modified: '.date('D, d M Y H:i:s'));
+		header("Pragma: public");
+		header('Content-Disposition:; filename="'.$Name.'"');
+		header("Content-Transfer-Encoding: binary");
+
+		// Creando la tabla de Excel
+		// utf8_decode = Para poder trabajar con tildes, acentos, ñ, Ñ
+		// Creando los encabezados de la tabla.
+		echo utf8_decode("<table border='0'>
+			<tr>
+				<td style='font-weight:bold; border:1px solid #eee;'>ASSET</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>NOMENCLATURA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>SERIAL</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>PERIFERICO</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>MARCA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>MODELO</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>EDO. EPO</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>STOCK</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>PRECIO COMPRA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>PRECIO VENTA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>NUM. TEL</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>DIRECC. MAC WIFI</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>IMEI TEL.</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>EDO. TEL</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE LINEA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>UBICACION</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>ESTACION</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>LOFTWARE</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>NPA</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>NUM. IP</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>IDF</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>PATCH PANEL</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>PUERTO</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>FUNCION</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>JLS</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>QDC</td>
+				<td style='font-weight:bold; border:1px solid #eee;'>COMENTARIOS</td>
+
+
+
+
+			</tr>");
 	
+			foreach ($respuestaProductos as $row => $item)
+			{
+				echo utf8_decode("
+					<tr>
+						<td style='border:1px solid #eee;'>".$item["asset"]."</td>
+						<td style='border:1px solid #eee;'>".$item["nomenclatura"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Serial"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Periferico"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Marca"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Modelo"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Edo_Epo"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Stock"]."</td>
+						<td style='border:1px solid #eee;'>".$item["precio_compra"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Precio_Venta"]."</td>
+						<td style='border:1px solid #eee;'>".$item["num_tel"]."</td>
+						<td style='border:1px solid #eee;'>".$item["direcc_mac_tel"]."</td>
+						<td style='border:1px solid #eee;'>".$item["imei_tel"]."</td>
+						<td style='border:1px solid #eee;'>".$item["edo_tel"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Nom_linea"]."</td>
+						<td style='border:1px solid #eee;'>".$item["Ubicacion"]."</td>
+						<td style='border:1px solid #eee;'>".$item["estacion"]."</td>
+						<td style='border:1px solid #eee;'>".$item["loftware"]."</td>
+						<td style='border:1px solid #eee;'>".$item["npa"]."</td>
+						<td style='border:1px solid #eee;'>".$item["num_ip"]."</td>
+						<td style='border:1px solid #eee;'>".$item["idf"]."</td>
+						<td style='border:1px solid #eee;'>".$item["patch_panel"]."</td>
+						<td style='border:1px solid #eee;'>".$item["puerto"]."</td>
+						<td style='border:1px solid #eee;'>".$item["funcion"]."</td>
+						<td style='border:1px solid #eee;'>".$item["jls"]."</td>
+						<td style='border:1px solid #eee;'>".$item["qdc"]."</td>
+						<td style='border:1px solid #eee;'>".$item["comentarios"]."</td>
+					</tr>");					
+				
+				}
+			echo "</table>"; 
+
+	} // static public function ctrExpProdExcel()
+
+
 } // class ControladorProductos
 
 

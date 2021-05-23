@@ -23,7 +23,16 @@
 
           <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarProducto">
 						Agregar Productos
-					</button>       	
+					</button>       
+					<?php
+						echo '<a href="/responsivas/vistas/modulos/exp_prod_excel.php" target="_blank">';
+					?>
+					<button class="btn btn-info" id="exp_excel">
+            Exportar Productos A Excel
+          </button>       
+					</a>
+
+
 
         </div>
  
