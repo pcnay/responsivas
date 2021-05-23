@@ -197,16 +197,27 @@ $pdf->writeHTML($bloque2,false,false,false,false,'');
 
 		// Imprimiendo por usuario lo que tiene prestado
 
+		/*
 		$dias_vencidos = $interval->format('%a');
 		if ($dias_vencidos > 0)
 		{
-			$dias_vencidos = '0'." Dias";
+			$rangos = '0'." Dias";
 		}
 		else
 		{
-			$dias_vencidosTexto = $interval->format('%a')." Dias ";
+			$rangos = $interval->format('%a')." Dias ";
 		}
 	
+		$vencido = $rangos;
+*/
+		if (($respuestaResponsivas[$i]["fecha_devolucion"] < $fecha_actual) && ($respuestaResponsivas[$i]["activa"]=='S'))
+		{
+			$vencido = $interval->format('%a')." Dias ";
+		}
+		else
+		{
+			$vencido = '0'." Dias";
+		}
 
 		$bloque3 = <<<EOF
 		<table style="font-size:10px; padding:3px 3px;">
@@ -236,7 +247,7 @@ $pdf->writeHTML($bloque2,false,false,false,false,'');
 					$fecha_devol
 				</td>
 				<td style="border:1px solid #666;background-color:white; width:45px; text-align:left">
-					$dias_vencidos
+					$vencido
 				</td>
 			</tr>		
 		</table>
