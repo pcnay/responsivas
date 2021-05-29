@@ -16,7 +16,7 @@
 						</li>
 						<li class="active">
 							<a href="cintas">
-								<i class="fa fa-home"></i>
+								<i class="fa fa-circle-o"></i>
 								<span>Cintas</span>           
 							</a>
 						</li>';
@@ -26,7 +26,7 @@
 				{
 					echo '
 						<li class="treeview">
-							<a href="empleados">
+							<a href="empleados">     
 								<i class="fa fa-list-ul"></i>
 								<span>Capturar Empleados</span>
 								<span class="pull-right-container">
@@ -35,7 +35,7 @@
 							</a>
 								<ul class="treeview-menu">
 									<li>
-										<a href="ubicaciones">
+										<a href="ubicaciones">   
 											<i class="fa fa-circle-o"></i>
 											<span>Ubicacion</span>
 										</a>
@@ -59,13 +59,13 @@
 										</a>
 									</li> 
 									<li>
-										<a href="centro-costos">
+										<a href="centro-costos"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Centro De Costos</span>
 										</a>
 									</li> 
 									<li>
-										<a href="empleados">
+										<a href="empleados"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Empleados</span>
 										</a>
@@ -80,25 +80,25 @@
 								<a href="productos">
 									<i class="fa fa-list-ul"></i>
 									<span>Capturar Productos</span>
-									<span class="pull-right-container">
-										<i class="fa fa-angle-left pull-right"></i>
+									<span class="pull-right-container"> <i class=""></i>
+										<i class="fa fa-circle-o"></i>
 									</span>           
 								</a>
 								<ul class="treeview-menu">
 									<li>
-										<a href="almacen">
+										<a href="almacen"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Almacen</span>
 										</a>
 									</li>
 									<li>
-										<a href="edo-epo">
+										<a href="edo-epo"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Estado Equipo</span>
 										</a>
 									</li> 
 									<li>
-										<a href="marcas">
+										<a href="marcas"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Marca</span>
 										</a>
@@ -110,7 +110,7 @@
 										</a>
 									</li> 
 									<li>
-										<a href="perifericos">
+										<a href="perifericos"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Perifericos</span>
 										</a>
@@ -122,13 +122,13 @@
 										</a>
 									</li>
 									<li>
-										<a href="linea">
+										<a href="linea"> 
 											<i class="fa fa-circle-o"></i>
 											<span>Linea Produccion</span>
 										</a>
 									</li>	
 									<li>
-										<a href="telefonia">
+										<a href="telefonia"> <i class=""></i>
 											<i class="fa fa-circle-o"></i>
 											<span>Cia Telefonica</span>
 										</a>
@@ -206,7 +206,7 @@
 							<span>Reportes Varios</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
-							</span>           
+							</span>           							
 						</a>
 						<ul class="treeview-menu">
 							<li>

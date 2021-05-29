@@ -60,15 +60,15 @@
             $nuevoAlto = 500;
 
             // Crear el directorio donde se guardara la foto del usuario
-			$directorio = "vistas/img/empleados/".$_POST["nuevoApellido"];
+			$directorio = "vistas/img/empleados/".$_POST["nuevo_ntid"];
 			// Si se esta utilizando servidor de Linux, se tiene que dar permisos totales a la carpeta de "productos".
-            mkdir ($directorio,0775); // 0755
+            mkdir ($directorio,0777); // 0755
 
             // De acuerdo al tipo de imagen aplicamos las funciones por defecto de PHP.
             if ($_FILES["nuevaImagen"]["type"] == "image/jpeg")
             {
               $aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-              $ruta = "vistas/img/empleados/".$_POST["nuevoApellido"]."/".$aleatorio.".jpg";
+              $ruta = "vistas/img/empleados/".$_POST["nuevo_ntid"]."/".$aleatorio.".jpg";
               $origen = imagecreatefromjpeg($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 							$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -85,7 +85,7 @@
             if ($_FILES["nuevaImagen"]["type"] == "image/png")
             {
               $aleatorio = mt_rand(100,999);
-              $ruta = "vistas/img/empleados/".$_POST["nuevoApellido"]."/".$aleatorio.".png";
+              $ruta = "vistas/img/empleados/".$_POST["nuevo_ntid"]."/".$aleatorio.".png";
               $origen = imagecreatefrompng($_FILES["nuevaImagen"]["tmp_name"]);
               // Cuando se define el nuevo tamaño de al foto, mantenga los colores.
               $destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -214,7 +214,7 @@
 
 
 					// Crear el directorio donde se guardara la foto del producto
-					$directorio = "vistas/img/empleados/".$_POST["editarApellido"];
+					$directorio = "vistas/img/empleados/".$_POST["editar_ntid"];
 					
 					if (!empty($_POST["imagenActual"]) && ($_POST["imagenActual"] != "vistas/img/empleados/default/anonymous.png"))
 					{
@@ -231,7 +231,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/jpeg")
 					{
 						$aleatorio = mt_rand(100,999); // Utilizado para el nombre del archivo.
-						$ruta = "vistas/img/empleados/".$_POST["editarApellido"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/empleados/".$_POST["editar_ntid"]."/".$aleatorio.".jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -248,7 +248,7 @@
 					if ($_FILES["editarImagen"]["type"] == "image/png")
 					{
 						$aleatorio = mt_rand(100,999);
-						$ruta = "vistas/img/empleados/".$_POST["editarApellido"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/empleados/".$_POST["editar_ntid"]."/".$aleatorio.".png";
 						$origen = imagecreatefrompng($_FILES["editarImagen"]["tmp_name"]);
 						// Cuando se define el nuevo tamaño de al foto, mantenga los colores.
 						$destino = imagecreatetruecolor($nuevoAncho,$nuevoAlto);
@@ -366,7 +366,7 @@
 				unlink ($_GET["imagen"]);
 				//$borrar_directorio = new EliminarDirectorio();
 				//$borrar_directorio->eliminar_directorio('vistas/img/empleados/'.$_GET["codigo"]);
-				rmdir('vistas/img/empleados/'.$_GET["apellidos"]);				
+				rmdir('vistas/img/empleados/'.$_GET["ntid"]);				
 			}
 
 			$respuesta = ModeloEmpleados::mdlEliminarEmpleado($tabla,$datos);

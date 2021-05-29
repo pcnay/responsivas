@@ -24,7 +24,9 @@
   <!-- Font Awesome 
 		https://fontawesome.com/	--> 
   <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
+  
+	
+	<!-- Ionicons -->
   <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
