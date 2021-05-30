@@ -10,16 +10,22 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY $orden ASC ");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				$stmt->execute();
-				return $stmt->fetch();
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
 			else
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden DESC");				
 				$stmt->execute();
-				return $stmt->fetchAll();				 
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-			$stmt->close();
-			$stmt=null;
 		}
 
 		static public function mdlMostrarEmpleadosRep($tabla,$item,$valor)
@@ -32,11 +38,12 @@
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT emp.ntid,emp.apellidos,emp.nombre,emp.correo_electronico,cc.num_centro_costos,puesto.descripcion AS Puesto,depto.descripcion AS Depto FROM t_Empleados emp INNER JOIN t_Centro_Costos cc ON emp.id_centro_costos = cc.id_centro_costos INNER JOIN t_Puesto puesto ON emp.id_puesto = puesto.id_puesto INNER JOIN t_Depto depto ON emp.id_depto = depto.id_depto ORDER BY emp.apellidos ASC");
 				$stmt->execute();
-				return $stmt->fetchAll();
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-			$stmt->close();
-			$stmt=null;
-
 		}
 
 		static public function mdlMostrarEmpleadosImpResp($item,$valor)
@@ -46,10 +53,13 @@
 				$stmt = Conexion::conectar()->prepare("SELECT emp.nombre,emp.apellidos,emp.ntid,emp.correo_electronico,pto.descripcion AS puesto, depto.descripcion AS depto, superv.descripcion AS supervisor,cc.num_centro_costos FROM t_Empleados emp INNER JOIN t_Puesto pto ON emp.id_puesto = pto.id_puesto INNER JOIN t_Depto depto ON emp.id_depto = depto.id_depto INNER JOIN t_Supervisor superv ON emp.id_supervisor = superv.id_supervisor INNER JOIN t_Centro_Costos cc ON emp.id_centro_costos = cc.id_centro_costos WHERE $item = :$item");
 				$stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
 				$stmt->execute();
-				return $stmt->fetch();
+
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-			$stmt->close();
-			$stmt=null;
 		}
 
 		// Guardar el Empleado, en la tabla "t_Empleados"
@@ -70,15 +80,16 @@
 
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-
-			$stmt->close();
-			$stmt = null;
 
 		} //static public function mdlIngresarEmpleado($tabla,$datos)
 
@@ -105,15 +116,16 @@
 			
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-
-			$stmt->close();
-			$stmt = null;
 
 		} //static public function mdlIngresarEmpleado($tabla,$datos)
 		
@@ -126,14 +138,16 @@
 			$stmt->bindParam(":id",$datos,PDO::PARAM_INT);
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt=null;
 
 		}
 

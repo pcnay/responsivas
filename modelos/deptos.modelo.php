@@ -15,14 +15,18 @@
 			
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlIngresarDepto($tabla,$datos)
 
@@ -37,14 +41,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlEditarDepto($tabla,$datos)
 
@@ -53,16 +61,21 @@
 		// ==============================================
 		static public function mdlBorrarDepto($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_depto = :id");
-			
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_depto = :id");		
 		 	$stmt->bindParam(":id",$datos,PDO::PARAM_INT); 
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
 			$stmt->close();
@@ -84,20 +97,22 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;	
 			}
 			else // Cuando son todos los registros
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna varias linea.	
-
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;				
 			}
-
-			$stmt->close();
-			$stmt = null; 
 
 		} // static public function mdlMostrarDeptos($tabla,$item,$valor)
 

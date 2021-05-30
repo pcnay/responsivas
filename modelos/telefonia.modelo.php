@@ -13,17 +13,20 @@
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
 			$stmt->bindParam(":nombre",$datos["nuevaTelefonia"],PDO::PARAM_STR); 
 			
-			if ($stmt->execute())
+			if ($stmt->execute())			
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
-
 		} // static public function mdlIngresarTelefonia($tabla,$datos)
 
 		// ======================================================
@@ -37,14 +40,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlEditarTelefonia($tabla,$datos)
 
@@ -59,14 +66,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlBorrarTelefonia($tabla,$datos)
 
@@ -74,32 +85,29 @@
     // "static" debido a que tiene parámetros.
     static public function mdlMostrarTelefonias($tabla,$item,$valor)
     {
-      //var_dump($tabla);
-			//exit;
 			// Determinar si se quiere un registro.
 			if ($item != null)
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY nombre");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;	
 			}
 			else // Cuando son todos los registros
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna todos los registros.	
-
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-
-			$stmt->close();
-			$stmt = null; 
-
 		} // static public function mdlMostrarTelefonias($tabla,$item,$valor)
-
-
 	} // class ModeloTelefonias
 
 ?>

@@ -15,14 +15,16 @@
 			
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlIngresarLinea($tabla,$datos)
 
@@ -37,14 +39,16 @@
 
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlEditarLinea($tabla,$datos)
 
@@ -59,17 +63,18 @@
 
 			if ($stmt->execute())
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlBorrarLinea($tabla,$datos)
-
 
 
 		// Mostrar Linea.
@@ -84,20 +89,24 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;	
 			}
 			else // Cuando son todos los registros
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY descripcion ");
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna solo una linea.	
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;				
 
 			}
 
-			$stmt->close();
-			$stmt = null; 
 
 		} // static public function mdlMostrarLinea($tabla,$item,$valor)
 

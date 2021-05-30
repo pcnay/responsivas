@@ -19,14 +19,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlIngresarCinta($tabla,$datos)
 
@@ -54,14 +58,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlEditarCinta($tabla,$datos)
 
@@ -76,18 +84,20 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlBorrarMarca($tabla,$datos)
-
-
 
 		// Mostrar Cintas.
     // "static" debido a que tiene parámetros.
@@ -101,22 +111,25 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;	
+
 			}
 			else // Cuando son todos los registros
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY num_serial ASC");				
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY num_serial ASC");			
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna solo una linea.	
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
 
-			$stmt->close();
-			$stmt = null; 
-
 		} // static public function mdlMostrarCintas($tabla,$item,$valor)
-
 
 	} // class ModeloCintas
 

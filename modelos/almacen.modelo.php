@@ -15,14 +15,16 @@
 			
 			if ($stmt->execute())
 			{
-				return "ok";				
+				$stmt->closeCursor();
+				$stmt=null;	
+				return "ok";
 			}
 			else
 			{
+				$stmt->closeCursor();
+				$stmt=null;	
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlIngresarAlmacen($tabla,$datos)
 
@@ -37,14 +39,18 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlEditarAlmacen($tabla,$datos)
 
@@ -59,18 +65,20 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 		} // static public function mdlBorrarAlmacen($tabla,$datos)
-
-
 
 		// Mostrar Almacen.
     // "static" debido a que tiene parámetros.
@@ -84,20 +92,22 @@
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY nombre");
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;	
 			}
 			else // Cuando son todos los registros
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna solo una linea.	
-
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-
-			$stmt->close();
-			$stmt = null; 
 
 		} // static public function mdlMostrarAlmacen($tabla,$item,$valor)
 

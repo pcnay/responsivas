@@ -9,7 +9,11 @@
 			$stmt = Conexion::conectar()->prepare ("SELECT r.id_empleado,r.num_folio,e.ntid,r.num_folio,r.fecha_asignado,r.productos FROM t_Responsivas r INNER JOIN t_Empleados e ON r.id_empleado = e.id_empleado  WHERE (activa = 'S' && e.ntid = :$item && r.modalidad_entrega = 'Permanente') ORDER BY r.num_folio ASC");
 			$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt->execute();	
-			return $stmt->fetchAll();				
+			$registros = $stmt->fetchAll();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;					
 		}
 
 		// Mostrar las responsivas activas e inactivas 
@@ -18,24 +22,33 @@
 			$stmt = Conexion::conectar()->prepare ("SELECT r.id_responsiva,r.id_empleado,r.fecha_asignado,r.productos,r.num_folio FROM t_Responsivas r ");
 			
 			$stmt->execute();	
-			return $stmt->fetchAll();				
-
+			$registros = $stmt->fetchAll();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;			
 		}
 
 		static public function mdlMostrarNumResponsiva($tabla)
 		{
 			$stmt = Conexion::conectar()->prepare ("SELECT MAX(id_responsiva) AS ultima FROM $tabla");
 			$stmt->execute();
-			return $stmt->fetchAll();				
-
+			$registros = $stmt->fetchAll();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;			
 		}
 		
 		static public function mdlMostrarRespEposPrestados()
 		{
 			$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva, tr.num_folio,tr.id_empleado,te.ntid,te.nombre, te.apellidos,tr.fecha_asignado,tr.fecha_devolucion,tr.productos,tr.activa FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado WHERE tr.activa = 'S' AND modalidad_entrega = 'Prestamo' ");
 			$stmt->execute();
-			return $stmt->fetchAll();				
-
+			$registros = $stmt->fetchAll();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;			
 		}
 
 		// Mostrar Responsivas
@@ -55,8 +68,11 @@
 					$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 					$stmt->execute();
 				}
-
-				return $stmt->fetch();				
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;							
 			}
 			else
 			{
@@ -78,14 +94,12 @@
 				$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE activa = 'S' ORDER BY $condicion $sube_baja");
 				$stmt->execute();
 
-				return $stmt->fetchAll();
-				
-				$stmt->close();
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
 				$stmt=null;
-
-				
+				return $registros;			
 			} // if ($item != null)
-
 
 		} // static public function mdlMostrarVentas($tabla, $item, $valor)
 
@@ -111,16 +125,20 @@
 			$stmt->bindParam(":fecha_devolucion",$datos["fecha_devolucion"],PDO::PARAM_STR);
 			$stmt->bindParam(":fecha_asignado",$datos["fecha_asignado"],PDO::PARAM_STR);
 
-			if ($stmt->execute())
+			if ($stmt->execute())			
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 	} // static public function mdlIngresarResponsiva($tabla,$datos)
 
@@ -149,21 +167,23 @@
 
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt = null;
 
 	} // static public function mdlEditarResponsiva($tabla,$datos)
 
 	// Eliminar Responsiva.
-/*
-	$stmt = Conexion::conectar()->prepare ("UPDATE $tabla SET id_empleado=:id_empleado,id_usuario=:id_usuario,id_almacen=:id_almacen,activa=:activa,num_folio=:num_folio,modalidad_entrega=:modalidad_entrega,num_ticket=:num_ticket,comentario=:comentario,productos=:productos,impuesto=:impuesto,neto=:neto,total=:total,fecha_devolucion=:fecha_devolucion,fecha_asignado=:fecha_asignado WHERE id_responsiva = :id_responsiva");
-*/
+
 	static public function mdlEliminarResponsiva($tabla,$datos)
 	{
 		//$stmt = Conexion::conectar()->prepare ("DELETE FROM $tabla WHERE id_responsiva = :id_responsiva");
@@ -171,14 +191,18 @@
 		$stmt->bindParam(":id_responsiva",$datos,PDO::PARAM_INT);
 		if ($stmt->execute())
 		{
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
 			return "ok";
 		}
 		else
 		{
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
 			return "error";
 		}
-		$stmt->close();
-		$stmt=null;
 
 	}
 

@@ -16,14 +16,16 @@
 
 			if ($stmt->execute())
 			{
-				//$stmt->close();
-				//$stmt = null;
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";				
 			}
 			else
 			{
-				//$stmt->close();
-				//$stmt = null;
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
 			
@@ -35,11 +37,12 @@
 			$stmt = Conexion::conectar()->prepare("SELECT num_serial,fecha_inic,fecha_final,ubicacion,comentarios FROM  $tabla WHERE num_serial = :num_serial");
 			$stmt->bindParam(":num_serial",$datos["num_serial"],PDO::PARAM_STR); 
 			$stmt->execute();
-
-			return $stmt->fetch(); // Retorna solo una linea.	
-			
+			$registros = $stmt->fetch();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;			
 		} // static public function localizarCinta($tabla,$datos)
-
 		
 		// Actualizar el campo que se requiera de las "Cintas"
 		static public function actualizarCsvCinta($tabla,$item1,$valor1,$item2,$valor2)
@@ -49,16 +52,19 @@
 			$stmt->bindParam(":".$item2, $valor2,PDO::PARAM_STR);
 
 			if($stmt->execute())
-			{
+			{				
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-
-			$stmt->close();
-			$stmt = null;
 			
 		} // static public function localizarCinta($tabla,$datos)
 	

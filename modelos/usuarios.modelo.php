@@ -8,8 +8,6 @@
 		// Algunos servidores requieren que lleve la palabra "static"
     static public function mdlMostrarUsuarios($tabla,$item,$valor)
     {
-      //var_dump($tabla);
-			//exit;
 			// Determinar si se quiere un registro o todos.
 			if ($item != null)
 			{
@@ -18,32 +16,29 @@
 				// Enlazar parametro.
 				$stmt->bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt->execute();
-	
-				return $stmt->fetch(); // Retorna solo una linea.	
+				$registros = $stmt->fetch();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;				
 			}
 			else
 			{
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
 				$stmt->execute();
-
-				return $stmt->fetchAll(); // Retorna solo una linea.	
-
+				$registros = $stmt->fetchAll();			
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
 			}
-
-			$stmt->close();
-			$stmt = null; 
-
 		} // static public function mdlMostrarUsuarios($tabla,$item,$valor)
 
-		
 		// =====================================================
 		// Registrar Usuario.
 		// ====================================================
     static public function mdlIngresarUsuario($tabla,$datos)
     {
-      //print_r($datos);
-      //exit;
-
       $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, usuario, clave, perfil,foto) VALUES (:nombre,:usuario,:password,:perfil,:ruta)");
 
       $stmt->bindParam(":nombre",$datos["nombre"], PDO::PARAM_STR);
@@ -54,15 +49,18 @@
       
       if ($stmt->execute())
       {
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
         return "ok";
       }
       else
       {
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;        
         return "error";
       }
-      
-      $stmt->close();
-      $stmt = null; 
 		}
 		
 		// ==============================================
@@ -79,15 +77,18 @@
 
 			if($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-
-			$stmt->close();
-			$stmt = null;
 		}
 
 		// Actualizar Usuario 
@@ -99,16 +100,18 @@
 
 			if($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-
-			$stmt->close();
-			$stmt = null;
-
 		} // 		static public function mdlActualizarUsuario.......
 
 
@@ -121,19 +124,26 @@
 			$stmt->bindParam(":id",$datos,PDO::PARAM_INT);
 			if ($datos == 1)
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
 			
 			if ($stmt->execute())
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "ok";
 			}
 			else
 			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				$stmt->closeCursor();
+				$stmt=null;
 				return "error";
 			}
-			$stmt->close();
-			$stmt=null;
 		}
  
   } // class ModeloUsuarios
