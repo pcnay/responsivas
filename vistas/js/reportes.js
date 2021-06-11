@@ -249,3 +249,13 @@ $(".btnEposPrestados").click(function(){
 	
 	})
 	
+// Evento Click para subir responsivas del empleado.
+$(".btnSubirResp").click(function(){
+	let idNtid = $(this).attr("id_ntid");
+	console.log(idNtid);
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+	//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+	//window.open("extensiones/tcpdf/pdf/rep_epos_prestados.php","_blank");
+	
+	})
+	

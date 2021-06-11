@@ -305,11 +305,11 @@
 							</div> <!-- <div class="box-body"> -->
 
 							<!-- Se colocan el boton para guardar los cambios -->
-							<div class="box-footer">						
+							<div class="box-footer">	
 								<button type="submit" class="btn btn-primary pull-right" >Guardar Cambios</button>
-							</div>
-
+							</div> <!-- <div class="box-footer">	-->
 					</form>
+
 					<!-- Para generar la Responsiva -->
 					<?php
 						$editarResponsiva = new ControladorResponsivas();

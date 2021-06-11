@@ -423,7 +423,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEliminarEmpleado",function(){
 })
 
 $("#nuevo_ntid").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z0-9 ]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -432,7 +432,7 @@ $("#nuevo_ntid").bind('keypress', function(event) {
 });
 
 $("#editar_ntid").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z0-9 ]+$");
+  var regex = new RegExp("^[A-Za-z0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();

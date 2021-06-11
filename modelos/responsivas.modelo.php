@@ -64,7 +64,7 @@
 				}
 				if ($ordenar == 'ConsultaCompleja')
 				{
-					$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva,tr.id_empleado,tu.id_usuario,tu.nombre AS  nombre_usuario,tr.num_folio,tr.activa,tr.modalidad_entrega,tr.productos,tr.num_ticket,tr.id_empleado,tr.comentario,tr.impuesto,tr.neto,tr.total,tr.fecha_devolucion,tr.fecha_asignado,te.nombre AS nombre_empleado,te.apellidos AS apellidos_empleado,tr.id_almacen,ta.nombre AS nombre_planta FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado INNER JOIN t_Almacen ta ON tr.id_almacen = ta.id_almacen INNER JOIN t_Usuarios tu ON tr.id_usuario = tu.id_usuario WHERE $item = :$item && tr.activa = 'S' ");
+					$stmt = Conexion::conectar()->prepare ("SELECT tr.id_responsiva,tr.id_empleado,tu.id_usuario,tu.nombre AS  nombre_usuario,tr.num_folio,tr.activa,tr.modalidad_entrega,tr.productos,tr.num_ticket,tr.id_empleado,tr.comentario,tr.impuesto,tr.neto,tr.total,tr.fecha_devolucion,tr.fecha_asignado,te.ntid,te.nombre AS nombre_empleado,te.apellidos AS apellidos_empleado,tr.id_almacen,ta.nombre AS nombre_planta FROM t_Responsivas tr INNER JOIN t_Empleados te ON tr.id_empleado = te.id_empleado INNER JOIN t_Almacen ta ON tr.id_almacen = ta.id_almacen INNER JOIN t_Usuarios tu ON tr.id_usuario = tu.id_usuario WHERE $item = :$item && tr.activa = 'S' ");
 					$stmt->bindParam(":".$item,$valor,PDO::PARAM_STR);
 					$stmt->execute();
 				}
