@@ -621,3 +621,16 @@ $("#editarApellido").bind('keypress', function(event) {
 		return false;
 	}
 });
+
+
+// ================================================================================
+// Subir los documentos de los empleados
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cunado se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarEmpleado" la siguiente "function"
+$(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
+	// "idEmpleados" viene desde el archivo : "datatable-empleados.ajax.php -> $botones"
+	var idEmpleado = $(this).attr("id_Ntid");
+	// console.log("idEmpleado",idEmpleado);
+	window.open("vistas/modulos/subir_resp.php?Ntid_Emp="+idEmpleado,"_blank");	
+	
+	});

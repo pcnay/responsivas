@@ -220,11 +220,20 @@
 			</div> <!-- <div class="row"> -->
 			<div class="row">
 				<div class = "col-lg-6 col-xs-12">
-					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<br>
 					<div class="box box-success">
-						<div class="box-header with-border"></div>
-					</div>
+						<div class="form-group">
+										<label for="cap_num_tel">Subir Documentos Empleado:</label>			
+										<div class = "input-group">
+											<span class="input-group-addon"><i class="fa fa-code"></i></span>
+											<input type="text" class="form-control input-lg" id = "ntid_Emp" name="ntid_Emp" placeholder = "Ingresar Numero Empleado">
+										</div> <!-- <div class = "input-group"> -->           
+						</div> <!-- <div class="form-group"> -->
+					
+						<button class="btn btn-success btnSubirResp" id="subir_responsiva">Subir</button>		
+					</div> <!-- <div class="box box-success"> -->			
 				</div>
+
 				<div class = "col-lg-6 col-xs-12">
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">

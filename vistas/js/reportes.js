@@ -252,10 +252,36 @@ $(".btnEposPrestados").click(function(){
 // Evento Click para subir responsivas del empleado.
 $(".btnSubirResp").click(function(){
 	let idNtid = $(this).attr("id_ntid");
-	console.log(idNtid);
+	//console.log(idNtid);
 	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
 	//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
 	//window.open("extensiones/tcpdf/pdf/rep_epos_prestados.php","_blank");
 	
 	})
 	
+// Validar los caracteres permitidos 
+// Validar la entrada.
+$("#ntid_Emp").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+// Obteniendo el valor del input del Numero de Empledo para subir las responsivas.
+$(".btnSubirResp").click(function(){
+
+	// let Num_Emp = document.getElementById("numEmp");
+	// Para obtener el numero de empleado. Esta variable viene desde "reportes.php" donde se define el Boton.
+	 let Num_Emp= $("#ntid_Emp").val();
+	 
+	 //console.log("Click Boton SubirArchivo ",Num_Emp);
+
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+	//window.open("extensiones/tcpdf/pdf/rep_perif_asign.php?num_Emp="+Num_Emp,"_blank");
+	//window.open("extensiones/fpdf183/reportes/rep_perif_asign.php?num_Emp="+Num_Emp,"_blank");
+	window.open("vistas/modulos/subir_resp.php?Ntid_Emp="+Num_Emp,"_blank");	
+	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php
+
+})
