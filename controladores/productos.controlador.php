@@ -261,6 +261,44 @@
 													"imagen" =>$ruta);
 					}
 
+					if ($tipo_prod == 'Telefono')
+					{
+						$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
+													"num_serie" =>$_POST["nuevoSerial"],
+													"id_telefonia" =>$_POST["nuevaTelefonia"],
+													"id_plan_tel" =>$_POST["nuevoPlanTelefonia"],
+													"num_tel" =>$_POST["nuevoNumTel"],
+													"cuenta" =>$_POST["nuevaCuenta"],
+													"direcc_mac_tel" =>$_POST["nuevaDireccMac"],
+													"imei_tel" =>$_POST["nuevoImei"],
+													"num_ip" =>'',
+													"edo_tel" =>$_POST["nuevoEdoTel"],
+													"id_empleado" =>1,
+													"id_marca" =>$_POST["nuevoMarca"],
+													"id_modelo" =>$_POST["nuevoModelo"],
+													"id_almacen" =>$_POST["nuevoAlmacen"],
+													"id_edo_epo" =>1,
+													"nomenclatura" =>'',
+													"stock" =>$_POST["nuevoStock"],												
+													"precio_compra" =>$_POST["nuevoPrecioCompra"],
+													"precio_venta" =>$_POST["nuevoPrecioVenta"],									
+													"comentarios" =>rtrim($_POST["nuevoComent"]),
+													"asset" =>'',
+													"loftware" =>'',
+													"id_ubicacion" =>$_POST["nuevaArea"],
+													"id_linea" =>1,
+													"estacion" =>'',
+													"npa" =>'',
+													"idf" =>'',
+													"patch_panel" =>'',
+													"puerto" =>'',
+													"funcion" =>'',
+													"jls" =>'',
+													"qdc" =>'',
+													"cuantas_veces" =>$veces,												
+													"imagen" =>$ruta);
+					}
+
 					//var_dump($datos);
 					//exit;
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);

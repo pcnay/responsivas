@@ -157,8 +157,12 @@
 											<span>Productos Produccion</span>
 										</a>
 									</li> 
-
-
+									<li>								
+										<a href="prod-tel">
+											<i class="fa fa-circle-o"></i>
+											<span>Productos Telefonos</span>
+										</a>
+									</li> 
 								</ul> <!-- <ul class="treeview-menu"> -->
 
 						</li> <!-- <li class="treeview"> -->';
