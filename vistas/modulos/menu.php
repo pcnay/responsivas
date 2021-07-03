@@ -145,6 +145,19 @@
 											<span>Alta Producto</span>
 										</a>
 									</li> 
+									<li>								
+										<a href="prod-gral">
+											<i class="fa fa-circle-o"></i>
+											<span>Productos Gral.</span>
+										</a>
+									</li> 
+									<li>								
+										<a href="prod-prod">
+											<i class="fa fa-circle-o"></i>
+											<span>Productos Produccion</span>
+										</a>
+									</li> 
+
 
 								</ul> <!-- <ul class="treeview-menu"> -->
 

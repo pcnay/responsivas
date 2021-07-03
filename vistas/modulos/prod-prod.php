@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Productos
+        Productos Produccion
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
@@ -177,116 +177,6 @@
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
 
-						<!-- Capturar Compañia Telefonica-->
-            <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">				
-							<label for="cap_cia_tel">Cia. Telefonica:</label>						
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevaTelefonia" name="nuevaTelefonia" required>
-	                  <option value="">Telefonia</option>
-										<?php
-											// Se obtendrán la compañia telefonicadesdes la base de datos.
-											$item = null;
-											$valor = null;
-											$telefonia = ControladorTelefonias::ctrMostrarTelefonias($item,$valor);
-											foreach ($telefonia as $key => $value)
-											{
-												echo '<option value = "'.$value["id_telefonia"].'">'.$value["nombre"].'</option>';
-											}
-										?>
-	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           							
-            	</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
-
-
-						<!-- Capturar Plan Telefonia-->
-            <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="cap_plan_tel">Plan Telefono:</label>								
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoPlanTelefonia" name="nuevoPlanTelefonia" required>
-	                  <option value="">Plan Telefonia</option>
-										<?php
-											// Se obtendrán la compañia telefonicadesdes la base de datos.
-											$item = null;
-											$valor = null;
-											$plan_telefonia = ControladorPlanTelefonias::ctrMostrarPlanTelefonias($item,$valor);
-											foreach ($plan_telefonia as $key => $value)
-											{
-												echo '<option value = "'.$value["id_plan_tel"].'">'.$value["nombre"].'</option>';
-											}
-										?>
-	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           							
-            	</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
-
-            <!-- Clases de BootStrap para las formularios-->
-						<!-- Capturar numero de telefono. -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-								<label for="cap_num_tel">Número De Telefono:</label>			
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevoNumTel" name="nuevoNumTel" placeholder = "Ingresar Numero Telefonico">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
-            <!-- Clases de BootStrap para las formularios-->
-						<!-- Capturar numero de Cuenta. -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-								<label for="cap_cuenta_tel">Cuenta Del Telefono:</label>			
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevaCuenta" name="nuevaCuenta" placeholder = "Num. Cuenta ">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
-            <!-- Clases de BootStrap para las formularios-->
-						<!-- Capturar Direccion MAC del Telefono. -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-								<label for="cap_direcc_mac">Direccion MAC Tel:</label>			
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevaDireccMac" name="nuevaDireccMac" placeholder = "MAC Address Tel ">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
-            <!-- Clases de BootStrap para las formularios-->
-						<!-- Capturar IMEI del Telefono. -->
-						<div class= "col-xs-12 col-sm-6">
-            	<div class="form-group">
-								<label for="cap_imei">IMEI Tel. :</label>			
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevoImei" name="nuevoImei" placeholder = "IMEI Tel">
-	              </div> <!-- <div class = "input-group"> -->           
-							</div> <!-- <div class="form-group"> -->
-            </div>  <!-- class= "col-xs-12 col-sm-6"> -->
-
-						<!-- Estado del Telefono-->
-            <div class= "col-xs-12 col-sm-6">
-							<div class="form-group">
-								<label for="cap_edot_tel">Estado Del Telefono:</label>									
-	              <div class = "input-group">
-	                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-	                <select class="form-control input-lg" id= "nuevoEdoTel" name="nuevoEdoTel">
-	                  <option value="">Estado Linea Tel</option>										
-										<option value="Disponible">Disponible</option>										
-										<option value="Asignado">Asignado</option>
-										<option value="NO Aplica">NO Aplica</option>
-									</select>                
-	              </div> <!-- <div class = "input-group"> -->           							
-            	</div> <!-- <div class="form-group"> -->
-						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
 
 						<!-- Captura el Marca -->
 						<div class= "col-xs-12 col-sm-6">
@@ -684,7 +574,7 @@
 				<!-- Para Guardar la información. -->
 				<?php
 					$crearProducto = new ControladorProductos();
-					$tipo_prod = 'Completo';
+					$tipo_prod = 'Produccion';
 					$crearProducto->ctrCrearProducto($tipo_prod);
 					
 				?>

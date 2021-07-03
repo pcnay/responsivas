@@ -54,7 +54,7 @@
 		}
 
 		// Crear producto
-		static public function ctrCrearProducto()
+		static public function ctrCrearProducto($tipo_prod)
 		{
 			if (isset($_POST["nuevoPeriferico"]))
 			{
@@ -146,41 +146,121 @@
 					$veces = 0;			
 					$tabla = "t_Productos";
 					// "id_empleado" Solo se utiliza para guardar su ID, pero no se relacionan con la tabla "t_Empleados", para asignar nombre de quien lo tiene asignado.
-					$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
-												"num_serie" =>$_POST["nuevoSerial"],
-												"id_telefonia" =>$_POST["nuevaTelefonia"],
-												"id_plan_tel" =>$_POST["nuevoPlanTelefonia"],
-												"num_tel" =>$_POST["nuevoNumTel"],
-												"cuenta" =>$_POST["nuevaCuenta"],
-												"direcc_mac_tel" =>$_POST["nuevaDireccMac"],
-												"imei_tel" =>$_POST["nuevoImei"],
-												"num_ip" =>$_POST["nuevoNumIp"],
-												"edo_tel" =>$_POST["nuevoEdoTel"],
-												"id_empleado" =>1,
-												"id_marca" =>$_POST["nuevoMarca"],
-												"id_modelo" =>$_POST["nuevoModelo"],
-												"id_almacen" =>$_POST["nuevoAlmacen"],
-												"id_edo_epo" =>$_POST["nuevoEdoEpo"],
-												"nomenclatura" =>$_POST["nuevaNomenclatura"],
-												"stock" =>$_POST["nuevoStock"],												
-												"precio_compra" =>$_POST["nuevoPrecioCompra"],
-												"precio_venta" =>$_POST["nuevoPrecioVenta"],									
-												"comentarios" =>rtrim($_POST["nuevoComent"]),
-												"asset" =>$_POST["nuevoAsset"],
-												"loftware" =>$_POST["nuevoLoftware"],
-												"id_ubicacion" =>$_POST["nuevaArea"],
-												"id_linea" =>$_POST["nuevaLinea"],
-												"estacion" =>$_POST["nuevaEstacion"],
-												"npa" =>$_POST["nuevoNpa"],
-												"idf" =>$_POST["nuevoIdf"],
-												"patch_panel" =>$_POST["nuevoPatchPanel"],
-												"puerto" =>$_POST["nuevoPuerto"],
-												"funcion" =>$_POST["nuevaFuncion"],
-												"jls" =>$_POST["nuevoJls"],
-												"qdc" =>$_POST["nuevoQdc"],
-												"cuantas_veces" =>$veces,												
-												"imagen" =>$ruta);
 					
+					if ($tipo_prod == 'Completa')
+					{
+						$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
+													"num_serie" =>$_POST["nuevoSerial"],
+													"id_telefonia" =>$_POST["nuevaTelefonia"],
+													"id_plan_tel" =>$_POST["nuevoPlanTelefonia"],
+													"num_tel" =>$_POST["nuevoNumTel"],
+													"cuenta" =>$_POST["nuevaCuenta"],
+													"direcc_mac_tel" =>$_POST["nuevaDireccMac"],
+													"imei_tel" =>$_POST["nuevoImei"],
+													"num_ip" =>$_POST["nuevoNumIp"],
+													"edo_tel" =>$_POST["nuevoEdoTel"],
+													"id_empleado" =>1,
+													"id_marca" =>$_POST["nuevoMarca"],
+													"id_modelo" =>$_POST["nuevoModelo"],
+													"id_almacen" =>$_POST["nuevoAlmacen"],
+													"id_edo_epo" =>$_POST["nuevoEdoEpo"],
+													"nomenclatura" =>$_POST["nuevaNomenclatura"],
+													"stock" =>$_POST["nuevoStock"],												
+													"precio_compra" =>$_POST["nuevoPrecioCompra"],
+													"precio_venta" =>$_POST["nuevoPrecioVenta"],									
+													"comentarios" =>rtrim($_POST["nuevoComent"]),
+													"asset" =>$_POST["nuevoAsset"],
+													"loftware" =>$_POST["nuevoLoftware"],
+													"id_ubicacion" =>$_POST["nuevaArea"],
+													"id_linea" =>$_POST["nuevaLinea"],
+													"estacion" =>$_POST["nuevaEstacion"],
+													"npa" =>$_POST["nuevoNpa"],
+													"idf" =>$_POST["nuevoIdf"],
+													"patch_panel" =>$_POST["nuevoPatchPanel"],
+													"puerto" =>$_POST["nuevoPuerto"],
+													"funcion" =>$_POST["nuevaFuncion"],
+													"jls" =>$_POST["nuevoJls"],
+													"qdc" =>$_POST["nuevoQdc"],
+													"cuantas_veces" =>$veces,												
+													"imagen" =>$ruta);
+					}
+
+					if ($tipo_prod == 'General')
+					{
+						$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
+													"num_serie" =>$_POST["nuevoSerial"],
+													"id_telefonia" =>1,
+													"id_plan_tel" =>1,
+													"num_tel" =>'',
+													"cuenta" =>'',
+													"direcc_mac_tel" =>'',
+													"imei_tel" =>'',
+													"num_ip" =>'',
+													"edo_tel" =>'NO Aplica',
+													"id_empleado" =>1,
+													"id_marca" =>$_POST["nuevoMarca"],
+													"id_modelo" =>$_POST["nuevoModelo"],
+													"id_almacen" =>$_POST["nuevoAlmacen"],
+													"id_edo_epo" =>$_POST["nuevoEdoEpo"],
+													"nomenclatura" =>$_POST["nuevaNomenclatura"],
+													"stock" =>$_POST["nuevoStock"],												
+													"precio_compra" =>$_POST["nuevoPrecioCompra"],
+													"precio_venta" =>$_POST["nuevoPrecioVenta"],									
+													"comentarios" =>rtrim($_POST["nuevoComent"]),
+													"asset" =>$_POST["nuevoAsset"],
+													"loftware" =>'',
+													"id_ubicacion" =>$_POST["nuevaArea"],
+													"id_linea" =>1,
+													"estacion" =>'',
+													"npa" =>'',
+													"idf" =>'',
+													"patch_panel" =>'',
+													"puerto" =>'',
+													"funcion" =>'',
+													"jls" =>'',
+													"qdc" =>'',
+													"cuantas_veces" =>$veces,												
+													"imagen" =>$ruta);
+					}
+					
+					if ($tipo_prod == 'Produccion')
+					{
+						$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
+													"num_serie" =>$_POST["nuevoSerial"],
+													"id_telefonia" =>1,
+													"id_plan_tel" =>1,
+													"cuantas_veces" =>$veces,
+													"num_ip" =>$_POST["nuevoNumIp"],
+													"edo_tel" =>'NO Aplica',
+													"id_empleado" =>1,
+													"id_marca" =>$_POST["nuevoMarca"],
+													"id_modelo" =>$_POST["nuevoModelo"],
+													"id_almacen" =>$_POST["nuevoAlmacen"],
+													"id_edo_epo" =>$_POST["nuevoEdoEpo"],
+													"id_ubicacion" =>$_POST["nuevaArea"],
+													"id_linea" =>$_POST["nuevaLinea"],												
+													"num_tel" =>'',
+													"cuenta" =>'',
+													"direcc_mac_tel" =>'',
+													"imei_tel" =>'',
+													"nomenclatura" =>$_POST["nuevaNomenclatura"],
+													"stock" =>$_POST["nuevoStock"],												
+													"precio_compra" =>$_POST["nuevoPrecioCompra"],
+													"precio_venta" =>$_POST["nuevoPrecioVenta"],									
+													"comentarios" =>rtrim($_POST["nuevoComent"]),
+													"asset" =>$_POST["nuevoAsset"],
+													"loftware" =>$_POST["nuevoLoftware"],
+													"estacion" =>$_POST["nuevaEstacion"],
+													"npa" =>$_POST["nuevoNpa"],
+													"idf" =>$_POST["nuevoIdf"],
+													"patch_panel" =>$_POST["nuevoPatchPanel"],
+													"puerto" =>$_POST["nuevoPuerto"],
+													"funcion" =>$_POST["nuevaFuncion"],
+													"jls" =>$_POST["nuevoJls"],
+													"qdc" =>$_POST["nuevoQdc"],														
+													"imagen" =>$ruta);
+					}
+
 					//var_dump($datos);
 					//exit;
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);

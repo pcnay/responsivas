@@ -136,6 +136,12 @@ $('.tablaResponsivasEmp').DataTable({
 
 });
 
+// Funciona cuando se hace click en el DataTable, no funciona en Input de Buscar.
+// Para refrescar el DataTable cuando se esta capturado responsivas, pero al mismo timepo se esta dando de alta el producto, solo se realiza un click en el parte central para que refresque y muestre el producto recien capturado.	
+$(".tablaResponsivasProd").click(function(){
+	$('.tablaResponsivasProd').dataTable()._fnAjaxUpdate();
+});
+
 
 // Click en la tabla de los Empleados.
 $(".tablaResponsivasEmp tbody").on("click","button.agregarEmpleado",function(){
