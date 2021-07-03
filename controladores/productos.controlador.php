@@ -277,7 +277,7 @@
 								}).then(function(result){
 									if (result.value)
 									{
-										window.location="productos";
+										window.location="prod-gral";
 									}
 		
 									});			

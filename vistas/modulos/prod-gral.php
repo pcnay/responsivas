@@ -172,7 +172,7 @@
 								<label for="cap_serial">Serial:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
+	                <input type="text" maxlength="45" class="form-control input-lg" id = "nuevoSerial" name="nuevoSerial" placeholder = "Ingresar Serial">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -277,7 +277,7 @@
 								<label for="cap_nomenclatura">Nomenclatura:</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "nuevaNomenclatura" name="nuevaNomenclatura" placeholder = "Ingresar Nomenclatura">
+	                <input type="text" maxlength="45" class="form-control input-lg" id = "nuevaNomenclatura" name="nuevaNomenclatura" placeholder = "Ingresar Nomenclatura">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -290,7 +290,7 @@
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="text" class="form-control input-lg" id="nuevoAsset" name="nuevoAsset"  placeholder = "Ingresar Asset">
+									<input type="text" maxlength="15" class="form-control input-lg" id="nuevoAsset" name="nuevoAsset"  placeholder = "Ingresar Asset">
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -326,7 +326,7 @@
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" min="1"  placeholder = "Ingresar Cantidad" required>
+									<input type="number" maxlength="3" class="form-control input-lg" id="nuevoStock" name="nuevoStock" min="1"  placeholder = "Ingresar Cantidad" required>
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -504,7 +504,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="serial">Serial:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarSerial" name="editarSerial">
+	                <input type="text" maxlength="45" class="form-control input-lg" id = "editarSerial" name="editarSerial">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -562,7 +562,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="num_tel">Número Tel:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarNumTel" name="editarNumTel" >
+	                <input type="text" maxlength="25" class="form-control input-lg" id = "editarNumTel" name="editarNumTel" >
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -574,7 +574,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="plan_celular">Numero Cta. Celular:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarCuenta" name="editarCuenta">
+	                <input type="text" maxlength="45" class="form-control input-lg" id = "editarCuenta" name="editarCuenta">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -586,7 +586,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="direcc_mac">Direccion MAC Celular:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarDireccMac" name="editarDireccMac">
+	                <input type="text" maxlength="20" class="form-control input-lg" id = "editarDireccMac" name="editarDireccMac">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -598,7 +598,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="imei_tel">IMEI Celular:</label>
 	              <div class = "input-group">									
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarImei" name="editarImei">
+	                <input type="text" maxlength="30" class="form-control input-lg" id = "editarImei" name="editarImei">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -718,7 +718,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="nomenclatura">Nomenclatura:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarNomenclatura" name="editarNomenclatura">
+	                <input type="text" maxlength="45" class="form-control input-lg" id = "editarNomenclatura" name="editarNomenclatura">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -731,7 +731,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="text" class="form-control input-lg" id="editarAsset" name="editarAsset">
+									<input type="text" maxlength="15" class="form-control input-lg" id="editarAsset" name="editarAsset">
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -743,7 +743,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_npa">NPA:</label>			
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
-									<input type="text" class="form-control input-lg" id="editarNpa" name="editarNpa">
+									<input type="text" maxlength="15" class="form-control input-lg" id="editarNpa" name="editarNpa">
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -755,7 +755,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="cap_lower">No. Loftware:</label>			
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>									
-									<input type="text" class="form-control input-lg" id="editarLoftware" name="editarLoftware">
+									<input type="text" maxlength="10" class="form-control input-lg" id="editarLoftware" name="editarLoftware">
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -813,7 +813,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_estacion">Estacion:</label>			
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>								
-									<input type="text" class="form-control input-lg" id="editarEstacion" name="editarEstacion">
+									<input type="text" maxlength="50" class="form-control input-lg" id="editarEstacion" name="editarEstacion">
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					
@@ -824,7 +824,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 							<label for="perif_ip">IP Periferico:</label>
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
+	                <input type="text" maxlength="20" class="form-control input-lg" id = "editarNumIp" name="editarNumIp">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -835,7 +835,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_idf">IDF :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarIdf" name="editarIdf">
+	                <input type="text" maxlength="5" class="form-control input-lg" id = "editarIdf" name="editarIdf">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -846,7 +846,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_patchPanel">Patch Panel :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarPatchPanel" name="editarPatchPanel" placeholder = "Capturar Patch Panel">
+	                <input type="text" maxlength="5" class="form-control input-lg" id = "editarPatchPanel" name="editarPatchPanel" placeholder = "Capturar Patch Panel">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -857,7 +857,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_puerto">Puerto :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarPuerto" name="editarPuerto">
+	                <input type="text" maxlength="5" class="form-control input-lg" id = "editarPuerto" name="editarPuerto">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -868,7 +868,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="editar_funcion">Funcion :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarFuncion" name="editarFuncion">
+	                <input type="text" maxlength="20" class="form-control input-lg" id = "editarFuncion" name="editarFuncion">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -879,7 +879,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="cap_jls">JLS :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarJls" name="editarJls">
+	                <input type="text" maxlength="15" class="form-control input-lg" id = "editarJls" name="editarJls">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -890,7 +890,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<label for="cap_qdc">QDC :</label>			
 	              <div class = "input-group">
 	                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-	                <input type="text" class="form-control input-lg" id = "editarQdc" name="editarQdc">
+	                <input type="text" maxlength="15" class="form-control input-lg" id = "editarQdc" name="editarQdc">
 	              </div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
             </div>  <!-- class= "col-xs-12 col-sm-6"> -->
@@ -904,7 +904,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fa fa-check"></i></span>
 									<!-- min="0" Para que solo permita números positivos. -->
-									<input type="number" class="form-control input-lg" id="editarStock" name="editarStock" required>
+									<input type="number" maxlength="3" class="form-control input-lg" id="editarStock" name="editarStock" required>
 								</div> <!-- <div class = "input-group"> -->           
 							</div> <!-- <div class="form-group"> -->
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->					

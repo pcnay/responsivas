@@ -222,9 +222,13 @@
 			else
 			{
 				// Cerrar la conexion de la instancia de la base de datos.
+				$error= $stmt->errorInfo();
+				var_dump($error[2]);				
+				exit;
+
 				$stmt->closeCursor();
 				$stmt=null;
-				return "error";
+				return $error;
 			}
 
 		} //static public function mdlIngresarProducto($tabla,$datos)
