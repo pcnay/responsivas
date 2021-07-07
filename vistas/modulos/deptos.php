@@ -131,7 +131,7 @@ Cuando el usuario oprima el boton de "Agregar Depto" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoDepto" placeholder = "Ingresar Depto" id="nuevoDepto" required>
+                <input type="text" maxlength="580" class="form-control input-lg" name="nuevoDepto" placeholder = "Ingresar Depto" id="nuevoDepto" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->

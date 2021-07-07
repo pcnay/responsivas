@@ -307,6 +307,8 @@
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">	
 								<button type="submit" class="btn btn-primary pull-right" >Guardar Cambios</button>
+								<button type="submit" class="btn btn-primary pull-left" id="act_prodRespEditar">Actualizar prod</button>
+
 							</div> <!-- <div class="box-footer">	-->
 					</form>
 

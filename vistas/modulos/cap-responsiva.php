@@ -244,6 +244,7 @@
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">						
 								<button type="submit" class="btn btn-primary pull-right" >Guardar Responsiva</button>
+								<button type="submit" class="btn btn-primary pull-left" id="act_prodResp">Actualizar prod</button>
 							</div>
 
 					</form>

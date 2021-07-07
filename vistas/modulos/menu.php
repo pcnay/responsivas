@@ -139,12 +139,12 @@
 											<span>Plan Telefonia</span>
 										</a>
 									</li>	
-									<li>								
+									<!-- <li>								
 										<a href="productos">
 											<i class="fa fa-circle-o"></i>
 											<span>Alta Producto</span>
 										</a>
-									</li> 
+									</li> -->
 									<li>								
 										<a href="prod-gral">
 											<i class="fa fa-circle-o"></i>

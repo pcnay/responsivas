@@ -100,7 +100,7 @@
 			}
 			else // Cuando son todos los registros
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");
 				$stmt->execute();
 				$registros = $stmt->fetchAll();			
 				// Cerrar la conexion de la instancia de la base de datos.

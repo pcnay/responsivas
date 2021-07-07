@@ -131,7 +131,7 @@ Cuando el usuario oprima el boton de "Agregar Estado Del Equipo" se activa esta 
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoEdo_Epo" placeholder = "Ingresar Estado Del Equipo" id="nuevoEdo_Epo" required>
+                <input type="text" maxlength="80" class="form-control input-lg" name="nuevoEdo_Epo" placeholder = "Ingresar Estado Del Equipo" id="nuevoEdo_Epo" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -190,7 +190,7 @@ Cuando el usuario oprima el boton de "Editar Estado Equipo" se activa esta venta
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarEdo_Epo"  id="editarEdo_Epo" required>
+                <input type="text" maxlength="80" class="form-control input-lg" name="editarEdo_Epo"  id="editarEdo_Epo" required>
 								<!-- Se envía como campo oculto para enviar el "id" de la Estado Equipo -->
 								<input type="hidden"  name="idEdo_Epo"  id="idEdo_Epo" required>
               </div> <!-- <div class = "input-group"> -->           

@@ -132,7 +132,7 @@ Cuando el usuario oprima el boton de "Agregar Centro De Costo" se activa esta ve
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoCentro_Costos" placeholder = "Ingresar Numero Centro De Costo" id="nuevoCentro_Costos" required>
+                <input type="text" maxlength="30" class="form-control input-lg" name="nuevoCentro_Costos" placeholder = "Ingresar Numero Centro De Costo" id="nuevoCentro_Costos" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -147,7 +147,7 @@ Cuando el usuario oprima el boton de "Agregar Centro De Costo" se activa esta ve
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaDesc_cc" placeholder = "Ingresar Descripcion Centro De Costo" id="nuevaDesc_cc" required>
+                <input type="text" maxlength="80" class="form-control input-lg" name="nuevaDesc_cc" placeholder = "Ingresar Descripcion Centro De Costo" id="nuevaDesc_cc" required>
               </div> <!-- <div class = "input-group"> -->  
 
             </div> <!-- <div class="form-group"> -->
@@ -206,7 +206,7 @@ Cuando el usuario oprima el boton de "Editar Centro De Costos" se activa esta ve
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarCentro_Costos"  id="editarCentro_Costos" required>
+                <input type="text" maxlength="30" class="form-control input-lg" name="editarCentro_Costos"  id="editarCentro_Costos" required>
 								<!-- Se envía como campo oculto para enviar el "id" del Centro Centros -->
 								<input type="hidden"  name="idCentro_Costos"  id="idCentro_Costos" required>
               </div> <!-- <div class = "input-group"> -->           

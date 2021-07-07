@@ -120,7 +120,7 @@ Cuando el usuario oprima el boton de "Agregar Almacen" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoAlmacen" placeholder = "Ingresar Almacen" id="nuevoAlmacen" required>
+                <input type="text" maxlength="80" class="form-control input-lg" name="nuevoAlmacen" placeholder = "Ingresar Almacen" id="nuevoAlmacen" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->

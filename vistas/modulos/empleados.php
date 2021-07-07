@@ -100,7 +100,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
-                <input type="text" class="form-control input-lg" id = "nuevo_ntid" name="nuevo_ntid" placeholder = "Ingresar NT ID" required>
+                <input type="text" maxlength="20" class="form-control input-lg" id = "nuevo_ntid" name="nuevo_ntid" placeholder = "Ingresar NT ID" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -108,7 +108,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
+                <input type="text" maxlength="20" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -117,7 +117,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder = "Ingresar Apellidos" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder = "Ingresar Apellidos" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -126,7 +126,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
 
-                <input type="email" class="form-control input-lg" id="nuevoCorreoElect" name="nuevoCorreoElect" placeholder = "Ingresar Correo Electronico" required>
+                <input type="email" maxlength="50" class="form-control input-lg" id="nuevoCorreoElect" name="nuevoCorreoElect" placeholder = "Ingresar Correo Electronico" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -302,7 +302,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fad fa-id-card"></i></span>
                 <input type="hidden"  name="id_empleado"  id="id_empleado" required>
-                <input type="text" class="form-control input-lg" id = "editar_ntid" name="editar_ntid" required>
+                <input type="text" maxlength="20" class="form-control input-lg" id = "editar_ntid" name="editar_ntid" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
@@ -310,7 +310,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" required>
+                <input type="text" maxlength="20" class="form-control input-lg" id="editarNombre" name="editarNombre" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -319,7 +319,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarApellido" name="editarApellido" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id="editarApellido" name="editarApellido" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -328,7 +328,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarCorreoElect" name="editarCorreoElect" required>
+                <input type="text" maxlength="50" class="form-control input-lg" id="editarCorreoElect" name="editarCorreoElect" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 

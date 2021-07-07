@@ -134,7 +134,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaLinea" placeholder = "Ingresar Linea De Produccion" id="nuevaLinea" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="nuevaLinea" placeholder = "Ingresar Linea De Produccion" id="nuevaLinea" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -193,7 +193,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarLinea"  id="editarLinea" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="editarLinea"  id="editarLinea" required>
 								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
 								<input type="hidden"  name="idLinea"  id="idLinea" required>
               </div> <!-- <div class = "input-group"> -->           

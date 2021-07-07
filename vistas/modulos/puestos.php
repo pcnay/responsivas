@@ -131,7 +131,7 @@ Cuando el usuario oprima el boton de "Agregar Puestos" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevoPuesto" placeholder = "Ingresar Puesto" id="nuevoPuesto" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="nuevoPuesto" placeholder = "Ingresar Puesto" id="nuevoPuesto" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -190,7 +190,7 @@ Cuando el usuario oprima el boton de "Editar Puesto" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarPuesto"  id="editarPuesto" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="editarPuesto"  id="editarPuesto" required>
 								<!-- Se envía como campo oculto para enviar el "id" del Puesto -->
 								<input type="hidden"  name="idPuesto"  id="idPuesto" required>
               </div> <!-- <div class = "input-group"> -->           
