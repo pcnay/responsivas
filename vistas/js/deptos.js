@@ -158,3 +158,10 @@ $("#editarDepto").change(function(){
 
 }) // $(".btnEliminarDepto").click(function(){
 
+
+$(".tablas").on("draw.dt",function()
+{
+	//console.log("tabla");
+});
+
+

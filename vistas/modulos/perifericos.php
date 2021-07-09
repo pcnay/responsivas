@@ -83,7 +83,7 @@
 															if ($_SESSION["perfil"] == "Administrador")
 															{
 																echo '<!-- Se pasa btnEliminarPeriferico, idPeriferico="'.$value["id_periferico"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarPeriferico" idPeriferico="'.$value["id_periferico"].'"><i class="fa fa-times"></i></button>';
+																<button class="btn btn-danger btnEliminarPeriferico" idPeriferico="'.$value["id_periferico"].'"><i class="fa fa-times"></i></button>';
 															}
 																
 														echo '</div>

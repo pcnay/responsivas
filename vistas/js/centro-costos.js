@@ -5,7 +5,7 @@ $(".btnEditarCentro_Costos").click(function(){
 	// Se obtiene el valor de "idCentro_Costos"
 	var idCentro_Costos = $(this).attr("idCentro_Costos");
 
-	//console.log("idCentro_Costos",idCentro_Costos);
+	console.log("idCentro_Costos",idCentro_Costos);
 
 	// Para agregar datos 
 	var datos = new FormData();

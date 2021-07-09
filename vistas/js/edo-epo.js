@@ -28,7 +28,7 @@ $(".btnEditarEdo_Epo").click(function(){
 	// Se obtiene el valor de "idEdo_Epo"
 	var idEdo_Epo = $(this).attr("idEdo_Epo");
 
-	console.log("idEdo_Epo",idEdo_Epo);
+	//console.log("idEdo_Epo",idEdo_Epo);
 
 	// Para agregar datos 
 	var datos = new FormData();
