@@ -27,6 +27,7 @@ class imprimirPerifAsign
 {
 // Se utiliza para obtener el valor de la variable Global $_GET["idResponsiva"] que se pasa en la URL de "responsivas.js" (window.open("extensiones/tcpdf/pdf/responsiva.php?idResponsiva="+id_Responsiva,"_blank"))
 public $id_NumEmp;
+
 public function ObtenerPerifAsign()
 {
 	date_default_timezone_set('America/Tijuana');

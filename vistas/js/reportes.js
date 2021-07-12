@@ -285,3 +285,28 @@ $(".btnSubirResp").click(function(){
 	//https://www.miportalweb.org/responsivas/extensiones/fpdf183/reportes/rep_empleados.php
 
 })
+
+// Obteniendo el reporte para finanzas por parte de IT
+$(".btnRep_Finanzas").click(function(){
+
+	// Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"
+	let Fecha_Inicial = document.getElementById("fecha_inicial");
+	let Fecha_Final = document.getElementById("fecha_final");
+
+	//let Opcion = document.getElementsByTagName("option");
+	
+		//console.log("Click Boton Fecha Inicial ",Fecha_Inicial.value);
+		//console.log("Click Boton Fecha Final ",Fecha_Final.value);
+	
+	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
+	// console.log("idResponsiva",id_Responsiva);
+	
+	// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+	//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+
+//	window.location = "index.php?ruta=reportes&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
+
+	window.open("extensiones/fpdf183/reportes/rep_finanzas.php?ruta=rep_finanzas&fechaInic="+Fecha_Inicial.value+"&fechaFin="+Fecha_Final.value,"_blank");
+	
+	})
+	

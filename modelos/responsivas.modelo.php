@@ -51,6 +51,24 @@
 			return $registros;			
 		}
 
+		// Mostrar las responsivas en el Rango de Fechas.
+		static public function mdlMostrarRespRangosFecha($fecha_inic,$fecha_fin)
+		{
+
+			//$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
+
+			$stmt = Conexion::conectar()->prepare ("SELECT id_empleado,fecha_asignado,productos FROM t_Responsivas WHERE fecha_asignado BETWEEN '$fecha_inic' AND '$fecha_fin' ORDER BY fecha_asignado ");
+
+			
+			$stmt->execute();	
+			$registros=null;
+			$registros = $stmt->fetchAll();			
+			// Cerrar la conexion de la instancia de la base de datos.
+			$stmt->closeCursor();
+			$stmt=null;
+			return $registros;					
+		}
+
 		// Mostrar Responsivas
 		static public function mdlMostrarResponsivas($tabla,$item,$valor,$ordenar)
 		{

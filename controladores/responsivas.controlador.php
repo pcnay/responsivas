@@ -32,6 +32,14 @@
 			return $respuesta;
 		}
 
+		// Obtiene las Responsivas de un Rango de Fechas.
+		static public function ctrMostrarRespRangosFecha($fecha_inic,$fecha_fin)
+		{			
+			$respuesta = ModeloResponsivas::mdlMostrarRespRangosFecha($fecha_inic,$fecha_fin);
+			return $respuesta;
+		}
+
+
 		// Crear Responsiva.
 		static public function ctrCrearResponsiva()
 		{
