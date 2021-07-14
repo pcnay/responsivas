@@ -372,14 +372,14 @@
 						<div class="form-group">
 							<div class="col-xs-6">								
 									<label>
-										<!-- minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"
+										 minimal, minimal-red, flat-red se debe activar en el "Plantilla.js"
 										<input type="checkbox" id="porcentaje" name = "porcentaje" lass = "minimal porcentaje" checked>
 										Utilizar porcentaje
 									</label>
 
-								</div> <!-- <div class="col-xs-6"> 
+								</div>  <div class="col-xs-6"> 
 
-						</div> <!-- <div class="form-group">  -->
+						</div>  <div class="form-group">  -->
 
 						<!-- Captura el Empleado asignado al producto. Este campo solo se utiliza para mostrar el nombre completo del empleado .-->
 					<?php	

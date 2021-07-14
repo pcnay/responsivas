@@ -120,8 +120,10 @@
 	// Obtener los Telefonos Asignados.
 		static public function mdlMostrarProductosTelAsig($tabla,$item,$valor)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT tp.id_periferico,perif.nombre AS Nombre_perif,tp.id_marca,tmarca.descripcion AS Marca,tp.id_modelo,tmod.descripcion AS Modelo,tp.id_empleado,emp.nombre AS Nom_emp, emp.apellidos AS Apellidos_emp,tp.num_tel,tp.num_serie,tp.imei_tel,tp.precio_venta FROM t_Productos tp INNER JOIN t_Periferico perif ON tp.id_periferico = perif.id_periferico INNER JOIN t_Marca tmarca ON tp.id_marca = tmarca.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado WHERE tp.num_tel != null OR tp.num_tel != 0 OR tp.num_serie != null OR tp.imei_tel != null");
-					
+			// $stmt = Conexion::conectar()->prepare("SELECT tp.id_periferico,perif.nombre AS Nombre_perif,tp.id_marca,tmarca.descripcion AS Marca,tp.id_modelo,tmod.descripcion AS Modelo,tp.id_empleado,emp.nombre AS Nom_emp, emp.apellidos AS Apellidos_emp,tp.num_tel,tp.num_serie,tp.imei_tel,tp.precio_venta FROM t_Productos tp INNER JOIN t_Periferico perif ON tp.id_periferico = perif.id_periferico INNER JOIN t_Marca tmarca ON tp.id_marca = tmarca.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado WHERE tp.num_tel != null OR tp.num_tel != 0 OR tp.num_serie != null OR tp.imei_tel != null");
+
+			$stmt = Conexion::conectar()->prepare("SELECT tp.id_periferico,perif.nombre AS Nombre_perif,tp.id_marca,tmarca.descripcion AS Marca,tp.id_modelo,tmod.descripcion AS Modelo,tp.id_empleado,emp.nombre AS Nom_emp, emp.apellidos AS Apellidos_emp,tp.num_tel,tp.num_serie,tp.imei_tel,tp.precio_venta FROM t_Productos tp INNER JOIN t_Periferico perif ON tp.id_periferico = perif.id_periferico INNER JOIN t_Marca tmarca ON tp.id_marca = tmarca.id_marca INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado WHERE tp.id_periferico=11");
+
 			$stmt->execute();
 			$registros = $stmt->fetchAll();			
 			// Cerrar la conexion de la instancia de la base de datos.
@@ -224,7 +226,7 @@
 				// Cerrar la conexion de la instancia de la base de datos.
 				$error= $stmt->errorInfo();
 				var_dump($error[2]);				
-				exit;
+				//exit;
 
 				$stmt->closeCursor();
 				$stmt=null;

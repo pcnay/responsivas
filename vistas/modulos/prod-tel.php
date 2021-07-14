@@ -279,6 +279,7 @@
 	                  <option value="">Estado Linea Tel</option>										
 										<option value="Disponible">Disponible</option>										
 										<option value="Asignado">Asignado</option>
+										<option value="No Funciona">No operable</option>
 										<option value="NO Aplica">NO Aplica</option>
 									</select>                
 	              </div> <!-- <div class = "input-group"> -->           							
@@ -673,6 +674,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 	                  <option value="">Estado Linea Tel</option>										
 										<option value="Disponible">Disponible</option>
 										<option value="Asignado">Asignado</option>
+										<option value="No Funciona">No operable</option>
 										<option value="NO Aplica">NO Aplica</option>
 									</select>                
 	              </div> <!-- <div class = "input-group"> -->           							

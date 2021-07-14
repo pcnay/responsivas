@@ -303,25 +303,7 @@
 					//exit;
 					$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos);
 
-					if ($respuesta == "ok")
-					{
-						echo '<script>           
-							Swal.fire ({
-								type: "success",
-								title: "El Producto ha sido guardado correctamente ",
-								showConfirmButton: true,
-								confirmButtonText: "Cerrar",
-								closeOnConfirm: false
-								}).then(function(result){
-									if (result.value)
-									{
-										window.location="prod-gral";
-									}
-		
-									});			
-							</script>';          
-					}
-					else
+					if ($respuesta != "ok")
 					{
 						echo '<script>           
 						Swal.fire ({
@@ -340,6 +322,65 @@
 			
 							</script>';          	
 					}
+
+					if (($respuesta == "ok") && ($tipo_prod == 'General'))
+					{
+						echo '<script>           
+							Swal.fire ({
+								type: "success",
+								title: "El Producto ha sido guardado correctamente ",
+								showConfirmButton: true,
+								confirmButtonText: "Cerrar",
+								closeOnConfirm: false
+								}).then(function(result){
+									if (result.value)
+									{
+										window.location="prod-gral";
+									}
+		
+									});			
+							</script>';          
+					}
+					
+					if (($respuesta == "ok") && ($tipo_prod == 'Produccion'))
+					{
+						echo '<script>           
+							Swal.fire ({
+								type: "success",
+								title: "El Producto ha sido guardado correctamente ",
+								showConfirmButton: true,
+								confirmButtonText: "Cerrar",
+								closeOnConfirm: false
+								}).then(function(result){
+									if (result.value)
+									{
+										window.location="prod-prod";
+									}
+		
+									});			
+							</script>';          
+					}
+
+					if (($respuesta == "ok") && ($tipo_prod == 'Telefono'))
+					{
+						echo '<script>           
+							Swal.fire ({
+								type: "success",
+								title: "El Producto ha sido guardado correctamente ",
+								showConfirmButton: true,
+								confirmButtonText: "Cerrar",
+								closeOnConfirm: false
+								}).then(function(result){
+									if (result.value)
+									{
+										// window.location="prod-gral";
+										window.location="prod-tel";
+									}
+		
+									});			
+							</script>';          
+					}
+
 				}
 				else // if (preg_match('/^[A-Z0-9-]+$/',$_POST["nuevoSerial"]) && preg_match('/^[0-9-]+$/',$_POST ....
 				{
@@ -684,9 +725,6 @@
 				<td style='font-weight:bold; border:1px solid #eee;'>JLS</td>
 				<td style='font-weight:bold; border:1px solid #eee;'>QDC</td>
 				<td style='font-weight:bold; border:1px solid #eee;'>COMENTARIOS</td>
-
-
-
 
 			</tr>");
 	

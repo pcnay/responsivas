@@ -265,7 +265,12 @@
 							<br>         							
 							<button class="btn btn-success btnRep_Finanzas" id="rep_Finanzas">
 								Imprimir
-							</button>       
+							</button>  
+
+							<button class="btn btn-success btnRep_Finanzas_Excel" id="rep_Finanzas_Excel">
+								Exportar Excel
+							</button>  
+
 							<!-- </a> -->
 
 							<!--<button type="submit" class='btn btn-info btnImpProdAlm'>Imprimir					
