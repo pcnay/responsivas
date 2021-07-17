@@ -15,6 +15,24 @@
 
 USE bd_responsivas;
 
+CREATE TABLE t_Rep_Finanzas
+(
+  id_rep_finanzas SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	ntid VARCHAR(20) NULL,
+  fecha_asignado DATE NULL,
+	nombre VARCHAR(20) NULL,
+	apellidos VARCHAR(45) NULL,
+	num_centro_costos VARCHAR(30) NULL,
+	descrip_depto VARCHAR(50) NULL,
+	periferico VARCHAR(80) NULL,
+	marca VARCHAR(45) NULL,
+	modelo VARCHAR(45) NULL,
+	num_serial VARCHAR(45) NULL,
+	precio_compra decimal(10,2) DEFAULT NULL  
+);
+
+
+
 /*
 ALTER TABLE t_Productos ADD qdc VARCHAR(15) DEFAULT NULL;
 ALTER TABLE t_Productos ADD jls VARCHAR(15) DEFAULT NULL;

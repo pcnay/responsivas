@@ -655,4 +655,42 @@
 
 		} // 		static public function ctrEliminarResponsiva()
 
+
+		static public function ctrCrearRep_Finanzas($rep_mensual)
+		{			
+			$tabla = "t_Rep_Finanzas";
+			$respuesta = ModeloResponsivas::mdlIngresarRep_Finanzas($tabla,$rep_mensual);
+			/*
+			if ($respuesta != "ok" )
+			{
+				echo '<script>           
+				Swal.fire ({
+					type: "success",
+					title: "Error Al Grabar los Datos, revisar los campos de Capturas",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar",
+					closeOnConfirm: false
+					}).then(function(result){
+						if (result.value)
+						{
+							// window.location="responsivas";
+							//window.location="responsivas";
+						}
+
+						});
+
+					</script>';
+			}	// else if ($respuesta == "ok")				
+			*/
+			
+		}
+
+		static public function ctrMostrarRep_Finanzas()
+		{
+			$tabla = "t_Rep_Finanzas";			
+			$respuesta = ModeloResponsivas::mdlMostrarRep_Finanzas($tabla);
+			return $respuesta;
+		}
+
+
 	} // class ControladorResponsivas

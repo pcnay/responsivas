@@ -224,6 +224,53 @@
 
 	}
 
+	// Guardar Reporte Finanzas en la Tabla 
+	static public function mdlIngresarRep_Finanzas($tabla,$rep_mensual)
+	{
+	//	$stmt = Conexion::conectar()->prepare ("INSERT INTO $tabla(ntid,fecha_asignado,nombre,apellidos,num_centro_costos,descrip_depto,periferico,marca,modelo,num_serial,precio_compra) VALUES (:ntid,:fecha_asignado,:nombre,:apellidos,:num_centro_costos,:descrip_depto,:periferico,:marca,:modelo,:num_serial,:precio_compra)");
+
+	for ($m=0;$m<count($rep_mensual);$m++)
+	{
+		$stmt = Conexion::conectar()->prepare ("INSERT INTO $tabla(ntid,fecha_asignado,nombre,apellidos,num_centro_costos,descrip_depto,periferico,marca,modelo,num_serial,precio_compra) VALUES (:ntid,:fecha_asignado,:nombre,:apellidos,:num_centro_costos,:descrip_depto,:periferico,:marca,:modelo,:num_serial,:precio_compra)");
+
+		
+		$stmt->bindParam(":ntid",$rep_mensual[$m]["ntid"],PDO::PARAM_STR);	
+		$rep_mensual[$m]["fecha_asignado"] = date("Y-m-d",strtotime($rep_mensual[$m]["fecha_asignado"]));
+		if ($rep_mensual[$m]["fecha_asignado"]=="1970-01-01")
+		{
+			$rep_mensual[$m]["fecha_asignado"]= null;
+		}
+		$stmt->bindParam(":fecha_asignado",$rep_mensual[$m]["fecha_asignado"],PDO::PARAM_STR);
+		$stmt->bindParam(":nombre",$rep_mensual[$m]["nombre"],PDO::PARAM_STR);
+		$stmt->bindParam(":apellidos",$rep_mensual[$m]["apellidos"],PDO::PARAM_STR);
+		$stmt->bindParam(":num_centro_costos",$rep_mensual[$m]["num_centro_costos"],PDO::PARAM_STR);			
+		$stmt->bindParam(":descrip_depto",$rep_mensual[$m]["descrip_depto"],PDO::PARAM_STR);
+		$stmt->bindParam(":periferico",$rep_mensual[$m]["periferico"],PDO::PARAM_STR);
+		$stmt->bindParam(":marca",$rep_mensual[$m]["marca"],PDO::PARAM_STR);
+		$stmt->bindParam(":modelo",$rep_mensual[$m]["modelo"],PDO::PARAM_STR);
+		$stmt->bindParam(":num_serial",$rep_mensual[$m]["num_serie"],PDO::PARAM_STR);
+		$stmt->bindParam(":precio_compra",$rep_mensual[$m]["precio_compra"],PDO::PARAM_STR);
+
+		$stmt->execute();
+
+	} // for ($m=0;$m<count($rep_mensual);$m++)
+
+	$stmt->closeCursor();
+	$stmt=null;
+
+	} // static public function mdlIngresarRep_Finanzas($tabla,$rep_mensual)
+
+	static public function mdlMostrarRep_Finanzas($tabla)
+	{
+		$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla ORDER BY fecha_asignado,num_centro_costos ASC");
+		$stmt->execute();	
+		$registros = $stmt->fetchAll();			
+		// Cerrar la conexion de la instancia de la base de datos.
+		$stmt->closeCursor();
+		$stmt=null;
+		return $registros;					
+	}
+	
 }	// 	class ModeloResponsivas
 
 ?>

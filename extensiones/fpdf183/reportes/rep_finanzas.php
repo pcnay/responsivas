@@ -1,4 +1,3 @@
-<h1>REPORTE FINANZAS</h1>
 <?php 
 	if ($_SESSION["perfil"] == "Operador" )
 		{
@@ -221,24 +220,49 @@ class Rep_Finanzas
 		$pdf->SetFont('Arial','',11);
 		//for ($n=0;$n<count($Perif_Linea);$n++)
 	
-		for ($n=0;$n<count($rep_mensual);$n++)
+
+		// Grabarlo a una tabla para poder ordenar por Centro de Costos y fecha.
+		$crearRep_Finanzas = new ControladorResponsivas();
+		$crearRep_Finanzas->ctrCrearRep_Finanzas($rep_mensual);
+				
+		$reporte = ControladorResponsivas::ctrMostrarRep_Finanzas();
+		//var_dump ($reporte);
+		/*
+		for ($i=0;$i<count($reporte);$i++)
+		{
+			print_r($reporte[$i]["fecha_asignado"].' - ');
+			print_r($reporte[$i]["num_centro_costos"].' - ');			
+			print_r($reporte[$i]["ntid"].' - ');		
+			print_r($reporte[$i]["nombre"].' - ');
+			print_r($reporte[$i]["apellidos"].' - ');						
+			print_r($reporte[$i]["descrip_depto"].' - ');
+			print_r($reporte[$i]["periferico"].' - ');
+			print_r($reporte[$i]["marca"].' - ');
+			print_r($reporte[$i]["modelo"].' - ');
+			print_r($reporte[$i]["num_serial"].' - ');
+			print_r($reporte[$i]["precio_compra"].' - ');
+			echo "</br>";
+		}
+		*/
+
+
+		for ($n=0;$n<count($reporte);$n++)
 		{
 			//$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-			$pdf->Cell(22,5,$rep_mensual[$n]["fecha_asignado"],0,0,'L',0);
-			$pdf->Cell(16,5,$rep_mensual[$n]["ntid"],0,0,'L',0);
-			$pdf->Cell(59,5,$rep_mensual[$n]["nombre"].' '.$rep_mensual[$n]["apellidos"],0,0,'L',0);
-			$pdf->Cell(20,5,$rep_mensual[$n]["num_centro_costos"],0,0,'L',0);
-			$pdf->Cell(50,5,$rep_mensual[$n]["descrip_depto"],0,0,'L',0);
-			$pdf->Cell(45,5,$rep_mensual[$n]["periferico"],0,0,'L',0);
-			$pdf->Cell(40,5,$rep_mensual[$n]["num_serie"],0,0,'L',0);
-			$pdf->Cell(15,5,$rep_mensual[$n]["precio_compra"],0,1,'R',0);
-			/*
+			$pdf->Cell(22,5,$reporte[$n]["fecha_asignado"],0,0,'L',0);
+			$pdf->Cell(16,5,$reporte[$n]["ntid"],0,0,'L',0);
+			$pdf->Cell(59,5,$reporte[$n]["nombre"].' '.$reporte[$n]["apellidos"],0,0,'L',0);
+			$pdf->Cell(20,5,$reporte[$n]["num_centro_costos"],0,0,'L',0);
+			$pdf->Cell(50,5,$reporte[$n]["descrip_depto"],0,0,'L',0);
+			$pdf->Cell(45,5,$reporte[$n]["periferico"],0,0,'L',0);
+			$pdf->Cell(40,5,$reporte[$n]["num_serial"],0,0,'L',0);
+			$pdf->Cell(15,5,$reporte[$n]["precio_compra"],0,1,'R',0);
+			
 			// MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))
-			//$pdf->MultiCell(60,5,$datos2[$n]['observaciones'],0,'L',0);
-			*/
+			//$pdf->MultiCell(60,5,$datos2[$n]['observaciones'],0,'L',0);		
 	
 		}
-	
+
 		$pdf->Output();
 		ob_end_flush();
 

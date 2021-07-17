@@ -146,7 +146,7 @@ class Rep_Finanzas
 			$contador++;
 
 		} // for ($i =0;$i<count($rangoResponsiva);$i++)
-
+		/*
 		
 		for ($m=0;$m<count($rep_mensual);$m++)
 		{
@@ -163,7 +163,102 @@ class Rep_Finanzas
 			print_r($rep_mensual[$m]["precio_compra"].' - ');
 			echo "</br>";
 		}
-	
+		*/
+
+		// Grabarlo a una tabla para poder ordenar por Centro de Costos y fecha.
+		$crearRep_Finanzas = new ControladorResponsivas();
+		$crearRep_Finanzas->ctrCrearRep_Finanzas($rep_mensual);
+				
+		$reporte = ControladorResponsivas::ctrMostrarRep_Finanzas();
+/*
+		for ($i=0;$i<count($reporte);$i++)
+		{
+			print_r($reporte[$i]["fecha_asignado"].' - ');
+			print_r($reporte[$i]["num_centro_costos"].' - ');			
+			print_r($reporte[$i]["ntid"].' - ');		
+			print_r($reporte[$i]["nombre"].' - ');
+			print_r($reporte[$i]["apellidos"].' - ');						
+			print_r($reporte[$i]["descrip_depto"].' - ');
+			print_r($reporte[$i]["periferico"].' - ');
+			print_r($reporte[$i]["marca"].' - ');
+			print_r($reporte[$i]["modelo"].' - ');
+			print_r($reporte[$i]["num_serial"].' - ');
+			print_r($reporte[$i]["precio_compra"].' - ');
+			echo "</br>";
+		}
+*/
+
+
+		/*
+		for ($m=0;$m<count($rep_mensual);$m++)
+		{
+			$ntid = $rep_mensual[$m]["ntid"];
+			$stmt = Conexion::conectar()->prepare ("INSERT INTO t_Rep_Finanzas(ntid) VALUES (:ntid)");
+			$stmt->bindParam(":ntid",$rep_mensual[$m]["ntid"],PDO::PARAM_STR);
+
+			if ($stmt->execute())			
+			{
+				// Cerrar la conexion de la instancia de la base de datos.
+				print_r("Se grabo el registro");
+				//return "ok";				
+			}
+
+		} // for ($m=0;$m<count($rep_mensual);$m++)
+
+			$stmt->closeCursor();
+			$stmt=null;
+		*/
+
+	// ===========================
+	// Crear el archivo de Excel
+	// ==========================
+	$Name = 'ExcelRep_Finanz'.'.xls';
+	header('Expires: 0');
+	header('Cache-control: private');
+	header("Content-type: application/vnd.ms-excel");
+	header("Cache-Control: cache, must-revalidate");
+	header('Content-Description: File Transfer');
+	header('Last-Modified: '.date('D, d M Y H:i:s'));
+	header("Pragma: public");
+	header('Content-Disposition:; filename="'.$Name.'"');
+	header("Content-Transfer-Encoding: binary");
+
+	// Creando la tabla de Excel
+	// utf8_decode = Para poder trabajar con tildes, acentos, ñ, Ñ
+	// Creando los encabezados de la tabla.
+	echo utf8_decode("<table border='0'>
+		<tr>
+			<td style='font-weight:bold; border:1px solid #eee;'>FECHA ASIGNADO</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>NUM CENTRO COSTOS</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>NTID</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>NOMBRE</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>APELLIDOS</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>DEPTO</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>PERIFERICO</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>MARCA</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>MODELO</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>SERIAL</td>
+			<td style='font-weight:bold; border:1px solid #eee;'>PRECIO COMPRA</td>
+		</tr>");
+
+		foreach ($reporte as $row => $item)
+		{
+			echo utf8_decode("<tr>
+				<td style='border:1px solid #eee;'>".$item["fecha_asignado"]."</td>
+				<td style='border:1px solid #eee;'>".$item["num_centro_costos"]."</td>
+				<td style='border:1px solid #eee;'>".$item["ntid"]."</td>
+				<td style='border:1px solid #eee;'>".$item["nombre"]."</td>
+				<td style='border:1px solid #eee;'>".$item["apellidos"]."</td>
+				<td style='border:1px solid #eee;'>".$item["descrip_depto"]."</td>
+				<td style='border:1px solid #eee;'>".$item["periferico"]."</td>
+				<td style='border:1px solid #eee;'>".$item["marca"]."</td>
+				<td style='border:1px solid #eee;'>".$item["modelo"]."</td>
+				<td style='border:1px solid #eee;'>".$item["num_serial"]."</td>
+				<td style='border:1px solid #eee;'>".$item["precio_compra"]."</td>
+				</tr>");					
+			
+			}
+		echo "</table>"; 
 
 	} // public function Obtener_reporte()
 
