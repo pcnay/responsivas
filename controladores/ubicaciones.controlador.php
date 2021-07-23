@@ -20,8 +20,8 @@
     {
 			if (isset($_POST["nuevaUbicacion"]))
 			{
-				if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaUbicacion"]))
-				{
+				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ- ]+$/',$_POST["nuevaUbicacion"]))
+				//{
 					// Enviar la información a la Ubicacion.
 					$tabla = "t_Ubicacion";
 
@@ -50,9 +50,9 @@
 							</script>';          
 	
 					}
-				}
-				else
-				{
+			//	}
+			/*	else
+			//	{
 					echo '<script>           
 					Swal.fire ({
 						type: "error",
@@ -71,7 +71,7 @@
 						</script>';          
 
 				} // if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaUbiacion"]))
-
+*/
 			}
 
     } // static public function ctrCrearUbicacion()

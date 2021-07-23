@@ -54,12 +54,43 @@
             <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente -->
             <tbody>
 
+							<?php
+								// Mostrar los registros desde la base de datos.
+								// Se asignan nulo para que extraiga todos los registros.
+								$item = null;
+								$valor = null;
+								$ubicacion = ControladorUbicaciones::ctrMostrarUbicaciones($item,$valor);
+								// Probando mostrando lo que contiene la variable "$ubicaciones"
+								// var_dump($ubicaciones);
+								foreach ($ubicacion as $key => $value)
+								{
+									echo '
+												<tr>
+													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
+													<td>'.($key+1).'</td>
+													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
+													<td class="text-uppercase">'.$value["descripcion"].'</td>							
+													<td>
+														<div class="btn-group">
+															<!-- data-toggle="modal" data-target="#modalEditaUbicacion" para activar una ventana modal -->
+															<!-- "btnEditarUbicacion" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarUbicacion" idUbicacion="'.$value["id_ubicacion"].'" data-toggle="modal" data-target="#modalEditarUbicacion"><i class="fa fa-pencil"></i></button>';
+															if ($_SESSION["perfil"] == "Administrador")
+															{
+																echo '<!-- Se pasa btnEliminarUbicacion, idUbicacion="'.$value["id_ubicacion"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+															<button class="btn btn-danger btnEliminarUbicacion" idUbicacion="'.$value["id_ubicacion"].'"><i class="fa fa-times"></i></button>';
+															}
+																
+														echo '</div>
+													</td>
+												</tr>';
+								}
+
+							?>
+
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
-
-					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
-					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 

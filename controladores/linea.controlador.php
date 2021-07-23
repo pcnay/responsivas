@@ -18,7 +18,7 @@
 		// Crear Linea.
 		static public function ctrCrearLinea()
     {
-			if (isset($_POST["nuevaLinea"]))
+			if (isset($_POST["nuevaLineas"]))
 			{
 				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevaMarca"]))
 				//{
@@ -26,7 +26,7 @@
 					$tabla = "t_Linea";
 
 					$datos=array();									
-					$datos = array("nuevaLinea"=>$_POST["nuevaLinea"]);
+					$datos = array("nuevaLinea"=>$_POST["nuevaLineas"]);
 
 					$respuesta = ModeloLineas::mdlIngresarLinea($tabla,$datos);
 
@@ -84,14 +84,14 @@
 		// ==============================================
 		static public function ctrEditarLinea()
 		{
-			if (isset($_POST["editarLinea"]))
+			if (isset($_POST["editarLineas"]))
 			{
 				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarMarca"]))
 				//{
 					// Enviar la información al Modelo.
 					$tabla = "t_Linea";
 					// Se pasan los valores para  la consulta en la base de datos.
-					$datos = array("descripcion"=>$_POST["editarLinea"],
+					$datos = array("descripcion"=>$_POST["editarLineas"],
 													"id_linea"=>$_POST["idLinea"]);
 
 					$respuesta = ModeloLineas::mdlEditarLinea($tabla,$datos);

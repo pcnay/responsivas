@@ -45,57 +45,24 @@
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
-          <table class="table table-bordered table-striped dt-responsive tablas">
+          <table class="table table-bordered table-striped dt-responsive tablaPerifericos">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Periferico</th>
-								<th>Fecha</th>
+                <th>Periferico</th>								
                 <th>Acciones </th>
               </tr>
             </thead>
 
-            <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente -->
+            <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente, usando DataTable y ajax  -->
             <tbody>
-
-							<?php
-								// Mostrar los registros desde la base de datos.
-								// Se asignan nulo para que extraiga todos los registros.
-								$item = null;
-								$valor = null;
-								$perifericos = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
-								// Probando mostrando lo que contiene la variable "$categoria"
-								// var_dump($categorias);
-								foreach ($perifericos as $key => $value)
-								{
-									echo '
-												<tr>
-													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
-													<td>'.($key+1).'</td>
-													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["nombre"].'</td>		
-													<td>'.$value["fecha"].'</td>									
-													<td>
-														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarPeriferico" para activar una ventana modal -->
-															<!-- "btnEditarPeriferico" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarPeriferico" idPeriferico="'.$value["id_periferico"].'" data-toggle="modal" data-target="#modalEditarPeriferico"><i class="fa fa-pencil"></i></button>';
-															if ($_SESSION["perfil"] == "Administrador")
-															{
-																echo '<!-- Se pasa btnEliminarPeriferico, idPeriferico="'.$value["id_periferico"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-																<button class="btn btn-danger btnEliminarPeriferico" idPeriferico="'.$value["id_periferico"].'"><i class="fa fa-times"></i></button>';
-															}
-																
-														echo '</div>
-													</td>
-												</tr>';
-								}
-
-							?>
 
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
+
+					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
+					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 

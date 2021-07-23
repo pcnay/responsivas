@@ -1,3 +1,37 @@
+var perfilOculto = $("#perfilOculto").val();
+
+$('.tablaModelos').DataTable({
+	"ajax":"ajax/datatable-modelos.ajax.php?perfilOculto="+perfilOculto,
+	"defenderRender":true,
+	"retrieve":true,
+	"processing":true,
+  "language":{ 
+    "sProcessing": "Procesando ...",
+    "sLengthMenu": "Mostrar _MENU_ registros",
+    "sZeroRecords": "No se encontraron resultados",
+    "sEmptyTable": "Ningún dato disponible en esta tabla",
+    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered": "(filtrado de un total de _MAX_ registros",
+    "sInfoPostFix": "",
+    "sSearch": "Buscar",
+    "sUrl": "",
+    "sInfoThousands": ",",
+    "sLoadingRecords": "Cargando ...",
+    "oPaginate":{
+      "sFirst": "Primero",
+      "sLast": "Ultimo",
+      "sNext": "Siguiente",
+      "sPrevious": "Anterior",
+		},
+		"oAria": {
+      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		},
+	}
+
+});
+
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevoModelo").bind('keypress', function(event) {
@@ -24,9 +58,16 @@ $("#editarModelo").bind('keypress', function(event) {
 // =======================================
 // Editar Modelos:
 // ======================================
-$(".btnEditarModelo").click(function(){
+
+// Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cuando se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarModelos" la siguiente "function"
+
+$(".tablaModelos tbody").on("click","button.btnEditarModelo",function(){
 	// Se obtiene el valor de "idModelo"
 	var idModelo = $(this).attr("idModelo");
+	//console.log("Id Modelo : ",idModelo);
 
 	// Para agregar datos 
 	var datos = new FormData();
@@ -42,7 +83,7 @@ $(".btnEditarModelo").click(function(){
 		processData:false,
 		dataType:"json",
 		success:function(respuesta){
-			console.log("respuesta",respuesta);
+			//console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarModelo" class="modal fade" role="dialog">, "modelos.php", se le asigna el valor que se retorno el Ajax.
 			$("#editarModelo").val(respuesta["descripcion"]);
 			$("#idModelo").val(respuesta["id_modelo"]); // viene desde el campo oculto de <input type="hidden"  name="idModelo"  id="idModelo" required>
@@ -51,7 +92,7 @@ $(".btnEditarModelo").click(function(){
 	}); // $.ajax({ ......
 
 
-})  // $(":btnEditarModelo")
+}) // $(":btnEditarModelo")
 
 
 // Revisando que la "modelo" no este repetido.

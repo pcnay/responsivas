@@ -1,13 +1,16 @@
 <?php
-	// El vendedor no puede entrar a Ubicacion
+	/*
+	// El vendedor no puede entrar a Perifericos
 	if ($_SESSION["perfil"] == "Vendedor")
 	{
 		echo '
 			<script>
 				window.location = "inicio";
 			</script>';
-			return;			
+			return;				
 	}
+	*/
+	
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -15,12 +18,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Administrar Ubicaciones
+        Administrar Perifericos
         <small>Panel De Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Administrar Ubicacion</li>
+        <li class="active">Administrar Perifericos</li>
       </ol>
     </section>
 
@@ -33,8 +36,8 @@
         <div class="box-header with-border">
           <!-- Abre una ventana Modal, se define en la parte última del documento.-->
 
-          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarUbicacion">
-            Agregar Ubicacion
+          <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarPeriferico">
+            Agregar Perifericos
           </button>       
         </div>
  
@@ -42,11 +45,12 @@
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
-          <table class="table table-bordered table-striped dt-responsive tablaUbicaciones">
+          <table class="table table-bordered table-striped dt-responsive tablaPerifericos">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
-                <th>Ubicacion</th>								
+                <th>Periferico</th>
+								<th>Fecha</th>
                 <th>Acciones </th>
               </tr>
             </thead>
@@ -54,12 +58,44 @@
             <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente -->
             <tbody>
 
+							<?php
+								// Mostrar los registros desde la base de datos.
+								// Se asignan nulo para que extraiga todos los registros.
+								$item = null;
+								$valor = null;
+								$perifericos = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
+								// Probando mostrando lo que contiene la variable "$categoria"
+								// var_dump($categorias);
+								foreach ($perifericos as $key => $value)
+								{
+									echo '
+												<tr>
+													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
+													<td>'.($key+1).'</td>
+													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
+													<td class="text-uppercase">'.$value["nombre"].'</td>		
+													<td>'.$value["fecha"].'</td>									
+													<td>
+														<div class="btn-group">
+															<!-- data-toggle="modal" data-target="#modalEditarPeriferico" para activar una ventana modal -->
+															<!-- "btnEditarPeriferico" = Para utilizar JavaScript para conectarse a la base de datos.-->
+															<button class="btn btn-warning btnEditarPeriferico" idPeriferico="'.$value["id_periferico"].'" data-toggle="modal" data-target="#modalEditarPeriferico"><i class="fa fa-pencil"></i></button>';
+															if ($_SESSION["perfil"] == "Administrador")
+															{
+																echo '<!-- Se pasa btnEliminarPeriferico, idPeriferico="'.$value["id_periferico"].'" para utilizarlo con Ajax, como variable GET en la URL -->
+																<button class="btn btn-danger btnEliminarPeriferico" idPeriferico="'.$value["id_periferico"].'"><i class="fa fa-times"></i></button>';
+															}
+																
+														echo '</div>
+													</td>
+												</tr>';
+								}
+
+							?>
+
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
-
-					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
-					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 
@@ -74,11 +110,11 @@
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
+Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 -->
 
 <!-- Modal -->
-<div id="modalAgregarUbicacion" class="modal fade" role="dialog">
+<div id="modalAgregarPeriferico" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -90,7 +126,7 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Agregar Ubicacion</h4>
+          <h4 class="modal-title">Agregar Periferico</h4>
         </div>
 
 
@@ -100,7 +136,7 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaUbicacion" placeholder = "Ingresar Ubicacion" id="nuevaUbicacion" required>
+                <input type="text" class="form-control input-lg" name="nuevoPeriferico" placeholder = "Ingresar Periferico" id="nuevoPeriferico" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -112,13 +148,13 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
 					<!-- Pie Del Modal-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-            <button type="submit" class="btn btn-primary">Guardar Ubicacion</button>
+            <button type="submit" class="btn btn-primary">Guardar Periferico</button>
           </div>
 
 					<?php 
-						// Para grabar la Ubicacion.
-						$crearUbicacion = new ControladorUbicaciones();
-						$crearUbicacion->ctrCrearUbicacion();
+						// Para grabar la categoria.
+						$crearPeriferico = new ControladorPerifericos();
+						$crearPeriferico->ctrCrearPeriferico();
 					?>
 
       </form>
@@ -127,17 +163,17 @@ Cuando el usuario oprima el boton de "Agregar Ubicacion" se activa esta ventana.
 
   </div> <!-- <div class="modal-dialog"> -->
 
-</div> <!-- <div id="modalAgregarUbicacion" class="modal fade" role="dialog"> --> 
+</div> <!-- <div id="modalAgregarPeriferico" class="modal fade" role="dialog"> --> 
 
 
 <!--Este código se tomo desde el bootstrap - > Table 
-Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
+Cuando el usuario oprima el boton de "Editar Periferico" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Ubicacion
+	 Modal Editar Periferico 
 	====================================================
 -->
-<div id="modalEditarUbicacion" class="modal fade" role="dialog">
+<div id="modalEditarPeriferico" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -149,7 +185,7 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Ubicacion</h4>
+          <h4 class="modal-title">Editar Periferico</h4>
         </div>
 
 
@@ -159,9 +195,9 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarUbicacion"  id="editarUbicacion" required>
-								<!-- Se envía como campo oculto para enviar el "id" de la Ubicacion -->
-								<input type="hidden"  name="idUbicacion"  id="idUbicacion" required>
+                <input type="text" class="form-control input-lg" name="editarPeriferico"  id="editarPeriferico" required>
+								<!-- Se envía como campo oculto para enviar el "id" de la categoría -->
+								<input type="hidden"  name="idPeriferico"  id="idPeriferico" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -177,9 +213,9 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
           </div>
 
 					<?php 
-						// Para grabar la modifiacion de Marca.
-						$editarUbicacion = new ControladorUbicaciones();
-						$editarUbicacion->ctrEditarUbicacion();
+						// Para grabar la modifiacion de categoria.
+						$editarPeriferico = new ControladorPerifericos();
+						$editarPeriferico->ctrEditarPeriferico();
 					?>
 
       </form>
@@ -191,10 +227,11 @@ Cuando el usuario oprima el boton de "Editar Ubicacion" se activa esta ventana.
 </div> <!-- <div id="modalEditarPeriferico" class="modal fade" role="dialog"> --> 
 
 <?php 
+
 	// =====================================================
-	// Para borrar un Ubicacion.
+	// Para borrar un Periferico.
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarUbicacion = new ControladorUbicaciones();
-	$borrarUbicacion->ctrBorrarUbicacion();
+	$borrarPeriferico = new ControladorPerifericos();
+	$borrarPeriferico->ctrBorrarPeriferico();
 ?>

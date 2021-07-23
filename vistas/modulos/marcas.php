@@ -44,8 +44,8 @@
         <div class="box-body">
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
-          <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
-          <table class="table table-bordered table-striped dt-responsive tablas">
+          <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/marcas.js-->
+          <table class="table table-bordered table-striped dt-responsive tablaMarcas">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
@@ -57,43 +57,12 @@
             <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente -->
             <tbody>
 
-							<?php
-								// Mostrar los registros desde la base de datos.
-								// Se asignan nulo para que extraiga todos los registros.
-								$item = null;
-								$valor = null;
-								$marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
-								// Probando mostrando lo que contiene la variable "$marcas"
-								// var_dump($marcas);
-								foreach ($marcas as $key => $value)
-								{
-									echo '
-												<tr>
-													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
-													<td>'.($key+1).'</td>
-													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["descripcion"].'</td>							
-													<td>
-														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarMarca" para activar una ventana modal -->
-															<!-- "btnEditarMarca" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarMarca" idMarca="'.$value["id_marca"].'" data-toggle="modal" data-target="#modalEditarMarca"><i class="fa fa-pencil"></i></button>';
-															if ($_SESSION["perfil"] == "Administrador")
-															{
-																echo '<!-- Se pasa btnEliminarMarca, idMarca="'.$value["id_marca"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarMarca" idMarca="'.$value["id_marca"].'"><i class="fa fa-times"></i></button>';
-															}
-																
-														echo '</div>
-													</td>
-												</tr>';
-								}
-
-							?>
-
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
+
+					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
+					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 

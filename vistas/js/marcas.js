@@ -1,3 +1,36 @@
+var perfilOculto = $("#perfilOculto").val();
+
+$('.tablaMarcas').DataTable({
+	"ajax":"ajax/datatable-marcas.ajax.php?perfilOculto="+perfilOculto,
+	"defenderRender":true,
+	"retrieve":true,
+	"processing":true,
+  "language":{ 
+    "sProcessing": "Procesando ...",
+    "sLengthMenu": "Mostrar _MENU_ registros",
+    "sZeroRecords": "No se encontraron resultados",
+    "sEmptyTable": "Ningún dato disponible en esta tabla",
+    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered": "(filtrado de un total de _MAX_ registros",
+    "sInfoPostFix": "",
+    "sSearch": "Buscar",
+    "sUrl": "",
+    "sInfoThousands": ",",
+    "sLoadingRecords": "Cargando ...",
+    "oPaginate":{
+      "sFirst": "Primero",
+      "sLast": "Ultimo",
+      "sNext": "Siguiente",
+      "sPrevious": "Anterior",
+		},
+		"oAria": {
+      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		},
+	}
+
+});
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
@@ -24,7 +57,12 @@ $("#editarMarca").bind('keypress', function(event) {
 // =======================================
 // Editar Marcas:
 // ======================================
-$(".btnEditarMarca").click(function(){
+// Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cuando se haya cargado ().tablaMarcas tbody).on se asigna el evento "on("click") a la clase "btnEditarMarca" la siguiente "function"
+
+$(".tablaMarcas tbody").on("click","button.btnEditarMarca",function(){
 	// Se obtiene el valor de "idMarca"
 	var idMarca = $(this).attr("idMarca");
 

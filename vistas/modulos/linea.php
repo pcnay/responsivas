@@ -45,7 +45,7 @@
           <!-- Cuerpo de la ventana, donde se encuentran los datos, tablas, se utilizara tDAtaTable de Bootstrap esta completa, contiene buscar, paginador, ordenar las columnas  -->
           <!-- Esta clases de "table" son del plugin "bootstrap"-->
           <!-- "tabla" = Es para enlazarlo con DataTable, se utiliza el archivo  /frontend/vistas/js/plantilla.js-->
-          <table class="table table-bordered table-striped dt-responsive tablas">
+          <table class="table table-bordered table-striped dt-responsive tablaLineas">
             <thead>
               <tr>
                 <th style="width:10px">#</th>
@@ -57,43 +57,12 @@
             <!-- Cuerpo de la Tabla, se modifica para agregarlas dinamicamente -->
             <tbody>
 
-							<?php
-								// Mostrar los registros desde la base de datos.
-								// Se asignan nulo para que extraiga todos los registros.
-								$item = null;
-								$valor = null;
-								$lineas = ControladorLineas::ctrMostrarLineas($item,$valor);
-								// Probando mostrando lo que contiene la variable "$marcas"
-								// var_dump($marcas);
-								foreach ($lineas as $key => $value)
-								{
-									echo '
-												<tr>
-													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
-													<td>'.($key+1).'</td>
-													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["descripcion"].'</td>							
-													<td>
-														<div class="btn-group">
-															<!-- data-toggle="modal" data-target="#modalEditarLinea" para activar una ventana modal -->
-															<!-- "btnEditarLinea" = Para utilizar JavaScript para conectarse a la base de datos.-->
-															<button class="btn btn-warning btnEditarLinea" idLinea="'.$value["id_linea"].'" data-toggle="modal" data-target="#modalEditarLinea"><i class="fa fa-pencil"></i></button>';
-															if ($_SESSION["perfil"] == "Administrador")
-															{
-																echo '<!-- Se pasa btnEliminarLinea, idLinea="'.$value["id_linea"].'" para utilizarlo con Ajax, como variable GET en la URL -->
-															<button class="btn btn-danger btnEliminarLinea" idLinea="'.$value["id_linea"].'"><i class="fa fa-times"></i></button>';
-															}
-																
-														echo '</div>
-													</td>
-												</tr>';
-								}
-
-							?>
-
             </tbody>
 
           </table> <!-- <table class="table table-bordered tabe-striped"> -->
+
+					<!-- Se agrega esta modificacion para poder utilizar las variables de sesion en el plugin DataTable el “id” se logra permiter el ingreso  -->
+					<input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
         </div> <!-- <div class="box-body"> -->
 
@@ -134,7 +103,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" maxlength="45" class="form-control input-lg" name="nuevaLinea" placeholder = "Ingresar Linea De Produccion" id="nuevaLinea" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="nuevaLineas" placeholder = "Ingresar Linea De Produccion" id="nuevaLineas" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -171,7 +140,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 	 Modal Editar 
 	====================================================
 -->
-<div id="modalEditarLinea" class="modal fade" role="dialog">
+<div id="modalEditarLineas" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -193,7 +162,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" maxlength="45" class="form-control input-lg" name="editarLinea"  id="editarLinea" required>
+                <input type="text" maxlength="45" class="form-control input-lg" name="editarLineas"  id="editarLineas" required>
 								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
 								<input type="hidden"  name="idLinea"  id="idLinea" required>
               </div> <!-- <div class = "input-group"> -->           
