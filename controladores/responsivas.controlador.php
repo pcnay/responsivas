@@ -692,5 +692,11 @@
 			return $respuesta;
 		}
 
+		static public function ctrBorrarRep_Finanzas()
+		{
+			$tabla = "t_Rep_Finanzas";			
+			$respuesta = ModeloResponsivas::mdlBorrarRep_Finanzas($tabla);
+			return $respuesta;
+		}
 
 	} // class ControladorResponsivas

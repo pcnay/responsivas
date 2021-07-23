@@ -226,6 +226,8 @@ class Rep_Finanzas
 		$crearRep_Finanzas->ctrCrearRep_Finanzas($rep_mensual);
 				
 		$reporte = ControladorResponsivas::ctrMostrarRep_Finanzas();
+		$borrar = ControladorResponsivas::ctrBorrarRep_Finanzas();
+		
 		//var_dump ($reporte);
 		/*
 		for ($i=0;$i<count($reporte);$i++)

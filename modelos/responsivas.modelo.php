@@ -270,6 +270,16 @@
 		$stmt=null;
 		return $registros;					
 	}
+
+	static public function mdlBorrarRep_Finanzas($tabla)
+	{
+		$stmt = Conexion::conectar()->prepare ("DELETE FROM $tabla");
+		$stmt->execute();			
+		// Cerrar la conexion de la instancia de la base de datos.
+		$stmt->closeCursor();
+		$stmt=null;
+		return "ok";					
+	}
 	
 }	// 	class ModeloResponsivas
 
