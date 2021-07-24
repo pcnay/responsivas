@@ -1,7 +1,13 @@
 // =======================================
 // Editar Puesto:
 // ======================================
-$(".btnEditarPuesto").click(function(){
+// Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cuando se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarModelos" la siguiente "function"
+
+
+$(".tablas tbody").on("click","button.btnEditarPuesto",function(){
 	// Se obtiene el valor de "idPuesto"
 	var idPuesto = $(this).attr("idPuesto");
 	

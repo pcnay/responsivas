@@ -13,6 +13,9 @@ Leccion 19, contiene archivos donde se encuentra "responsive.bootstrap.min.css"
 $(".tablas").DataTable({
 	"pageLength":10,
 	"lengthMenu": [ 10, 25, 50, 75, 100 ],
+	"defenderRender":true,
+	"retrieve":true,
+	"processing":true,
   "language":{ 
     "sProcessing": "Procesando ...",
     "sLengthMenu": "Mostrar _MENU_ registros",

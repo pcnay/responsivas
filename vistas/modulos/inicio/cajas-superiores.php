@@ -2,7 +2,7 @@
 	//require_once "../../../controladores/productos.controlador.php";
 	//require_once "../../../modelos/productos.modelo.php";
 
-	// Sumando las Desktop que se tienen en e Inventario y operables
+	// Sumando las Desktop que se tienen en el Inventario y operables
 	$id_periferico = 1;
 	$id_edo_epo = 1;
 	$productosDesktop = ControladorProductos::ctrSumaTotalPerifericos($id_periferico,$id_edo_epo);

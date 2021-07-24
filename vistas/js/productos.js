@@ -1774,3 +1774,55 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 
 			});	
 })
+/*
+// Click en El combobox "Perifericos"
+// $(".btnEliminarMarca").click(function (){
+	// Cuando el documento ya este cargado, busque en cualquier momento la clase ".btnEditarMarca", por lo que no importa si al cargar la primera vez no se haya creado esta clase, pero al hacer click en la clase se ejecutara esta funcion.  
+	$(document).on("focus","#nuevoPeriferico",function()
+	{
+		console.log("Tinee el focus en ComboBox ");
+		var obtener = 'S';
+		// $("#nuevoPeriferico").html('');		
+
+		// Para agregar datos 
+		var datos = new FormData();
+		datos.append("obtenerPerifericos",obtener); // Se crea la variable "POST", "obtenerPerifericos"
+		$("#nuevoPeriferico").val('');
+
+		$.ajax({		
+			url:"ajax/perifericos.ajax.php",
+			method:"POST",
+			data:datos,
+			cache:false,
+			contentType:false,
+			processData:false,
+			dataType:"json",
+			success:function(perifericos)
+			{
+				console.log(perifericos);
+				// Asignando el valor recuperado a la etiqueta de SELECT de "productos.php"		
+				
+				//$("#nuevoPeriferico").html(perifericos);
+				$("#nuevoPeriferico").val(perifericos["id_periferico"]);
+				$("#nuevoPeriferico").html(perifericos["nombre"]);		
+				$("#nuevoPeriferico").text(perifericos["nombre"]);		
+				//$("#nuevoPeriferico").selectmenu("refresh",true);
+				//let selectores = document.getElementById("nuevoPeriferico");
+				//selectores.reload();
+
+				let selectores = document.getElementById("nuevoPeriferico");
+				
+					for (i=0;perifericos.length;i++)
+					{
+						let option = document.createElement("option");
+						option.text = perifericos["id_periferico"];
+						selectores.add(option);
+					} 
+			}
+		
+		});
+
+		
+	})
+*/
+

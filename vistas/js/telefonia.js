@@ -1,8 +1,12 @@
-
 // =======================================
-// Editar Cia. Telefonicas:
+// Editar Plan Telefonia:
 // ======================================
-$(".btnEditarTelefonia").click(function(){
+// Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cuando se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarTelefonia" la siguiente "function"
+// Se tiene que escribir de esta manera, de lo contrario cuando se este navengando no obtiene los datos a editar.
+$(".tablas tbody").on("click","button.btnEditarTelefonia",function(){
 	// Se obtiene el valor de "idTelefonia"
 	var idTelefonia = $(this).attr("idTelefonia");
 

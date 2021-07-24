@@ -71,8 +71,8 @@
 												<tr>
 													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
 													<td>'.($key+1).'</td>
-													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["descripcion"].'</td>							
+													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap" <td class="text-uppercase">-->
+													<td>'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarSupervisor" para activar una ventana modal -->

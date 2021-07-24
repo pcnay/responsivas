@@ -1,7 +1,12 @@
 // =======================================
-// Editar Centro De Costos:
+// Editar Supervisores:
 // ======================================
-$(".btnEditarCentro_Costos").click(function(){
+// Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
+
+// Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
+// Cuando se haya cargado ().tablaEmpleados tbody).on se asigna el evento "on("click") a la clase "btnEditarCentro_Costos" la siguiente "function"
+// Se tiene que escribir de esta manera, de lo contrario cuando se este navengando no obtiene los datos a editar.
+$(".tablas tbody").on("click","button.btnEditarCentro_Costos",function(){
 	// Se obtiene el valor de "idCentro_Costos"
 	var idCentro_Costos = $(this).attr("idCentro_Costos");
 

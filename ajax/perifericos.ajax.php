@@ -31,6 +31,16 @@
 			echo json_encode($respuesta);
 		}
 
+		// Obtener Los perifericos 
+		
+		public function ajaxObtenerPerifericos()
+		{
+			$item = null;
+			$valor = null;
+			$respuesta = ControladorPerifericos::ctrMostrarPerifericos($item,$valor);
+			echo json_encode($respuesta);
+		}
+		
 
 	} // class AjaxPerifericos
 
@@ -51,6 +61,13 @@
 		$valPeriferico = new AjaxPerifericos();
 		$valPeriferico->validarPeriferico = $_POST["validarPeriferico"];
 		$valPeriferico->ajaxValidarPeriferico();
+	}
+
+	// Obtener los perifericos 
+	if (isset($_POST["obtenerPerifericos"]))
+	{
+		$ObtenerPeriferico = new AjaxPerifericos();
+		$ObtenerPeriferico->ajaxObtenerPerifericos();
 	}
 
 ?>

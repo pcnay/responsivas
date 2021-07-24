@@ -151,6 +151,7 @@
 	                <select class="form-control input-lg" id= "nuevoPeriferico" name="nuevoPeriferico" required>
 	                  <option value="">Seleccionar Periferico</option>
 										<?php
+										
 											// Se obtendrán el Perifico desdes la base de datos.
 											$item = null;
 											$valor = null;
@@ -159,6 +160,8 @@
 											{
 												echo '<option value = "'.$value["id_periferico"].'">'.$value["nombre"].'</option>';
 											}
+											
+											
 										?>
 	                </select>                
 	              </div> <!-- <div class = "input-group"> -->           							
