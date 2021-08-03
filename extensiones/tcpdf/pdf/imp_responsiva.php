@@ -222,6 +222,7 @@ foreach ($productosResp as $key => $item)
 
 // Se van a recoger los productos que se encuentran en el campo de tipo Json en la Base de datos.
 $contador = 0;
+$impHostname = "";
 for ($i =0;$i<count($productosResp);$i++)
 {
 	$itemProducto = "id_producto";
@@ -233,16 +234,23 @@ for ($i =0;$i<count($productosResp);$i++)
 	
 	$cantidad = $productosResp[$i]["cantidad"];
 	$precio = number_format($productosResp[$i]["precio"],2);
-	$impHostname = "";
-
+		
 	if ($contador == 0)
 	{
-		if (($respuestaProductos["nomenclatura"] != null) || ($respuestaProductos["nomenclatura"] != ""))
+		//($respuestaProductos["nomenclatura"] != null)
+		if (($respuestaProductos["asset"] != "") && ($respuestaProductos			["nomenclatura"] == ""))
+		{
+			$impHostname = $respuestaProductos["asset"];
+			$contador = 1;
+		}
+		elseif  (($respuestaProductos["nomenclatura"] != "") && ($respuestaProductos			["asset"] == ""))
 		{
 			$impHostname = $respuestaProductos["nomenclatura"];
 			$contador = 1;
 		}
 	}
+	
+
 	//$precio = $respuestaProductos["Precio_Venta"];
 
 

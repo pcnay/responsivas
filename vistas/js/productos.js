@@ -1774,6 +1774,7 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 
 			});	
 })
+
 /*
 // Click en El combobox "Perifericos"
 // $(".btnEliminarMarca").click(function (){
@@ -1803,21 +1804,28 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 				// Asignando el valor recuperado a la etiqueta de SELECT de "productos.php"		
 				
 				//$("#nuevoPeriferico").html(perifericos);
+/*
 				$("#nuevoPeriferico").val(perifericos["id_periferico"]);
 				$("#nuevoPeriferico").html(perifericos["nombre"]);		
-				$("#nuevoPeriferico").text(perifericos["nombre"]);		
+				
+				
+				//$("#nuevoPeriferico").html(perifericos).fadeIn();		
+				//$("#nuevoPeriferico").text(perifericos["nombre"]);		
 				//$("#nuevoPeriferico").selectmenu("refresh",true);
 				//let selectores = document.getElementById("nuevoPeriferico");
 				//selectores.reload();
+
 
 				let selectores = document.getElementById("nuevoPeriferico");
 				
 					for (i=0;perifericos.length;i++)
 					{
-						let option = document.createElement("option");
-						option.text = perifericos["id_periferico"];
-						selectores.add(option);
+						//let option = document.createElement("option");
+						selectores.append('<option value="'+perifericos["id_periferico"]+'">'+perifericos["nombre"]+'</option>');
+						//option.text = perifericos["id_periferico"];
+						//selectores.add(option);																																																																															
 					} 
+
 			}
 		
 		});
@@ -1825,4 +1833,5 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 		
 	})
 */
+
 

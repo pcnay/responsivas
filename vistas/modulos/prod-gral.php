@@ -47,6 +47,8 @@
                 <th>Imagen</th>
                 <th>Descripcion</th>
                 <th>Serial</th>
+								<th>Hostname</th>
+								<th>Asset</th>
                 <th>Marca</th>
 								<th>Num Tel</th>
                 <th>Stock</th>

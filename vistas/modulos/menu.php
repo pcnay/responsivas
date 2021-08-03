@@ -25,6 +25,12 @@
 				if ( $_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Supervisor" )
 				{
 					echo '
+						<li class="active">
+							<a href="manuales">
+								<i class="fa fa-circle-o"></i>
+								<span>Manuales</span>           
+							</a>
+						</li>					
 						<li class="treeview">
 							<a href="empleados">     
 								<i class="fa fa-list-ul"></i>

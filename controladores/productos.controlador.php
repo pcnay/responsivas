@@ -241,7 +241,7 @@
 													"id_linea" =>$_POST["nuevaLinea"],												
 													"num_tel" =>'',
 													"cuenta" =>'',
-													"direcc_mac_tel" =>'',
++													"direcc_mac_tel" =>'',
 													"imei_tel" =>'',
 													"nomenclatura" =>$_POST["nuevaNomenclatura"],
 													"stock" =>$_POST["nuevoStock"],												

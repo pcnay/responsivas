@@ -90,6 +90,8 @@
 							"'.$imagen.'",
 							"'.$productos[$i]["Periferico"].'",
 							"'.$productos[$i]["Serial"].'",
+							"'.$productos[$i]["nomenclatura"].'",
+							"'.$productos[$i]["asset"].'",
 							"'.$productos[$i]["Marca"].'",
 							"'.$productos[$i]["num_tel"].'", 							
 							"'.$stock.'",							
