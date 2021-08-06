@@ -4,7 +4,15 @@
     <!-- Despliega los iconos del menu laterial -->
     <ul class="sidebar-menu">
 			<?php
-				if ($_SESSION["perfil"] == "Administrador")
+				//$item = "id_usuario";
+				//$valor = 7;
+				//$usuario = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
+				//var_dump($usuario);
+				//print_r($usuario['id_usuario']);
+				//var_dump($usuario['id_usuario']);
+
+
+				if ($_SESSION["perfil"] == "Administrador" )
 				{
 					echo '
 						<!-- Manejando los roles de los usuarios. -->
@@ -22,13 +30,25 @@
 						</li>';
 				}	
 
+				if (($_SESSION["perfil"] == "Operador") && ($_SESSION["id"] == "7"))
+				{
+					echo '
+						<li class="active">
+							<a href="cintas">
+								<i class="fa fa-circle-o"></i>
+								<span>Cintas</span>           
+							</a>
+						</li>';
+				}	
+
+
 				if ( $_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Supervisor" )
 				{
 					echo '
 						<li class="active">
-							<a href="manuales">
+							<a href="tareas">
 								<i class="fa fa-circle-o"></i>
-								<span>Manuales</span>           
+								<span>Tareas</span>           
 							</a>
 						</li>					
 						<li class="treeview">
@@ -196,7 +216,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="productos">
+									<a href="prod-gral">
 										<i class="fa fa-circle-o"></i>
 										<span>Productos</span>
 									</a>
@@ -220,7 +240,7 @@
 						
 				} // if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador" || ....
 
-				if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador")
+				if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Operador")
 				{
 					echo '
 					<li class="treeview">

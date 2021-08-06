@@ -45,11 +45,10 @@
                 <th>Descripcion</th>
                 <th>Serial</th>
 								<th>Hostname</th>
-								<th>Asset</th>
-                <th>Marca</th>
-								<th>Num Tel</th>
-                <th>Stock</th>
-								<th>Edo_Epo</th>
+								<th>Asset</th>                
+								<th>Tel</th>
+								<th>IMEI</th>
+                <th>Stock</th>								
 								<th>NTID</th>
                 <th>Empleado</th>
                 <th>Acciones </th>

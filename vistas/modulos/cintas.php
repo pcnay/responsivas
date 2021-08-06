@@ -1,5 +1,6 @@
 <?php
 // Los perfiles que no tiene permitido 
+	/*
 	if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Operador" )
 	{
 		echo '
@@ -8,6 +9,8 @@
 			</script>';
 			return;			
 	}
+	*/
+	
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

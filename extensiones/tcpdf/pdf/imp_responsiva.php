@@ -52,6 +52,7 @@ public function traerImpresionResponsiva()
 	$neto = number_format($respuestaResponsiva["neto"],2);
 	$impuesto = number_format($respuestaResponsiva["impuesto"],2);
 	$total = number_format($respuestaResponsiva["total"],2);
+	//$total = $respuestaResponsiva["total"];
 	$fecha_asignadoResp = date("m-d-Y",strtotime($respuestaResponsiva["fecha_asignado"]));
 
 	if ($respuestaResponsiva["fecha_devolucion"] == null)
@@ -192,6 +193,7 @@ EOF;
 $pdf->writeHTML($bloque2,false,false,false,false,'');
 
 // Imprimira los Encabezados de los renglones de las responsivas.
+/*
 $bloque3 = <<<EOF
 	<table style="font-size:10px; padding:5px 10px;">
 		<tr>
@@ -200,6 +202,20 @@ $bloque3 = <<<EOF
 			<td style="border:1px solid #666;background-color:white; width:210px; text-align:center">Descripcion</td>
 			<td style="border:1px solid #666;background-color:white; width:110px; text-align:center">Serial</td>
 			<td style="border:1px solid #666;background-color:white; width:80px; text-align:center">Costo</td>
+		</tr>
+
+	</table>
+*/
+$bloque3 = <<<EOF
+	<table style="font-size:9px; padding:2px 2px;">
+		<tr>
+			<td style="border:1px solid #666;background-color:white; width:25px; text-align:left">Cant</td>
+			<td style="border:1px solid #666;background-color:white; width:85px; text-align:left">Componente</td>
+			<td style="border:1px solid #666;background-color:white; width:140px; text-align:left">Descripcion</td>
+			<td style="border:1px solid #666;background-color:white; width:95px; text-align:left">Serial</td>
+			<td style="border:1px solid #666;background-color:white; width:75px; text-align:left">Nomenclatura</td>
+			<td style="border:1px solid #666;background-color:white; width:75px; text-align:left">Asset</td>
+			<td style="border:1px solid #666;background-color:white; width:45px; text-align:right">Costo</td>
 		</tr>
 
 	</table>
@@ -222,7 +238,9 @@ foreach ($productosResp as $key => $item)
 
 // Se van a recoger los productos que se encuentran en el campo de tipo Json en la Base de datos.
 $contador = 0;
-$impHostname = "";
+$cadena = 'S';
+$NumTelMacImei = '';
+
 for ($i =0;$i<count($productosResp);$i++)
 {
 	$itemProducto = "id_producto";
@@ -234,42 +252,49 @@ for ($i =0;$i<count($productosResp);$i++)
 	
 	$cantidad = $productosResp[$i]["cantidad"];
 	$precio = number_format($productosResp[$i]["precio"],2);
-		
-	if ($contador == 0)
-	{
-		//($respuestaProductos["nomenclatura"] != null)
-		if (($respuestaProductos["asset"] != "") && ($respuestaProductos			["nomenclatura"] == ""))
-		{
-			$impHostname = $respuestaProductos["asset"];
-			$contador = 1;
-		}
-		elseif  (($respuestaProductos["nomenclatura"] != "") && ($respuestaProductos			["asset"] == ""))
-		{
-			$impHostname = $respuestaProductos["nomenclatura"];
-			$contador = 1;
-		}
-	}
-	
+	/*print_r ("Direccion Mac : \n",$respuestaProductos["direcc_mac_tel"]);
+	print_r ("IMEI Tel : \n",$respuestaProductos["imei_tel"]);
+	print_r ("Num Tel : \n",$respuestaProductos["num_tel"]);
+*/
 
+	if (($cadena == 'S') && (!empty($respuestaProductos["direcc_mac_tel"]) || !empty($respuestaProductos["imei_tel"])))
+	{
+		/*
+		$NumTel= $respuestaProductos["num_tel"];
+		$WifiAddr = $respuestaProductos["direcc_mac_tel"];
+		$Imei = $respuestaProductos["imei_tel"];
+		*/
+		$NumTelMacImei = "Num Tel : ".$respuestaProductos["num_tel"]."     "."IMEI : ".$respuestaProductos["imei_tel"]."     "."Wifi Address : ".$respuestaProductos["direcc_mac_tel"];
+		$cadena = 'N';
+
+	}
+
+	
 	//$precio = $respuestaProductos["Precio_Venta"];
 
-
+	// <table style="font-size:10px; padding:5px 10px;">
 $bloque4 = <<<EOF
-	<table style="font-size:10px; padding:5px 10px;">
+	<table style="font-size:9px; padding:2px 2px;">
 		<tr>
-			<td style="border:1px solid #666;background-color:white; width:45px; text-align:center">
+			<td style="border:1px solid #666;background-color:white; width:25px; text-align:left">
 				$cantidad
 			</td>
-			<td style="border:1px solid #666;background-color:white; width:95px; text-align:center">
+			<td style="border:1px solid #666;background-color:white; width:85px; text-align:left">
 				$respuestaProductos[Periferico]
 			</td>
-			<td style="border:1px solid #666;background-color:white; width:210px; text-align:center">
+			<td style="border:1px solid #666;background-color:white; width:140px; text-align:left">
 				$respuestaProductos[Marca] $respuestaProductos[Modelo]
 			</td>
-			<td style="border:1px solid #666;background-color:white; width:110px; text-align:center">
+			<td style="border:1px solid #666;background-color:white; width:95px; text-align:left">
 				$respuestaProductos[Serial]
 			</td>
-			<td style="border:1px solid #666;background-color:white; width:80px; text-align:right">
+			<td style="border:1px solid #666;background-color:white; width:75px; text-align:left">
+				$respuestaProductos[nomenclatura]
+			</td>			
+			<td style="border:1px solid #666;background-color:white; width:75px; text-align:left">
+				$respuestaProductos[asset]
+			</td>			
+			<td style="border:1px solid #666;background-color:white; width:45px; text-align:right">
 				$precio
 			</td>			
 		</tr>
@@ -299,17 +324,18 @@ $pdf->writeHTML($bloque4,false,false,false,false,'');
 */
 
 $bloque5 = <<<EOF
-	<table style ="font-size:10px; padding:5px 10px;">
+	<table style ="font-size:9px; padding:2px 2px;">
 		<tr>
-			<td style="background-color:white; width:350px">
+			<td style="background-color:white; width:419.7px">
 				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
 				</div>
 			</td>
 
-			<td style="border: 1px solid #666; background-color:white; width:110px; text-align:center">
-				Importe:
+			<td style="border: 1px solid #666; background-color:white; width:75px; text-align:right">
+	
+			Importe:
 			</td>
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:right">
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:45px; text-align:right">
 				$total
 			</td>
 		</tr>	
@@ -319,6 +345,16 @@ EOF;
 $pdf->writeHTML($bloque5,false,false,false,false,'');
 
 // Imprimir el texto y la seccion de firmas
+/*
+<td style="background-color:white; width:190px">
+<div style="font-size:10.5px; text-align:right; line-height:10px;">	
+	Hostname : $impHostname
+</div>
+</td>
+*/
+
+// Num. Tel : $respuestaProductos[num_tel] , IMEI : $respuestaProductos[imei_tel] , Wifi Addrress : $respuestaProductos[direcc_mac_tel]
+
 $bloque6 = <<<EOF
 	<table>	
 		<tr>
@@ -326,6 +362,13 @@ $bloque6 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
 			</div>
 		</td>
+		</tr>
+		<tr>
+			<td style="background-color:white; width:500px; text-align:left">
+				<div style="font-size:10.5px; text-align:left line-height:10px;">	
+					$NumTelMacImei
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td style="background-color:white; width:140px; text-align:left">
@@ -338,15 +381,11 @@ $bloque6 = <<<EOF
 					Fecha : $fechas	
 				</div>
 			</td>			
-			<td style="background-color:white; width:190px">
-				<div style="font-size:10.5px; text-align:right; line-height:10px;">	
-					Hostname : $impHostname
-				</div>
-			</td>
 		</tr>
 		<tr>
 			<td style="background-color:white; width:540px">
 				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+					
 				</div>
 			</td>
 		</tr>
@@ -412,16 +451,16 @@ $bloque6 = <<<EOF
 			
 			_________________________________
 			<br>
-			Firma Rubrica, Fecha Del Empleado
+			Firma Rubrica Del Empelado y Fecha
 
 		</div>			
 	</td>		
 	<td style="background-color:white; width:270px">
 		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
 
-		_________________________________
+		_______________________________________
 			<br>
-			Firma Rubrica, Decha Del Jefe Inmediato
+			Firma Rubrica Del Jefe Inmediato y Fecha
 
 		</div>			
 	</td>		

@@ -417,7 +417,7 @@ $("#editarCuenta").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaDireccMac").bind('keypress', function(event) {
-  var regex = new RegExp("^[0-9A-Z:]+$");
+  var regex = new RegExp("^[0-9A-Z:a-zA-Z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -469,7 +469,7 @@ $("#nuevaDireccMac").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarDireccMac").bind('keypress', function(event) {
-  var regex = new RegExp("^[0-9A-Z:]+$");
+  var regex = new RegExp("^[0-9A-Z:a-zA-Z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
