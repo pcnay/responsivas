@@ -98,6 +98,7 @@
 							"'.$productos[$i]["Periferico"].'",
 							"'.$productos[$i]["Serial"].'",
 							"'.$productos[$i]["num_tel"].'",
+							"'.$productos[$i]["imei_tel"].'",
 							"'.$stock.'",							
 							"'.$botones.'"
 						],';

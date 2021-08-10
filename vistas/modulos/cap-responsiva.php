@@ -321,6 +321,7 @@
 									<th>Descripcion</th>
 									<th>Serial</th>
 									<th>Telefono</th>
+									<th>IMEI</th>
 									<th>Stock</th>
 									<th>Acciones</th>
 								</tr>

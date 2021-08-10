@@ -222,6 +222,12 @@ $(".btnSubirCinta").click(function(){
 
 })
 
+// Subir el Inventario de I.T. (Hoja de Excel) 
+$(".btnSubirInvIT").click(function(){
+	console.log("Se oprimio el boton de Inv I.T.")
+	window.open("index.php?ruta=inv_it","_blank");
+})
+
 $(".btnPerifProd").click(function(){
 
 // Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"

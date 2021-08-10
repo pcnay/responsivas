@@ -214,11 +214,13 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
-						<label>Subir Archivos CSV Cintas Respaldo: </label>
+						<label>Subir Varias : </label>
 						<br>						
 					</div>					
-						<button class="btn btn-success btnSubirCinta" id="subir_cinta" disabled >Subir</button>	
+						<button class="btn btn-success btnSubirCinta" id="subir_cinta" disabled >Subir Cintas</button>	
+						<button class="btn btn-success btnSubirInvIT" id="inv_it" >Inv I.T.</button>						
 						<br>
+
 				</div>
 
 			</div> <!-- <div class="row"> -->
