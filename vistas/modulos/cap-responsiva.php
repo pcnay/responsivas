@@ -134,7 +134,7 @@
 													<span class="input-group-addon"><i class="fa fa-users"></i></span>
 															
 													<!-- <label for="comentarios">Comentarios:</label> -->
-													<textarea class="form-control" rows="2" cols="40" name="nuevoComentario" id="nuevoComentario">Comentarios
+													<textarea class="form-control" rows="2" cols="40" name="nuevoComentario" id="nuevoComentario">
 													</textarea>
 												</div> <!-- <div class="input-group" -->														
 											</div> <!-- <div class="form-group row">  -->

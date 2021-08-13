@@ -42,12 +42,13 @@ public function traerImpresionResponsiva()
 
 	
 	$respuestaResponsiva = ControladorResponsivas::ctrMostrarResponsivas($item,$valor_responsiva,$ordenar);
+
 	// Funciona este "var_dump" en TCPDF, solo que no despliega el PDF
 	//var_dump($respuestaResponsiva["productos_asignado"]);
 	
 	//$fecha_asig = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
 	
-
+	$Comentario = "Comentarios : ".$respuestaResponsiva["comentario"];
 	$productosResp = json_decode($respuestaResponsiva["productos"],true);
 	$neto = number_format($respuestaResponsiva["neto"],2);
 	$impuesto = number_format($respuestaResponsiva["impuesto"],2);
@@ -264,7 +265,7 @@ for ($i =0;$i<count($productosResp);$i++)
 		$WifiAddr = $respuestaProductos["direcc_mac_tel"];
 		$Imei = $respuestaProductos["imei_tel"];
 		*/
-		$NumTelMacImei = "Num Tel : ".$respuestaProductos["num_tel"]."     "."IMEI : ".$respuestaProductos["imei_tel"]."     "."Wifi Address : ".$respuestaProductos["direcc_mac_tel"];
+		$NumTelMacImei = "Num Tel : ".$respuestaProductos["num_tel"]." ; "."IMEI : ".$respuestaProductos["imei_tel"]."  ;  "."Wifi Address : ".$respuestaProductos["direcc_mac_tel"];
 		$cadena = 'N';
 
 	}
@@ -363,7 +364,20 @@ $bloque6 = <<<EOF
 			</div>
 		</td>
 		</tr>
+		<tr>		
+			<td style="background-color:white; width:500px; text-align:left">
+				<div style="font-size:10.5px; text-align:left line-height:10px;">	
+					$Comentario
+				</div>
+			</td>
+		</tr>
 		<tr>
+			<td style="background-color:white; width:540px">
+				<div style="font-size:8.5px; text-align:right; line-height:10px;">	
+			</div>
+		</td>
+		</tr>
+		<tr>		
 			<td style="background-color:white; width:500px; text-align:left">
 				<div style="font-size:10.5px; text-align:left line-height:10px;">	
 					$NumTelMacImei
