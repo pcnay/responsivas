@@ -225,7 +225,7 @@
 			{
 				// Cerrar la conexion de la instancia de la base de datos.
 				$error= $stmt->errorInfo();
-				var_dump($error[2]);				
+				//var_dump($error[2]);				
 				//exit;
 
 				$stmt->closeCursor();

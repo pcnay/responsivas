@@ -29,138 +29,39 @@
   <!-- /.content-wrapper -->
 
 <?php
-	// Obtener el Modelo	
-	function Obtener_IdModelo($Arreglo_modelo,$reg_csv)
-	{
-		$columna_1 = 0;					
 
-		$separar_cadena = explode(" ",$reg_csv);
-		for ($l=0;$l<count($Arreglo_modelo);$l++)
-		{
-			for ($n=0;$n<2;$n++)
-			{
-				$contador_pal = 0;
-				for ($k=0;$k<count($separar_cadena);$k++)
-				{
-
-					$encontro = strpos($Arreglo_modelo[$l][$n],$separar_cadena[$k]);
-					if ($encontro === false)
-					{
-						//print_r("Valor NO encontrado ");
-					}
-					else
-					{
-						$contador_pal++;
-						//print_r("Valor encontrado ".$separar_cadena[$k].' '.$encontro);
-						//print("<br>");
-					}
-				} // for ($k=0;$k<2;$k++)
-
-				if ($contador_pal == 3)
-				{
-					print("<br>");
-					print_r ("Valor del indice = ".$Arreglo_modelo[$l][$n-1]);
-					return $Arreglo_modelo[$l][$n-1];
-				}
-
-			} // for ($n=0;$n<2;$n++)
-
-		} // for ($l=0;$l<count($Arreglo_modelo);$l++)
-
-
-	} // function Obtener_IdModelo() 
-
-	// Obtener la Marca.
-	function Obtener_IdMarca($Arreglo_marca,$reg_csv_marca)
-	{
-		$columna_1 = 0;					
-		
-		$separar_cadena = explode(" ",$reg_csv_marca);
-		for ($l=0;$l<count($Arreglo_marca);$l++)
-		{
-			for ($n=0;$n<2;$n++)
-			{
-				$contador_pal = 0;
-				for ($k=0;$k<count($separar_cadena);$k++)
-				{
-					print("<br>");
-					$encontro = strpos($Arreglo_marca[$l][$n],$separar_cadena[$k]);
-					if ($encontro === false)
-					{
-						//print_r("Valor NO encontrado ");
-					}
-					else
-					{
-						$contador_pal++;
-						//print_r("Valor encontrado ".$separar_cadena[$k].' '.$encontro);
-						//print("<br>");
-					}
-				} // for ($k=0;$k<2;$k++)
-
-				if ($contador_pal == 1 )
-				{
-					print("<br>");
-					print_r ("Valor del indice = ".$Arreglo_marca[$l][$n-1]);
-					return $Arreglo_marca[$l][$n-1];
-				}
-
-			} // for ($n=0;$n<2;$n++)
-
-		} // for ($l=0;$l<count($Arreglo_modelo);$l++)
-
-
-	} // function Obtener_IdMarca() 
-
-	// Obtener el periferico.
-	function Obtener_IdPeriferico($Arreglo_periferico,$reg_csv_perif)
-	{
-		$columna_1 = 0;					
-		
-		$separar_cadena = explode(" ",$reg_csv_perif);
-		for ($l=0;$l<count($Arreglo_periferico);$l++)
-		{
-			for ($n=0;$n<2;$n++)
-			{
-				$contador_pal = 0;
-				for ($k=0;$k<count($separar_cadena);$k++)
-				{
-		
-					$encontro = strpos($Arreglo_periferico[$l][$n],$separar_cadena[$k]);
-					if ($encontro === false)
-					{
-						//print_r("Valor NO encontrado ");
-					}
-					else
-					{
-						$contador_pal++;
-						//print_r("Valor encontrado ".$separar_cadena[$k].' '.$encontro);
-						//print("<br>");
-					}
-				} // for ($k=0;$k<2;$k++)
-
-				if ($contador_pal == 1 )
-				{
-					print("<br>");
-					print_r ("Valor del indice = ".$Arreglo_periferico[$l][$n-1]);
-					return $Arreglo_periferico[$l][$n-1];
-				}
-
-			} // for ($n=0;$n<2;$n++)
-
-		} // for ($l=0;$l<count($Arreglo_modelo);$l++)
-
-
-	} // function Obtener_IdMarca() 
-
-
-	// Obtener los modelos.
+	// Obtener los Modelos, Marcas, Perifericos.
 	$tabla = "t_Modelo";
 	$item = null;
 	$valor = null;
 	$Arreglo_modelos = ModeloModelos::mdlMostrarModelos($tabla,$item,$valor);
+	//print_r("<br>");
+	//print_r("<br>");
+	//print_r("Imprimiendo los modelos");
+	//var_dump($Arreglo_modelos);
 
-	// Pasandolo a un areglo.
-	$arreglo = array();
+	$tabla = "t_Marca";
+	$item = null;
+	$valor = null;
+	$Arreglo_marcas = ModeloMarcas::mdlMostrarMarcas($tabla,$item,$valor);
+	//print_r("<br>");
+	//print_r("<br>");
+	//print_r("Imprimiendo las Marcas");
+	//var_dump($Arreglo_marcas);
+
+	$tabla = "t_Periferico";
+	$item = null;
+	$valor = null;
+	$Arreglo_perifericos = ModeloPerifericos::mdlMostrarPerifericos($tabla,$item,$valor);
+	//print_r("<br>");
+	//print_r("<br>");
+	//print_r("Imprimiendo los Perifericos");
+	//var_dump($Arreglo_perifericos);
+
+
+
+	// Pasandolo a un arreglo bidimencional los Modelos obtenidos
+	$Modelos_Obtenidos = array();
 	for ($q=0;$q<count($Arreglo_modelos);$q++)
 	{
 		//print_r("Valor = ".$Arreglo_modelos[$q]["id_modelo"]);
@@ -172,13 +73,194 @@
 		for ($a=0;$a<2;$a++)
 		{
 			if ($a == 0)
-				$arreglo[$q][$a] = $Arreglo_modelos[$q]["id_modelo"];
+				$Modelos_Obtenidos[$q][$a] = $Arreglo_modelos[$q]["id_modelo"];
 			if ($a == 1)
-				$arreglo[$q][$a] = $Arreglo_modelos[$q]["descripcion"];
+				$Modelos_Obtenidos[$q][$a] = strtolower($Arreglo_modelos[$q]["descripcion"]);
 		}
 		
 	}
 
+	// Pasandolo a un arreglo bidimencional las Marcas obtenidas
+	$Marcas_Obtenidas = array();
+	for ($q=0;$q<count($Arreglo_marcas);$q++)
+	{
+		//print_r("Valor = ".$Arreglo_modelos[$q]["id_modelo"]);
+		//print("<br>");
+		//print_r("Valor = ".$Arreglo_modelos[$q]["descripcion"]);
+		//print("<br>");
+
+		$contador = 0;
+		for ($a=0;$a<2;$a++)
+		{
+			if ($a == 0)
+				$Marcas_Obtenidas[$q][$a] = $Arreglo_marcas[$q]["id_marca"];
+			if ($a == 1)
+				$Marcas_Obtenidas[$q][$a] = strtolower($Arreglo_marcas[$q]["descripcion"]);
+		}
+		
+	}
+
+	//var_dump($Marcas_Obtenidas);
+
+	// Pasandolo a un arreglo bidimencional los Perifericos obtenidos
+	$Perifericos_Obtenidos = array();
+	for ($q=0;$q<count($Arreglo_perifericos);$q++)
+	{
+		//print_r("Valor = ".$Arreglo_modelos[$q]["id_modelo"]);
+		//print("<br>");
+		//print_r("Valor = ".$Arreglo_modelos[$q]["descripcion"]);
+		//print("<br>");
+
+		$contador = 0;
+		for ($a=0;$a<2;$a++)
+		{
+			if ($a == 0)
+				$Perifericos_Obtenidos[$q][$a] = $Arreglo_perifericos[$q]["id_periferico"];
+			if ($a == 1)
+				$Perifericos_Obtenidos[$q][$a] = strtolower($Arreglo_perifericos[$q]["nombre"]);
+		}
+		
+	}
+
+
+	// Obtener la Marca.
+	function Obtener_IdMarca($Arreglo_marca,$reg_csv_marca)
+	{
+		$columna_1 = 0;					
+		
+		//var_dump($Arreglo_marca);
+		$separar_cadena = explode(" ",$reg_csv_marca);
+		//print ("Tamaño -separar_cadena- : ".count($separar_cadena));
+
+		$Marcas = 'Sin Marca ';
+		for ($l=0;$l<count($Arreglo_marca);$l++)
+		{
+			for ($n=0;$n<2;$n++)
+			{
+				$contador_pal = 0;
+				for ($k=0;$k<count($separar_cadena);$k++)
+				{
+					$encontro = strpos($Arreglo_marca[$l][$n],$separar_cadena[$k]);
+
+					if ($encontro === false)
+					{
+						//print_r("Valor NO encontrado ");
+					}
+					else
+					{
+						$contador_pal++;
+					}
+				} // for ($k=0;$k<count($separar_cadena);$k++)
+
+				if ($contador_pal == count($separar_cadena))
+				{
+					$Marcas = $Arreglo_marca[$l][$n-1];
+					return $Marcas;
+				}
+
+			} // for ($n=0;$n<2;$n++)
+
+		} // for ($l=0;$l<count($Arreglo_marca);$l++)
+
+		return $Marcas;
+
+	} // function Obtener_IdMarca() 
+
+	// Obtener el Modelo	
+	function Obtener_IdModelo($Arreglo_modelos,$reg_csv)
+	{
+		$columna_1 = 0;					
+
+		$separar_cadena = explode(" ",$reg_csv);
+
+		$Modelos = "Sin Modelos";
+		for ($l=0;$l<count($Arreglo_modelos);$l++)
+		{
+			for ($n=0;$n<2;$n++)
+			{
+				$contador_pal = 0;
+				for ($k=0;$k<count($separar_cadena);$k++)
+				{
+
+					$encontro = strpos($Arreglo_modelos[$l][$n],$separar_cadena[$k]);
+					if ($encontro === false)
+					{
+						//print_r("Valor NO encontrado ");
+					}
+					else
+					{
+						$contador_pal++;
+						//print_r("Valor encontrado ".$separar_cadena[$k].' '.$encontro);
+						//print("<br>");
+					}
+				} // for ($k=0;$k<2;$k++)
+
+				if ($contador_pal == count($separar_cadena))
+				{
+//					print("<br>");
+//					print_r ("Valor del indice modelo = ".$Arreglo_modelos[$l][$n-1]);
+						$Modelos = $Arreglo_modelos[$l][$n-1];
+					return $Modelos;
+				}
+
+			} // for ($n=0;$n<2;$n++)
+
+		} // for ($l=0;$l<count($Arreglo_modelo);$l++)
+
+		return $Modelos;
+
+	} // function Obtener_IdModelo() 
+
+
+	// Obtener el periferico.
+	function Obtener_IdPeriferico($Arreglo_perifericos,$reg_csv_perif)
+	{
+		$columna_1 = 0;					
+		$Perifericos = "Sin Perifericos ";
+		$separar_cadena = explode(" ",$reg_csv_perif);
+		for ($l=0;$l<count($Arreglo_perifericos);$l++)
+		{
+			for ($n=0;$n<2;$n++)
+			{
+				$contador_pal = 0;
+				for ($k=0;$k<count($separar_cadena);$k++)
+				{				
+					$encontro = strpos($Arreglo_perifericos[$l][$n],$separar_cadena[$k]);
+					
+					if ($encontro === false)
+					{
+						//print_r("Valor NO encontrado ");
+					}
+					else
+					{
+						$contador_pal++;
+					}
+
+				} // for ($k=0;$k<2;$k++)
+
+					if ($contador_pal == count($separar_cadena))
+					{
+						//print_r("Valor NO encontrado ");
+//						print("<br>");
+//						print_r ("Valor del indice periferico = ".$Arreglo_perifericos[$l][$n-1]);
+							$Perifericos = $Arreglo_perifericos[$l][$n-1];
+						return $Perifericos;					
+					}				
+
+			} // for ($n=0;$n<2;$n++)			
+
+		} // for ($l=0;$l<count($Arreglo_periferico);$l++)
+		return $Perifericos;
+
+	} // function Obtener_IdPerifericos() 
+
+
+
+	// var_dump($Perifericos_Obtenidos);
+
+
+	/*
+	//Desṕlegando el contenido  del arrenglo recien creado 
 	for ($q=0;$q<count($Arreglo_modelos);$q++)
 	{
 		for($a=0;$a<2;$a++)
@@ -187,6 +269,7 @@
 			print_r("<br>");
 		}
 	}
+*/
 
 
 
@@ -203,71 +286,91 @@
 				// get data records from csv file
 				print_r ('Inica el ciclo');
 
-				$tabla = "t_Productos";
-				$item = "num_serie";
-				$orden = 'nombre';
-				
-				$datos_grabar = [];
+				$datos_grabar = array();
+				$num_reg_no_existen = 0;
+				$num_reg_existen = 0;
+				$ruta = "vistas/img/productos/default/anonymous.png";
 
-				$Arreglo_modelo[0][0] = "3";
-				$Arreglo_modelo[0][1] = "elitebook 840 g4";
-				$Arreglo_modelo[1][0] = "14";
-				$Arreglo_modelo[1][1] = "elitebook 745 g6";
-				$Arreglo_modelo[2][0] = "24";
-				$Arreglo_modelo[2][1] = "elitebook 747 g3";
-				
-				$Arreglo_marca[0][0] = "10";
-				$Arreglo_marca[0][1] = "hp";
-				$Arreglo_marca[1][0] = "11";
-				$Arreglo_marca[1][1] = "dell";
-
-				$Arreglo_periferico[0][0] = "10";
-				$Arreglo_periferico[0][1] = "laptop";
-				$Arreglo_periferico[1][0] = "3";
-				$Arreglo_periferico[1][1] = "desktop";
-
-				$reg_csv = strtolower("Elitebook 745 g6");
-				$reg_csv_marca = strtolower("HP");
-				$reg_csv_perif = strtolower("desktop");
-
-					$datos_grabar = ["id_modelo"=>Obtener_IdModelo($Arreglo_modelo,$reg_csv)];		
-					$datos_grabar = ["id_marca"=>Obtener_IdMarca($Arreglo_marca,$reg_csv_marca)];
-					$datos_grabar = ["id_periferico"=>Obtener_IdPeriferico($Arreglo_periferico,$reg_csv_perif)];
-		
-			 var_dump($datos_grabar);
-
-			 print("<br>");
-
-
-	/*
-				
 				while(($inv_it = fgetcsv($csv_file_it)) !== FALSE)
 				{
 					// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
 					// $fecha_inicio = date("Y-m-d",strtotime($cinta_record[1]));
+
 					if (!empty($inv_it[8]))
+					{
+						$valor = $inv_it[8]; // Serial
+						$item = "num_serie";
+						$tabla = "t_Productos";
+						$orden = "nombre";
+						$exite_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+						// if (!empty($exite_prod))
+						// if (!$exite_prod)
+							// Verifica si ya existe el serial en la tabla
+						if (empty($exite_prod))
 						{
-							$valor = $inv_it[8];
+							$datos_grabar = array("id_modelo"=>Obtener_IdModelo($Modelos_Obtenidos,strtolower($inv_it[7])),		
+																		"id_marca"=>Obtener_IdMarca($Marcas_Obtenidas,strtolower($inv_it[6])),
+																		"id_periferico"=>Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($inv_it[5])),"asset"=>$inv_it[0],
+																		"nomenclatura"=>$inv_it[4],
+																		"num_serie"=>$inv_it[8],
+																		"id_telefonia" =>1,
+																		"id_plan_tel" =>1,
+																		"num_tel" =>'',
+																		"cuenta" =>'',
+																		"direcc_mac_tel" =>'',
+																		"imei_tel" =>'',
+																		"num_ip" =>'',
+																		"edo_tel" =>'NO Aplica',
+																		"id_empleado" =>1,
+																		"id_almacen" =>1,
+																		"id_edo_epo" =>1,
+																		"stock" =>1,
+																		"precio_compra" =>0,
+																		"precio_venta" =>0,
+																		"comentarios" =>rtrim(" "),
+																		"loftware" =>'',
+																		"id_ubicacion" =>3,
+																		"id_linea" =>1,
+																		"estacion" =>'',
+																		"npa" =>'',
+																		"idf" =>'',
+																		"patch_panel" =>'',
+																		"puerto" =>'',
+																		"funcion" =>'',
+																		"jls" =>'',
+																		"qdc" =>'',
+																		"cuantas_veces" =>1,
+																		"imagen"=>$ruta
+																	);
+					
+																								
+							print_r('Asset = '.$inv_it[0].' ; ');
+							print_r('Current Hostname = '.$inv_it[4].' ; ');
+							print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						
+							print_r('Brand  Marca = '.$datos_grabar["id_marca"].' ; ');
+							print_r('Modelo = '.$datos_grabar["id_modelo"].' ; ');						
+							print_r('Serial = '.$inv_it[8].' ; ');						
+							print "<br>";
+														
+							$num_reg_no_existen++;
+												// Grabar el registro en la tabla.
+							$respuesta = "error";
+							$tabla = "t_Productos";
+							$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos_grabar);
 
-							$exite_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
-							// if (!empty($exite_prod))
-							if (!$exite_prod)
+							if ($respuesta != "ok")
 							{
-								print_r('Asset = '.$inv_it[0].' ');
-								print_r('Current Hostname = '.$inv_it[4].' ');
-								print_r('Kind = '.$inv_it[5].' ');						
-								print_r('Brand  = '.$inv_it[6].' ');
-								print_r('Modelo = '.$inv_it[7].' ');						
-								print_r('Serial = '.$inv_it[8].' ');						
-								print "<br>";
-								$num_reg_no_existen++;
+								print_r ("error al grabar el registros : ".$datos_grabar["num_serie"]);
+								print ("<br>");
 							}
-							else
-							{
-								$num_reg_existen++;
-							}
-
 						}
+						else
+						{
+							$num_reg_existen++;
+						}
+
+					} // if (!empty($inv_it[8]))
+
 
 /*	
 
@@ -350,6 +453,7 @@
 							</script>';          	
 						exit;
 
+*/
 
 				} //while(($inv_it = fgetcsv($csv_file_inv)) !== FALSE)
 
@@ -358,7 +462,7 @@
 				print_r("Total de Registros NO Existen: ".$num_reg_no_existen);
 
 				fclose($csv_file_it);
-*/
+
 
 			} // if(is_uploaded_file($_FILES['file']['tmp_name']))
 
