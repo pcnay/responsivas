@@ -189,6 +189,12 @@
 											<span>Productos Telefonos</span>
 										</a>
 									</li> 
+									<li>								
+										<a href="cap-rap-prod">
+											<i class="fa fa-circle-o"></i>
+											<span>Capturas Rapidas Productos</span>
+										</a>
+									</li> 
 								</ul> <!-- <ul class="treeview-menu"> -->
 
 						</li> <!-- <li class="treeview"> -->';

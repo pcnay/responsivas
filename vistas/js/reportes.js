@@ -341,3 +341,14 @@ $(".btnRep_Finanzas_Excel").click(function(){
 	window.open("extensiones/fpdf183/reportes/rep-finanz-excel.php?rep_finanzas.php&fechaInic="+Fecha_Inicial.value+"&fechaFin="+Fecha_Final.value,"_blank");
 	
 	})
+
+	// Evento Click para Imprimir los equipos Dañados.
+	$(".btnEpo_Danado").click(function(){
+		console.log("Click en Boton Equipo Dañado ..")
+		
+		// Abrir en una ventana, que contiene la carpeta de la extension PDF.
+		//window.open("extensiones/tcpdf/pdf/imp_responsiva.php?idResponsiva="+id_Responsiva,"_blank");
+		// window.open("extensiones/tcpdf/pdf/rep_epos_prestados.php","_blank");
+		window.open("extensiones/fpdf183/reportes/rep-epodanado.php","_blank");
+		
+		})

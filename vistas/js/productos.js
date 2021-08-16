@@ -118,6 +118,17 @@ $("#nuevoSerial").bind('keypress', function(event) {
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
+$("#rap-nuevoSerial").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Z0-9-]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Validar los caracteres permitidos 
+// Validar la entrada.
 $("#editarSerial").bind('keypress', function(event) {
   var regex = new RegExp("^[A-Z0-9-]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
@@ -167,6 +178,71 @@ $("#nuevoSerial").change(function(){
 	})
 
 }) // $("#nuevoSerial").change(function(){
+
+// Revisando que el "Serial" no este repetido.
+// Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>
+$("#rap-nuevoSerial").change(function(){
+	// Remueve los mensajes de alerta. 
+	$(".alert").remove();	
+
+	// Obtienedo el valor del id=nuevoSerial.
+
+	let serial = $(this).val();
+	//let Editar = 'N';
+	//validarCampo(serial,'Num_Serial',Editar);
+	
+	//console.log("Serial",serial);
+
+	// Obtener datos de la base de datos
+	var datos = new FormData();
+	// Genera 
+	datos.append("validarSerial",serial);
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){			
+			// Si "respuesta = Valor, Verdadero "
+			//console.log("encontro",respuesta);
+			if (respuesta)
+			{
+				// Coloca una barra con mensaje de advertencia  en la etiqueta.
+				$("#rap-nuevoSerial").parent().after('<div class="alert alert-warning" >Este Serial Existe </div>');
+				$("#rap-nuevoSerial").val("");
+			}
+			else
+			{
+				// Como PHP no puede interacturar con JavaScript, ya que son totalmente diferentes, por lo que se tiene que utilizar "ajax" para comunicarse desde JavaScript a PHP.
+				console.log("Valor de Serial : ",serial);
+				let dato_nuevo = new FormData();
+				dato-RTCStatsProvider.append("serial-rap",dato_nuevo);
+				$.ajax({
+					url:"ajax/productos.ajax.php",
+					method:"POST",
+					data:datos,
+					cache:false,
+					contentType:false,	
+					processData:false,
+					dataType:"json",
+					sucess:function(condicion){
+						if (condicion)
+						{
+							console.log("Grabado con exito");
+						}
+					}
+
+				})
+			}
+
+		}
+	})
+
+}) // $("#nuevoSerial").change(function(){
+
 
 // Revisando que el "Serial" no este repetido, cuando se edita el numero de serie.
 // Cuando se escriba en el input : <input type="text" class="form-control input-lg" name="nuevoSerial" id="nuevoSerial" placeholder = "Ingresar el Serial" required>

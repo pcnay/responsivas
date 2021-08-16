@@ -81,11 +81,11 @@
   $pdf = new PDF('L','mm','Letter');
   $pdf->AliasNbPages(); // Para determinar el número total de hojas.
   $pdf->AddPage();
-	$pdf->SetFont('Arial','',12);
+	$pdf->SetFont('Arial','',11);
 	
 		//Cell(Ancho,Alto,Texto,Border=1,SigLinea=1 0=SinSaltoLinea,'Centrado,Left,Right',Relleno 0=Sin 1=Con)
 	
-	$pdf->SetFont('Arial','',12);
+	$pdf->SetFont('Arial','',11);
 
   for ($n=0;$n<count($tel_Asignados);$n++)
   {

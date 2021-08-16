@@ -69,7 +69,7 @@
 													<!-- Se incrementa en 1, ya que los arreglos comienzan desde 0-->
 													<td>'.($key+1).'</td>
 													<!-- Para mostrar todas las palabras en mayusculas, utilizando clases de "Bootstrap"-->
-													<td class="text-uppercase">'.$value["descripcion"].'</td>							
+													<td>'.$value["descripcion"].'</td>							
 													<td>
 														<div class="btn-group">
 															<!-- data-toggle="modal" data-target="#modalEditarEdo_Epo" para activar una ventana modal -->

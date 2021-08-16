@@ -30,6 +30,22 @@
 
 		}
 
+
+static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
+{
+	
+	if ($item == null)
+	{
+		$stmt = Conexion::conectar()->prepare("SELECT tp.id_almacen,talm.nombre AS Almacen,tp.id_producto AS id_producto,tp.asset,tp.id_ubicacion,tubic.descripcion AS Ubicacion,tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.comentarios,tp.id_marca,tp.id_almacen,tp.id_modelo,tp.id_edo_epo,tp.nomenclatura,tm.descripcion AS Marca,tmod.descripcion AS Modelo,tedoepo.descripcion AS Edo_Epo FROM t_Productos tp INNER JOIN t_Marca tm ON tp.id_marca = tm.id_marca INNER JOIN t_Almacen talm ON tp.id_almacen = talm.id_almacen INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Ubicacion tubic ON tp.id_ubicacion = tubic.id_ubicacion INNER JOIN t_Edo_epo tedoepo ON tp.id_edo_epo = tedoepo.id_edo_epo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE tp.id_edo_epo = 2 ORDER BY tperif.nombre ASC");
+		$stmt->execute();
+		$registros = $stmt->fetchAll();			
+		// Cerrar la conexion de la instancia de la base de datos.
+		$stmt->closeCursor();
+		$stmt=null;
+		return $registros;						 
+	}
+}
+
 		// Mostrar productos, en el DataTable.
 		static public function mdlMostrarProductos($tabla,$item,$valor,$orden)
 		{
@@ -106,7 +122,7 @@
 	{
 		if ($item != null)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT tp.id_empleado,tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.id_almacen,alm.nombre AS Almacen, tp.id_modelo,tp.nomenclatura,tmod.descripcion AS Modelo,tp.precio_venta AS Precio_Venta,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Almacen alm ON tp.id_almacen = alm.id_almacen INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE tp.id_almacen = :item ORDER BY tperif.nombre ASC");
+			$stmt = Conexion::conectar()->prepare("SELECT tp.id_empleado,tperif.id_periferico,tperif.nombre AS Periferico,tp.num_serie AS Serial,tp.id_almacen,alm.nombre AS Almacen, tp.id_modelo,tp.nomenclatura,tp.asset,tmod.descripcion AS Modelo,tp.precio_venta AS Precio_Venta,emp.nombre AS Nom_emp,emp.apellidos AS Empleado, emp.ntid AS Ntid FROM t_Productos tp INNER JOIN t_Empleados emp ON tp.id_empleado = emp.id_empleado INNER JOIN t_Almacen alm ON tp.id_almacen = alm.id_almacen INNER JOIN t_Modelo tmod ON tp.id_modelo = tmod.id_modelo INNER JOIN t_Periferico tperif ON tp.id_periferico = tperif.id_periferico  WHERE tp.id_almacen = :item ORDER BY tperif.nombre ASC");
 			$stmt->bindParam(":item", $valor,PDO::PARAM_INT);
 			$stmt->execute();
 			$registros = $stmt->fetchAll();			

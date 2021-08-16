@@ -371,95 +371,12 @@
 
 					} // if (!empty($inv_it[8]))
 
-
-/*	
-
-						$tabla = "t_Cintas";
-
-						$datos=array();									
-						$datos = array("num_serial"=>$cinta_record[0],
-														"fecha_inic"=>$fecha_inic,
-														"fecha_final"=>$fecha_final,
-														"ubicacion"=>$cinta_record[3],
-														"comentarios"=>$comentario_adic);
-	
-						//var_dump($datos);								
-	
-					$localizar_Cinta = ModeloSubirCsv::localizarCinta($tabla,$datos);	
-					
-					// En el caso de que exista la cinta, revisara cada campo para actualizar.
-
-					//if (!$localizar_Cinta)
-					if ($localizar_Cinta)
-					{
-						// Para actualizar cada campo de la tabla 
-						if ($datos["fecha_inic"] != $localizar_Cinta["fecha_inic"])
-						{
-							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
-	
-							$campoActualizar = 'fecha_inic';
-							$contenidoActualizar = date("Y-m-d",strtotime($datos["fecha_inic"]));
-							$campoCondicion = 'num_serial';
-							$valorCondicion = $datos["num_serial"];							
-							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
-						}
-	
-						if ($datos["fecha_final"] != $localizar_Cinta["fecha_final"])
-						{
-							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
-	
-							$campoActualizar = 'fecha_final';
-							$contenidoActualizar = date("Y-m-d",strtotime($datos["fecha_final"]));
-							$campoCondicion = 'num_serial';
-							$valorCondicion = $datos["num_serial"];							
-							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
-
-						}
-
-						if ($datos["ubicacion"] != $localizar_Cinta["ubicacion"])
-						{
-							// Se pasan como parametro los campos de: El "num_serial" que es por el cual buscara, "campo_actualizar"
-	
-							$campoActualizar = 'ubicacion';
-							$contenidoActualizar = $datos["ubicacion"];
-							$campoCondicion = 'num_serial';
-							$valorCondicion = $datos["num_serial"];							
-							$actualizar = ModeloSubirCsv::actualizarCsvCinta($tabla,$campoActualizar,$contenidoActualizar,$campoCondicion,$valorCondicion);							
-
-						}
-					}
-					else
-					{	
-						// Graba cada registro en la tabla
-						$respuesta = ModeloSubirCsv::mdlSubirCsv($tabla,$datos);
-					}
-
-						/*
-						echo '<script>           
-						Swal.fire ({
-							type: "success",
-							title: "La Cinta fue encontrada ",
-							showConfirmButton: true,
-							confirmButtonText: "Cerrar",
-							closeOnConfirm: false
-							}).then(function(result){
-								if (result.value)
-								{
-									//window.location="cintas";
-								}
-	
-								});
-			
-							</script>';          	
-						exit;
-
-*/
-
 				} //while(($inv_it = fgetcsv($csv_file_inv)) !== FALSE)
 
 				print_r('<br>');
-				print_r("Total de Registros Si Existen: ".$num_reg_existen);
-				print_r("Total de Registros NO Existen: ".$num_reg_no_existen);
+				print_r("Seriales que ya existen =  ".$num_reg_existen);
+				print_r('<br>');
+				print_r("Seriales que NO existen = ".$num_reg_no_existen);
 
 				fclose($csv_file_it);
 

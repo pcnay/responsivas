@@ -218,7 +218,7 @@
 						<br>						
 					</div>					
 						<button class="btn btn-success btnSubirCinta" id="subir_cinta" disabled >Subir Cintas</button>	
-						<button class="btn btn-success btnSubirInvIT" id="inv_it" >Inv I.T.</button>						
+						<button class="btn btn-success btnSubirInvIT" id="inv_it" disabled >Inv I.T.</button>						
 						<br>
 
 				</div>
@@ -275,6 +275,45 @@
 							<button class="btn btn-success btnRep_Finanzas_Excel" id="rep_Finanzas_Excel">
 								Exportar Excel
 							</button>  
+
+							<!-- </a> -->
+
+							<!--<button type="submit" class='btn btn-info btnImpProdAlm'>Imprimir					
+							</button>       -->
+										
+						</div> <!-- <div class="form-group"> -->
+
+					</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+				</div> <!-- <div class = "col-lg-6 col-xs-12">  -->
+
+			</div> <!-- <div class="row"> -->
+
+			<div class="row">
+
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+						<label>Equipos Dañados: </label>
+						<br>
+					</div>
+
+					<button class="btn btn-success btnEpo_Danado" id="epo_danado">Imprimir</button> 
+
+				</div>
+
+				<div class = "col-lg-6 col-xs-12">
+					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
+					<div class="box box-success">
+						<div class="box-header with-border"></div>
+						<label>Reporte Nuevos</label>
+						
+					</div>							
+					
+					<button class="btn btn-success btnRep_Finanzas" id="rep_Finanzas">
+						Imprimir
+					</button>  
 
 							<!-- </a> -->
 

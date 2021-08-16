@@ -1,14 +1,4 @@
 <?php
-// Solo el administrador puede entrar a Reportes
-	// Se realiza para que no entren desde la URL de la barra de direcciones
-	if ($_SESSION["perfil"] == "Operador" || $_SESSION["perfil"] == "Supervisor")
-	{
-		echo '
-			<script>
-				window.location = "inicio";
-			</script>';
-			return;			
-	}
 	
 //ob_start();
   //ob_clean();
@@ -19,8 +9,6 @@
 	require_once('../../../modelos/almacen.modelo.php');
 	require_once('../../../controladores/perifericos.controlador.php');
 	require_once('../../../modelos/perifericos.modelo.php');
-	require_once('../../../controladores/empleados.controlador.php');
-	require_once('../../../modelos/empleados.modelo.php');
 	require_once('../../../controladores/modelos.controlador.php');
 	require_once('../../../modelos/modelos.modelo.php');
 
@@ -28,23 +16,22 @@
   while (ob_get_level())
   ob_end_clean();
 	
-	header("Content-Encoding: None", true);
+	header("Content-Encoding: UTF8", true);
 	
 	// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
 	$fecha = date("m-Y-d");
 	//$fecha_devol = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
 
-	// Imprimir los datos.
-	$item = "id_almacen"; 
-	// Este valor se mando desde reportes.js, en “windows.open (extensiones…….)
-	$valor = $_GET["num_AlmImp"];
 	
 	//print_r($valor);
 	// IMPORTANTE SE DEBE GENERAR LAS CONSULTAS PARA LOS REPORTES, YA QUE ESTE VALOR DEBE RETORNAR:
 	// return $stmt->fetchAll(); YA QUE COMO SE CONSULTA PARA UN SOLO VALOR SE DEBE COLOCAR "ALL"
+	$tabla = "t_Productos";
+	$item = null;
+	$valor = null;
+	$orden = "nombre";
+	$productos = ModeloProductos::mdlMostrarProdDanado($tabla,$item,$valor,$orden);
 	
-	$Por_almacen = ControladorProductos::ctrMostrarProductosImpAlm($item,$valor);
-	//var_dump($Por_almacen);
 
 	class PDF extends FPDF
   {
@@ -58,18 +45,16 @@
 			$this->Cell(60);
 			
       // Este valor "135" es para centrar, independiente del texto escrito
-      $this->Cell(135,10,'REPORTE PRODUCTOS POR ALMACEN',0,0,'C');
-			$this->Ln(5);
-			
-			$this->Cell(135,5,date(),0,1,'C',0);
+      $this->Cell(135,10,'REPORTE EQUIPOS DANADOS',0,0,'C');
+			$this->Ln(10);
+						
       //$this->Cell(10,5,'ID',1,0,'C',0);
-      $this->Cell(43,5,'PERIFERICO',1,0,'C',0);
-			$this->Cell(20,5,'NTID',1,0,'C',0);
-			$this->Cell(60,5,'ASIGNADO',1,0,'C',0);      
-			$this->Cell(40,5,'MODELO',1,0,'C',0);  
-			$this->Cell(43,5,'NUM. SERIE',1,0,'C',0);
-			$this->Cell(38,5,'NOMENCLATURA',1,0,'C',0); // 1,1 = Salto de Linea
-			$this->Cell(18,5,'P.VTA',1,1,'C',0); // 1,1 = Salto de Linea
+      $this->Cell(30,5,'PERIFERICO',1,0,'C',0);			
+			$this->Cell(38,5,'SERIAL',1,0,'C',0);
+			$this->Cell(20,5,'MARCA',1,0,'C',0);      
+			$this->Cell(35,5,'MODELO',1,0,'C',0);  			
+			$this->Cell(40,5,'UBICACION',1,0,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(100,5,'COMENTARIO',1,1,'C',0); // 1,1 = Salto de Linea
     }
     function Footer()
     {
@@ -86,20 +71,18 @@
 	$pdf->SetFont('Arial','',12);
 	
 		//Cell(Ancho,Alto,Texto,Border=1,SigLinea=1 0=SinSaltoLinea,'Centrado,Left,Right',Relleno 0=Sin 1=Con)
-	$pdf->SetFont('Arial','B',14);
-	$pdf->Cell(30,5,$Por_almacen[0]['Almacen'],0,1,'L',0);
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial','',10);
-  for ($n=0;$n<count($Por_almacen);$n++)
+  for ($n=0;$n<count($productos);$n++)
   {
     //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-		$pdf->Cell(43,5,$Por_almacen[$n]['Periferico'],0,0,'L',0);
-		$pdf->Cell(20,5,$Por_almacen[$n]['Ntid'],0,0,'L',0);
-		$pdf->Cell(60,5,$Por_almacen[$n]['Nom_emp'].$Por_almacen[$n]['Empleado'],0,0,'L',0);
-		$pdf->Cell(40,5,$Por_almacen[$n]['Modelo'],0,0,'L',0);
-		$pdf->Cell(43,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
-		$pdf->Cell(38,5,$Por_almacen[$n]['asset'],0,0,'L',0);
-		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'L',0);
+		$pdf->Cell(30,5,$productos[$n]['Periferico'],0,0,'L',0);
+		$pdf->Cell(38,5,$productos[$n]['Serial'],0,0,'L',0);
+		$pdf->Cell(20,5,$productos[$n]['Marca'],0,0,'L',0);
+		$pdf->Cell(35,5,$productos[$n]['Modelo'],0,0,'L',0);
+		$pdf->Cell(40,5,$productos[$n]['Almacen'],0,0,'L',0);
+		$pdf->Cell(100,5,$productos[$n]['comentarios'],0,1,'L',0);
+		
 
 		/*
     // MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))

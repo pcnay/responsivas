@@ -146,36 +146,6 @@
 			$orden = "nombre";
 			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 			echo json_encode($respuesta);
-			
-			/*
-			// Para el caso de que se edita utilizando un dispositivo movil
-			if ($this->traerProductos == "ok")
-			{
-				$item = null;
-				$valor = null;
-				$orden = "id";
-				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
-				echo json_encode($respuesta);	
-			}
-			else if ($this->nombreProducto != "")
-			{
-				$item = "Periferico";
-				$valor = $this->nombreProducto;
-				$orden = "id_producto";
-				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
-				echo json_encode($respuesta);
-			
-			}		// if ($this->traerProductos == "ok")
-			else
-			{
-				$item = "id_producto";
-				$valor = $this->idProducto;
-				$orden = "nombre";
-				$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
-				echo json_encode($respuesta);
-			}
-			*/
-
 				
 		} // public function ajaxEditarProducto()
 
