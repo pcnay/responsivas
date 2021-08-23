@@ -95,8 +95,9 @@
 					$datosJson  .= '[
 							"'.($i+1).'",
 							"'.$imagen.'",
-							"'.$productos[$i]["Periferico"].'",
+							"'.$productos[$i]["Periferico"].'",							
 							"'.$productos[$i]["Serial"].'",
+							"'.$productos[$i]["asset"].'",
 							"'.$productos[$i]["num_tel"].'",
 							"'.$productos[$i]["imei_tel"].'",
 							"'.$stock.'",							

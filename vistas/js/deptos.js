@@ -25,7 +25,10 @@ $("#editarDepto").bind('keypress', function(event) {
 // =======================================
 // Editar Deptos:
 // ======================================
-$(".btnEditarDepto").click(function(){
+
+//$(".btnEditarDepto").click(function(){
+	// Se tiene que agrgar esta instrucción ya que de lo contrario cuando se Edite no onbtendra los datos.
+	$(".tablas tbody").on("click","button.btnEditarDepto",function(){
 	// Se obtiene el valor de "idDepto"
 	var idDepto = $(this).attr("idDepto");
 

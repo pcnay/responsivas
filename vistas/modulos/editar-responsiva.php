@@ -384,6 +384,7 @@
 									<th>Imagen</th>
 									<th>Descripcion</th>
 									<th>Serial</th>
+									<th>Num Inv</th>
 									<th>Telefono</th>
 									<th>IMEI</th>
 									<th>Stock</th>
@@ -738,3 +739,4 @@
 
 </div> <!-- <div id="modalAgregarEmpleado" class="modal fade" role="dialog"> -->
 
+										
