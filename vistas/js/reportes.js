@@ -224,7 +224,7 @@ $(".btnSubirCinta").click(function(){
 
 // Subir el Inventario de I.T. (Hoja de Excel) 
 $(".btnSubirInvIT").click(function(){
-	console.log("Se oprimio el boton de Inv I.T.")
+	//console.log("Se oprimio el boton de Inv I.T.")
 	window.open("index.php?ruta=inv_it","_blank");
 })
 

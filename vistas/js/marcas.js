@@ -35,7 +35,7 @@ $('.tablaMarcas').DataTable({
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaMarca").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z- ]+$");
+  var regex = new RegExp("^[A-Za-z-0-9/ ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -46,7 +46,7 @@ $("#nuevaMarca").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarMarca").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z- ]+$");
+  var regex = new RegExp("^[A-Za-z-0-9/ ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
