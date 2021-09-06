@@ -420,8 +420,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 				$csv_file_it = fopen($_FILES['file']['tmp_name'], 'r');
 				//fgetcsv($csv_file);
 				// get data records from csv file
-				print_r ('Inica el ciclo');
-
+				
 				$datos_grabar = array();
 				$num_reg_no_existen = 0;
 				$num_reg_existen = 0;
@@ -535,7 +534,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 																		"imagen"=>$ruta
 																	);
 					
-																								
+							print_r('Registros GRABADOS ======> ');																								
 							print_r('Asset = '.$inv_it[0].' ; ');
 							print_r('Current Hostname = '.$inv_it[4].' ; ');
 							print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						
@@ -549,18 +548,20 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos"))
 							{
 								$respuesta = "error";
+								//$respuesta = "ok";
 								$tabla = "t_Productos";
 								// Descomentarla para que grabe en la tabla
 								$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos_grabar);
 
 								if ($respuesta != "ok")
 								{		
-									print_r ("error al grabar el registros : ".$datos_grabar["num_serie"]);
+									print_r ("error al grabar el registros en la Base de Datos  : ".$datos_grabar["num_serie"]);
 									print ("<br>");
 								}
 							}
 							else   // if ($datos_grabar["id_modelo"] != "Sin Modelos") ....
 							{
+								print_r("Registros NO GRABADOS ===> : ");
 								print_r('Asset = '.$inv_it[0].' ; ');
 								print_r('Current Hostname = '.$inv_it[4].' ; ');
 								print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						

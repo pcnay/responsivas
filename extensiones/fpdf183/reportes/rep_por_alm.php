@@ -90,6 +90,8 @@
 	$pdf->Cell(30,5,$Por_almacen[0]['Almacen'],0,1,'L',0);
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial','',10);
+	$total = 0;
+
   for ($n=0;$n<count($Por_almacen);$n++)
   {
     //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
@@ -100,6 +102,8 @@
 		$pdf->Cell(43,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
 		$pdf->Cell(38,5,$Por_almacen[$n]['asset'],0,0,'L',0);
 		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'L',0);
+		$total = $total+$Por_almacen[$n]['Precio_Venta'];
+		//$pdf->Cell(18,5,$total,0,1,'L',0);
 
 		/*
     // MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))
@@ -107,6 +111,11 @@
 		*/
 
 	}
+
+	$pdf->SetFont('Arial','B',11);
+	$pdf->Cell(203,5,'',0,0,'L',0);	
+	$pdf->Cell(120,5,'Total ========> $'.number_format($total,2));
+	
 
   $pdf->Output();
   ob_end_flush();

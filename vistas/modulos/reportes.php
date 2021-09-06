@@ -218,7 +218,7 @@
 						<br>						
 					</div>					
 						<button class="btn btn-success btnSubirCinta" id="subir_cinta" disabled >Subir Cintas</button>	
-						<button class="btn btn-success btnSubirInvIT" id="inv_it" disabled >Inv I.T.</button>						
+						<button class="btn btn-success btnSubirInvIT" id="inv_it" >Inv I.T.</button>						
 						<br>
 
 				</div>
