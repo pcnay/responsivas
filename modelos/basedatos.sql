@@ -7,6 +7,8 @@
 -- Se debe accesar al directorio donde se encuentra el "script.sql" y ejecutar el comenado "mysql" desde una terminal
 -- $ mysql -u nom-usr -p NombreBaseDatos < script.sql
 -- Otra Forma :
+	Es el usuario y contraseña que se definio cuando se creo el usuario (asignando permisos para crear, borrar tablas.)
+
 --    mysql -u usuario -p NombreBaseDatos
 --    source script.sql ó \. script.sql
 
@@ -289,22 +291,37 @@ CREATE TABLE t_Responsivas
 	ON DELETE RESTRICT ON UPDATE CASCADE	
 );
 
-CREATE TABLE t_Tareas
+CREATE TABLE t_Estatus
 (
-  id_tarea SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  	
+  id_estatus SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  descripcion VARCHAR(20) NOT NULL	
+);
+
+CREATE TABLE t_Categorias
+(
+  id_categoria SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  descripcion VARCHAR(40) NOT NULL	
+);
+
+CREATE TABLE t_Tareas
+(	
+  id_tarea SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  
+	id_estatus SMALLINT UNSIGNED NOT NULL,
+	id_usuario SMALLINT UNSIGNED NOT NULL,
 	id_empleado SMALLINT UNSIGNED NOT NULL,
-	id_almacen SMALLINT UNSIGNED NOT NULL,	
-	id_usuario SMALLINT UNSIGNED NOT NULL,	  
-	tarea_asignada VARCHAR(70) NOT NULL,	
-	ticket VARCHAR(30) NULL,
-	comentario1 TEXT,
-	comentario2 TEXT,
-	fecha_inicio DATE NULL,
-	fecha_fin DATE NULL,
-	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
-	ON DELETE RESTRICT ON UPDATE CASCADE,
-	FOREIGN KEY(id_almacen) REFERENCES t_Almacen(id_almacen)
+	id_categoria SMALLINT UNSIGNED NOT NULL,
+	id_ubicacion SMALLINT UNSIGNED NOT NULL,
+	tareas varchar(120) NULL,
+	ticket varchar(25) NULL,
+	fecha DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	comentarios TEXT NULL,
+	FOREIGN KEY(id_estatus) REFERENCES t_Estatus(id_estatus)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY(id_usuario) REFERENCES t_Usuarios(id_usuario)
-	ON DELETE RESTRICT ON UPDATE CASCADE	
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_empleado) REFERENCES t_Empleados(id_empleado)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_categoria) REFERENCES t_Categorias(id_categoria)
+	ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion) ON DELETE RESTRICT ON UPDATE CASCADE
 );
