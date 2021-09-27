@@ -534,7 +534,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 																		"imagen"=>$ruta
 																	);
 					
-							print_r('Registros GRABADOS ======> ');																								
+							//print_r('Registros GRABADOS ======> ');																								
 							print_r('Asset = '.$inv_it[0].' ; ');
 							print_r('Current Hostname = '.$inv_it[4].' ; ');
 							print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						
@@ -543,7 +543,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 							print_r('Serial = '.$inv_it[8].' ; ');						
 							print "<br>";
 														
-							$num_reg_no_existen++;
+							//$num_reg_no_existen++;
 							// Grabar el registro en la tabla.
 							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos"))
 							{
@@ -553,10 +553,14 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 								// Descomentarla para que grabe en la tabla
 								$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos_grabar);
 
-								if ($respuesta != "ok")
-								{		
+								if ($respuesta == "ok")
+								{	
+									$num_reg_no_existen++;	
+								}
+								else
+								{
 									print_r ("error al grabar el registros en la Base de Datos  : ".$datos_grabar["num_serie"]);
-									print ("<br>");
+									print ("<br>");									
 								}
 							}
 							else   // if ($datos_grabar["id_modelo"] != "Sin Modelos") ....
@@ -572,7 +576,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 							}
 							
 						}
-						else
+						else // if (empty($exite_prod))
 						{
 							$num_reg_existen++;
 						}

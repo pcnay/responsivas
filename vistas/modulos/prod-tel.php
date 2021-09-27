@@ -43,6 +43,7 @@
                 <th style="width:10px">#</th>
                 <th>Imagen</th>
                 <th>Descripcion</th>
+								<th>Modelo</th>
                 <th>Serial</th>
 								<th>Hostname</th>
 								<th>Asset</th>                

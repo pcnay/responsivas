@@ -101,7 +101,7 @@
 		$pdf->Cell(40,5,$Por_almacen[$n]['Modelo'],0,0,'L',0);
 		$pdf->Cell(43,5,$Por_almacen[$n]['Serial'],0,0,'L',0);
 		$pdf->Cell(38,5,$Por_almacen[$n]['asset'],0,0,'L',0);
-		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'L',0);
+		$pdf->Cell(18,5,number_format($Por_almacen[$n]['Precio_Venta'],2),0,1,'R',0);
 		$total = $total+$Por_almacen[$n]['Precio_Venta'];
 		//$pdf->Cell(18,5,$total,0,1,'L',0);
 

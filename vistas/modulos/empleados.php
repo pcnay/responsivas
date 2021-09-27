@@ -134,21 +134,37 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="far fa-building"></i></span>
+
+						<!-- Captura el puesto del empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" maxlength="45" class="form-control input-lg" id="nuevoPuesto" name="nuevoPuesto" placeholder = "Ingresar El Puesto" required>
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<div id = "tablaPuestos"> </div>
+						
+						<!-- 		
                 <select class="form-control input-lg" id= "nuevoPuesto" name="nuevoPuesto" required>
                   <option value="">Seleccionar Puesto</option>
 									<?php
 										// Se obtendrán los Puestos desdes la base de datos.
-										$item = null;
-										$valor = null;						
+										//$item = null;
+										//$valor = null;						
 
-										$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
-										foreach ($puestos as $key => $value)
-										{
-											echo '<option value = "'.$value["id_puesto"].'">'.$value["descripcion"].'</option>';
-										}
+										//$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
+										//foreach ($puestos as $key => $value)
+										//{
+										//	echo '<option value = "'.$value["id_puesto"].'">'.$value["descripcion"].'</option>';
+									//	}
 									?>
                 </select>                
-              </div> <!-- <div class = "input-group"> -->           
+              </div> <div class = "input-group">
+						 -->           
+
+
+
             </div> <!-- <div class="form-group"> -->
 
 

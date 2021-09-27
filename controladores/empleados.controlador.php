@@ -403,7 +403,15 @@
 		$respuesta = ModeloProductos::mdlMostrarSumaVentas($tabla);
 		return $respuesta;
 	}
-	
+
+	// Buscar "Puesto" en la capturas del "Empleado"
+	static public function ctrBuscarPuesto($buscar)
+	{
+		$tabla = "t_Puesto";
+		$respuesta = ModeloEmpleados::mdlBuscarPuesto($tabla,$buscar);
+		return $respuesta;
+	}
+
 } // class ControladorProductos
 
 

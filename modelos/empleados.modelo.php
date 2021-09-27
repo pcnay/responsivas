@@ -151,6 +151,29 @@
 
 		}
 
+		// Buscar Puesto 		
+		static public function mdlBuscarPuesto($tabla,$buscar)
+		{
+			//$buscar = '%'.$buscar.'%';			
+			$buscar = $buscar.'%';			
+			$stmt = Conexion::conectar()->prepare("SELECT id_puesto,descripcion FROM t_Puesto WHERE descripcion LIKE :buscar");
+			$stmt->bindParam(":buscar",$buscar,PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				$registros = $stmt->fetchAll();			
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
+			}
+			else
+			{
+				$stmt->closeCursor();
+				$stmt=null;
+				return " ";
+			}
+
+		}
+
 		/*
 		// Actualizar Producto, cuando se realiza la Venta. 
 		static public function mdlActualizarProducto($tabla,$item1,$valor1,$valor2)

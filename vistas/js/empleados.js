@@ -634,3 +634,44 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 	window.open("vistas/modulos/subir_resp.php?Ntid_Emp="+idEmpleado,"_blank");	
 	
 	});
+
+	// Para buscar los puestos desde una etiqueta Input, de la captura de Empleados.
+	function buscar_puesto(nombre_puesto)
+	{
+		$.ajax({
+			url:'ajax/buscar_puestos.php',
+			type:'POST',
+			dataType:'html',
+			data:{buscar:nombre_puesto},
+		})
+		.done (function(respuesta){
+			// Agrega los puestos encontrados en el Div "tablaPuestos"
+			$("#tablaPuestos").html(respuesta);
+		})
+		.fail(function(){
+			//$("#tablaPuestos").html ("<p>Puesto NO encontrado</p>");
+		})
+	}
+
+	// Evento donde oprimen la tecla en la etiqueta "nuevo_Puesto"
+	$(document).on('keyup','#nuevoPuesto',function()
+	{
+		let valor = $(this).val();
+		if (valor != "")
+		{
+			//console.log("Teclas Oprimidas : ",valor);
+			buscar_puesto(valor);
+		}
+	
+	})
+
+	// Cuando se oprime el boton para obtener el id_puesto del Input
+	$(document).on("click",".btnSeleccPuesto",function(){	
+	/* <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id "] .'" data-toggle="modal"  */
+	var ObtenerIdPuesto =$(this).attr("idPuestoSelecc");
+	console.log("El Id del Puesto : ",ObtenerIdPuesto);
+
+	$("#nuevoPuesto").val(parseInt(ObtenerIdPuesto));
+
+	});
+
