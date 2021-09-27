@@ -28,6 +28,9 @@ $salida = "";
 			// Se tiene que convertir de Entero a Cadenas, de lo contrario no asigna el valor a la idPuestoSelecc
 			for ($n=0;$n<count($puestos);$n++)
   		{
+				// 
+				//"nombrePuesto = .$puestos[$n]['descripcion']. 
+
 				$salida .= "<tr>
 					<td>".$puestos[$n]['id_puesto']."</td>
 					<td>".$puestos[$n]['descripcion']."</td>

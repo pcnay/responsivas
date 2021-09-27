@@ -97,6 +97,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <!-- Clases de BootStrap para las formularios-->
 
 						<!-- Capturar el NT ID -->
+						<label for="ntid_empleado">NTID Empleado:</label>			
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
@@ -133,16 +134,14 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 						<!-- Captura el puesto del empleado -->
             <div class="form-group">
               <div class = "input-group">
-                <span class="input-group-addon"><i class="far fa-building"></i></span>
-
-						<!-- Captura el puesto del empleado -->
-            <div class="form-group">
-              <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                <input type="text" maxlength="45" class="form-control input-lg" id="nuevoPuesto" name="nuevoPuesto" placeholder = "Ingresar El Puesto" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id="nuevo_Puesto" name="nuevo_Puesto" placeholder = "Ingresar El Puesto" required>
+								<input type="hidden"  name="nuevoPuesto"  id="nuevoPuesto" required>
+
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
 						<div id = "tablaPuestos"> </div>
 						
 						<!-- 		

@@ -654,7 +654,7 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 	}
 
 	// Evento donde oprimen la tecla en la etiqueta "nuevo_Puesto"
-	$(document).on('keyup','#nuevoPuesto',function()
+	$(document).on('keyup','#nuevo_Puesto',function()
 	{
 		let valor = $(this).val();
 		if (valor != "")
@@ -669,9 +669,31 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 	$(document).on("click",".btnSeleccPuesto",function(){	
 	/* <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id "] .'" data-toggle="modal"  */
 	var ObtenerIdPuesto =$(this).attr("idPuestoSelecc");
-	console.log("El Id del Puesto : ",ObtenerIdPuesto);
+	//console.log("El Id del Puesto : ",ObtenerIdPuesto);
 
-	$("#nuevoPuesto").val(parseInt(ObtenerIdPuesto));
+	//console.log("id_Puesto",idPuesto);
+	// Para agregar datos 
+	var datos = new FormData();
+	datos.append("idPuesto",ObtenerIdPuesto); // Se crea la variable "POST", "idPuesto"
 
+	$.ajax({
+		url:"ajax/puestos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,	
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			// Viene desde : <div id="modalEditarPuesto" class="modal fade" role="dialog">, "puestos.php", se le asigna el valor que se retorno el Ajax.
+			$("#nuevo_Puesto").val(respuesta["descripcion"]);
+		}	
+
+	}); // $.ajax({ ......
+
+		$("#nuevoPuesto").val(parseInt(ObtenerIdPuesto));
+		$(".tablas").hide();
+		$("#nuevoDepto").focus();
 	});
 

@@ -11,7 +11,7 @@ $(".tablas tbody").on("click","button.btnEditarPuesto",function(){
 	// Se obtiene el valor de "idPuesto"
 	var idPuesto = $(this).attr("idPuesto");
 	
-	console.log("id_Puesto",idPuesto);
+	//console.log("id_Puesto",idPuesto);
 	// Para agregar datos 
 	var datos = new FormData();
 	datos.append("idPuesto",idPuesto); // Se crea la variable "POST", "idPuesto"
