@@ -174,6 +174,29 @@
 
 		}
 
+
+		// Buscar Centro De Costos 		
+		static public function mdlBuscarCC($tabla,$buscar)
+		{
+			//$buscar = '%'.$buscar.'%';			
+			$buscar = '%'.$buscar.'%';			
+			$stmt = Conexion::conectar()->prepare("SELECT id_centro_costos,num_centro_costos,descripcion FROM t_Centro_Costos WHERE num_centro_costos LIKE :buscar");
+			$stmt->bindParam(":buscar",$buscar,PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				$registros = $stmt->fetchAll();			
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
+			}
+			else
+			{
+				$stmt->closeCursor();
+				$stmt=null;
+				return " ";
+			}
+
+		}		
 		/*
 		// Actualizar Producto, cuando se realiza la Venta. 
 		static public function mdlActualizarProducto($tabla,$item1,$valor1,$valor2)

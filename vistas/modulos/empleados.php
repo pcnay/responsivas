@@ -230,13 +230,15 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Captura el Centro De Costos del empleado -->
+					<!-- 
+						<!-- Captura el Centro De Costos del empleado 
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="far fa-building"></i></span>
                 <select class="form-control input-lg" id= "nuevoCentro_Costos" name="nuevoCentro_Costos" required>
                   <option value="">Seleccionar Centro De Costos</option>
 									<?php
+									/*
 										// Se obtendrán el Centro De Costos desde de la base de datos.
 										$item = null;
 										$valor = null;						
@@ -246,11 +248,24 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
 										{
 											echo '<option value = "'.$value["id_centro_costos"].'">'.$value["num_centro_costos"].'</option>';
 										}
+										*/
 									?>
                 </select>                
-              </div> <!-- <div class = "input-group"> -->           
+              </div> <!-- <div class = "input-group"> 
+            </div> <!-- <div class="form-group"> -->
+					
+						<!-- Captura el Centro De Costos -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" maxlength="10" class="form-control input-lg" id="nuevo_CC" name="nuevo_CC" placeholder = "Ingresar El Centro Costos" required>
+								<input type="hidden"  name="nuevoCentro_Costos"  id="nuevoCentro_Costos" required>
+
+              </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
+						<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
+						<div id = "tablaCC"> </div>
 
 
 						<!-- Subir Imagen del Usuario 

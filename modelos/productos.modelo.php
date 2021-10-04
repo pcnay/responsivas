@@ -380,6 +380,29 @@ static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
 			return $registros;			
 		}
 	
+		// Buscar Modelos 		
+		static public function mdlBuscarModelo($tabla,$buscar)
+		{
+			//$buscar = '%'.$buscar.'%';			
+			$buscar = '%'.$buscar.'%';			
+			$stmt = Conexion::conectar()->prepare("SELECT id_modelo,descripcion FROM $tabla WHERE descripcion LIKE :buscar");
+			$stmt->bindParam(":buscar",$buscar,PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				$registros = $stmt->fetchAll();			
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
+			}
+			else
+			{
+				$stmt->closeCursor();
+				$stmt=null;
+				return " ";
+			}
+
+		} // static public function mdlBuscarModelo($tabla,$buscar)
+
 	} // class ModeloProductos
 
 ?>

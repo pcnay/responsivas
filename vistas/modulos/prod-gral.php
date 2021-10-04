@@ -202,7 +202,7 @@
 							</div> <!-- <div class = "form-group"> -->           	
             </div> <!-- <div class= "col-xs-12 col-sm-6"> -->
 
-						<!-- Captura el Modelo -->
+						<!-- Captura el Modelo 
 						<div class= "col-xs-12 col-sm-6">
 	            <div class="form-group">
 								<label for="cap_modelo">Modelo:</label>			
@@ -211,6 +211,7 @@
 	                <select class="form-control input-lg" id= "nuevoModelo" name="nuevoModelo" required>
 	                  <option value="">Seleccionar Modelo</option>
 										<?php
+										/*
 											// Se obtendrán el Modelo desde la base de datos.
 											$item = null;
 											$valor = null;
@@ -219,11 +220,28 @@
 											{
 												echo '<option value = "'.$value["id_modelo"].'">'.$value["descripcion"].'</option>';
 											}
+											*/
 										?>
 	                </select>                
-	              </div> <!-- <div class = "input-group"> -->           
-	            </div> <!-- <div class="form-group"> -->
+	              </div> <!-- <div class = "input-group">
+	            </div> <!-- <div class="form-group">
 						</div> <!-- <div class= "col-xs-12 col-sm-6"> -->	
+
+           <!-- Captura el Modelo -->
+					<div class= "col-xs-12 col-sm-6">					 
+						<div class="form-group">
+							<label for="cap_modelo">Modelo:</label>			
+								<div class = "input-group">
+									<span class="input-group-addon"><i class="fas fa-user"></i></span>
+									<input type="text" maxlength="45" class="form-control input-lg" id="nuevo_modelo" name="nuevo_modelo" placeholder = "Ingresar El Modelo" required>
+									<input type="hidden"  name="nuevoModelo"  id="nuevoModelo" required>
+									<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
+									<div id = "tablaModelo"> </div>
+
+								</div> <!-- <div class = "input-group"> -->      
+							</div> <!-- <div class="form-group"> -->
+					</div> <!-- <div class= "col-xs-12 col-sm-6"> -->							
+
 
 						<!-- Captura el Almacen -->
             <div class= "col-xs-12 col-sm-6">

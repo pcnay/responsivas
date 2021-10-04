@@ -412,6 +412,14 @@
 		return $respuesta;
 	}
 
+	// Buscar "Centro De Costos" en la capturas del "Empleado"
+	static public function ctrBuscarCC($buscar)
+	{
+		$tabla = "t_Centro_Costos";
+		$respuesta = ModeloEmpleados::mdlBuscarCC($tabla,$buscar);
+		return $respuesta;
+	}
+	
 } // class ControladorProductos
 
 

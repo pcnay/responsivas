@@ -647,6 +647,13 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 		.done (function(respuesta){
 			// Agrega los puestos encontrados en el Div "tablaPuestos"
 			$("#tablaPuestos").html(respuesta);
+			if ($("#tablaPuestos").html() == "No hay Datos")
+			{
+				// Para que cuando graben no lo permita hasta que tenga un Modelo válido.
+				$("#nuevo_Puesto").val(null)
+			}
+			//console.log($("#nuevo_modelo").val());
+
 		})
 		.fail(function(){
 			//$("#tablaPuestos").html ("<p>Puesto NO encontrado</p>");
@@ -662,6 +669,9 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 			//console.log("Teclas Oprimidas : ",valor);
 			buscar_puesto(valor);
 		}
+		else{
+			$(".tablas").hide();
+		}	
 	
 	})
 
@@ -697,3 +707,80 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 		$("#nuevoDepto").focus();
 	});
 
+
+	// Buscar un Centro De Costos, a tráves del campo "Input"
+		// Evento donde oprimen la tecla en la etiqueta "nuevo_CC"
+		$(document).on('keyup','#nuevo_CC',function()
+		{
+			let valor = $(this).val();
+			if (valor != "")
+			{
+				//console.log("Teclas Oprimidas : ",valor);
+				buscar_centroCostos(valor);
+			}
+			else{
+				$(".tablas").hide();
+			}
+		
+		})
+	
+		// Para buscar el Centro De Costos dessde una etiqueta Input, de la captura de Empleados.
+	function buscar_centroCostos(centro_costos)
+	{
+		$.ajax({
+			url:'ajax/buscar_cc.ajax.php',
+			type:'POST',
+			dataType:'html',
+			data:{buscar:centro_costos},
+		})
+		.done (function(respuesta){
+			// Agrega los centros de costos encontrados en el Div "tablaPuestos"
+			$("#tablaCC").html(respuesta);
+			//$("#nuevo_modelo").html(respuesta);
+			//texto = $("#tablaModelo").html();
+			
+			if ($("#tablaCC").html() == "No hay Datos")
+			{
+				// Para que cuando graben no lo permita hasta que tenga un Modelo válido.
+				$("#nuevo_CC").val(null)
+			}
+			//console.log($("#nuevo_modelo").val());
+
+		})
+		.fail(function(){
+			//$("#tablaPuestos").html ("<p>Puesto NO encontrado</p>");
+		})
+	}
+
+	// Cuando se oprime el boton para obtener el "id" Centro Costos del Input
+	$(document).on("click",".btnSeleccCC",function(){	
+		/* <button class="btn btn-warning btnSeleccCC" idCCSelecc="'.$value["id_centro_costos "] .'" data-toggle="modal"  */
+		var ObtenerIdCC =$(this).attr("idCCSelecc");
+		//console.log("El Id del Centro De Costos : ",ObtenerIdCC);
+	
+		//console.log("id_Puesto",idPuesto);
+		// Para agregar datos 
+		var datos = new FormData();
+		datos.append("idCentro_Costos",ObtenerIdCC); // Se crea la variable "POST", "idCC"
+	
+		$.ajax({
+			url:"ajax/centro-costos.ajax.php",
+			method:"POST",
+			data:datos,
+			cache:false,
+			contentType:false,	
+			processData:false,
+			dataType:"json",
+			success:function(respuesta){
+				//console.log("respuesta",respuesta);
+				// Viene desde : <div id="modalEditarPuesto" class="modal fade" role="dialog">, "puestos.php", se le asigna el valor que se retorno el Ajax.
+				$("#nuevo_CC").val(respuesta["num_centro_costos"]);
+			}	
+	
+		}); // $.ajax({ ......
+	
+			$("#nuevoCentro_Costos").val(parseInt(ObtenerIdCC));
+			$(".tablas").hide();
+			$("#nuevaImagen").focus();
+		});
+	

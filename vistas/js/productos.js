@@ -1851,6 +1851,80 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
 			});	
 })
 
+
+ 
+// Buscar el Modelo, a tráves del campo "Input"
+// Evento donde oprimen la tecla en la etiqueta "nuevo_modelo"
+$(document).on('keyup','#nuevo_modelo',function()
+{
+	$(".tablas").hide();
+	let valor = $(this).val();
+
+	if (valor != "")
+	{
+		//console.log("Teclas Oprimidas : ",valor);
+		buscar_mod(valor);
+	}
+	else{
+		$(".tablas").hide();
+	}
+})
+
+// Para buscar el Modelo desde una etiqueta Input, de la captura de Empleados.
+function buscar_mod(modelo)
+{	
+	$.ajax({
+		url:'ajax/buscar_mod.ajax.php',
+		type:'POST',
+		dataType:'html',
+		data:{buscar:modelo},
+	})
+	.done (function(respuesta){
+		// Agrega los Modelos encontrados en el Div "tablaModelo"
+		$("#tablaModelo").html(respuesta);
+		//$("#nuevo_modelo").html(respuesta);
+		texto = $("#tablaModelo").html();
+		
+		if ($("#tablaModelo").html() == "No hay Datos")
+		{
+			// Para que cuando graben no lo permita hasta que tenga un Modelo válido.
+			$("#nuevo_modelo").val(null)
+		}
+		//console.log($("#nuevo_modelo").val());
+
+	})
+	.fail(function(){
+		//$("#tablaModelo").html ("<p>Modelos NO encontrado</p>");
+	})
+}
+
+ // Cuando se oprime el boton para obtener el "id" Centro Costos de la tabla
+ $(document).on("click",".btnSeleccModelo",function(){
+	/* <button class="btn btn-warning btnSeleccModelo" idModeloSelecc="'.$value["id_modelo"] .'" data-toggle="modal"  */
+	var ObtenerIdModelo =$(this).attr("idModeloSelecc");
+	//console.log("El Id del Modelo : ",ObtenerIdModelo);
+	 
+	// Para agregar datos
+	var datos = new FormData();
+	datos.append("idModelo",ObtenerIdModelo); // Se crea la variable "POST", "idModelo"
+	 $.ajax({
+		url:"ajax/modelos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false, 
+		processData:false,
+		dataType:"json",
+		success:function(respuesta){
+			//console.log("respuesta",respuesta);
+			$("#nuevo_modelo").val(respuesta["descripcion"]);
+		}
+	 }); // $.ajax({ ......
+		 $("#nuevoModelo").val(parseInt(ObtenerIdModelo));
+		$(".tablas").hide();
+		$("#nuevoAlmacen").focus();
+	});
+
 /*
 // Click en El combobox "Perifericos"
 // $(".btnEliminarMarca").click(function (){

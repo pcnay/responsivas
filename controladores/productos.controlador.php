@@ -766,6 +766,14 @@
 
 	} // static public function ctrExpProdExcel()
 
+	// Buscar "Modelo" en la capturas del "Producto"
+	static public function ctrBuscarModelo($buscar)
+	{
+		$tabla = "t_Modelo";
+		$respuesta = ModeloProductos::mdlBuscarModelo($tabla,$buscar);
+		return $respuesta;
+	}
+ 
 
 } // class ControladorProductos
 
