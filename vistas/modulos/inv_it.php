@@ -454,6 +454,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 							$Modelo = Obtener_IdModelo($Modelos_Obtenidos,strtolower($inv_it[7]));
 							$Marca = Obtener_IdMarca($Marcas_Obtenidas,strtolower($inv_it[6]));
 							$Periferico = Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($inv_it[5]));
+							$Precio = 0;
 							
 							switch ($Periferico)
 							{

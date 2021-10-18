@@ -344,7 +344,7 @@ static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
 			// $valor1 = Es el valor del campo($item1) a modificar
 			// $valor2 = Es el valor del "id" que se quiere modificar.
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE id_producto = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE id_producto = :id");
 			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
 			$stmt->bindParam(":id", $valor2,PDO::PARAM_STR);
 

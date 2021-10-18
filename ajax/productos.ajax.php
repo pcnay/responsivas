@@ -146,8 +146,34 @@
 			$orden = "nombre";
 			$respuesta = ControladorProductos::ctrMostrarProductos($item,$valor,$orden);
 			echo json_encode($respuesta);
-				
+
 		} // public function ajaxEditarProducto()
+
+		public function ajaxActProducto()
+		{
+			$tabla = "t_Productos";
+			$item1b = "id_empleado";
+			$valor1b = 1;
+			$valor = $this->id_Producto;		
+			print_r($valor);
+			var_dump($valor);
+				
+			$respuesta = ModeloProductos::mdlActualizarProducto($tabla,$item1b,$valor1b,$valor);
+			echo json_encode($respuesta);
+
+			/*
+			$item1b = "stock";
+			$valor1b = 1;
+			$valor = $this->idProducto;			
+			$respuesta = ControladorProductos::ctrMostrarProductos($tabla,$item1b,$valor1b,$valor);
+			echo json_encode($respuesta);
+			*/
+
+			
+
+		} // public function ajaxEditarProducto()
+
+
 
 	} // class AjaxProductos
 
@@ -256,4 +282,14 @@
 		$valNpa->validarNpa = $_POST["validarNpa"];
 		$valNpa->ajaxValidarNpa();
 	}
+
+	if (isset($_POST["id_Producto"]))
+	{
+		$actualizarProd = new AjaxProductos();
+		// Se genero en "productos.js" on("click","button.quitarProducto", datos.append....
+		$actualizarProd->id_Producto = $_POST["id_Producto"]; 
+		$actualizarProd->ajaxActProducto();
+	}
+
+
 ?>

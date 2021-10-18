@@ -406,7 +406,7 @@ $bloque6 = <<<EOF
 	<tr>
 		<td style="background-color:white; width:540px">
 			<div style="font-size:10.0px; text-align:left; line-height:15px;">	
-				Comentario en el Caso de recibir Equipo De Prestamo :
+			*** CUANDO SE ENTREGA UN EQUIPO DE PRESTAMO *** Comentario :
 				<br>
 				_________________________________________________________________________________________________
 
@@ -420,7 +420,7 @@ $bloque6 = <<<EOF
 			<br>
 			_________________________________
 			<br>
-			Firma Rubrica y Fecha
+			Nombre Completo, Firma y Fecha
 
 		</div>			
 	</td>		
@@ -430,7 +430,7 @@ $bloque6 = <<<EOF
 			<br>
 			_________________________________
 			<br>
-			Firma Rubrica y Fecha
+			Nombre Completo, Fecha y Fecha
 
 		</div>			
 	</td>		
@@ -446,6 +446,7 @@ $bloque6 = <<<EOF
 	<tr>
 		<td style="background-color:white; width:540px">
 			<div style="font-size:10.0px; text-align:left; line-height:15px;">	
+				*** RECIBI EQUIPO Y/O ACCESORIOS DE COMPUTO ***
 				Reconozco que recibo el equipo antes mencionado como propiedad de la empresa. Covengo en mantener el equipo en buenas condiciones y regresarlo cuando deje de laborar oara la empresa, o si los represenante de la misma lo requieran.
 					Prometo reportar cualquier pérdida o daño inmediatamente. Estoy de acuerdo en utilizar dicha propiedad solo para propósitos relacionados con el trabajo.CONCUERDO EN CUBRIR HASTA EL VALOR ESPECIFICO O EL DEDUCIBLE SEGUN APLIQUE, EN CASO DE PERDIDA, DAÑO Y/O ROBO DEL EQUIPO
 			</div>			
@@ -463,18 +464,18 @@ $bloque6 = <<<EOF
 	<td style="background-color:white; width:270px">
 		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
 			
-			_________________________________
+			_______________________________________
 			<br>
-			Firma Rubrica Del Empelado y Fecha
+			Nombre Completo, Firma Del Empleado y Fecha
 
 		</div>			
 	</td>		
 	<td style="background-color:white; width:270px">
 		<div style="font-size:10.0px; text-align:center; line-height:15px;">	
 
-		_______________________________________
+		________________________________________
 			<br>
-			Firma Rubrica Del Jefe Inmediato y Fecha
+			Nombre Completo , Firma Del Supervisor y Fecha
 
 		</div>			
 	</td>		

@@ -250,9 +250,7 @@
 				
 				// var_dump($prodActualizar);
 
-				// Para evitar el error de que se borren los datos de JSon en el "productos" de a tabla de "Responsivas". Si se editaron productos de la responsiva.
-
-				
+				// Para evitar el error de que se borren los datos de JSon en el "productos" de a tabla de "Responsivas". Si se editaron productos de la responsiva.				
 					if ($_POST["listaProductos"] == "")
 					{
 						// Si no se modificaron los productos de la Responsiva.
@@ -269,7 +267,7 @@
 
 					if ($cambioProducto)
 					{
-	
+						// Lo convierte de JSon a Arreglos para poder utilizarlo en la base de datos.
 						$prodActualizar = json_decode($traerResponsiva["productos"],true);
 
 						// Actualizar la tabla de productos con los productos que tiene la responsiva antes de que se agregen los que estan en la edicion de la responsiva.
@@ -552,8 +550,36 @@
 					$valor1b = $value["cantidad"]+$traerProducto["Stock"]; // Es el stock actual (utilizado en los renglones de la responsiva).
 
 					$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b,$valor1b,$valor);	
-				
-				}
+
+					// Asignando el empleado que tiene el "Periferico". 
+
+					$item1b = "id_empleado"; // Es el campo que se modificara
+					$valor1b = 1; // Empleado "Depto IT", se asigna el empleado que tiene el periferico(renglons de la responsiva).
+
+					$empleadoAsignado = ModeloProductos::mdlActualizarProducto($tablaProducto,$item1b,$valor1b,$valor);
+					
+					if ($empleadoAsignado == "error")
+					{
+						echo '<script>           
+						Swal.fire ({
+							type: "error",
+							title: "Error al asignar al empleado",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+							}).then(function(result){
+								if (result.value)
+								{
+									window.location="cap-responsivas";
+								}
+
+								});
+			
+							</script>';          
+					}
+					
+
+				} // foreach ($prodActualizar as $key => $value)
 				
 				// Actualizar las compras del Empleado.
 				
@@ -700,3 +726,8 @@
 		}
 
 	} // class ControladorResponsivas
+
+
+
+
+

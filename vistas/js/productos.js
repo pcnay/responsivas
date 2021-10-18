@@ -217,7 +217,7 @@ $("#rap-nuevoSerial").change(function(){
 			else
 			{
 				// Como PHP no puede interacturar con JavaScript, ya que son totalmente diferentes, por lo que se tiene que utilizar "ajax" para comunicarse desde JavaScript a PHP.
-				console.log("Valor de Serial : ",serial);
+				//console.log("Valor de Serial : ",serial);
 				let dato_nuevo = new FormData();
 				dato-RTCStatsProvider.append("serial-rap",dato_nuevo);
 				$.ajax({
@@ -1855,8 +1855,9 @@ $(".tablaProductos tbody").on("click","button.btnEliminarProducto",function(){
  
 // Buscar el Modelo, a tráves del campo "Input"
 // Evento donde oprimen la tecla en la etiqueta "nuevo_modelo"
-$(document).on('keyup','#nuevo_modelo',function()
+$(document).on('keyup','#nuevo_modelo',function(e)
 {
+	e.preventDefault();
 	$(".tablas").hide();
 	let valor = $(this).val();
 

@@ -326,8 +326,41 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	// '<div class ="row" style="padding:5px 15px">', es decir donde se inicia el "append"
 	$(this).parent().parent().parent().parent().remove();
 
-	var idProducto = $(this).attr("idProducto"); // Para obtener el "id_producto"
+	let idProducto = $(this).attr("idProducto"); // Para obtener el "id_producto"
+	let cantProd = $(this).attr("stock");
 
+	console.log ("Valor del Id ",idProducto);
+	console.log ("Valor del Stock : ",cantProd);
+	
+	
+	let datos = new FormData()
+	datos.append("id_Producto",idProducto);
+
+	// Para obtener todos los productos, utilizando Ajax.
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		dataType:"json",
+		success:function(respuesta)
+		{
+			if (respuesta == "ok")
+			{
+				console.log ("Usuario Asignado");
+			}
+			else
+			{
+				console.log("Error Al Asignar Usario");
+			}
+		}
+
+	});
+
+	// Actualizando el Inventario del producto y se asigna a empleado = 1 (Depto IT).
+	// Se utilizara Ajax
 
 	// Se agrega un ajuste, ya que cuando se agrega un producto desde otras paginas, se desactiva el boton cuando se agrego, pero se regresa a esa misma pagina, pero el boton queda desactivado cuando se quita el producto de la responsiva.
 
@@ -339,6 +372,7 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	else
 	{
 		idQuitarProducto.concat(localStorage.getItem("quitarProducto"));
+
 	}
 	idQuitarProducto.push({"idProducto":idProducto});
 	localStorage.setItem("quitarProducto",JSON.stringify(idQuitarProducto)); // se genera la clase 
@@ -367,7 +401,8 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 
 	}
 	
-}) 
+}) // $(".formularioResponsiva").on("click","button.quitarProducto",function(){
+
 
 // ===========================================================
 // Agregando producto desde el boton para dispositivos.
@@ -807,6 +842,7 @@ function listarProductos()
 
 	// JSON.stringfy = Lo convierte de JSon a Cadena de Textos que se utilizara para grabar en la base de datos.
 	// console.log("listarProductos",JSON.stringify(listarProductos));
+	// Esta etiqueta esta en "responsivas.controlador.php", renglon 185 Input hidden
 	$("#listaProductos").val(JSON.stringify(listarProductos));
 
 }
