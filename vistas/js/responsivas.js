@@ -317,7 +317,6 @@ $(".tablaResponsivasProd").on("draw.dt",function()
 
 
 // Quitar un producto de la responsiva  y recuperar el boton de "Agregar"
-
 var idQuitarProducto = [];
 localStorage.removeItem("quitarProducto");
 
@@ -327,14 +326,33 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 	$(this).parent().parent().parent().parent().remove();
 
 	let idProducto = $(this).attr("idProducto"); // Para obtener el "id_producto"
-	let cantProd = $(this).attr("stock");
 
-	console.log ("Valor del Id ",idProducto);
-	console.log ("Valor del Stock : ",cantProd);
+/*
+	if(localStorage.getItem("quitarProducto") != null)
+	{
+		idQuitarProducto=[];
+	}	
+	else
+	{
+		idQuitarProducto.concat(localStorage.getItem("quitarProducto"));
+	}
+
+	idQuitarProducto.push({"idProducto":idProducto});
+	localStorage.setItem("quitarProducto",JSON.stringify(idQuitarProducto));
+
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
+	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+*/
+
+	//let cantProd = $(this).attr("cantidad");
+
+	//console.log ("Valor del Id ",idProducto);
+	//console.log ("Valor del Stock : ",cantProd);
 	
-	
+	/*
 	let datos = new FormData()
 	datos.append("id_Producto",idProducto);
+	datos.append("regresar_stock",cantProd);
 
 	// Para obtener todos los productos, utilizando Ajax.
 	$.ajax({
@@ -345,22 +363,27 @@ $(".formularioResponsiva").on("click","button.quitarProducto",function(){
 		contentType:false,
 		processData:false,
 		dataType:"json",
+
 		success:function(respuesta)
 		{
+			//console.log(respuesta);
+
 			if (respuesta == "ok")
 			{
-				console.log ("Usuario Asignado");
+				console.log ("Actualizado Correctamente");
 			}
 			else
 			{
-				console.log("Error Al Asignar Usario");
+				console.log("Error al actualizar el Producto");
 			}
 		}
 
-	});
+	}); // $(".formularioResponsiva").on("click","button.quitarProducto",function(){
+
 
 	// Actualizando el Inventario del producto y se asigna a empleado = 1 (Depto IT).
 	// Se utilizara Ajax
+*/
 
 	// Se agrega un ajuste, ya que cuando se agrega un producto desde otras paginas, se desactiva el boton cuando se agrego, pero se regresa a esa misma pagina, pero el boton queda desactivado cuando se quita el producto de la responsiva.
 
@@ -710,7 +733,7 @@ $("#nuevoMetodoPago").change(function(){
 
 	}
 
-		/* Se deje en comentario, ya que no se requiere, pero esta operable.
+		/* Se deja en comentario, ya que no se requiere, pero esta operable.
 
 		// Se sube dos niveles del <DIV>, en el archivo "cap-responsiva.php"
 		$(this).parent().parent().removeClass("col-xs-6");
@@ -814,7 +837,7 @@ function listarProductos()
 	// Estos valores se obtienen de la etiqueta:  $(".tablaResponsivasProd tbody").on("click","button.agregarProducto",function()
 	//var id =
 	
-	// Contine todos los productos de la resposivas
+	// Contiene todos los productos de la resposivas
 	var id_Producto = $("#Id_Productos");
 	var descripcion = $(".nuevaDescripcionProducto");
 	var cantidad = $(".nuevaCantidadProducto");
@@ -890,7 +913,7 @@ $(".tablaResponsivas tbody").on("click","button.btnEditarResponsiva",function(){
 		dataType:"json",
 		success:function(responsiva)
 		{
-			console.log("Responsiva a editar ",responsiva["nombre_usuario"]);			
+			//console.log("Responsiva a editar ",responsiva["nombre_usuario"]);			
 
 			// Asignando el valor a los campos
 			$("#editarUsuario").val(responsiva["nombre_usuario"]);			

@@ -252,7 +252,8 @@ for ($i =0;$i<count($productosResp);$i++)
 	$respuestaProductos = ControladorProductos::ctrMostrarProductos($itemProducto,$valorIdProducto);
 	
 	$cantidad = $productosResp[$i]["cantidad"];
-	$precio = number_format($productosResp[$i]["precio"],2);
+	$precio = number_format(($cantidad*$productosResp[$i]["precio"]),2);
+
 	/*print_r ("Direccion Mac : \n",$respuestaProductos["direcc_mac_tel"]);
 	print_r ("IMEI Tel : \n",$respuestaProductos["imei_tel"]);
 	print_r ("Num Tel : \n",$respuestaProductos["num_tel"]);

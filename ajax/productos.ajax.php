@@ -149,26 +149,25 @@
 
 		} // public function ajaxEditarProducto()
 
+		public $id_Producto;
+		public $regresar_stock;
 		public function ajaxActProducto()
 		{
 			$tabla = "t_Productos";
 			$item1b = "id_empleado";
-			$valor1b = 1;
-			$valor = $this->id_Producto;		
-			print_r($valor);
-			var_dump($valor);
-				
+			$valor1b = '1';
+			$valor = $this->id_Producto;				
+			
 			$respuesta = ModeloProductos::mdlActualizarProducto($tabla,$item1b,$valor1b,$valor);
 			echo json_encode($respuesta);
 
-			/*
+			
+			// Actualizando el stock del producto.
 			$item1b = "stock";
-			$valor1b = 1;
-			$valor = $this->idProducto;			
-			$respuesta = ControladorProductos::ctrMostrarProductos($tabla,$item1b,$valor1b,$valor);
-			echo json_encode($respuesta);
-			*/
-
+			$valor1b = $this->regresar_stock;
+			$valor = $this->id_Producto;			
+			$respuesta = ModeloProductos::mdlActualizarProducto($tabla,$item1b,$valor1b,$valor);
+			echo json_encode($respuesta);					
 			
 
 		} // public function ajaxEditarProducto()
@@ -288,6 +287,7 @@
 		$actualizarProd = new AjaxProductos();
 		// Se genero en "productos.js" on("click","button.quitarProducto", datos.append....
 		$actualizarProd->id_Producto = $_POST["id_Producto"]; 
+		$actualizarProd->regresar_stock = $_POST["regresar_stock"]; 
 		$actualizarProd->ajaxActProducto();
 	}
 

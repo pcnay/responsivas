@@ -332,7 +332,7 @@ static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
 
 		}
 
-		// Actualizar Producto, por uno solo campo 
+		// Actualizar Producto, por uno solo campo <
 		// $valor = Es el contenido del "Id"
 		// $item1a = "cuantas_veces" es el campo que se utilizara a modificar
 		// $valor1a = Es el nuevo valor de "Cuantas_veces".

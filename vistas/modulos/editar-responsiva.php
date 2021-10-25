@@ -148,12 +148,14 @@
 												//var_dump($producto["Stock"]);
 												//var_dump($value["cantidad"]);
 												$stockAnterior = $producto["Stock"]+$value["cantidad"];
-
+												
+												// Imprimiendo el desglose de los productos de las responsivas 
+												// **** > Revisar el campo CANTIDAD donde esta "idProducto"
 												echo '<div class ="row" style="padding:5px 15px">
 																<!-- style="padding-right:0px" Aumentar el ancho de las cajas, reduce el ancho entre las cajas -->
 																<div class="col-xs-6" style="padding-right:0px">
 																	<div class="input-group">
-																		<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'.$value["id"].'" ><i class="fa fa-times"></i></button></span>
+																		<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto = "'.$value["id"].'" cantidad = "'.$value["cantidad"].'"  ><i class="fa fa-times"></i></button></span>
 						
 																		<input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value ="'.$value["descripcion"].'" readonly required>
 						
@@ -177,7 +179,8 @@
 																</div> <!-- <div class="col-xs-3" style="ppading-left:0px"> -->
 						
 															</div> <!-- <div clss="form-group row nuevoProducto"> -->';
-											}
+
+											} // foreach ($listaProducto as $key => $value)
 										?>
 
 									</div> <!-- <div clss="form-group row nuevoProducto" -->
