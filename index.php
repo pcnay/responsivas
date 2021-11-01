@@ -1,4 +1,5 @@
 <?php
+// Agregando para comprobar si esta grabando
 /* 
 PLANTILLA ADMINLTE:
 https://www.adminlte.io/
