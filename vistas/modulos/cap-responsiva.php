@@ -244,7 +244,9 @@
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">						
 								<button type="submit" class="btn btn-primary pull-right" >Guardar Responsiva</button>
+								<!-- 
 								<button type="submit" class="btn btn-primary pull-left" id="act_prodResp">Actualizar prod</button>
+								-->
 							</div>
 
 					</form>
@@ -307,11 +309,17 @@
 					<!-- Muestra una línea hasta la mitad de la pantalla -->
 					<!-- Se muestran los productos -->
 
+					<button type="submit" class="btn btn-primary pull-left" id="act_Empleado">Actualizar Empleados</button>
+
+					<button type="submit" class="btn btn-primary pull-right" id="a2ct_prodResp">Actualizar Productos</button>
+
 				<div class="col-lg-7 hidden-md hidden-sm bidden-xs">
 
 
 					<div class="box box-warning">
+					
 						<div class="box-header with-border">
+						
 
 						<table class="table table-bordered table-striped dt-responsive tablaResponsivasProd">
 							<thead>
@@ -328,129 +336,6 @@
 								</tr>
 							</thead>
 							<tbody>
-					<!--
-								<tr>
-
-									<td>#1</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#2</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>LAPTOP</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#3</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>TECLADO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#4</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>RATON</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#5</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#6</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#7</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#8</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#9</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
-								<tr>
-									<td>#10</td>
-									<td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-									<td>COMPUTADORA DE ESCRITORIO</td>
-									<td>MXL30493OSLDK</td>
-									<td>10</td>
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary">Agregar </button>			
-										</div>
-									</td>
-								</tr>						
--->
 
 							</tbody>
 						</table>

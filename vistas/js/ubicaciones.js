@@ -140,7 +140,7 @@ $("#nuevaUbicacion").change(function(){
 // Validar la entrada.
 
 $("#nuevaUbicacion").bind('keypress', function(event) {
-	var regex = new RegExp("^[0-9A-Za-z- ]+$");
+	var regex = new RegExp("^[0-9A-Za-z-+/# ]+$");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	if (!regex.test(key)) {
 		event.preventDefault();
@@ -151,7 +151,7 @@ $("#nuevaUbicacion").bind('keypress', function(event) {
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarUbicacion").bind('keypress', function(event) {
-var regex = new RegExp("^[0-9A-Za-z- ]+$");
+var regex = new RegExp("^[0-9A-Za-z-+/# ]+$");
 var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 if (!regex.test(key)) {
 	event.preventDefault();

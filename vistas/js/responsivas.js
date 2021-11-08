@@ -146,6 +146,18 @@ $('.tablaResponsivasEmp').DataTable({
 	// console.log("Click boton actualizar ..");
 });
 
+$("#act_Empleado").click(function(event){
+	event.preventDefault();
+	$('.tablaResponsivasEmp').dataTable()._fnAjaxUpdate();
+	// console.log("Click boton actualizar ..");
+});
+
+$("#a2ct_prodResp").click(function(event){
+	event.preventDefault();
+	$('.tablaResponsivasProd').dataTable()._fnAjaxUpdate();
+	// console.log("Click boton actualizar ..");
+});
+
 
 	$("#act_prodRespEditar").click(function(event){
 		event.preventDefault();

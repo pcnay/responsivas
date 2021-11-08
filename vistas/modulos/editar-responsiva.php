@@ -310,8 +310,9 @@
 							<!-- Se colocan el boton para guardar los cambios -->
 							<div class="box-footer">	
 								<button type="submit" class="btn btn-primary pull-right" >Guardar Cambios</button>
+								<!-- 
 								<button type="submit" class="btn btn-primary pull-left" id="act_prodRespEditar">Actualizar prod</button>
-
+								-->
 							</div> <!-- <div class="box-footer">	-->
 					</form>
 
@@ -373,6 +374,10 @@
 
 					<!-- Muestra una línea hasta la mitad de la pantalla -->
 					<!-- Se muestran los productos -->
+					
+					<button type="submit" class="btn btn-primary pull-left" id="act_Empleado">Actualizar Empleados</button>
+
+					<button type="submit" class="btn btn-primary pull-right" id="a2ct_prodResp">Actualizar Productos</button>
 
 				<div class="col-lg-7 hidden-md hidden-sm bidden-xs">
 
