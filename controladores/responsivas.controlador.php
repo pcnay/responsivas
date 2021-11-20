@@ -183,10 +183,18 @@
 				
 				// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
 				$fecha_asig = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
-				$fecha_devol = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
-
-				if ($fecha_devol == '1970-01-01')
+				
+				if (empty($_POST["nuevaFechaDevolucion"]))
+				{
 					$fecha_devol = null;
+				}
+				else
+				{
+					$fecha_devol = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
+				}
+				
+				//if ($fecha_devol == '1970-01-01')
+				//	$fecha_devol = null;
 
 				$tabla = "t_Responsivas";
 				$datos = array ("id_empleado"=>$_POST["idEmpleado"],
@@ -203,9 +211,6 @@
 												"total"=>$_POST["totalVenta"],
 												"fecha_asignado"=>$fecha_asig, 
 												"fecha_devolucion"=>$fecha_devol);
-
-				//var_dump($datos);
-				//return;
 
 			 $respuesta = ModeloResponsivas::mdlIngresarResponsiva($tabla,$datos);
 

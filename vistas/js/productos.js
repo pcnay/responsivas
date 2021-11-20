@@ -1860,6 +1860,7 @@ $(document).on('keyup','#nuevo_modelo',function(e)
 	e.preventDefault();
 	$(".tablas").hide();
 	let valor = $(this).val();
+	console.log("Contenido de VALOR ",valor);
 
 	if (valor != "")
 	{
@@ -1896,10 +1897,46 @@ function buscar_mod(modelo)
 	})
 	.fail(function(){
 		//$("#tablaModelo").html ("<p>Modelos NO encontrado</p>");
+		$("#nuevo_modelo").val(null)
 	})
 }
 
- // Cuando se oprime el boton para obtener el "id" Centro Costos de la tabla
+// Cuando sale del input 
+$(document).on('blur','#nuevo_modelo',function(e)
+{	
+	console.log("Valor de NuevoModelo ",$("#nuevoModelo").val());
+	let id_Modelo = $("#nuevoModelo").val();
+
+	
+	//if (!isNaN($("#nuevoModelo").val()))
+	//if (typeof id_Modelo === "number")
+	// if ($("#nuevoModelo").val())
+	if (id_Modelo.length == 0)
+	{		
+		//console.log ("Longuitud 0");
+		//console.log("NO contiene numero");
+		$("#nuevo_modelo").val(null);
+		//console.log ("Valor CONTENIDO ",contenido);
+
+	}
+	else
+	{
+		//console.log("NO contiene numero");
+		//$("#nuevo_modelo").val(null);
+		//console.log ("Valor CONTENIDO ",contenido);
+	}
+	
+})
+
+$(document).on('focus','#nuevo_modelo',function(e)
+{	
+	$("#nuevo_modelo").val(null);
+	//$("#nuevoModelo").val(null);
+	//console.log ("Obtiene el foco");
+})
+
+
+ // Cuando se oprime el boton para obtener el "id" Modelo de la tabla
  $(document).on("click",".btnSeleccModelo",function(){
 	/* <button class="btn btn-warning btnSeleccModelo" idModeloSelecc="'.$value["id_modelo"] .'" data-toggle="modal"  */
 	var ObtenerIdModelo =$(this).attr("idModeloSelecc");

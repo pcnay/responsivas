@@ -147,6 +147,7 @@
 					$tabla = "t_Productos";
 					// "id_empleado" Solo se utiliza para guardar su ID, pero no se relacionan con la tabla "t_Empleados", para asignar nombre de quien lo tiene asignado.
 					
+
 					if ($tipo_prod == 'Completa')
 					{
 						$datos = array("id_periferico" =>$_POST["nuevoPeriferico"],
