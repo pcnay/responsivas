@@ -177,7 +177,6 @@
 		
 	}
 	
-
 	// Obtener la Marca.
 	function Obtener_IdMarca($Arreglo_marca,$reg_csv_marca)
 	{
@@ -407,8 +406,6 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 	}
 */
 
-
-
 	//var_dump($Arreglo_modelos);
 
 // Importando el archivo CSV
@@ -424,6 +421,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 				$datos_grabar = array();
 				$num_reg_no_existen = 0;
 				$num_reg_existen = 0;
+				$contador = 0;
 				$ruta = "vistas/img/productos/default/anonymous.png";
 
 				while(($inv_it = fgetcsv($csv_file_it)) !== FALSE)
@@ -433,68 +431,103 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 					// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
 					// $fecha_inicio = date("Y-m-d",strtotime($cinta_record[1]));
 
+
 					// Revisando si el Serial esta vacio.
 					if (!empty($inv_it[8])) 
 					{
+						$contador++;
+						//echo "Serial No vacio";
+
+						//print_r ("Procesando registro .. \n ".$contador);
+	
 						$valor = $inv_it[8]; // Serial
 						$item = "num_serie";
 						$tabla = "t_Productos";
 						$orden = "nombre";
 
 						// Descomentar para que detemrine si existe el producto.
-						$exite_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
-						
+						$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+												
 						// if (!empty($exite_prod))
 						// if (!$exite_prod)
 						
 						// Verifica si ya existe el serial en la tabla
-						//$existe_prod = "";
-						if (empty($exite_prod))
+						$eXiste_prod = "S";
+						if ($eXiste_prod=="S")
 						{
+							//echo "existe producto \r";
 							$Modelo = Obtener_IdModelo($Modelos_Obtenidos,strtolower($inv_it[7]));
 							$Marca = Obtener_IdMarca($Marcas_Obtenidas,strtolower($inv_it[6]));
 							$Periferico = Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($inv_it[5]));
+							
+							$tabla = "t_Empleados";
+							$item = "ntid";
+							$valor = $inv_it[11];
+							$orden = "apellidos";
+							$empleado = 0;
+							
+
+							if (empty($valor))
+							{
+								$EncontroEmpleado = "No asignado";
+								$Id_Empleado = 1;
+							}
+							else
+							{								
+								$empleado = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden); 
+								if ($empleado)
+								{
+									$EncontroEmpleado = $inv_it[11];								
+									$Id_Empleado = $empleado['id_empleado'];									
+								}
+								else
+								{
+									$EncontroEmpleado = "N";
+									$Id_Empleado = 1;
+								}
+							}
+
 							$Precio = 0;
 							
 							switch ($Periferico)
 							{
-								case (1):
+								case (1): //Desktop
 									$Precio = 800;
 									break;
-								case (2):	
+								case (2):	// Laptop
 									$Precio = 1200;
 									break;
-								case (3):
+								case (3): // Monitor
 									$Precio = 220;
 									break;
-								case (4):
+								case (5): // Docking Station 
 									$Precio = 220;
 									break;								
-								case (32):
+								case (32): // Tablets
 									$Precio = 1000;
 									break;
-								case (33):
+								case (33): // Escaner
 									$Precio = 200;
 									break;
-								case (12):
+								case (12): // Zebra ZD 620
 									$Precio = 800;
 									break;
-								case (88):	
+								case (88):	// Zebra QLN 320
 									$Precio = 370;
 									break;
-								case (13):
+								case (13): // Zebra GX430T
 									$Precio = 800;
 									break;
-								case (15):
+								case (15): // Zebra ZT 610
 									$Precio = 2540;
 									break;								
-								case (14):
+								case (14): // Zebra ZT 510								
 									$Precio = 2350;
 									break;
-								case (25):
+								case (25): // Zebra ZQ 320
 									$Precio = 850;
 									break;
-								case (16):
+								case (16): // Zebra ZT 620
 									$Precio = 6000;
 									break;	
 								}
@@ -513,7 +546,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 																		"imei_tel" =>'',
 																		"num_ip" =>'',
 																		"edo_tel" =>'NO Aplica',
-																		"id_empleado" =>1,
+																		"id_empleado" =>$Id_Empleado,
 																		"id_almacen" =>1,
 																		"id_edo_epo" =>1,
 																		"stock" =>1,
@@ -536,27 +569,60 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 																	);
 					
 							//print_r('Registros GRABADOS ======> ');																								
-							print_r('Asset = '.$inv_it[0].' ; ');
-							print_r('Current Hostname = '.$inv_it[4].' ; ');
-							print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						
-							print_r('Brand  Marca = '.$datos_grabar["id_marca"].' ; ');
-							print_r('Modelo = '.$datos_grabar["id_modelo"].' ; ');						
-							print_r('Serial = '.$inv_it[8].' ; ');						
-							print "<br>";
-														
+							//print_r('Asset = '.$inv_it[0].' ; ');
+							//print_r('Current Hostname = '.$inv_it[4].' ; ');
+							//print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');					
+							//print_r('Brand  Marca = '.$datos_grabar["id_marca"].' ; ');
+							//print_r('Modelo = '.$datos_grabar["id_modelo"].' ; ');						
+							//print_r('Serial = '.$inv_it[8].' ; ');						
+							//print "<br>";
+							
+							
 							//$num_reg_no_existen++;
 							// Grabar el registro en la tabla.
-							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos"))
+							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos") && ($datos_grabar["id_empleado"] != "N"))
 							{
-								$respuesta = "error";
-								//$respuesta = "ok";
+								//$respuesta = "error";
+								$respuesta = "ok";
 								$tabla = "t_Productos";
-								// Descomentarla para que grabe en la tabla
-								$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos_grabar);
+								
+								if ($existe_prod)
+								{									
+									$num_reg_existen++;
+									$valor2 = $existe_prod["id_producto"];
+								}
+								else
+								{
+									// Descomentarla para que grabe en la tabla
+									$tabla = "t_Productos";
+									$respuesta = ModeloProductos::mdlIngresarProducto($tabla,$datos_grabar);
+									$num_reg_no_existen++;	
+
+									$valor = $inv_it[8]; // Serial
+									$item = "num_serie";
+									$tabla = "t_Productos";
+									$orden = "nombre";
+									$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+								}
 
 								if ($respuesta == "ok")
-								{	
-									$num_reg_no_existen++;	
+								{										
+									// Se le asigna al empleado el componente de computo, en la tabla de "Productos"
+
+									// $item1 = Actualizar de forma dinamica, Stok, precio, descripcion,
+									// $valor1 = Es el valor del campo($item1) a modificar
+									// $valor2 = Es el valor del "id" que se quiere modificar.
+
+									$tabla = "t_Productos";
+									$item1 = "id_empleado";
+									$valor1 = $datos_grabar["id_empleado"];									
+									$valor2 = $existe_prod["id_producto"];
+									//print_r("<pre>");
+									//print_r($valor2);
+									//print_r("</pre>");
+									//exit;
+
+									// $AsignarEpo = ModeloProductos::mdlActualizarProducto($tabla,$item1,$valor1,$valor2);
 								}
 								else
 								{
@@ -569,17 +635,18 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 								print_r("Registros NO GRABADOS ===> : ");
 								print_r('Asset = '.$inv_it[0].' ; ');
 								print_r('Current Hostname = '.$inv_it[4].' ; ');
-								print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');						
+								print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');					
 								print_r('Brand  Marca = '.$datos_grabar["id_marca"].' ; ');
 								print_r('Modelo = '.$datos_grabar["id_modelo"].' ; ');						
-								print_r('Serial = '.$inv_it[8].' ; ');						
+								print_r('Serial = '.$inv_it[8].' ; ');
+								print_r('Numero Empleado = '.$datos_grabar["id_empleado"].' ; ');						
 								print "<br>";
 							}
 							
 						}
 						else // if (empty($exite_prod))
 						{
-							$num_reg_existen++;
+							//$num_reg_existen++;							
 						}
 
 					} // if (!empty($inv_it[8]))

@@ -214,11 +214,12 @@
 					<!-- Para colocar la linea verde hasta la mitad de la pantalla. -->
 					<div class="box box-success">
 						<div class="box-header with-border"></div>
-						<label>Subir Varias : </label>
+						<label>Subir Varios : </label>
 						<br>						
 					</div>					
 						<button class="btn btn-success btnSubirCinta" id="subir_cinta" disabled >Subir Cintas</button>	
-						<button class="btn btn-success btnSubirInvIT" id="inv_it" >Inv I.T.</button>						
+						<button class="btn btn-success btnSubirInvIT" id="inv_it" >Inv I.T.</button>
+						<button class="btn btn-success btnSubirEmpJabil" id="emp_jabil" >Empleados Jabil</button>						
 						<br>
 
 				</div>

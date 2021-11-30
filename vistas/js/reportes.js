@@ -228,6 +228,13 @@ $(".btnSubirInvIT").click(function(){
 	window.open("index.php?ruta=inv_it","_blank");
 })
 
+// Subir los empleados de Jabil desde un archivo "CSV" 
+$(".btnSubirEmpJabil").click(function(){
+	//console.log("Se oprimio el boton de Inv I.T.")
+	window.open("index.php?ruta=emp_jabil","_blank");
+})
+
+
 $(".btnPerifProd").click(function(){
 
 // Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"
