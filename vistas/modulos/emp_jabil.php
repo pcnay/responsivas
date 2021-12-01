@@ -76,8 +76,54 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
         else
         {
           echo "<br>";
-          echo "NO existe NTID Empleado ".$valor;
-          $emp_Noencontrado++;          
+          //echo "NO existe NTID Empleado ".$valor;
+          //echo "Valor de -emp_jabil0 ".
+
+          // Reemplazar el caracter "?" por "Ñ"
+          $NombreCompleto = str_replace("?", "Ñ",$emp_jabil[0]);
+          //echo $NombreCompleto;
+
+
+
+          $nombre_separados = array();
+          $nombre = "";
+          $apellidos = "";
+          
+          //$nombre_separados = explode(" ",$emp_jabil[0]);
+          // divide la frase mediante cualquier número de comas o caracteres de espacio,
+          // lo que incluye " ", \r, \t, \n y \f
+          //$nombre_separados = preg_split("/[\s,]+/", $NombreCompleto);
+
+          // Eliminando los espacios dobles dentro de la cadena, y los extremos
+          $limpiando_cadena =  preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $NombreCompleto);
+
+          $nombre_separados = explode(" ",$limpiando_cadena);
+          $num_cadenas = count($nombre_separados);
+          switch ($num_cadenas)
+          {
+            case (2): 
+              $nombre = $nombre_separados[0];
+              $apellidos = $nombre_separados[1];  
+              break;
+            case (3):
+              $nombre = $nombre_separados[0];
+              $apellidos = $nombre_separados[1].' '.$nombre_separados[2];
+              break;
+            case (4):
+              $nombre = $nombre_separados[0].' '.$nombre_separados[1];
+              $apellidos = $nombre_separados[2].' '.$nombre_separados[3];
+              break;
+            case (6):
+              $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2].' '.$nombre_separados[3];
+              $apellidos = $nombre_separados[4].' '.$nombre_separados[5];
+              break;
+            }
+
+            // Depurando el Puesto:
+            // ? por ó(produccion, informacion) , í (ingenieria, tecnologias, lider), é (tecnico) 
+          $emp_Noencontrado++;         
+          echo "Nombre ".$nombre; 
+          echo "Apellidos ".$apellidos;
         }
 
       } // if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] 
