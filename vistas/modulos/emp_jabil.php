@@ -29,6 +29,71 @@
   <!-- /.content-wrapper -->
 
 <?php
+
+function Eliminar_Espacios($cadena)
+{
+  $sin_espacios = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $cadena);
+  return $sin_espacios;
+}
+
+function Corregir_Cadena ($cadena_sinEspacios)
+{
+  
+  // Para capturar los datos : $datos = array ("T?cnivo"=>'Técnico')
+  // $datos["T?cnico"] -> Para accesar al elemento del arreglo.
+  $salida = " ";
+  $patron_busqueda = array(0 => "T?cnico",
+                            1 => "Técnico",
+                            2 => "Tecnico",
+                            3 => "Técnico",
+                            4 => "Producci?n",
+                            5 => "Producción",
+                            6 => "Automatizaci?n",
+                            7 => "Automatización",
+                            8 => "Automatizacion",
+                            9 => "Automatización",
+                            10 => "el?ctrica",
+                            11 => "eléctrica",
+                            12 => "El?ctrica",
+                            13 => "Eléctrica",
+                            14 => "electrica",
+                            15 => "eléctrica",
+                            16 => "Log?stica",
+                            17 => "Logística",
+                            18 => "L?der",
+                            19 => "Líder",
+                            20 => "Lider",
+                            21 => "Líder",
+                            22 => "Inspecci?n",
+                            23 => "Inspección",
+                            24 => "Ingenier?a",
+                            25 => "Ingeniería",
+                            26 => "Tecnolog?as",
+                            27 => "Tecnologías",
+                            28 => "Validaci?n",
+                            29 => "Validación");
+  
+  $cambios_cadena = 'N';
+  for ($i=0;$i<count($patron_busqueda);$i++)
+  {
+    // Determinando si existe la cadena
+    if (str_contains($cadena_sinEspacios,$patron_busqueda[$i]))
+    {
+      $cadena = str_replace($patron_busqueda[$i],$patron_busqueda[$i+1],$cadena_sinEspacios);            
+      $cambios_cadena = 'S';
+    }
+
+  } // for ($i=0;$i<count($patron_busqueda);$i++)
+
+  if ($cambios_cadena === "N")
+  {
+    $cadena = $cadena_sinEspacios;
+  }
+
+
+  return $cadena;
+}
+
 // Importando el archivo CSV
 $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
 if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mimes))
@@ -95,9 +160,9 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           //$nombre_separados = preg_split("/[\s,]+/", $NombreCompleto);
 
           // Eliminando los espacios dobles dentro de la cadena, y los extremos
-          $limpiando_cadena =  preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $NombreCompleto);
+          $cadena_sinEspacios =  Eliminar_Espacios($NombreCompleto);
 
-          $nombre_separados = explode(" ",$limpiando_cadena);
+          $nombre_separados = explode(" ",$cadena_sinEspacios);
           $num_cadenas = count($nombre_separados);
           switch ($num_cadenas)
           {
@@ -121,9 +186,15 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
 
             // Depurando el Puesto:
             // ? por ó(produccion, informacion) , í (ingenieria, tecnologias, lider), é (tecnico) 
-          $emp_Noencontrado++;         
-          echo "Nombre ".$nombre; 
-          echo "Apellidos ".$apellidos;
+            // Limpiar la cadena:
+            $puesto_sinEspacios =  Eliminar_Espacios($emp_jabil[3]);
+            //$puesto_separado = explode(" ",$cadena_sinEspacios);
+            $puesto_depurado = Corregir_Cadena ($puesto_sinEspacios);
+  
+            $emp_Noencontrado++;         
+            //echo "Nombre ".$nombre; 
+            //echo "Apellidos ".$apellidos;
+            echo $puesto_depurado;
         }
 
       } // if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] 
