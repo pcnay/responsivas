@@ -90,9 +90,41 @@ function Corregir_Cadena ($cadena_sinEspacios)
     $cadena = $cadena_sinEspacios;
   }
 
-
   return $cadena;
 }
+
+// Buscar el Id del departamento.
+function BuscarId_Depto($departamento_depurado)
+{
+  // Determinar si existe el Departamento.
+  $valor = $departamento_depurado; 
+  $item = "descripcion";
+  $tabla = "t_Depto";
+  
+  $existe_depto = ModeloDeptos::mdlMostrarDeptos($tabla,$item,$valor);  
+  if ($existe_depto)
+  {
+    $retornar_ntid = $existe_depto["id_depto"];
+  }
+  else
+  {
+    // Insertar el Depto.
+    $datos=array();									
+    $datos = array("nuevoDepto"=>$departamento_depurado);
+    $nuevo_depto = ModeloDeptos::mdlIngresarDepto($tabla,$datos);  
+
+    if ($nuevo_depto == "ok")
+    {
+      $existe_depto = ModeloDeptos::mdlMostrarDeptos($tabla,$item,$valor);  
+      $retornar_ntid = $existe_depto["id_depto"];
+    }
+  
+  }
+
+  return $retornar_ntid;
+}
+
+
 
 // Importando el archivo CSV
 $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
@@ -130,12 +162,12 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
         $tabla = "t_Empleados";
         $orden = "nombre";
 
-        // Descomentar para que detemrine si existe el producto.
+        // Determinar si existe el empleado.
         $existe_emp = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden);
         if ($existe_emp)
         {
-          echo "<br>";
-          echo "Existe empleado ".$valor;
+          //echo "<br>";
+          //echo "Existe empleado ".$valor;
           $emp_encontrado++;
         }
         else
@@ -147,8 +179,6 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           // Reemplazar el caracter "?" por "Ñ"
           $NombreCompleto = str_replace("?", "Ñ",$emp_jabil[0]);
           //echo $NombreCompleto;
-
-
 
           $nombre_separados = array();
           $nombre = "";
@@ -178,11 +208,18 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
               $nombre = $nombre_separados[0].' '.$nombre_separados[1];
               $apellidos = $nombre_separados[2].' '.$nombre_separados[3];
               break;
+            case (5):
+              $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
+              $apellidos = $nombre_separados[3].' '.$nombre_separados[4];
+              break;
             case (6):
               $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2].' '.$nombre_separados[3];
               $apellidos = $nombre_separados[4].' '.$nombre_separados[5];
               break;
             }
+
+            // Eliminando los espacios de Numero de empleado 
+            $NtId_depurado = Eliminar_Espacios($emp_jabil[2]);
 
             // Depurando el Puesto:
             // ? por ó(produccion, informacion) , í (ingenieria, tecnologias, lider), é (tecnico) 
@@ -194,7 +231,17 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
             $emp_Noencontrado++;         
             //echo "Nombre ".$nombre; 
             //echo "Apellidos ".$apellidos;
-            echo $puesto_depurado;
+            
+            // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
+            $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
+            $Id_Depto = BuscarId_Depto($departamento_depurado);
+            
+            echo "Nombre ".$nombre; 
+            echo "Apellidos ".$apellidos;
+            echo "NTID : ".$NtId_depurado;
+            echo "Puesto : ".$puesto_depurado;
+            echo "Departamento : ".$Id_Depto;
+
         }
 
       } // if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] 
