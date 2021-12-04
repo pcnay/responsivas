@@ -125,6 +125,141 @@ function BuscarId_Depto($departamento_depurado)
 }
 
 
+// Obtener Supervisor
+function BuscarSupervisor($depurar_supervisor)
+{
+  // Separar la cadena delimitada por "," para depurar.  
+  $separar_renglon = explode(",",$depurar_supervisor);
+  //echo "Indice 0 = ".$supervisor_separados[0];
+  //echo "Indice 1 = ".$supervisor_separados[1];
+  // Separar para obtener el nombre del supervisor que se deliminata con "="
+  $obtener_supervisor = explode("=",$separar_renglon[0]);
+
+  return $obtener_supervisor[1];
+}
+
+function Arreglar_fecha($depurar_fecha)
+{
+  $separar_fecha = explode(" ",$depurar_fecha);
+  $fecha_editada = date("Y-m-d",strtotime($separar_fecha[0]));
+  
+  if ($separar_fecha[2] == "PM")
+  {
+    $separar_hora = explode(":",$separar_fecha[1]);
+    switch ($separar_hora[0])
+    {
+      case (1): 
+        $hora_formato24 = 13;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
+      break;
+      case (2): 
+        $hora_formato24 = 14;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (3): 
+        $hora_formato24 = 15;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (4): 
+        $hora_formato24 = 16;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (5): 
+        $hora_formato24 = 17;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (6): 
+        $hora_formato24 = 18;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (7): 
+        $hora_formato24 = 19;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (8): 
+        $hora_formato24 = 20;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (9): 
+        $hora_formato24 = 21;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (10): 
+        $hora_formato24 = 22;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (11): 
+        $hora_formato24 = 23;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (12): 
+        $hora_formato24 = 24;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+    }
+  }// if ($separar_fecha[2] == "PM")
+
+  if ($separar_fecha[2] == "AM")
+  {
+    $separar_hora = explode(":",$separar_fecha[1]);
+    switch ($separar_hora[0])
+    {
+      case (1): 
+        $hora_formato24 = 13;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
+      break;
+      case (2): 
+        $hora_formato24 = 14;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (3): 
+        $hora_formato24 = 15;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (4): 
+        $hora_formato24 = 16;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (5): 
+        $hora_formato24 = 17;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (6): 
+        $hora_formato24 = 18;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (7): 
+        $hora_formato24 = 19;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (8): 
+        $hora_formato24 = 20;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (9): 
+        $hora_formato24 = 21;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (10): 
+        $hora_formato24 = 22;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (11): 
+        $hora_formato24 = 23;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+      case (12): 
+        $hora_formato24 = 24;
+        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+      break;
+    }
+  }// if ($separar_fecha[2] == "PM")
+
+
+  $fecha_editada = $fecha_editada." ".$hora;
+
+  return $fecha_editada;
+}
 
 // Importando el archivo CSV
 $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
@@ -150,13 +285,9 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
       // $fecha_inicio = date("Y-m-d",strtotime($cinta_record[1]));
 
 
-      // Revisando si el Serial esta vacio.
-      if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] != "Ensamblador II") || ($emp_jabil[3] != "Ensamblador Maestro")) 
+      // Revisando que no este vacio: "Correo Electronico", "Supervisor".
+    if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
       {
-        //echo "Serial No vacio";
-
-        //print_r ("Procesando registro .. \n ".$contador);
-
         $valor = strtoupper(trim($emp_jabil[2])); // Eliminando ambos espacios, Numero de Empleado "NTID"
         $item = "ntid";
         $tabla = "t_Empleados";
@@ -235,13 +366,26 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
             // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
             $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
             $Id_Depto = BuscarId_Depto($departamento_depurado);
+            $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
             
+            // Obtener el supervisor.
+            $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+            $supervisor = BuscarSupervisor($depurar_supervisor);
+            //echo "Elemento 1 : ".$supervisor;
+
+            // Grabar la fecha de creacion del usuario.
+            $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
+            $fecha_creacion = Arreglar_fecha($depurar_fecha);            
+            
+            echo "Fecha Editada = ".$fecha_creacion;
+            /*
             echo "Nombre ".$nombre; 
             echo "Apellidos ".$apellidos;
             echo "NTID : ".$NtId_depurado;
             echo "Puesto : ".$puesto_depurado;
             echo "Departamento : ".$Id_Depto;
-
+            echo "Correo Electronico : ".$correo_electronico;
+            */
         }
 
       } // if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] 
