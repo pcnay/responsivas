@@ -93,6 +93,68 @@ function Corregir_Cadena ($cadena_sinEspacios)
   return $cadena;
 }
 
+function Obtener_nombre_apellidos($emp_jabil)
+{
+  //echo "NO existe NTID Empleado ".$valor;
+  //echo "Valor de -emp_jabil0 ".
+  
+  // Reemplazar el caracter "?" por "Ñ"
+  $NombreCompleto = str_replace("?", "Ñ",$emp_jabil);
+  //echo $NombreCompleto;
+
+  $nombre_separados = array();
+  $nombre = "";
+  $apellidos = "";
+  
+  //$nombre_separados = explode(" ",$emp_jabil[0]);
+  // divide la frase mediante cualquier número de comas o caracteres de espacio,
+  // lo que incluye " ", \r, \t, \n y \f
+  //$nombre_separados = preg_split("/[\s,]+/", $NombreCompleto);
+
+  // Eliminando los espacios dobles dentro de la cadena, y los extremos
+  $cadena_sinEspacios =  Eliminar_Espacios($NombreCompleto);
+
+  $nombre_separados = explode(" ",$cadena_sinEspacios);
+  $num_cadenas = count($nombre_separados);
+  $nombreCompleto = Array();
+  switch ($num_cadenas)
+  {
+    case (2): 
+      $nombre = $nombre_separados[0];
+      $apellidos = $nombre_separados[1];  
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+    case (3):
+      $nombre = $nombre_separados[0];
+      $apellidos = $nombre_separados[1].' '.$nombre_separados[2];
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+    case (4):
+      $nombre = $nombre_separados[0].' '.$nombre_separados[1];
+      $apellidos = $nombre_separados[2].' '.$nombre_separados[3];
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+    case (5):
+      $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
+      $apellidos = $nombre_separados[3].' '.$nombre_separados[4];
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+    case (6):
+      $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2].' '.$nombre_separados[3];
+      $apellidos = $nombre_separados[4].' '.$nombre_separados[5];
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+  }
+
+  return $nombreCompleto;
+} // Obtener_nombre_apellidos($emp_jabil)
+
+
 // Buscar el Id del departamento.
 function BuscarId_Depto($departamento_depurado)
 {
@@ -124,6 +186,13 @@ function BuscarId_Depto($departamento_depurado)
   return $retornar_ntid;
 }
 
+// Obtener el Id Puesto.
+function Obtener_Puesto($puesto_depurado)
+{
+
+
+}
+
 
 // Obtener Supervisor
 function BuscarSupervisor($depurar_supervisor)
@@ -135,13 +204,49 @@ function BuscarSupervisor($depurar_supervisor)
   // Separar para obtener el nombre del supervisor que se deliminata con "="
   $obtener_supervisor = explode("=",$separar_renglon[0]);
 
-  return $obtener_supervisor[1];
+  // $obtener_supervisor[1] = Es el nombre y apellido, contenplar que algunas veces tienen números los apellidos.
+  // Por lo que se debe eliminar los numeros, para que la busqueda sea efectiva.
+  $nombre_supervisor = preg_replace('/[0-9]+/', '', $obtener_supervisor[1]);
+  //echo "<br>";
+  //echo "Supervisor Extraido : ".$obtener_supervisor[1]." -> ";
+  //echo "Supervisor Sin Numeros : ".$nombre_supervisor." -> ";
+
+  $tabla = "t_Supervisor";
+  $existe_supervisor = ModeloSupervisores::mdlObtenerId_Super($tabla,$nombre_supervisor);
+  
+  //print_r($existe_supervisor);
+  $id_Supervisor = " ";
+
+  if ($existe_supervisor)
+  {
+    $Id_Supervisor = $existe_supervisor["id_supervisor"];
+  }
+  else
+  {
+    // Agregar el supervisor, se tiene que agregar con los numeros como esta en el Active Directory.
+    $datos = Array("descripcion"=>$obtener_supervisor[1]);
+    $tabla = "t_Supervisor";
+
+    //$supervisor_ingresado = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
+    if ($supervisor_ingresado == "ok")
+    {
+      $Id_Supervisor = "Ingresado a la Tabla de Supervisores";
+    }
+    else
+    {
+      $Id_Supervisor = "Error Al Grabar el Supervisor ";
+    }
+
+  }
+
+  return $Id_Supervisor;
 }
 
 function Arreglar_fecha($depurar_fecha)
 {
   $separar_fecha = explode(" ",$depurar_fecha);
   $fecha_editada = date("Y-m-d",strtotime($separar_fecha[0]));
+  $hora = "";
   
   if ($separar_fecha[2] == "PM")
   {
@@ -205,51 +310,51 @@ function Arreglar_fecha($depurar_fecha)
     switch ($separar_hora[0])
     {
       case (1): 
-        $hora_formato24 = 13;
+        $hora_formato24 = 1;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
       break;
       case (2): 
-        $hora_formato24 = 14;
+        $hora_formato24 = 2;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (3): 
-        $hora_formato24 = 15;
+        $hora_formato24 = 3;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (4): 
-        $hora_formato24 = 16;
+        $hora_formato24 = 4;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (5): 
-        $hora_formato24 = 17;
+        $hora_formato24 = 5;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (6): 
-        $hora_formato24 = 18;
+        $hora_formato24 = 6;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (7): 
-        $hora_formato24 = 19;
+        $hora_formato24 = 7;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (8): 
-        $hora_formato24 = 20;
+        $hora_formato24 = 8;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (9): 
-        $hora_formato24 = 21;
+        $hora_formato24 = 9;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (10): 
-        $hora_formato24 = 22;
+        $hora_formato24 = 10;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (11): 
-        $hora_formato24 = 23;
+        $hora_formato24 = 11;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (12): 
-        $hora_formato24 = 24;
+        $hora_formato24 = 12;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
     }
@@ -303,92 +408,69 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
         }
         else
         {
+          $emp_Noencontrado++;
           echo "<br>";
-          //echo "NO existe NTID Empleado ".$valor;
-          //echo "Valor de -emp_jabil0 ".
 
-          // Reemplazar el caracter "?" por "Ñ"
-          $NombreCompleto = str_replace("?", "Ñ",$emp_jabil[0]);
-          //echo $NombreCompleto;
+          // Obtener el Nombre y Apellidos del Empleado
+          $nombre_apellidos = Obtener_nombre_apellidos($emp_jabil[0]);
+          $Nombre = $nombre_apellidos["nombre"];
+          $Apellidos = $nombre_apellidos["apellidos"];      
 
-          $nombre_separados = array();
-          $nombre = "";
-          $apellidos = "";
+          // Eliminando los espacios de Numero de empleado 
+          $NtId_depurado = Eliminar_Espacios($emp_jabil[2]);
+
+          // Depurando el Puesto:
+          // ? por ó(produccion, informacion) , í (ingenieria, tecnologias, lider), é (tecnico) 
+          // Limpiar la cadena:
+          $puesto_sinEspacios =  Eliminar_Espacios($emp_jabil[3]);
+          //$puesto_separado = explode(" ",$cadena_sinEspacios);
+          $puesto_depurado = Corregir_Cadena ($puesto_sinEspacios);
+          $Id_Puesto = Obtener_Puesto($puesto_depurado);
+
           
-          //$nombre_separados = explode(" ",$emp_jabil[0]);
-          // divide la frase mediante cualquier número de comas o caracteres de espacio,
-          // lo que incluye " ", \r, \t, \n y \f
-          //$nombre_separados = preg_split("/[\s,]+/", $NombreCompleto);
+          // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
+          $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
+          $Id_Depto = BuscarId_Depto($departamento_depurado);
 
-          // Eliminando los espacios dobles dentro de la cadena, y los extremos
-          $cadena_sinEspacios =  Eliminar_Espacios($NombreCompleto);
+          // Depurando el correo eléctronico
+          $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
+          
+          // Asignar un supervisor Base, posteriormente se asignara el supevisor con el nombre completo.
+          //$depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+          //$supervisor = BuscarSupervisor($depurar_supervisor);
+          // Supervisor Base (tendra el valor de 81[cloud Google], 83[miportalweb.org])
 
-          $nombre_separados = explode(" ",$cadena_sinEspacios);
-          $num_cadenas = count($nombre_separados);
-          switch ($num_cadenas)
-          {
-            case (2): 
-              $nombre = $nombre_separados[0];
-              $apellidos = $nombre_separados[1];  
-              break;
-            case (3):
-              $nombre = $nombre_separados[0];
-              $apellidos = $nombre_separados[1].' '.$nombre_separados[2];
-              break;
-            case (4):
-              $nombre = $nombre_separados[0].' '.$nombre_separados[1];
-              $apellidos = $nombre_separados[2].' '.$nombre_separados[3];
-              break;
-            case (5):
-              $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
-              $apellidos = $nombre_separados[3].' '.$nombre_separados[4];
-              break;
-            case (6):
-              $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2].' '.$nombre_separados[3];
-              $apellidos = $nombre_separados[4].' '.$nombre_separados[5];
-              break;
-            }
+          $supervisor = 81;
+          
+          // Grabar la fecha de creacion del usuario.
+          $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
+          $fecha_creacion = Arreglar_fecha($depurar_fecha);            
+          $ubicacion = 4; // Mezanine
 
-            // Eliminando los espacios de Numero de empleado 
-            $NtId_depurado = Eliminar_Espacios($emp_jabil[2]);
+          // Se asigna a un arreglo para grabarlos a la tabla:
+          $datos_grabar = Array();
+          $datos_grabar = Array(
+            "id_ubicacion" => $ubicacion,            
+            "id_puesto" => $ubicacion,
 
-            // Depurando el Puesto:
-            // ? por ó(produccion, informacion) , í (ingenieria, tecnologias, lider), é (tecnico) 
-            // Limpiar la cadena:
-            $puesto_sinEspacios =  Eliminar_Espacios($emp_jabil[3]);
-            //$puesto_separado = explode(" ",$cadena_sinEspacios);
-            $puesto_depurado = Corregir_Cadena ($puesto_sinEspacios);
-  
-            $emp_Noencontrado++;         
-            //echo "Nombre ".$nombre; 
-            //echo "Apellidos ".$apellidos;
-            
-            // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
-            $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
-            $Id_Depto = BuscarId_Depto($departamento_depurado);
-            $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
-            
-            // Obtener el supervisor.
-            $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
-            $supervisor = BuscarSupervisor($depurar_supervisor);
-            //echo "Elemento 1 : ".$supervisor;
+            ""
+                      );
+          echo "Nombre ".$Nombre; 
+          echo "Apellidos ".$Apellidos;
 
-            // Grabar la fecha de creacion del usuario.
-            $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
-            $fecha_creacion = Arreglar_fecha($depurar_fecha);            
-            
-            echo "Fecha Editada = ".$fecha_creacion;
-            /*
-            echo "Nombre ".$nombre; 
-            echo "Apellidos ".$apellidos;
-            echo "NTID : ".$NtId_depurado;
-            echo "Puesto : ".$puesto_depurado;
-            echo "Departamento : ".$Id_Depto;
-            echo "Correo Electronico : ".$correo_electronico;
-            */
+          //echo "Fecha Editada = ".$fecha_creacion;
+          /*
+          echo "Nombre ".$nombre; 
+          echo "Apellidos ".$apellidos;
+          echo "NTID : ".$NtId_depurado;
+          echo "Puesto : ".$puesto_depurado;
+          echo "Departamento : ".$Id_Depto;
+          echo "Correo Electronico : ".$correo_electronico;
+          echo "Fecha Editada = ".$fecha_creacion;
+          */
         }
 
-      } // if (!empty($emp_jabil[0]) || ($emp_jabil[3] != "Ensamblador I") || ($emp_jabil[3] 
+      } // if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
 
     } //while(($inv_it = fgetcsv($csv_file_inv)) !== FALSE)
 

@@ -389,7 +389,7 @@ static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
 			$stmt->bindParam(":buscar",$buscar,PDO::PARAM_STR);
 			if ($stmt->execute())
 			{
-				$registros = $stmt->fetchAll();			
+				$registros = $stmt->fetch();			
 				$stmt->closeCursor();
 				$stmt=null;
 				return $registros;

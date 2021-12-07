@@ -112,6 +112,32 @@
 		} // static public function mdlMostrarSupervisores($tabla,$item,$valor)
 
 
+		// Mostrar Supervisor, en base al uso de los comides
+
+    // "static" debido a que tiene parámetros.
+    static public function mdlObtenerId_Super($tabla,$buscar)
+    {
+			//$buscar = '%'.$buscar.'%';			
+			$buscar = $buscar.'%';			
+			$stmt = Conexion::conectar()->prepare("SELECT id_supervisor,descripcion FROM $tabla WHERE descripcion LIKE :buscar");
+			$stmt->bindParam(":buscar",$buscar,PDO::PARAM_STR);
+			if ($stmt->execute())
+			{
+				$registros = $stmt->fetch();			
+				$stmt->closeCursor();
+				$stmt=null;
+				return $registros;
+			}
+			else
+			{
+				$stmt->closeCursor();
+				$stmt=null;
+				return " ";
+			}
+
+		} // static public function mdlObtenerId_Super($tabla,$item,$valor)
+
+
 	} // class ModeloSupervisores
 
 ?>
