@@ -661,8 +661,9 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 	}
 
 	// Evento donde oprimen la tecla en la etiqueta "nuevo_Puesto"
-	$(document).on('keyup','#nuevo_Puesto',function()
-	{
+	$(document).on('keyup','#nuevo_Puesto',function(e)
+	{	
+		e.preventDefault();
 		let valor = $(this).val();
 		if (valor != "")
 		{
@@ -710,8 +711,9 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 
 	// Buscar un Centro De Costos, a tráves del campo "Input"
 		// Evento donde oprimen la tecla en la etiqueta "nuevo_CC"
-		$(document).on('keyup','#nuevo_CC',function()
+		$(document).on('keyup','#nuevo_CC',function(e)
 		{
+			e.preventDefault();
 			let valor = $(this).val();
 			if (valor != "")
 			{

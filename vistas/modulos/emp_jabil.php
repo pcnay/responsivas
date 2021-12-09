@@ -36,59 +36,114 @@ function Eliminar_Espacios($cadena)
   return $sin_espacios;
 }
 
+function ObtenerCadena_Correcta($cadena_error)
+{
+  switch ($cadena_error)
+  {
+    case "T?cnico":
+      $cadena_corregida = "Técnico";
+      break;
+    case "Tecnico":
+      $cadena_corregida = "Técnico";
+      break;
+    case "Producci?n":
+      $cadena_corregida = "Producción";
+      break;
+    case "Automatizaci?n":
+      $cadena_corregida = "Automatización";
+      break;
+    case "Automatizacion":
+      $cadena_corregida = "Automatización";
+      break;
+    case "el?ctrica":
+      $cadena_corregida = "eléctrica";
+      break;
+    case "El?ctrica":
+      $cadena_corregida = "Eléctrica";
+      break;
+    case "electrica":
+      $cadena_corregida = "eléctrica";
+      break;
+    case "Log?stica":
+      $cadena_corregida = "Logística";
+      break;
+    case "L?der":
+      $cadena_corregida = "Líder";
+      break;
+    case "Lider":
+      $cadena_corregida = "Líder";
+      break;
+    case "L?ider":
+      $cadena_corregida = "Líder";
+      break;
+    case "Inspecci?n":
+      $cadena_corregida = "Inspección";
+      break;
+    case "ingenier?a":
+      $cadena_corregida = "Ingeniería";
+      break;
+    case "Ingenier?a":
+      $cadena_corregida = "Ingeniería";
+      break;
+    case "Tecnolog?as":
+      $cadena_corregida = "Tecnologías";
+      break;
+    case "Validaci?n":
+      $cadena_corregida = "Validación";
+      break;
+    case "Planeaci?n":
+      $cadena_corregida = "Planeación";
+      break;
+  } // switch ($cadena_error)
+ 
+  return $cadena_corregida;
+
+} // function ObtenerCadena_Correcta($cadena_error)
+
+
 function Corregir_Cadena ($cadena_sinEspacios)
 {
   
   // Para capturar los datos : $datos = array ("T?cnivo"=>'Técnico')
   // $datos["T?cnico"] -> Para accesar al elemento del arreglo.
   $salida = " ";
-  $patron_busqueda = array(0 => "T?cnico",
-                            1 => "Técnico",
-                            2 => "Tecnico",
-                            3 => "Técnico",
-                            4 => "Producci?n",
-                            5 => "Producción",
-                            6 => "Automatizaci?n",
-                            7 => "Automatización",
-                            8 => "Automatizacion",
-                            9 => "Automatización",
-                            10 => "el?ctrica",
-                            11 => "eléctrica",
-                            12 => "El?ctrica",
-                            13 => "Eléctrica",
-                            14 => "electrica",
-                            15 => "eléctrica",
-                            16 => "Log?stica",
-                            17 => "Logística",
-                            18 => "L?der",
-                            19 => "Líder",
-                            20 => "Lider",
-                            21 => "Líder",
-                            22 => "Inspecci?n",
-                            23 => "Inspección",
-                            24 => "Ingenier?a",
-                            25 => "Ingeniería",
-                            26 => "Tecnolog?as",
-                            27 => "Tecnologías",
-                            28 => "Validaci?n",
-                            29 => "Validación");
-  
+  $patron_busqueda = array
+      (0 => "T?cnico",
+      1 => "Tecnico",      
+      2 => "Producci?n",      
+      3 => "Automatizaci?n",      
+      4 => "Automatizacion",      
+      5 => "el?ctrica",      
+      6 => "El?ctrica",      
+      7 => "electrica",      
+      8 => "Log?stica",
+      9 => "L?der",      
+      10 => "Lider",      
+      11 => "Inspecci?n",      
+      12 => "Ingenier?a",      
+      13 => "Tecnolog?as",      
+      14 => "Validaci?n",      
+      15 => "Planeaci?n",      
+      16 => "ingenier?a",
+      17 => "L?ider");
+
   $cambios_cadena = 'N';
+  $cadena = $cadena_sinEspacios;
+
   for ($i=0;$i<count($patron_busqueda);$i++)
   {
     // Determinando si existe la cadena
-    if (str_contains($cadena_sinEspacios,$patron_busqueda[$i]))
+    // Separando la cadena en partes para revisar cada una de ellas si tiene el signo "?"  
+    $texto_separados = explode(" ",$cadena_sinEspacios);   
+
+    for ($k=0;$k<count($texto_separados);$k++)
     {
-      $cadena = str_replace($patron_busqueda[$i],$patron_busqueda[$i+1],$cadena_sinEspacios);            
-      $cambios_cadena = 'S';
-    }
-
+      if (str_contains($cadena_sinEspacios,$patron_busqueda[$i]))
+      {
+        $cadena = str_replace($patron_busqueda[$i],ObtenerCadena_Correcta($patron_busqueda[$i]),$cadena_sinEspacios);    $cadena_sinEspacios = $cadena;
+      }   
+    } 
   } // for ($i=0;$i<count($patron_busqueda);$i++)
-
-  if ($cambios_cadena === "N")
-  {
-    $cadena = $cadena_sinEspacios;
-  }
 
   return $cadena;
 }
@@ -189,8 +244,33 @@ function BuscarId_Depto($departamento_depurado)
 // Obtener el Id Puesto.
 function Obtener_Puesto($puesto_depurado)
 {
+  // "$puesto_depurado" = Es el nombre completo de puesto.
+  // Buscar por nombre de puesto, si no existe agregarlo, posteriormente se hará una depuración de nombre similares.
+  $tabla = "t_Puesto";
+  $item = "descripcion";
+  $valor = $puesto_depurado;
 
+  $Puesto = ModeloPuestos::mdlMostrarPuestos($tabla,$item,$valor);
 
+  if ($Puesto == null)
+  {
+    // $Descrip_puesto = "NO se encontro puesto";
+    $tabla = "t_Puesto";
+    $datos = Array();									
+    $datos = Array("nuevoPuesto"=>$puesto_depurado);
+    $Alta_puesto = ModeloPuestos::mdlIngresarPuesto($tabla,$datos);
+
+    $item = "descripcion";
+    $valor = $puesto_depurado;
+    $Obtener_Puesto = ModeloPuestos::mdlMostrarPuestos($tabla,$item,$valor);
+    $Id_Puesto = $Obtener_Puesto["id_puesto"];
+  }
+  else
+  {
+    $Id_Puesto = $Puesto["id_puesto"];
+  }
+
+  return $Id_Puesto;
 }
 
 
@@ -425,12 +505,15 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           $puesto_sinEspacios =  Eliminar_Espacios($emp_jabil[3]);
           //$puesto_separado = explode(" ",$cadena_sinEspacios);
           $puesto_depurado = Corregir_Cadena ($puesto_sinEspacios);
-          $Id_Puesto = Obtener_Puesto($puesto_depurado);
+          //echo "Num Emp : ".$NtId_depurado." Nombre Puesto : ".$puesto_depurado;
 
+          $Id_Puesto = Obtener_Puesto($puesto_depurado);
+          echo "Puesto : ".$Id_Puesto;
           
           // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
           $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
           $Id_Depto = BuscarId_Depto($departamento_depurado);
+
 
           // Depurando el correo eléctronico
           $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
@@ -448,20 +531,15 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           $ubicacion = 4; // Mezanine
 
           // Se asigna a un arreglo para grabarlos a la tabla:
-          $datos_grabar = Array();
-          $datos_grabar = Array(
-            "id_ubicacion" => $ubicacion,            
-            "id_puesto" => $ubicacion,
+          //$datos_grabar = Array();
+          //$datos_grabar = Array(
+          //  "id_ubicacion" => $ubicacion,            
+          //  "id_puesto" => $ubicacion);
 
-            ""
-                      );
+          
+          /*
           echo "Nombre ".$Nombre; 
           echo "Apellidos ".$Apellidos;
-
-          //echo "Fecha Editada = ".$fecha_creacion;
-          /*
-          echo "Nombre ".$nombre; 
-          echo "Apellidos ".$apellidos;
           echo "NTID : ".$NtId_depurado;
           echo "Puesto : ".$puesto_depurado;
           echo "Departamento : ".$Id_Depto;

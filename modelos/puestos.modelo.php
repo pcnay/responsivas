@@ -111,7 +111,6 @@
 
 		} // static public function mdlMostrarPuestos($tabla,$item,$valor)
 
-
 	} // class ModeloPuestos
 
 ?>

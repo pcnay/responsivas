@@ -135,6 +135,10 @@ CREATE TABLE t_Centro_Costos
 	ALTER TABLE 't_Empleados' CHANGE 'id_centro_costos' 'id_centro_costos' SMALLINT(5) UNSIGNED NOT NULL;
 */
 
+/* Para modificar la longuitud de un campo:
+	ALTER TABLE t_Puesto MODIFY COLUMN descripcion VARCHAR(100);
+
+*/
 /*
 	ALTER TABLE t_Empleados ADD FOREIGN KEY(id_centro_costos) REFERENCES t_Centro_Costos(id_centro_costos) ON DELETE RESTRICT ON UPDATE CASCADE;
 */
