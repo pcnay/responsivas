@@ -264,6 +264,8 @@ function Obtener_Puesto($puesto_depurado)
     $valor = $puesto_depurado;
     $Obtener_Puesto = ModeloPuestos::mdlMostrarPuestos($tabla,$item,$valor);
     $Id_Puesto = $Obtener_Puesto["id_puesto"];
+    echo "<br>";
+    echo "Se grabo Id Puesto";
   }
   else
   {
@@ -273,34 +275,90 @@ function Obtener_Puesto($puesto_depurado)
   return $Id_Puesto;
 }
 
+function ObtenerCorreoElect($depurar_supervisor)
+{  
+  // Separar la cadena delimitada por "," para depurar.  
+  $separar_renglon = explode(",",$depurar_supervisor);
+  //echo "Indice 0 = ".$separar_renglon[0];
+  //echo "Indice 1 = ".$separar_renglon[1];
+
+  // Separar para obtener el nombre del supervisor que se deliminata con "="
+  $obtener_supervisor = explode("=",$separar_renglon[0]);
+  //echo "Indice 0 = ".$obtener_supervisor[0];
+  //echo "Indice 1 = ".$obtener_supervisor[1];
+
+
+  // Agregar el caracter "_" a la cadena.
+  
+  $supervisor_reemplazar_caracter = str_replace(" ", "_",$obtener_supervisor[1]);
+  
+  //print_r($supervisor_reemplazar_caracter);
+
+  $supervisor_correoElect = $supervisor_reemplazar_caracter."@jabil.com";
+
+  // $obtener_supervisor[1] = Es el nombre y apellido, contenplar que algunas veces tienen números los apellidos.
+  // Por lo que se debe eliminar los numeros, para que la busqueda sea efectiva.
+  // $nombre_supervisor = preg_replace('/[0-9]+/', '', $obtener_supervisor[1]);
+  
+  return $supervisor_correoElect;
+}
 
 // Obtener Supervisor
 function BuscarSupervisor($depurar_supervisor)
 {
-  // Separar la cadena delimitada por "," para depurar.  
-  $separar_renglon = explode(",",$depurar_supervisor);
-  //echo "Indice 0 = ".$supervisor_separados[0];
-  //echo "Indice 1 = ".$supervisor_separados[1];
-  // Separar para obtener el nombre del supervisor que se deliminata con "="
-  $obtener_supervisor = explode("=",$separar_renglon[0]);
+  $Id_Supervisor = " ";
 
-  // $obtener_supervisor[1] = Es el nombre y apellido, contenplar que algunas veces tienen números los apellidos.
-  // Por lo que se debe eliminar los numeros, para que la busqueda sea efectiva.
-  $nombre_supervisor = preg_replace('/[0-9]+/', '', $obtener_supervisor[1]);
-  //echo "<br>";
-  //echo "Supervisor Extraido : ".$obtener_supervisor[1]." -> ";
-  //echo "Supervisor Sin Numeros : ".$nombre_supervisor." -> ";
-
-  $tabla = "t_Supervisor";
-  $existe_supervisor = ModeloSupervisores::mdlObtenerId_Super($tabla,$nombre_supervisor);
-  
-  //print_r($existe_supervisor);
-  $id_Supervisor = " ";
-
-  if ($existe_supervisor)
+  // Obtener Correo Electrónico.
+  $correo_elect = ObtenerCorreoElect($depurar_supervisor);
+   
+  $tabla = "t_Empleados";
+  $item = "correo_electronico";
+  $valor = $correo_elect;
+  $orden = "apellidos";
+  $existe_empleado = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden);
+      
+  if ($existe_empleado)
   {
-    $Id_Supervisor = $existe_supervisor["id_supervisor"];
+    echo "<br>";
+    echo "Encontro el Empleado";
+    //$Id_Supervisor = $existe_supervisor["id_supervisor"];
+    $Nombre_completo = $existe_empleado["nombre"].' '.$existe_empleado["apellidos"];
+
+    // Buscar el Supervisor.
+    $tabla = "t_Supervisor";
+    $item = "descripcion";
+    $valor = $Nombre_completo;
+    
+    $buscar_supervisor = ModeloSupervisores::mdlMostrarSupervisores($tabla,$item,$valor);
+
+    if ($buscar_supervisor)
+    {
+      echo "Encontro Supervisor ";
+      $Id_Supervisor = $buscar_supervisor["id_supervisor"];
+    }
+    else
+    {
+      echo "Grabar Supervisor Supervisor ";
+      // Grabar Supervisor:
+      $tabla = "t_Supervisor";
+      $datos = Array();
+      $datos = Array("nuevoSupervisor"=>$valor);
+      //$grabar_supervisor = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
+
+      // Buscar el Supervisor.
+      $tabla = "t_Supervisor";
+      $item = "descripcion";
+      $valor = $Nombre_completo;
+    
+      $buscar_supervisor = ModeloSupervisores::mdlMostrarSupervisores($tabla,$item,$valor);
+      $Id_Supervisor = $buscar_supervisor["id_supervisor"];
+    }
   }
+  else
+  {
+    $Id_Supervisor = "NO se encontra el Empleado";
+  }
+  /*
   else
   {
     // Agregar el supervisor, se tiene que agregar con los numeros como esta en el Active Directory.
@@ -308,6 +366,8 @@ function BuscarSupervisor($depurar_supervisor)
     $tabla = "t_Supervisor";
 
     //$supervisor_ingresado = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
+    $supervisor_ingresado = "ok";
+
     if ($supervisor_ingresado == "ok")
     {
       $Id_Supervisor = "Ingresado a la Tabla de Supervisores";
@@ -318,7 +378,8 @@ function BuscarSupervisor($depurar_supervisor)
     }
 
   }
-
+  */
+ 
   return $Id_Supervisor;
 }
 
@@ -508,7 +569,7 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           //echo "Num Emp : ".$NtId_depurado." Nombre Puesto : ".$puesto_depurado;
 
           $Id_Puesto = Obtener_Puesto($puesto_depurado);
-          echo "Puesto : ".$Id_Puesto;
+          //echo "Puesto : ".$Id_Puesto;
           
           // se debe obtener el numero de Departamento para poder grabarlo en la base de datos.
           $departamento_depurado = Eliminar_Espacios($emp_jabil[4]);
@@ -519,17 +580,24 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
           
           // Asignar un supervisor Base, posteriormente se asignara el supevisor con el nombre completo.
-          //$depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
-          //$supervisor = BuscarSupervisor($depurar_supervisor);
+          $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+          $supervisor = BuscarSupervisor($depurar_supervisor);
           // Supervisor Base (tendra el valor de 81[cloud Google], 83[miportalweb.org])
+          //$supervisor = 81;
+          echo "<br>";
+          echo "Id Supervisor : ".$supervisor;
 
-          $supervisor = 81;
           
           // Grabar la fecha de creacion del usuario.
           $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
           $fecha_creacion = Arreglar_fecha($depurar_fecha);            
           $ubicacion = 4; // Mezanine
 
+          // Obtener el nombre completo del Supervisor.
+          // Se extrae parte del nombre ya que contiene el su correo, solo se tiene que separar de la cadena y agregar el caracter "_". 
+
+          
+          
           // Se asigna a un arreglo para grabarlos a la tabla:
           //$datos_grabar = Array();
           //$datos_grabar = Array(
