@@ -204,6 +204,13 @@ function Obtener_nombre_apellidos($emp_jabil)
       $nombreCompleto = Array("nombre" =>$nombre,
                             "apellidos" => $apellidos);
       break;
+    case (7):
+    $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
+    $apellidos = $nombre_separados[3];$nombre_separados[4].' '.$nombre_separados[5].' '.$nombre_separados[6];
+    $nombreCompleto = Array("nombre" =>$nombre,
+                          "apellidos" => $apellidos);
+    break;
+
   }
 
   return $nombreCompleto;
@@ -264,8 +271,8 @@ function Obtener_Puesto($puesto_depurado)
     $valor = $puesto_depurado;
     $Obtener_Puesto = ModeloPuestos::mdlMostrarPuestos($tabla,$item,$valor);
     $Id_Puesto = $Obtener_Puesto["id_puesto"];
-    echo "<br>";
-    echo "Se grabo Id Puesto";
+    //echo "<br>";
+    //echo "Se grabo Id Puesto";
   }
   else
   {
@@ -306,7 +313,7 @@ function ObtenerCorreoElect($depurar_supervisor)
 // Obtener Supervisor
 function BuscarSupervisor($depurar_supervisor)
 {
-  $Id_Supervisor = " ";
+  $Id_Supervisor = "";
 
   // Obtener Correo Electrónico.
   $correo_elect = ObtenerCorreoElect($depurar_supervisor);
@@ -319,8 +326,8 @@ function BuscarSupervisor($depurar_supervisor)
       
   if ($existe_empleado)
   {
-    echo "<br>";
-    echo "Encontro el Empleado";
+    //echo "<br>";
+    //echo "Encontro el Empleado".' '.$existe_empleado["nombre"].' '.$existe_empleado["apellidos"];
     //$Id_Supervisor = $existe_supervisor["id_supervisor"];
     $Nombre_completo = $existe_empleado["nombre"].' '.$existe_empleado["apellidos"];
 
@@ -333,12 +340,12 @@ function BuscarSupervisor($depurar_supervisor)
 
     if ($buscar_supervisor)
     {
-      echo "Encontro Supervisor ";
-      $Id_Supervisor = $buscar_supervisor["id_supervisor"];
+      //echo "Encontro Supervisor ";
+      $Id_Supervisor = $buscar_supervisor["id_supervisor"].' '.$buscar_supervisor["descripcion"];
     }
     else
     {
-      echo "Grabar Supervisor Supervisor ";
+      //echo "Grabar Supervisor ";
       // Grabar Supervisor:
       $tabla = "t_Supervisor";
       $datos = Array();
@@ -346,17 +353,20 @@ function BuscarSupervisor($depurar_supervisor)
       //$grabar_supervisor = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
 
       // Buscar el Supervisor.
+      /*
       $tabla = "t_Supervisor";
       $item = "descripcion";
       $valor = $Nombre_completo;
     
       $buscar_supervisor = ModeloSupervisores::mdlMostrarSupervisores($tabla,$item,$valor);
       $Id_Supervisor = $buscar_supervisor["id_supervisor"];
+      */
+
     }
   }
   else
   {
-    $Id_Supervisor = "NO se encontra el Empleado";
+    //echo "NO se encuentra el Empleado";
   }
   /*
   else
@@ -439,7 +449,7 @@ function Arreglar_fecha($depurar_fecha)
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
       case (12): 
-        $hora_formato24 = 24;
+        $hora_formato24 = 00;
         $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
       break;
     }
@@ -522,7 +532,9 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
     $emp_encontrado = 0;
     $emp_Noencontrado = 0;
     $ruta = "vistas/img/empleados/default/anonymous.png";
-
+    
+    echo " TRABAJANDO .............. ";
+    
     while(($emp_jabil = fgetcsv($csv_file_emp)) !== FALSE)
     {
       // **** Para subir el inventario de IT
@@ -534,7 +546,8 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
       // Revisando que no este vacio: "Correo Electronico", "Supervisor".
     if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
       {
-        $valor = strtoupper(trim($emp_jabil[2])); // Eliminando ambos espacios, Numero de Empleado "NTID"
+        // strtoupper = Convierte el texto a Mayusculas.
+        $valor = trim($emp_jabil[2]); // Eliminando ambos espacios, Numero de Empleado "NTID"
         $item = "ntid";
         $tabla = "t_Empleados";
         $orden = "nombre";
@@ -551,9 +564,11 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
         {
           $emp_Noencontrado++;
           echo "<br>";
+          
 
           // Obtener el Nombre y Apellidos del Empleado
           $nombre_apellidos = Obtener_nombre_apellidos($emp_jabil[0]);
+        
           $Nombre = $nombre_apellidos["nombre"];
           $Apellidos = $nombre_apellidos["apellidos"];      
 
@@ -578,49 +593,111 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
 
           // Depurando el correo eléctronico
           $correo_electronico = Eliminar_Espacios($emp_jabil[5]);
-          
-          // Asignar un supervisor Base, posteriormente se asignara el supevisor con el nombre completo.
-          $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
-          $supervisor = BuscarSupervisor($depurar_supervisor);
-          // Supervisor Base (tendra el valor de 81[cloud Google], 83[miportalweb.org])
-          //$supervisor = 81;
-          echo "<br>";
-          echo "Id Supervisor : ".$supervisor;
-
-          
+                  
           // Grabar la fecha de creacion del usuario.
-          $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
-          $fecha_creacion = Arreglar_fecha($depurar_fecha);            
+          //$depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
+          //$fecha_creacion = Arreglar_fecha($depurar_fecha);            
           $ubicacion = 4; // Mezanine
+          $centro_costos = 29; // Philips, generico después corregir.
 
           // Obtener el nombre completo del Supervisor.
           // Se extrae parte del nombre ya que contiene el su correo, solo se tiene que separar de la cadena y agregar el caracter "_". 
 
-          
-          
-          // Se asigna a un arreglo para grabarlos a la tabla:
-          //$datos_grabar = Array();
-          //$datos_grabar = Array(
-          //  "id_ubicacion" => $ubicacion,            
-          //  "id_puesto" => $ubicacion);
 
-          
+          //Antes de Grabar el supervisor, se debe grabar como "Empleado" el supervisor para después obtener su nombre completo y grabarlo en la tabla de "t_Supervisor"
+
+          // Asignar un supervisor Base, posteriormente se asignara el supevisor con el nombre completo.
+          // Supervisor Base (tendra el valor de 81[cloud Google], 83[miportalweb.org])
+          //$supervisor = 81;
+
+          //$depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+          //$supervisor = BuscarSupervisor($depurar_supervisor);
+          $supervisor = 81;
+
+          // Se asigna a un arreglo para grabarlos a la tabla de Empleados
+          $datos_grabar = Array();
+          $datos_grabar = Array(
+                          "id_puesto" =>$Id_Puesto,
+                          "id_depto" =>$Id_Depto,
+                          "id_supervisor" =>$supervisor,
+                          "id_ubicacion" =>$ubicacion,
+                          "id_centro_costos" =>$centro_costos,
+                          "nombre" =>$Nombre,
+                          "apellidos" =>$Apellidos,
+                          "ntid" =>$NtId_depurado,
+                          "correo_electronico" =>$correo_electronico,
+                          "imagen" =>$ruta);
+
+          // Antes de grabar el "Empleado", verificar si existe.
+          // NO es necesario validar ya que inicialmente se valido si existia el "Empleado"
           /*
-          echo "Nombre ".$Nombre; 
-          echo "Apellidos ".$Apellidos;
-          echo "NTID : ".$NtId_depurado;
-          echo "Puesto : ".$puesto_depurado;
-          echo "Departamento : ".$Id_Depto;
-          echo "Correo Electronico : ".$correo_electronico;
-          echo "Fecha Editada = ".$fecha_creacion;
+          $tabla = "t_Empleados";
+          $item = "correo_electronico";
+          $valor = $datos_grabar["correo_electronico"];
+          $orden = "apellidos";
+          $existe_empleado = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden);
+              
+          if (!$existe_empleado)
+          {        
+            $respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos);          
+          }
           */
-        }
+
+          $respuesta = ModeloEmpleados::mdlIngresarEmpleado($tabla,$datos_grabar);          
+          
+          if ($respuesta == "ok")
+          {
+            //echo "Se grabo el Empleado ";
+            //$depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+            //$supervisor = BuscarSupervisor($depurar_supervisor);            
+          }
+          else
+          {
+            echo "Error al Grabar el empleado";
+          }          
+
+        }  // else - if ($existe_emp)
 
       } // if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
 
     } //while(($inv_it = fgetcsv($csv_file_inv)) !== FALSE)
 
     fclose($csv_file_emp);
+
+
+    // De nuevo se ejecuta para asignar el supervisor.
+    $csv_file_emp = fopen($_FILES['file']['tmp_name'], 'r');
+    //fgetcsv($csv_file);
+    // get data records from csv file
+
+    while(($emp_jabil = fgetcsv($csv_file_emp)) !== FALSE)
+    {
+      if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
+      {
+        $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
+        BuscarSupervisor($depurar_supervisor);
+
+        // Falta asignar la fecha de creación.
+        $tabla = "t_Empleados";
+        $item1 = "fecha";
+        $depurar_fecha = Eliminar_Espacios($emp_jabil[7]);
+        $valor1 = Arreglar_fecha($depurar_fecha); // Fecha con formato para Bd.
+        //echo "Fecha Desplegada : ".$valor1;
+        $valor2 = Eliminar_Espacios($emp_jabil[2]); // NtId
+        $respuesta = ModeloEmpleados::mdlActualizarFecha($tabla,$item1,$valor1,$valor2);
+
+        if ($respuesta == "ok")
+        {
+          //echo "Fecha grabada ";
+        }
+
+      } // if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
+
+    } // while(($emp_jabil = fgetcsv($csv_file_emp)) !== FALSE)
+
+    fclose($csv_file_emp);
+
+
 
     print_r('<br>');
     print_r("Empleados Existentes =  ".$emp_encontrado);

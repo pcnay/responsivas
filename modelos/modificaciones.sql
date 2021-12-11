@@ -35,7 +35,7 @@ Para ejecutar el "script"
 
 
 USE bd_responsivas;
-
+/*
 CREATE TABLE t_Estatus
 (
   id_estatus SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -71,7 +71,7 @@ CREATE TABLE t_Tareas
 	FOREIGN KEY(id_ubicacion) REFERENCES t_Ubicacion(id_ubicacion) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-
+*/
 
 /* DROP TABLE t_Tareas; */
 

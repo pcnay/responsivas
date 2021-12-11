@@ -148,7 +148,7 @@ CREATE TABLE t_Usuarios
 CREATE TABLE t_Puesto
 (
   id_puesto SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  descripcion VARCHAR(45) NOT NULL	
+  descripcion VARCHAR(100) NOT NULL	
 );
 
 CREATE TABLE t_Ubicacion
@@ -185,7 +185,7 @@ CREATE TABLE t_Empleados
 	id_supervisor SMALLINT UNSIGNED NOT NULL,
 	id_depto SMALLINT UNSIGNED NOT NULL,
 	id_centro_costos SMALLINT UNSIGNED NOT NULL,
-  nombre VARCHAR(20) NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
 	apellidos VARCHAR(45) NOT NULL,
 	ntid VARCHAR(20) NOT NULL,
 	correo_electronico VARCHAR(50) NOT NULL,

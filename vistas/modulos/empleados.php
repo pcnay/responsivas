@@ -109,7 +109,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                <input type="text" maxlength="20" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder = "Ingresar Nombre" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
@@ -332,7 +332,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fad fa-id-card"></i></span>
                 <input type="hidden"  name="id_empleado"  id="id_empleado" required>
-                <input type="text" maxlength="20" class="form-control input-lg" id = "editar_ntid" name="editar_ntid" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id = "editar_ntid" name="editar_ntid" required>
               </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 

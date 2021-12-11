@@ -231,6 +231,29 @@
 		}
 	*/
 
+		// Actualizar La fecha, con la fechea y hora de creación. 
+		static public function mdlActualizarFecha($tabla,$item1,$valor1,$valor2)
+		{
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE ntid = :ntid");
+			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
+			$stmt->bindParam(":ntid", $valor2,PDO::PARAM_STR);
+
+			if($stmt->execute())
+			{
+				return "ok";
+			}
+			else
+			{
+				return "error";
+			}
+
+			$stmt->close();
+			$stmt = null;
+
+		} // 		static public function mdlActualizarProducto.......
+
+
+
 	} // class ModeloEmpleados
 
 ?>
