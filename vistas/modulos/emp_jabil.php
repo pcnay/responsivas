@@ -366,7 +366,8 @@ function BuscarSupervisor($depurar_supervisor)
   }
   else
   {
-    //echo "NO se encuentra el Empleado";
+    echo "<br>";
+    echo "NO se encuentra el Supervisor : ".$correo_elect;
   }
   /*
   else
@@ -399,118 +400,126 @@ function Arreglar_fecha($depurar_fecha)
   $fecha_editada = date("Y-m-d",strtotime($separar_fecha[0]));
   $hora = "";
   
-  if ($separar_fecha[2] == "PM")
+  if (count($separar_fecha) == 2)
   {
-    $separar_hora = explode(":",$separar_fecha[1]);
-    switch ($separar_hora[0])
-    {
-      case (1): 
-        $hora_formato24 = 13;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
-      break;
-      case (2): 
-        $hora_formato24 = 14;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (3): 
-        $hora_formato24 = 15;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (4): 
-        $hora_formato24 = 16;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (5): 
-        $hora_formato24 = 17;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (6): 
-        $hora_formato24 = 18;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (7): 
-        $hora_formato24 = 19;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (8): 
-        $hora_formato24 = 20;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (9): 
-        $hora_formato24 = 21;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (10): 
-        $hora_formato24 = 22;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (11): 
-        $hora_formato24 = 23;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (12): 
-        $hora_formato24 = 00;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-    }
-  }// if ($separar_fecha[2] == "PM")
-
-  if ($separar_fecha[2] == "AM")
+    $hora = $separar_fecha[1];
+  }
+  else
   {
-    $separar_hora = explode(":",$separar_fecha[1]);
-    switch ($separar_hora[0])
+    if ($separar_fecha[2] == "PM")  
     {
-      case (1): 
-        $hora_formato24 = 1;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
-      break;
-      case (2): 
-        $hora_formato24 = 2;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (3): 
-        $hora_formato24 = 3;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (4): 
-        $hora_formato24 = 4;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (5): 
-        $hora_formato24 = 5;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (6): 
-        $hora_formato24 = 6;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (7): 
-        $hora_formato24 = 7;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (8): 
-        $hora_formato24 = 8;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (9): 
-        $hora_formato24 = 9;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (10): 
-        $hora_formato24 = 10;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (11): 
-        $hora_formato24 = 11;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-      case (12): 
-        $hora_formato24 = 12;
-        $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
-      break;
-    }
-  }// if ($separar_fecha[2] == "PM")
+      $separar_hora = explode(":",$separar_fecha[1]);
+      switch ($separar_hora[0])
+      {
+        case (1): 
+          $hora_formato24 = 13;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
+        break;
+        case (2): 
+          $hora_formato24 = 14;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (3): 
+          $hora_formato24 = 15;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (4): 
+          $hora_formato24 = 16;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (5): 
+          $hora_formato24 = 17;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (6): 
+          $hora_formato24 = 18;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (7): 
+          $hora_formato24 = 19;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (8): 
+          $hora_formato24 = 20;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (9): 
+          $hora_formato24 = 21;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (10): 
+          $hora_formato24 = 22;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (11): 
+          $hora_formato24 = 23;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (12): 
+          $hora_formato24 = 00;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+      }
+    }// if ($separar_fecha[2] == "PM")
 
+    if ($separar_fecha[2] == "AM")
+    {
+      $separar_hora = explode(":",$separar_fecha[1]);
+      switch ($separar_hora[0])
+      {
+        case (1): 
+          $hora_formato24 = 1;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];
+        break;
+        case (2): 
+          $hora_formato24 = 2;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (3): 
+          $hora_formato24 = 3;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (4): 
+          $hora_formato24 = 4;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (5): 
+          $hora_formato24 = 5;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (6): 
+          $hora_formato24 = 6;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (7): 
+          $hora_formato24 = 7;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (8): 
+          $hora_formato24 = 8;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (9): 
+          $hora_formato24 = 9;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (10): 
+          $hora_formato24 = 10;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (11): 
+          $hora_formato24 = 11;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+        case (12): 
+          $hora_formato24 = 12;
+          $hora = $hora_formato24.":".$separar_hora[1].":".$separar_hora[2];       
+        break;
+      }
+
+    }// if ($separar_fecha[2] == "PM")
+
+  } // else   if (count($separar_fecha) == 2)
 
   $fecha_editada = $fecha_editada." ".$hora;
 
@@ -567,10 +576,18 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
           
 
           // Obtener el Nombre y Apellidos del Empleado
-          $nombre_apellidos = Obtener_nombre_apellidos($emp_jabil[0]);
-        
-          $Nombre = $nombre_apellidos["nombre"];
-          $Apellidos = $nombre_apellidos["apellidos"];      
+          if (!empty($emp_jabil[0]))
+          {
+            $nombre_apellidos = Obtener_nombre_apellidos($emp_jabil[0]);
+          
+            $Nombre = $nombre_apellidos["nombre"];
+            $Apellidos = $nombre_apellidos["apellidos"];      
+          }
+          else
+          {
+            $Nombre = "Usuario SVC";
+            $Apellidos = "Usuario SVC";
+          }
 
           // Eliminando los espacios de Numero de empleado 
           $NtId_depurado = Eliminar_Espacios($emp_jabil[2]);
