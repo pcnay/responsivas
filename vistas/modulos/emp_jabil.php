@@ -205,11 +205,16 @@ function Obtener_nombre_apellidos($emp_jabil)
                             "apellidos" => $apellidos);
       break;
     case (7):
-    $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
-    $apellidos = $nombre_separados[3];$nombre_separados[4].' '.$nombre_separados[5].' '.$nombre_separados[6];
-    $nombreCompleto = Array("nombre" =>$nombre,
-                          "apellidos" => $apellidos);
-    break;
+      $nombre = $nombre_separados[0].' '.$nombre_separados[1].' '.$nombre_separados[2];
+      $apellidos = $nombre_separados[3];$nombre_separados[4].' '.$nombre_separados[5].' '.$nombre_separados[6];
+      $nombreCompleto = Array("nombre" =>$nombre,
+                            "apellidos" => $apellidos);
+      break;
+    default:
+      $nombre = null;
+      $apellidos = null;
+      $nombreCompleto = Array("nombre" =>$nombre,
+      "apellidos" => $apellidos);
 
   }
 
@@ -341,7 +346,7 @@ function BuscarSupervisor($depurar_supervisor)
     if ($buscar_supervisor)
     {
       //echo "Encontro Supervisor ";
-      $Id_Supervisor = $buscar_supervisor["id_supervisor"].' '.$buscar_supervisor["descripcion"];
+      $Id_Supervisor = $buscar_supervisor["id_supervisor"]; //.' '.$buscar_supervisor["descripcion"];
     }
     else
     {
@@ -350,7 +355,27 @@ function BuscarSupervisor($depurar_supervisor)
       $tabla = "t_Supervisor";
       $datos = Array();
       $datos = Array("nuevoSupervisor"=>$valor);
-      //$grabar_supervisor = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
+      $grabar_supervisor = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
+
+      if ($grabar_supervisor)
+      {
+        // Buscar el Supervisor.
+        $tabla = "t_Supervisor";
+        $item = "descripcion";
+        $valor = $Nombre_completo;     
+    
+        $buscar_supervisor = ModeloSupervisores::mdlMostrarSupervisores($tabla,$item,$valor);
+        if ($buscar_supervisor)
+        {
+          $Id_Supervisor = $buscar_supervisor["id_supervisor"]; //.' '.$buscar_supervisor["descripcion"];
+        }
+
+      } // if ($grabar_supervisor)
+      else
+      {
+        echo "<br>";
+        echo "Error al Grabar el Supervisor";
+      }
 
       // Buscar el Supervisor.
       /*
@@ -369,27 +394,6 @@ function BuscarSupervisor($depurar_supervisor)
     echo "<br>";
     echo "NO se encuentra el Supervisor : ".$correo_elect;
   }
-  /*
-  else
-  {
-    // Agregar el supervisor, se tiene que agregar con los numeros como esta en el Active Directory.
-    $datos = Array("descripcion"=>$obtener_supervisor[1]);
-    $tabla = "t_Supervisor";
-
-    //$supervisor_ingresado = ModeloSupervisores::mdlIngresarSupervisor($tabla,$datos);
-    $supervisor_ingresado = "ok";
-
-    if ($supervisor_ingresado == "ok")
-    {
-      $Id_Supervisor = "Ingresado a la Tabla de Supervisores";
-    }
-    else
-    {
-      $Id_Supervisor = "Error Al Grabar el Supervisor ";
-    }
-
-  }
-  */
  
   return $Id_Supervisor;
 }
@@ -553,7 +557,7 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
 
 
       // Revisando que no este vacio: "Correo Electronico", "Supervisor".
-    if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
+    if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6])) && ($emp_jabil[0] != "extensionAttribute14")) 
       {
         // strtoupper = Convierte el texto a Mayusculas.
         $valor = trim($emp_jabil[2]); // Eliminando ambos espacios, Numero de Empleado "NTID"
@@ -629,7 +633,7 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
 
           //$depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
           //$supervisor = BuscarSupervisor($depurar_supervisor);
-          $supervisor = 81;
+          $supervisor = 83;
 
           // Se asigna a un arreglo para grabarlos a la tabla de Empleados
           $datos_grabar = Array();
@@ -689,10 +693,22 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
 
     while(($emp_jabil = fgetcsv($csv_file_emp)) !== FALSE)
     {
-      if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6]))) 
+      if ((!empty($emp_jabil[5])) && (!empty($emp_jabil[6])) && ($emp_jabil[0] != "extensionAttribute14")) 
       {
+        // Grabar el supervisor que les corresponde al Empleado.
         $depurar_supervisor = Eliminar_Espacios($emp_jabil[6]);
-        BuscarSupervisor($depurar_supervisor);
+        $id_Supervisor = BuscarSupervisor($depurar_supervisor);
+
+        $tabla = "t_Empleados";
+        $item1 = "id_supervisor";        
+        $valor1 = $id_Supervisor;         
+        $valor2 = Eliminar_Espacios($emp_jabil[2]); // NtId
+
+        // Si Id del Supervisor esta vacio, no actualize el valor.
+        if (!empty($valor1))
+        {
+          $respuesta = ModeloEmpleados::mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2);
+        }
 
         // Falta asignar la fecha de creación.
         $tabla = "t_Empleados";
@@ -701,7 +717,7 @@ if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'],$file_mim
         $valor1 = Arreglar_fecha($depurar_fecha); // Fecha con formato para Bd.
         //echo "Fecha Desplegada : ".$valor1;
         $valor2 = Eliminar_Espacios($emp_jabil[2]); // NtId
-        $respuesta = ModeloEmpleados::mdlActualizarFecha($tabla,$item1,$valor1,$valor2);
+        $respuesta = ModeloEmpleados::mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2);
 
         if ($respuesta == "ok")
         {

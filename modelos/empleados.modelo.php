@@ -231,8 +231,9 @@
 		}
 	*/
 
-		// Actualizar La fecha, con la fechea y hora de creación. 
-		static public function mdlActualizarFecha($tabla,$item1,$valor1,$valor2)
+		// Actualizar algun dato en especifico del Empleado 
+		// La fecha, con la fechea y hora de creación. 
+		static public function mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2)
 		{
 			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE ntid = :ntid");
 			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
