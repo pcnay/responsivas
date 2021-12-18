@@ -551,10 +551,15 @@
 
 						// Para convertirlo a forma de "YYYY-MM-DD" para poderlo gabar en MySQL.
 						$fecha_asig_2 = date("Y-m-d",strtotime($_POST["nuevaFechaAsignado"]));
-						$fecha_devol_2 = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
 
-						if ($fecha_devol_2 == '1970-01-01')
+						if (empty($_POST["nuevaFechaDevolucion"]))
+						{
 							$fecha_devol_2 = null;
+						}
+						else
+						{
+							$fecha_devol_2 = date("Y-m-d",strtotime($_POST["nuevaFechaDevolucion"]));
+						}
 
 						$tabla = "t_Responsivas";
 						$datos = array ("id_responsiva"=>$_GET["idResponsiva"],

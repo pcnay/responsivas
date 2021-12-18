@@ -138,6 +138,14 @@ function Corregir_Cadena ($cadena_sinEspacios)
 
     for ($k=0;$k<count($texto_separados);$k++)
     {
+      if (!function_exists('str_contains'))
+      {
+        function str_contains($haystack, $needle)
+        {
+         return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+        }
+      }
+            
       if (str_contains($cadena_sinEspacios,$patron_busqueda[$i]))
       {
         $cadena = str_replace($patron_busqueda[$i],ObtenerCadena_Correcta($patron_busqueda[$i]),$cadena_sinEspacios);    $cadena_sinEspacios = $cadena;
