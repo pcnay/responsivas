@@ -393,6 +393,61 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 
 } // function Obtener_IdLinea() 
 
+function ObtenerPrecio($Periferico)
+{
+	switch ($Periferico)
+	{
+		case (1): //Desktop
+			$Precio = 800;
+			break;
+		case (2):	// Laptop
+			$Precio = 1200;
+			break;
+		case (3): // Monitor
+			$Precio = 220;
+			break;
+		case (5): // Docking Station 
+			$Precio = 220;
+			break;								
+		case (32): // Tablets
+			$Precio = 1000;
+			break;
+		case (33): // Escaner
+			$Precio = 200;
+			break;
+		case (12): // Zebra ZD 620
+			$Precio = 800;
+			break;
+		case (88):	// Zebra QLN 320
+			$Precio = 370;
+			break;
+		case (13): // Zebra GX430T
+			$Precio = 800;
+			break;
+		case (15): // Zebra ZT 610
+			$Precio = 2540;
+			break;								
+		case (14): // Zebra ZT 510								
+			$Precio = 2350;
+			break;
+		case (25): // Zebra ZQ 320
+			$Precio = 850;
+			break;
+		case (16): // Zebra ZT 620
+			$Precio = 6000;
+			break;	
+		default:
+			$Precio = 0;
+			break;
+		}
+		return $Precio;
+	}
+
+function Eliminar_Espacios($cadena)
+{
+  $sin_espacios = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $cadena);
+  return $sin_espacios;
+}
 
 	/*
 	//Desṕlegando el contenido  del arrenglo recien creado 
@@ -445,20 +500,27 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 						$tabla = "t_Productos";
 						$orden = "nombre";
 
-						// Descomentar para que detemrine si existe el producto.
-						$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+						// Descomentar para que determinar si existe el producto.
+						//$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
 												
 						// if (!empty($exite_prod))
 						// if (!$exite_prod)
 						
 						// Verifica si ya existe el serial en la tabla
 						$eXiste_prod = "S";
+						$modelo_sinEspacios = Eliminar_Espacios($inv_it[7]);
+						$marca_sinEspacios = Eliminar_Espacios($inv_it[6]);
+						$periferico_sinEspacios = Eliminar_Espacios($inv_it[5]);
+
 						if ($eXiste_prod=="S")
 						{
-							//echo "existe producto \r";
-							$Modelo = Obtener_IdModelo($Modelos_Obtenidos,strtolower($inv_it[7]));
-							$Marca = Obtener_IdMarca($Marcas_Obtenidas,strtolower($inv_it[6]));
-							$Periferico = Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($inv_it[5]));
+							//echo "existe producto \r"; Eliminar_Espacios
+							$Modelo = Obtener_IdModelo($Modelos_Obtenidos,strtolower($modelo_sinEspacios));
+							$Marca = Obtener_IdMarca($Marcas_Obtenidas,strtolower($marca_sinEspacios));
+							$Periferico = Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($periferico_sinEspacios));
+							
+							// Aqui voy .....   
+
 							
 							$tabla = "t_Empleados";
 							$item = "ntid";
@@ -477,7 +539,7 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 								$empleado = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden); 
 								if ($empleado)
 								{
-									$EncontroEmpleado = $inv_it[11];								
+									$EncontroEmpleado = Eliminar_Espacios($inv_it[11]);								
 									$Id_Empleado = $empleado['id_empleado'];									
 								}
 								else
@@ -487,50 +549,8 @@ function Obtener_IdLinea($Arreglo_linea,$reg_csv_linea)
 								}
 							}
 
-							$Precio = 0;
-							
-							switch ($Periferico)
-							{
-								case (1): //Desktop
-									$Precio = 800;
-									break;
-								case (2):	// Laptop
-									$Precio = 1200;
-									break;
-								case (3): // Monitor
-									$Precio = 220;
-									break;
-								case (5): // Docking Station 
-									$Precio = 220;
-									break;								
-								case (32): // Tablets
-									$Precio = 1000;
-									break;
-								case (33): // Escaner
-									$Precio = 200;
-									break;
-								case (12): // Zebra ZD 620
-									$Precio = 800;
-									break;
-								case (88):	// Zebra QLN 320
-									$Precio = 370;
-									break;
-								case (13): // Zebra GX430T
-									$Precio = 800;
-									break;
-								case (15): // Zebra ZT 610
-									$Precio = 2540;
-									break;								
-								case (14): // Zebra ZT 510								
-									$Precio = 2350;
-									break;
-								case (25): // Zebra ZQ 320
-									$Precio = 850;
-									break;
-								case (16): // Zebra ZT 620
-									$Precio = 6000;
-									break;	
-								}
+						
+							$Precio = ObtenerPrecio($Periferico);
 
 							$datos_grabar = array("id_modelo"=>$Modelo,		
 																		"id_marca"=>$Marca,
