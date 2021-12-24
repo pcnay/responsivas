@@ -501,11 +501,23 @@ function Eliminar_Espacios($cadena)
 						$orden = "nombre";
 
 						// Descomentar para que determinar si existe el producto.
-						//$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
+						$existe_prod = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor,$orden);
 												
 						// if (!empty($exite_prod))
 						// if (!$exite_prod)
-						
+						/*
+						Asset 			-> $inv_it[0]
+						Assign Date		->$inv_it[3]
+						Current Hostname	->$inv_it[4]
+						Kind - Periferico		->$inv_it[5]
+						Brand - Marca		->$inv_it[6]
+						Modelo			->$inv_it[7]
+						Serial				->$inv_it[8]	
+						Employee ID		->$inv_it[11]
+						CC				->$inv_it[13]						
+						*/
+
+
 						// Verifica si ya existe el serial en la tabla
 						$eXiste_prod = "S";
 						$modelo_sinEspacios = Eliminar_Espacios($inv_it[7]);
@@ -518,13 +530,10 @@ function Eliminar_Espacios($cadena)
 							$Modelo = Obtener_IdModelo($Modelos_Obtenidos,strtolower($modelo_sinEspacios));
 							$Marca = Obtener_IdMarca($Marcas_Obtenidas,strtolower($marca_sinEspacios));
 							$Periferico = Obtener_IdPeriferico($Perifericos_Obtenidos,strtolower($periferico_sinEspacios));
-							
-							// Aqui voy .....   
-
-							
+																
 							$tabla = "t_Empleados";
 							$item = "ntid";
-							$valor = $inv_it[11];
+							$valor = $inv_it[11]; // NTID Empleado.
 							$orden = "apellidos";
 							$empleado = 0;
 							
@@ -539,13 +548,16 @@ function Eliminar_Espacios($cadena)
 								$empleado = ModeloEmpleados::mdlMostrarEmpleados($tabla,$item,$valor,$orden); 
 								if ($empleado)
 								{
-									$EncontroEmpleado = Eliminar_Espacios($inv_it[11]);								
+									$EncontroEmpleado = Eliminar_Espacios($inv_it[11]);	// NTID Empleado							
 									$Id_Empleado = $empleado['id_empleado'];									
 								}
 								else
 								{
-									$EncontroEmpleado = "N";
+									$EncontroEmpleado = 'NO encontrado '.Eliminar_Espacios($inv_it[11]);
+									echo "<br>";
+									echo "Empleado no Encontrado ".Eliminar_Espacios($inv_it[11]);
 									$Id_Empleado = 1;
+									$num_reg_no_existen++;
 								}
 							}
 
@@ -600,7 +612,8 @@ function Eliminar_Espacios($cadena)
 							
 							//$num_reg_no_existen++;
 							// Grabar el registro en la tabla.
-							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos") && ($datos_grabar["id_empleado"] != "N"))
+							//if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos") && ($datos_grabar["id_empleado"] != 1))
+							if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos"))
 							{
 								//$respuesta = "error";
 								$respuesta = "ok";
@@ -637,14 +650,61 @@ function Eliminar_Espacios($cadena)
 									$item1 = "id_empleado";
 									$valor1 = $datos_grabar["id_empleado"];									
 									$valor2 = $existe_prod["id_producto"];
-									//print_r("<pre>");
-									//print_r($valor2);
-									//print_r("</pre>");
-									//exit;
+									//$valor2 = empty($existe_prod["id_producto"])?$datos_grabar["id_empleado"]:$existe_prod["id_producto"];
+									/*
+									print_r("<pre>");
+									print_r("Id Empleado : ".$valor1);
+									echo ("<br>");
+									print_r("Id Producto : ".$valor2);
+									echo ("<br>");
+									print_r("Id Empleado en tabla de Producto : ".$existe_prod["id_empleado"]);
+									print_r("</pre>");									
+									exit;
+									*/
 
-									// $AsignarEpo = ModeloProductos::mdlActualizarProducto($tabla,$item1,$valor1,$valor2);
+									if ($existe_prod["id_empleado"] != $datos_grabar["id_empleado"])
+									{
+										 $AsignarEpo = ModeloProductos::mdlActualizarProducto($tabla,$item1,$valor1,$valor2);
+
+										 // Actualizando la existencia(Stock) del producto
+										 $tabla = "t_Productos";
+										 $item1 = "stock";
+										 if ( $datos_grabar["id_empleado"] == 1 )
+										 {
+											 $valor1 = 1;									
+										 }
+										 else
+										 {
+											$valor1 = 0;
+										 }
+
+										 $valor2 = $existe_prod["id_producto"];
+	 
+										 $ActExist = ModeloProductos::mdlActualizarProducto($tabla,$item1,$valor1,$valor2);
+
+									 	if ($AsignarEpo != "ok")
+										{
+												echo "<br>";
+												echo "Error al Asignar Equipo .".$inv_it[8];
+										}
+										else
+										{
+											//echo "Producto Asignado al Empleado : ".$valor1;
+										}
+										if ($ActExist != "ok")
+										{
+												echo "<br>";
+												echo "Error al Actualizar -Stock Producto ".$inv_it[8];
+										}
+										else
+										{
+											//echo "Producto Asignado al Empleado : ".$valor1;
+										}
+
+
+									}
 								}
-								else
+								else // if ($respuesta == "ok")
 								{
 									print_r ("error al grabar el registros en la Base de Datos  : ".$datos_grabar["num_serie"]);
 									print ("<br>");									
@@ -655,11 +715,11 @@ function Eliminar_Espacios($cadena)
 								print_r("Registros NO GRABADOS ===> : ");
 								print_r('Asset = '.$inv_it[0].' ; ');
 								print_r('Current Hostname = '.$inv_it[4].' ; ');
-								print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');					
+								print_r('Periferico  Kind = '.$datos_grabar["id_periferico"].' ; ');		
 								print_r('Brand  Marca = '.$datos_grabar["id_marca"].' ; ');
 								print_r('Modelo = '.$datos_grabar["id_modelo"].' ; ');						
 								print_r('Serial = '.$inv_it[8].' ; ');
-								print_r('Numero Empleado = '.$datos_grabar["id_empleado"].' ; ');						
+								print_r('Numero Empleado = '.$EncontroEmpleado.' ; ');				
 								print "<br>";
 							}
 							
@@ -916,9 +976,9 @@ function Eliminar_Espacios($cadena)
 				} //while(($inv_it = fgetcsv($csv_file_inv)) !== FALSE)
 
 				print_r('<br>');
-				print_r("Seriales NO Grabados =  ".$num_reg_existen);
+				print_r("Seriales NO Grabados =  ".$num_reg_no_existen);
 				print_r('<br>');
-				print_r("Seriales Grabados = ".$num_reg_no_existen);
+				print_r("Seriales Grabados = ".$num_reg_existen);
 
 				fclose($csv_file_it);
 

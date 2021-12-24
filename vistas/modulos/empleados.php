@@ -340,7 +340,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" maxlength="20" class="form-control input-lg" id="editarNombre" name="editarNombre" required>
+                <input type="text" maxlength="45" class="form-control input-lg" id="editarNombre" name="editarNombre" required>
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 

@@ -51,7 +51,11 @@
             // Crea un nuevo array
             //Definiendo el tamaño de la foto de 500X500.
 						// getimagesize($_FILES["nuevaImagen"]["tmp_name"]), es un arreglo que en la primera, segunda posicion tiene el tamaño de la foto "Ancho" y "Alto"
+						//print_r("<pre>");
 						//var_dump(getimagesize($_FILES["nuevaImagen"]["tmp_name"])); 
+						//print_r("</pre>");
+						// exit;
+
             list($ancho,$alto) = getimagesize($_FILES["nuevaImagen"]["tmp_name"]);
             
 
