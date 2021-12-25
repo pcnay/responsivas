@@ -258,7 +258,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                <input type="text" maxlength="10" class="form-control input-lg" id="nuevo_CC" name="nuevo_CC" placeholder = "Ingresar El Centro Costos" required>
+                <input type="text" maxlength="30" class="form-control input-lg" id="nuevo_CC" name="nuevo_CC" placeholder = "Ingresar El Centro Costos" required>
 								<input type="hidden"  name="nuevoCentro_Costos"  id="nuevoCentro_Costos" required>
 
               </div> <!-- <div class = "input-group"> -->       
@@ -447,25 +447,45 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             </div> <!-- <div class="form-group"> -->
 
 						<!-- Editar el Centro De Costos del empleado -->
+            
+            <!-- 
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-street-view"></i></span>
                 <select class="form-control input-lg" name="editarCentro_Costos" required>
                   <option id="editarCentro_Costos"></option>
 									<?php
+                    /*
 										$item = null;
 										$valor = null;
 										$centro_costos = ControladorCentro_Costos::ctrMostrarCentro_Costos($item,$valor);
 										foreach ($centro_costos as $key => $value)
 										{
 											echo '<option value = "'.$value["id_centro_costos"].'">'.$value["num_centro_costos"].'</option>';
-										}
+                    }
+                    */
 									?>
 
 	              </select>                
-  
-	            </div> <!-- <div class = "input-group"> -->           
+                
+
+	            </div> <div class = "input-group">
+            </div>  <div class="form-group">
+            -->
+
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" maxlength="30" class="form-control input-lg" id="descripcion_CC" name="descripcion_CC" placeholder = "Descripcion Centro Costos" required>
+								<input type="hidden"  name="editarCentro_Costos"  id="editarCentro_Costos" required>
+
+              </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
+
+						<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
+						<div id = "Editar-tablaCC"> </div>
+
+
 
 						<!-- Subir Imagen del producto 
 						Se coloca la clase "previsualizar" para poder utilizarla con javascript para subir la imagen del producto.

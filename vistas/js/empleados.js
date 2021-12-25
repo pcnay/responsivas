@@ -260,7 +260,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				dataType:"json",
 				success:function(puesto)
 				{
-					console.log("respuesta",puesto);		
+					//console.log("respuesta",puesto);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
 					$("#editarPuesto").val(puesto["id_puesto"]);
 					$("#editarPuesto").html(puesto["descripcion"]);		
@@ -360,10 +360,11 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				dataType:"json",
 				success:function(Centro_Costos)
 				{
-					//console.log("respuesta",respuesta);		
+					//console.log("respuesta",Centro_Costos);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
 					$("#editarCentro_Costos").val(Centro_Costos["id_centro_costos"]);
-					$("#editarCentro_Costos").html(Centro_Costos["num_centro_costos"]);		
+					$("#descripcion_CC").val(Centro_Costos["num_centro_costos"]);		
+					//console.log ("id_centro_costos",$("#editarCentro_Costos").val());
 				}
 		
 			})
@@ -711,7 +712,7 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 
 	// Buscar un Centro De Costos, a tráves del campo "Input"
 		// Evento donde oprimen la tecla en la etiqueta "nuevo_CC"
-		$(document).on('keyup','#nuevo_CC',function(e)
+		$(document).on('keyup','#descripcion_CC',function(e)
 		{
 			e.preventDefault();
 			let valor = $(this).val();
@@ -737,7 +738,7 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 		})
 		.done (function(respuesta){
 			// Agrega los centros de costos encontrados en el Div "tablaPuestos"
-			$("#tablaCC").html(respuesta);
+			$("#Editar-tablaCC").html(respuesta);
 			//$("#nuevo_modelo").html(respuesta);
 			//texto = $("#tablaModelo").html();
 			
@@ -785,4 +786,21 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 			$(".tablas").hide();
 			$("#nuevaImagen").focus();
 		});
+	
+		// Buscar un Centro De Costos, a tráves del campo "Input"
+		// Evento donde oprimen la tecla en la etiqueta "editar_CC"
+		$(document).on('keyup','#nuevo_CC',function(e)
+		{
+			e.preventDefault();
+			let valor = $(this).val();
+			if (valor != "")
+			{
+				//console.log("Teclas Oprimidas : ",valor);
+				buscar_centroCostos(valor);
+			}
+			else{
+				$(".tablas").hide();
+			}
+		
+		})
 	
