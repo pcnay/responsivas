@@ -264,7 +264,7 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
 					//$("#editarPuesto").val(puesto["id_puesto"]);
 					//$("#editarPuesto").html(puesto["descripcion"]);		
-					$("#editarpuesto").val(puesto["id_puesto"]);
+					$("#editarPuesto").val(puesto["id_puesto"]);
 					$("#Editar_Puesto").val(puesto["descripcion"]);		
 
 				}
