@@ -262,8 +262,11 @@ $(".tablaEmpleados tbody").on("click","button.btnEditarEmpleado",function(){
 				{
 					//console.log("respuesta",puesto);		
 					// Asignando el valor recuperado a la etiqueta de SELECT de "empleados.php"		
-					$("#editarPuesto").val(puesto["id_puesto"]);
-					$("#editarPuesto").html(puesto["descripcion"]);		
+					//$("#editarPuesto").val(puesto["id_puesto"]);
+					//$("#editarPuesto").html(puesto["descripcion"]);		
+					$("#editarpuesto").val(puesto["id_puesto"]);
+					$("#Editar_Puesto").val(puesto["descripcion"]);		
+
 				}
 		
 			})
@@ -677,6 +680,48 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 	
 	})
 
+		// Para buscar los puestos desde una etiqueta Input, de la captura de Empleados.
+		function Editar_buscar_puesto(nombre_puesto)
+		{
+			$.ajax({
+				url:'ajax/buscar_puestos.php',
+				type:'POST',
+				dataType:'html',
+				data:{buscar:nombre_puesto},
+			})
+			.done (function(respuesta){
+				// Agrega los puestos encontrados en el Div "tablaPuestos"
+				$("#Editar-tablaPuestos").html(respuesta);
+
+				if ($("#Editar-tablaPuestos").html() == "No hay Datos")
+				{
+					// Para que cuando graben no lo permita hasta que tenga un Modelo válido.
+					$("#Editar_Puesto").val(null)
+				}
+				//console.log($("#nuevo_modelo").val());
+	
+			})
+			.fail(function(){
+				//$("#Editar-tablaPuestos").html ("<p>Puesto NO encontrado</p>");
+			})
+		}
+	
+		// Evento donde oprimen la tecla en la etiqueta "Editar_Puesto"
+		$(document).on('keyup','#Editar_Puesto',function(e)
+		{	
+			e.preventDefault();
+			let valor = $(this).val();
+			if (valor != "")
+			{
+				//console.log("Teclas Oprimidas : ",valor);
+				Editar_buscar_puesto(valor);
+			}
+			else{
+				$(".tablas").hide();
+			}	
+		
+		})
+	
 	// Cuando se oprime el boton para obtener el id_puesto del Input
 	$(document).on("click",".btnSeleccPuesto",function(){	
 	/* <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id "] .'" data-toggle="modal"  */
@@ -700,11 +745,14 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 			//console.log("respuesta",respuesta);
 			// Viene desde : <div id="modalEditarPuesto" class="modal fade" role="dialog">, "puestos.php", se le asigna el valor que se retorno el Ajax.
 			$("#nuevo_Puesto").val(respuesta["descripcion"]);
+			$("#Editar_Puesto").val(respuesta["descripcion"]);
 		}	
 
 	}); // $.ajax({ ......
 
 		$("#nuevoPuesto").val(parseInt(ObtenerIdPuesto));
+		$("#editarPuesto").val(parseInt(ObtenerIdPuesto));
+		
 		$(".tablas").hide();
 		$("#nuevoDepto").focus();
 	});
@@ -719,14 +767,42 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 			if (valor != "")
 			{
 				//console.log("Teclas Oprimidas : ",valor);
-				buscar_centroCostos(valor);
+				Editar_buscar_centroCostos(valor);
 			}
 			else{
 				$(".tablas").hide();
 			}
 		
 		})
+
+		// Para buscar el Centro De Costos dessde una etiqueta Input, de la captura de Empleados.
+		function Editar_buscar_centroCostos(centro_costos)
+		{
+			$.ajax({
+				url:'ajax/buscar_cc.ajax.php',
+				type:'POST',
+				dataType:'html',
+				data:{buscar:centro_costos},
+			})
+			.done (function(respuesta){
+				// Agrega los centros de costos encontrados en el Div "tablaPuestos"
+				$("#Editar-tablaCC").html(respuesta);
+				//$("#nuevo_modelo").html(respuesta);
+				//texto = $("#tablaModelo").html();
+				
+				if ($("#Editar-tablaCC").html() == "No hay Datos")
+				{
+					// Para que cuando graben no lo permita hasta que tenga un Modelo válido.
+					$("#descripcion_CC").val(null)
+				}
+				//console.log($("#nuevo_modelo").val());
 	
+			})
+			.fail(function(){
+				//$("#tablaPuestos").html ("<p>Puesto NO encontrado</p>");
+			})
+		}
+			
 		// Para buscar el Centro De Costos dessde una etiqueta Input, de la captura de Empleados.
 	function buscar_centroCostos(centro_costos)
 	{
@@ -738,7 +814,7 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 		})
 		.done (function(respuesta){
 			// Agrega los centros de costos encontrados en el Div "tablaPuestos"
-			$("#Editar-tablaCC").html(respuesta);
+			$("#tablaCC").html(respuesta);
 			//$("#nuevo_modelo").html(respuesta);
 			//texto = $("#tablaModelo").html();
 			
@@ -778,11 +854,14 @@ $(".tablaEmpleados tbody").on("click","button.btnSubirArchivos",function(){
 				//console.log("respuesta",respuesta);
 				// Viene desde : <div id="modalEditarPuesto" class="modal fade" role="dialog">, "puestos.php", se le asigna el valor que se retorno el Ajax.
 				$("#nuevo_CC").val(respuesta["num_centro_costos"]);
+				$("#descripcion_CC").val(respuesta["num_centro_costos"]);
+
 			}	
 	
 		}); // $.ajax({ ......
 	
 			$("#nuevoCentro_Costos").val(parseInt(ObtenerIdCC));
+			$("#editarCentro_Costos").val(parseInt(ObtenerIdCC));
 			$(".tablas").hide();
 			$("#nuevaImagen").focus();
 		});

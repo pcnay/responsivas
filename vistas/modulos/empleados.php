@@ -362,25 +362,46 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
               </div> <!-- <div class = "input-group"> -->       
             </div> <!-- <div class="form-group"> -->
 
-						<!-- Editar el Puesto del empleado -->
+
+						<!-- Editar el puesto del Empleado -->
+            <div class="form-group">
+              <div class = "input-group">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                <input type="text" maxlength="45" class="form-control input-lg" id="Editar_Puesto" name="Editar_Puesto" placeholder = "Ingresar El Puesto" required>
+								<input type="hidden"  name="editarPuesto"  id="editarPuesto" required>
+
+              </div> <!-- <div class = "input-group"> -->       
+            </div> <!-- <div class="form-group"> -->
+
+						<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
+						<div id = "Editar-tablaPuestos"> </div>
+
+
+
+
+
+
+						<!-- Editar el Puesto del empleado 
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="far fa-building"></i></span>
                 <select class="form-control input-lg"  name="editarPuesto" required>
-								<!-- Se utilizara JavaScript para obtener el valor.-->
+								<!-- Se utilizara JavaScript para obtener el valor.
                   <option id="editarPuesto"></option>
 									<?php
+                  /*
 										$item = null;
 										$valor = null;
 										$puestos = ControladorPuestos::ctrMostrarPuestos($item,$valor);
 										foreach ($puestos as $key => $value)
 										{
 											echo '<option value = "'.$value["id_puesto"].'">'.$value["descripcion"].'</option>';
-										}
+                    }
+                    */
 									?>
 
                 </select>                
-              </div> <!-- <div class = "input-group"> -->           
+              </div> <!-- <div class = "input-group"> 
             </div> <!-- <div class="form-group"> -->
 
 
@@ -473,6 +494,7 @@ Cuando el usuario oprima el boton de "Agregar Empleados" se activa esta ventana.
             </div>  <div class="form-group">
             -->
 
+            <!-- Editar un Centro de Costos. -->        
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
