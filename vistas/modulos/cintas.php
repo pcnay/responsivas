@@ -48,6 +48,7 @@
 					</a>
 
 					<?php
+          
 					echo '<a href="/responsivas/vistas/modulos/descargar-excel.php" target="_blank">';
 					?>
 					<button class="btn btn-info" id="exp_excel">

@@ -520,9 +520,12 @@ function Eliminar_Espacios($cadena)
 
 						// Verifica si ya existe el serial en la tabla
 						$eXiste_prod = "S";
-						$modelo_sinEspacios = Eliminar_Espacios($inv_it[7]);
-						$marca_sinEspacios = Eliminar_Espacios($inv_it[6]);
-						$periferico_sinEspacios = Eliminar_Espacios($inv_it[5]);
+						$modelo_sinEspacios = trim($inv_it[7]); // Eliminar_Espacios($inv_it[7]);
+						echo "<br>";
+						echo $inv_it[8].$modelo_sinEspacios;
+
+						$marca_sinEspacios = trim($inv_it[6]); //Eliminar_Espacios($inv_it[6]);
+						$periferico_sinEspacios =trim($inv_it[5]); // Eliminar_Espacios($inv_it[5]);
 
 						if ($eXiste_prod=="S")
 						{

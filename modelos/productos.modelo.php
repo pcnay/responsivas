@@ -367,7 +367,7 @@ static public function mdlMostrarProdDanado($tabla,$item,$valor,$orden)
 		
 		static public function mdlMostrarSumaPerifericos($id_periferico,$id_edo_epo,$tabla)
 		{
-			$stmt = Conexion::conectar()->prepare("SELECT SUM(stock) as total FROM $tabla WHERE id_periferico = :item1 && id_edo_epo = :item2");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(*) as total FROM $tabla WHERE id_periferico = :item1 && id_edo_epo = :item2");
 
 			$stmt->bindParam(":item1", $id_periferico,PDO::PARAM_INT);
 			$stmt->bindParam(":item2", $id_edo_epo,PDO::PARAM_INT);

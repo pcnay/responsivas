@@ -27,12 +27,17 @@
 					<?php
 						echo '<a href="/responsivas/vistas/modulos/exp_prod_excel.php" target="_blank">';
 					?>
-					<button class="btn btn-info" id="exp_excel">
-            Exportar Productos A Excel
-          </button>       
-					</a>
-
-
+					<?php
+					// El perfil permitido
+					
+						if ($_SESSION["perfil"] == "Supervisor" || $_SESSION["perfil"] == "Administrador" )
+						{
+							echo '<button class="btn btn-info" id="exp_excel">
+											Exportar Productos A Excel
+										</button>';
+								
+						}					
+					?>
 
         </div>
  
