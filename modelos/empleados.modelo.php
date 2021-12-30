@@ -233,6 +233,9 @@
 
 		// Actualizar algun dato en especifico del Empleado 
 		// La fecha, con la fechea y hora de creación. 
+		// $item1 = Campo a Modificar
+		// $valor1 = Es el contenido de "$item1" el valor a Grabar en la tabla
+		// $valor2 = Es el NTID del empleado
 		static public function mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2)
 		{
 			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE ntid = :ntid");
@@ -251,8 +254,32 @@
 			$stmt->close();
 			$stmt = null;
 
-		} // 		static public function mdlActualizarProducto.......
+		} // 		static public function mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2)
 
+		// $item1 = Campo a Modificar
+		// $campoValidar = Campo que se usara para validar la condicion.
+		// $valor1 = Es el contenido de "$item1" el valor a Grabar en la tabla
+		// $valor2 = Es el valor de la condicion a validar
+		// 
+		static public function mdlActualizarEmpCualquierCampo($tabla,$item1,$campoValidar,$valor1,$valor2)
+		{
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1  WHERE $campoValidar = :valorCampo");
+			$stmt->bindParam(":".$item1, $valor1,PDO::PARAM_STR);
+			$stmt->bindParam(":valorCampo", $valor2,PDO::PARAM_STR);
+
+			if($stmt->execute())
+			{
+				return "ok";
+			}
+			else
+			{
+				return "error";
+			}
+
+			$stmt->close();
+			$stmt = null;
+
+		} // 		static public function mdlActualizarEmpCampo($tabla,$item1,$valor1,$valor2)
 
 
 	} // class ModeloEmpleados

@@ -599,7 +599,54 @@ function Eliminar_Espacios($cadena)
 																		"cuantas_veces" =>1,
 																		"imagen"=>$ruta
 																	);
-					
+
+											// Actualizar el centro de costos.
+											//Es el empleado que se encuentra en el archivo “CSV”
+											// datos_grabar[‘id_empleado’]
+											// CC        ->$inv_it[13]
+
+											// Verificando si existe el centro de costos:
+											// Verificando si existe el centro de costos, pero antes revisar que no este vacio
+											if (!empty($inv_it[13]))
+											{
+
+												$tabla = 't_Centro_Costos';
+												$item = "num_centro_costos";
+												$valor = trim($inv_it[13]);
+												$Verif_CC = ModeloCentro_Costos::mdlMostrarCentro_Costos($tabla,$item,$valor);
+	
+												if ($Verif_CC)
+												{						
+													// $tabla = La tabla a utilizar					
+													// $item1 = Campo a Modificar
+													// $campoValidar = Campo que se usara para validar la condicion.
+													// $valor1 = Es el contenido de "$item1" el valor a Grabar en la tabla
+													// $valor2 = Es el valor de la condicion a validar
+													// 
+													$tabla = 't_Empleados';												
+													$item1 = "id_centro_costos";
+													$campoValidar = "id_empleado";
+													$valor1 = $Verif_CC['id_centro_costos'];
+													$valor2 =  $datos_grabar["id_empleado"];
+													$Act_CC = ModeloEmpleados::mdlActualizarEmpCualquierCampo($tabla,$item1,$campoValidar,$valor1,$valor2);
+													if (!$Act_CC)
+													{
+														echo "<br>";
+														echo "Error al Actualizar el Centro de Costos en tabla Empleados";
+													}
+													
+												}
+												else
+												{
+													echo "<br>";
+													echo "NO se encontro el Centro de Costos = ".$inv_it[13]." NTID Empleado = ".$inv_it[11];
+												}
+												
+											}
+
+
+
+
 							//print_r('Registros GRABADOS ======> ');																								
 							//print_r('Asset = '.$inv_it[0].' ; ');
 							//print_r('Current Hostname = '.$inv_it[4].' ; ');
@@ -689,6 +736,47 @@ function Eliminar_Espacios($cadena)
 										}
 										else
 										{
+											// Actualizar el centro de costos.
+											//Es el empleado que se encuentra en el archivo “CSV”
+											// datos_grabar[‘id_empleado’]
+											// CC        ->$inv_it[13]
+
+											// Verificando si existe el centro de costos, pero antes revisar que no este vacio
+												if (!empty($inv_it[13]))
+												{
+													$tabla = 't_Centro_Costos';
+													$item = "num_centro_costos";
+													$valor = trim($inv_it[13]);
+													$Verif_CC = ModeloCentro_Costos::mdlMostrarCentro_Costos($tabla,$item,$valor);
+		
+													if ($Verif_CC)
+													{						
+														// $tabla = La tabla a utilizar					
+														// $item1 = Campo a Modificar
+														// $campoValidar = Campo que se usara para validar la condicion.
+														// $valor1 = Es el contenido de "$item1" el valor a Grabar en la tabla
+														// $valor2 = Es el valor de la condicion a validar
+														// 
+														$tabla = 't_Empleados';												
+														$item1 = "id_centro_costos";
+														$campoValidar = "id_empleado";
+														$valor1 = $Verif_CC['id_centro_costos'];
+														$valor2 =  $datos_grabar["id_empleado"];
+														$Act_CC = ModeloEmpleados::mdlActualizarEmpCualquierCampo($tabla,$item1,$campoValidar,$valor1,$valor2);
+														if (!$Act_CC)
+														{
+															echo "<br>";
+															echo "Error al Actualizar el Centro de Costos en tabla Empleados";
+														}
+														
+													}
+													else
+													{
+														echo "<br>";
+														echo "NO se encontro el Centro de Costos = ".$inv_it[13]." NTID Empleado = ".$inv_it[11];
+													}
+												} // if (!$inv_it[13])
+
 											//echo "Producto Asignado al Empleado : ".$valor1;
 										}
 										if ($ActExist != "ok")
