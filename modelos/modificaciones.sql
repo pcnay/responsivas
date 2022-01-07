@@ -31,6 +31,7 @@ Para ejecutar el "script"
 			Borrar Base Datos : DROP DATABASE <nombre Base Datos>
 			Borrar el contenido de la tabla : 
 					truncate table nombre-tabla;
+			Borrar un campo dela tabla. : ALTER TABLE t_Rol DROP status TEXT DEFAULT 1;
 */
 
 
