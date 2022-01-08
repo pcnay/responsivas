@@ -246,7 +246,7 @@
 							<label for="cap_modelo">Modelo:</label>			
 								<div class = "input-group">
 									<span class="input-group-addon"><i class="fas fa-user"></i></span>
-									<input type="text" maxlength="45" class="form-control input-lg" id="nuevo_modelo" name="nuevo_modelo" placeholder = "Ingresar El Modelo" required>
+									<input type="text" maxlength="15" class="form-control input-lg" id="nuevo_modelo" name="nuevo_modelo" placeholder = "Ingresar El Modelo" required>
 									<input type="hidden"  name="nuevoModelo"  id="nuevoModelo" required>
 									<!-- Es donde se muestra la tabla cuando el usuario teclea el puesto -->
 									<div id = "tablaModelo"> </div>

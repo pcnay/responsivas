@@ -12,7 +12,15 @@ $salida = "";
 
 	$buscar_modelo = new ControladorProductos();
 	$Modelos = $buscar_modelo->ctrBuscarModelo($_POST['buscar']);
-	//var_dump($puestos);
+/*
+	var_dump($Modelos);
+
+	for ($k=0;$k<count($Modelos);$k++)
+	{						
+		print_r($Modelos[$k]['id_modelo']);
+		print_r($Modelos[$k]['descripcion']);
+	}
+*/
 
 	if (!empty($Modelos))
 	{
@@ -27,13 +35,13 @@ $salida = "";
 
 
 			// Se tiene que convertir de Entero a Cadenas, de lo contrario no asigna el valor a la idPuestoSelecc
-			for ($n=0;$n<count($Modelos);$n++)
+			// <td>".$Modelos[$n]['descripcion']."</td>
+			for ($k=0;$k<count($Modelos);$k++)
   		{						
-
 				$salida .= "<tr>
-					<td>".$Modelos[$n]['id_modelo']."</td>
-					<td>".$Modelos[$n]['descripcion']."</td>
-					<td>"."<div class='btn-group'><button class= 'btn btn-warning btnSeleccModelo' idModeloSelecc=".strval($Modelos[$n]['id_modelo'])."><i class='fa fa-pencil'></i></button></div></td>
+					<td>".$Modelos[$k]['id_modelo']."</td>
+					<td>".$Modelos[$k]['descripcion']."</td>
+					<td>"."<div class='btn-group'><button class= 'btn btn-warning btnSeleccModelo' idModeloSelecc=".strval($Modelos[$k]['id_modelo'])."><i class='fa fa-pencil'></i></button></div></td>
 					
 					</tr>";
 			}
@@ -43,7 +51,7 @@ $salida = "";
 	{
 		$salida .= "No hay Datos";
 	}
-
+	
 	echo $salida;
 
 

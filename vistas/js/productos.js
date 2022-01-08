@@ -1860,7 +1860,7 @@ $(document).on('keyup','#nuevo_modelo',function(e)
 	e.preventDefault();
 	$(".tablas").hide();
 	let valor = $(this).val();
-	console.log("Contenido de VALOR ",valor);
+	// console.log("Contenido de VALOR ",valor);
 
 	if (valor != "")
 	{
