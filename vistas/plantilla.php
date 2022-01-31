@@ -77,6 +77,9 @@
   <!-- AdminLTE App -->
   <script src="vistas/dist/js/adminlte.min.js"></script>
 	
+	<!-- Fontawesome -->
+  <script src="vistas/dist/js/fontawesome.js"></script>
+
 	<!-- AdminLTE for demo purposes -->
   <!-- <script src="vistas/dist/js/demo.js"></script> -->
   

@@ -593,7 +593,7 @@ function Eliminar_Espacios($cadena)
 */
 
 						// Grabar el registro en la tabla.
-						if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos"))
+						if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ($datos_grabar["id_periferico"] != "Sin Perifericos")) //&& ($datos_grabar['id_empleado'] != 1))
 						{
 							$valor = $inv_it[4]; // Serial
 							$item = "num_serie";
@@ -651,6 +651,22 @@ function Eliminar_Espacios($cadena)
 							$valor2 = $existe_prod["id_producto"];
 
 							// Verifica si el empleado que esta en el archivo CSV es diferente a la tabla "Productos". 
+
+				/*
+							//Asignar el producto al Empleado
+							// Borrar cuando se haya realizado la ejecucion con archivo real.
+							if ($existe_prod['id_empleado'] == 1)
+							{
+								$AsignarEpoEmp = ModeloProductos::mdlActualizarProducto($tabla,$item1,$valor1,$valor2);
+								if ($AsignarEpoEmp != 'ok')
+								{
+									print_r("<br>");
+									print_r("Error Al Asignar El Empleado cuando es -1- ",$datos_graba["id_empleado"]);									
+								}
+							}
+				*/
+
+
 							// Si son diferentes significa que se esta reasignado el Perifico.
 							if ($existe_prod["id_empleado"] != $datos_grabar["id_empleado"])
 							{
@@ -702,7 +718,15 @@ function Eliminar_Espacios($cadena)
 							{
 								$tabla = 't_Centro_Costos';
 								$item = "num_centro_costos";
-								$valor = trim($inv_it[10]);
+								if ($datos_grabar['id_empleado'] == 1)
+								{
+									$valor = '17313246';									
+								}
+								else
+								{
+									$valor = trim($inv_it[10]);	
+								}
+								
 								$Verif_CC = ModeloCentro_Costos::mdlMostrarCentro_Costos($tabla,$item,$valor);
 
 								if ($Verif_CC)
@@ -720,14 +744,14 @@ function Eliminar_Espacios($cadena)
 									$valor2 =  $datos_grabar["id_empleado"];
 									$Act_CC = 0;
 									
-									if ($valor2 != 1)
-									{
+									//if ($valor2 != 1)
+									//{
 										$Act_CC = ModeloEmpleados::mdlActualizarEmpCualquierCampo($tabla,$item1,$campoValidar,$valor1,$valor2);
-									}
-									else
-									{
-										$Act_CC = 0;
-									}
+									//}
+									//else
+									//{
+										//$Act_CC = 0;
+									//}
 
 									if (!$Act_CC)
 									{
@@ -744,8 +768,8 @@ function Eliminar_Espacios($cadena)
 							} // if (!empty($inv_it[10]))															
 							else // if (!empty($inv_it[10]))
 							{
-								print_r ("Centro de Costos Esta Vacio ");
 								print ("<br>");									
+								print_r ("Centro de Costos Esta Vacio ");								
 							}
 
 						} // if (($datos_grabar["id_modelo"] != "Sin Modelos") && ($datos_grabar["id_marca"] != "Sin Marcas") && ....
