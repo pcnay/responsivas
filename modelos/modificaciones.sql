@@ -36,6 +36,12 @@ Para ejecutar el "script"
 
 
 USE bd_responsivas;
+/* Para modificar la longuitud de un campo: */
+	ALTER TABLE t_Rep_Finanzas MODIFY COLUMN nombre VARCHAR(50);
+
+
+
+
 /*
 CREATE TABLE t_Estatus
 (

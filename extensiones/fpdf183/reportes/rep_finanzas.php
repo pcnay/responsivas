@@ -37,7 +37,7 @@
 		{
 			//Cell(Ancho,Alto,Texto,Border=1,SigLinea=1 0=SinSaltoLinea,'Centrado,Left,Right',Relleno 0=Sin 1=Con)
 	
-			$this->SetFont('Arial','B',12);
+			$this->SetFont('Arial','B',10);
 			$this->Cell(60);
 			
 			// Este valor "135" es para centrar, independiente del texto escrito
@@ -47,16 +47,16 @@
 			//$this->Cell(135,5,$fecha_actual,0,1,'C',0);
 			//$this->Cell(10,5,'ID',1,0,'C',0);
 			//$this->Cell(22,5,'MARCA',1,0,'C',0);
-			$this->Cell(22,5,'Fec. Asig',1,0,'L',0);
-			$this->Cell(16,5,'# Emp',1,0,'L',0);      
-			$this->Cell(59,5,'Nombre Completo',1,0,'L',0);  
-			$this->Cell(20,5,'C.C.',1,0,'L',0);  
-			$this->Cell(50,5,'Depto.',1,0,'L',0);
-			$this->Cell(45,5,'Periferico',1,0,'L',0); 
+			$this->Cell(17,5,'Fec. Asig',1,0,'L',0);
+			$this->Cell(13,5,'# Emp',1,0,'L',0);      
+			$this->Cell(74,5,'Nombre Completo',1,0,'L',0);  
+			$this->Cell(15,5,'C.C.',1,0,'L',0);  
+			$this->Cell(45,5,'Depto.',1,0,'L',0);
+			$this->Cell(35,5,'Periferico',1,0,'L',0); 
 			//$this->Cell(18,5,'Marca',1,0,'C',0); 
 			//$this->Cell(58,5,'ESTACION',1,0,'C',0); 
 			//$this->Cell(18,5,'Modelo',1,0,'C',0); 
-			$this->Cell(40,5,'Serie',1,0,'L',0); 
+			$this->Cell(35,5,'Serie',1,0,'L',0); 
 			$this->Cell(15,5,'Costo',1,1,'R',0); // 1,1 = Salto de Linea
 		}
 		function Footer()
@@ -111,8 +111,18 @@ class Rep_Finanzas
 		// Ciclo donde se encuentran el rango de las responsivas por Fecha.
 		for ($i =0;$i<count($rangoResponsivas);$i++)
 		{
-			//$fecha_asignadoResp = date("m-d-Y",strtotime($rangoResponsivas[$i]["fecha_asignado"]));	
-			$rep_mensual[$contador]["fecha_asignado"] = date("m-d-Y",strtotime($rangoResponsivas[$i]["fecha_asignado"]));
+			//$fecha_asignadoResp = date("m-d-Y",strtotime($rangoResponsivas[$i]["fecha_asignado"]));
+
+			// ($rangoResponsivas[$i]["fecha_asignado"] = '') || ($rangoResponsivas[$i]["fecha_asignado"] = null)
+			if  (!empty($rangoResponsivas[$i]["fecha_asignado"]) || ($rangoResponsivas[$i]["fecha_asignado"] != null))
+			{
+				$rep_mensual[$contador]["fecha_asignado"] = date("m-d-Y",strtotime($rangoResponsivas[$i]["fecha_asignado"]));
+			}
+			else 
+			{
+				$rep_mensual[$contador]["fecha_asignado"] = '';
+			}
+
 			// Obtener los datos del empleado.			
 			$item = "id_empleado";
 			$valor = $rangoResponsivas[$i]["id_empleado"];
@@ -211,13 +221,13 @@ class Rep_Finanzas
 		$pdf = new PDF('L','mm','Letter');
 		$pdf->AliasNbPages(); // Para determinar el número total de hojas.
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','',12);
+		$pdf->SetFont('Arial','',10);
 		
 		//Cell(Ancho,Alto,Texto,Border=1,SigLinea=1 0=SinSaltoLinea,'Centrado,Left,Right',Relleno 0=Sin 1=Con)
-		$pdf->SetFont('Arial','B',14);
+		$pdf->SetFont('Arial','B',12);
 		//$pdf->Cell(30,5,$Por_almacen[0]['Almacen'],0,1,'L',0);
 		$pdf->Ln(5);
-		$pdf->SetFont('Arial','',11);
+		$pdf->SetFont('Arial','',8);
 		//for ($n=0;$n<count($Perif_Linea);$n++)
 	
 
@@ -251,13 +261,16 @@ class Rep_Finanzas
 		for ($n=0;$n<count($reporte);$n++)
 		{
 			//$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-			$pdf->Cell(22,5,$reporte[$n]["fecha_asignado"],0,0,'L',0);
-			$pdf->Cell(16,5,$reporte[$n]["ntid"],0,0,'L',0);
-			$pdf->Cell(59,5,$reporte[$n]["nombre"].' '.$reporte[$n]["apellidos"],0,0,'L',0);
-			$pdf->Cell(20,5,$reporte[$n]["num_centro_costos"],0,0,'L',0);
-			$pdf->Cell(50,5,$reporte[$n]["descrip_depto"],0,0,'L',0);
-			$pdf->Cell(45,5,$reporte[$n]["periferico"],0,0,'L',0);
-			$pdf->Cell(40,5,$reporte[$n]["num_serial"],0,0,'L',0);
+			$fecha = date("m-d-Y",strtotime($reporte[$n]["fecha_asignado"]));
+			
+			// $pdf->Cell(17,5,$reporte[$n]["fecha_asignado"],0,0,'L',0);
+			$pdf->Cell(17,5,$fecha,0,0,'L',0);
+			$pdf->Cell(13,5,$reporte[$n]["ntid"],0,0,'L',0);
+			$pdf->Cell(74,5,$reporte[$n]["nombre"].' '.$reporte[$n]["apellidos"],0,0,'L',0);
+			$pdf->Cell(15,5,$reporte[$n]["num_centro_costos"],0,0,'L',0);
+			$pdf->Cell(45,5,$reporte[$n]["descrip_depto"],0,0,'L',0);
+			$pdf->Cell(35,5,$reporte[$n]["periferico"],0,0,'L',0);
+			$pdf->Cell(35,5,$reporte[$n]["num_serial"],0,0,'L',0);
 			$pdf->Cell(15,5,$reporte[$n]["precio_compra"],0,1,'R',0);
 			
 			// MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))
