@@ -87,19 +87,21 @@ class Rep_Finanzas
 		//								"fecha_final"=>$fecha_fin);
 		
 		//var_dump($datos);
-		$fecha_inic = $this->fecha_inic;
-		$fecha_fin = $this->fecha_fin;
-		$rangoResponsivas = ControladorResponsivas::ctrMostrarRespRangosFecha($fecha_inic,$fecha_fin);
+		$Fecha_Inic = $this->fecha_inic;
+		$Fecha_Fin = $this->fecha_fin;
+		$rangoResponsivas = ControladorResponsivas::ctrMostrarRespRangosFecha($Fecha_Inic,$Fecha_Fin);
 
 		//$productosResp = json_decode($rangoResponsivas[1]["productos"],true);
 		//var_dump($rangoResponsivas);
+		
 		/*
+		Hasta esta parte esta obteniendo correctamente los registros de la consulta por rangos de fecha y la fecha se obtiene de la consulta en formato "MM-DD-AAAA"
 		for ($l=0;$l<count($rangoResponsivas);$l++)
 		{
-			print_r($rangoResponsivas[$l]["fecha_asignado"].' - ');
+			print_r($rangoResponsivas[$l]["fecha_Asignado"].' - ');
 			echo "</br>";
 		}
-		*/
+		*/ 
 
 		//print_r(count($rangoResponsivas));
 
@@ -113,6 +115,7 @@ class Rep_Finanzas
 		{
 			//$fecha_asignadoResp = date("m-d-Y",strtotime($rangoResponsivas[$i]["fecha_asignado"]));
 
+			/*
 			// ($rangoResponsivas[$i]["fecha_asignado"] = '') || ($rangoResponsivas[$i]["fecha_asignado"] = null)
 			if  (!empty($rangoResponsivas[$i]["fecha_asignado"]) || ($rangoResponsivas[$i]["fecha_asignado"] != null))
 			{
@@ -120,8 +123,13 @@ class Rep_Finanzas
 			}
 			else 
 			{
-				$rep_mensual[$contador]["fecha_asignado"] = '';
+				//$rep_mensual[$contador]["fecha_asignado"] = '';
 			}
+*/
+			// Fecha de asignacion
+			$rep_mensual[$i]["fecha_Asignado"] = $rangoResponsivas[$i]["fecha_Asignado"];
+			//print_r('1er Mensaje - Fecha Asignado : '.$rep_mensual[$i]["fecha_Asignado"].' - ');
+			//echo "</br>";
 
 			// Obtener los datos del empleado.			
 			$item = "id_empleado";
@@ -147,16 +155,19 @@ class Rep_Finanzas
 			$datosDepto = ControladorDeptos::ctrMostrarDeptos($item,$valor);
 			$rep_mensual[$contador]["descrip_depto"] = $datosDepto["descripcion"];
 
-			// pasando de JSon a Arreglos para que PHP los pueda imprimir
+			// pasando de JSon a Arreglos para que PHP los pueda imprimir, que es los productos de la responsiva del usaurio.
 			$productosResp = json_decode($rangoResponsivas[$i]["productos"],true);		
 
-			//print_r($productosResp);
-			//echo "</br>";
-			//print_r(count($productosResp));
+			/*
+			print_r($productosResp);
+			echo "</br>";
+			print_r(count($productosResp));
+			echo "</br>";
+			*/
 
 			//Se van a revisar cada producto que tiene la responsiva.
 			$renglones = 0;
-			for ($n =0;$n<count($productosResp);$n++)
+			for ($n=0;$n<count($productosResp);$n++)
 			{
 				//$cantidad = $productosResp[$n]["cantidad"];
 				//$total = $total+$productosResp[$n]["precio"];
@@ -172,13 +183,13 @@ class Rep_Finanzas
 				$rep_mensual[$contador]["modelo"] = $producto["Modelo"];
 				$rep_mensual[$contador]["num_serie"] = $producto["Serial"];
 				$rep_mensual[$contador]["precio_compra"] = $producto["precio_compra"];
-				$renglones++;
+				//$renglones++;
 
+				/*
 				if ($renglones < count($productosResp))
 				{
-					$contador++;
-					
-					$rep_mensual[$contador]["fecha_asignado"] = $rep_mensual[$contador-1]["fecha_asignado"];
+					//$renglones++;					
+					$rep_mensual[$contador]["fecha_Asignado"] = $rep_mensual[$contador-1]["fecha_Asignado"];
 					$rep_mensual[$contador]["ntid"] = $rep_mensual[$contador-1]["ntid"];
 					$rep_mensual[$contador]["nombre"] = $rep_mensual[$contador-1]["nombre"];
 					$rep_mensual[$contador]["apellidos"] = $rep_mensual[$contador-1]["apellidos"];
@@ -190,12 +201,28 @@ class Rep_Finanzas
 					$rep_mensual[$contador]["num_serie"] = $rep_mensual[$contador-1]["num_serie"];
 					$rep_mensual[$contador]["precio_compra"] = $rep_mensual[$contador-1]["precio_compra"];
 				}
+				*/
 
 			} // for ($n =0;$n<count($productosResp);$n++)
 			
 			$contador++;
 
+			//print_r('2do Mensaje - Fecha Asignado : '.$rep_mensual[$i]["fecha_Asignado"].' - ');
+			//echo "</br>";
+
+
 		} // for ($i =0;$i<count($rangoResponsiva);$i++)
+		//print_r('Termino el ciclo : '.$rep_mensual[0]["fecha_Asignado"].' - ');
+		//echo "</br>";
+
+
+/*
+		for ($l=0;$l<count($rep_mensual);$l++)
+		{
+			print_r($rep_mensual[$l]["nombre"].' '.$rep_mensual[$l]["fecha_Asignado"].' - ');
+			echo "</br>";
+		}
+*/
 
 /*		
 		for ($m=0;$m<count($rep_mensual);$m++)
@@ -214,6 +241,9 @@ class Rep_Finanzas
 			echo "</br>";
 		}
 */	
+
+
+
 		// Seccion donde se debe la clase de FPDF para imprimir el reporte, desde un arreglo antes creado.		
 		
 		// 'L' = Horizontal(Acostada), 'P' = Vertical (Normal)
@@ -236,35 +266,23 @@ class Rep_Finanzas
 		$crearRep_Finanzas->ctrCrearRep_Finanzas($rep_mensual);
 				
 		$reporte = ControladorResponsivas::ctrMostrarRep_Finanzas();
-		$borrar = ControladorResponsivas::ctrBorrarRep_Finanzas();
-		
-		//var_dump ($reporte);
-		/*
-		for ($i=0;$i<count($reporte);$i++)
+/*
+		for ($k=0;$k<count($reporte);$k++)
 		{
-			print_r($reporte[$i]["fecha_asignado"].' - ');
-			print_r($reporte[$i]["num_centro_costos"].' - ');			
-			print_r($reporte[$i]["ntid"].' - ');		
-			print_r($reporte[$i]["nombre"].' - ');
-			print_r($reporte[$i]["apellidos"].' - ');						
-			print_r($reporte[$i]["descrip_depto"].' - ');
-			print_r($reporte[$i]["periferico"].' - ');
-			print_r($reporte[$i]["marca"].' - ');
-			print_r($reporte[$i]["modelo"].' - ');
-			print_r($reporte[$i]["num_serial"].' - ');
-			print_r($reporte[$i]["precio_compra"].' - ');
+			print_r($reporte[$k]["fecha_Asignado"]);
 			echo "</br>";
 		}
-		*/
-
+*/
+		$borrar = ControladorResponsivas::ctrBorrarRep_Finanzas();
+	
 
 		for ($n=0;$n<count($reporte);$n++)
 		{
 			//$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-			$fecha = date("m-d-Y",strtotime($reporte[$n]["fecha_asignado"]));
+			//$fecha = date("m-d-Y",strtotime($reporte[$n]["fecha_Asignado"]));
 			
 			// $pdf->Cell(17,5,$reporte[$n]["fecha_asignado"],0,0,'L',0);
-			$pdf->Cell(17,5,$fecha,0,0,'L',0);
+			$pdf->Cell(17,5,$reporte[$n]["fecha_Asignado"],0,0,'L',0);
 			$pdf->Cell(13,5,$reporte[$n]["ntid"],0,0,'L',0);
 			$pdf->Cell(74,5,$reporte[$n]["nombre"].' '.$reporte[$n]["apellidos"],0,0,'L',0);
 			$pdf->Cell(15,5,$reporte[$n]["num_centro_costos"],0,0,'L',0);
@@ -288,7 +306,6 @@ class Rep_Finanzas
 
 	//$fecha_inic = $_GET["fechaInic"];
 	//$fecha_fin = $_GET["fechaFin"];
-
 
 $Ejecutar_reporte = new Rep_finanzas();
 $Ejecutar_reporte->fecha_inic = $_GET["fechaInic"];

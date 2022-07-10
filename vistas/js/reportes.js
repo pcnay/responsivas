@@ -309,13 +309,13 @@ $(".btnSubirResp").click(function(){
 $(".btnRep_Finanzas").click(function(){
 
 	// Para obtener el valor del "Select" que se utiliza en la pantalla de "Reportes"
-	let Fecha_Inicial = document.getElementById("fecha_inicial");
-	let Fecha_Final = document.getElementById("fecha_final");
+	let Fecha_Inicial = $("#fecha_inicial").val();
+	let Fecha_Final = $("#fecha_final").val();
 
 	//let Opcion = document.getElementsByTagName("option");
 	
-		//console.log("Click Boton Fecha Inicial ",Fecha_Inicial.value);
-		//console.log("Click Boton Fecha Final ",Fecha_Final.value);
+		console.log("Click Boton Fecha Inicial ",Fecha_Inicial);
+		console.log("Click Boton Fecha Final ",Fecha_Final);
 	
 	//window.location="index.php?ruta=editar-responsiva&idResponsiva="+id_Responsiva;
 	// console.log("idResponsiva",id_Responsiva);
@@ -325,7 +325,7 @@ $(".btnRep_Finanzas").click(function(){
 
 //	window.location = "index.php?ruta=reportes&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
 
-	window.open("extensiones/fpdf183/reportes/rep_finanzas.php?ruta=rep_finanzas&fechaInic="+Fecha_Inicial.value+"&fechaFin="+Fecha_Final.value,"_blank");
+	window.open("extensiones/fpdf183/reportes/rep_finanzas.php?ruta=rep_finanzas&fechaInic="+Fecha_Inicial+"&fechaFin="+Fecha_Final,"_blank");
 	
 	})
 	

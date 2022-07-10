@@ -52,12 +52,12 @@
 		}
 
 		// Mostrar las responsivas en el Rango de Fechas.
-		static public function mdlMostrarRespRangosFecha($fecha_inic,$fecha_fin)
+		static public function mdlMostrarRespRangosFecha($Fecha_Inic,$Fecha_Fin)
 		{
 
 			//$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
 
-			$stmt = Conexion::conectar()->prepare ("SELECT id_empleado,fecha_asignado,productos FROM t_Responsivas WHERE fecha_asignado BETWEEN '$fecha_inic' AND '$fecha_fin' ORDER BY fecha_asignado ");
+			$stmt = Conexion::conectar()->prepare ("SELECT id_empleado,DATE_FORMAT(fecha_asignado,'%m-%d-%Y') as fecha_Asignado,productos FROM t_Responsivas WHERE fecha_asignado BETWEEN '$Fecha_Inic' AND '$Fecha_Fin' ORDER BY fecha_asignado ");
 
 			
 			$stmt->execute();	
@@ -235,12 +235,18 @@
 
 		
 		$stmt->bindParam(":ntid",$rep_mensual[$m]["ntid"],PDO::PARAM_STR);	
-		$rep_mensual[$m]["fecha_asignado"] = date("Y-m-d",strtotime($rep_mensual[$m]["fecha_asignado"]));
-		if ($rep_mensual[$m]["fecha_asignado"]=="1970-01-01")
-		{
-			$rep_mensual[$m]["fecha_asignado"]= null;
-		}
-		$stmt->bindParam(":fecha_asignado",$rep_mensual[$m]["fecha_asignado"],PDO::PARAM_STR);
+
+		// Revisar esta linea cuando el dia es mayor a 12 graba mal la fecha.
+
+		// $rep_mensual[$m]["fecha_Asignado"] = date("Y-m-d",strtotime($rep_mensual[$m]["fecha_Asignado"]));
+		$rep_mensual[$m]["fecha_Asignado"] = DateTime::createFromFormat('m-d-Y',$rep_mensual[$m]["fecha_Asignado"])->format('Y-m-d');
+
+		//if ($rep_mensual[$m]["fecha_Asignado"]=="1970-01-01")
+		//{
+			//$rep_mensual[$m]["fecha_asignado"]= null;
+		//}
+
+		$stmt->bindParam(":fecha_asignado",$rep_mensual[$m]["fecha_Asignado"],PDO::PARAM_STR);
 		$stmt->bindParam(":nombre",$rep_mensual[$m]["nombre"],PDO::PARAM_STR);
 		$stmt->bindParam(":apellidos",$rep_mensual[$m]["apellidos"],PDO::PARAM_STR);
 		$stmt->bindParam(":num_centro_costos",$rep_mensual[$m]["num_centro_costos"],PDO::PARAM_STR);			
@@ -262,7 +268,7 @@
 
 	static public function mdlMostrarRep_Finanzas($tabla)
 	{
-		$stmt = Conexion::conectar()->prepare ("SELECT * FROM $tabla ORDER BY fecha_asignado,num_centro_costos ASC");
+		$stmt = Conexion::conectar()->prepare ("SELECT ntid,DATE_FORMAT(fecha_asignado,'%m-%d-%Y') AS fecha_Asignado,nombre,apellidos,num_centro_costos,descrip_depto,periferico,marca,modelo,num_serial,precio_compra FROM $tabla ORDER BY fecha_asignado,num_centro_costos ASC");
 		$stmt->execute();	
 		$registros = $stmt->fetchAll();			
 		// Cerrar la conexion de la instancia de la base de datos.
