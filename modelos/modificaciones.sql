@@ -32,13 +32,45 @@ Para ejecutar el "script"
 			Borrar el contenido de la tabla : 
 					truncate table nombre-tabla;
 			Borrar un campo dela tabla. : ALTER TABLE t_Rol DROP status TEXT DEFAULT 1;
+			SmallInt = 0 a 65535, -32768 y 32767
+
 */
 
 
 USE bd_responsivas;
-/* Para modificar la longuitud de un campo: */
+
+CREATE TABLE t_Notas
+(
+  id_nota SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id_usuario SMALLINT UNSIGNED NOT NULL,
+	nombre_nota varchar(120) NOT NULL,	
+	descripcion_nota TEXT NULL,
+	fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(id_usuario) REFERENCES t_Usuarios(id_usuario)
+	ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+
+/*
+CREATE TABLE t_Notas
+{
+  id_nota SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id_usuario SMALLINT UNSIGNED NOT NULL,
+	nombre_nota varchar(120) NOT NULL,	
+	descripcion_nota TEXT NULL,
+	fecha DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(id_usuario) REFERENCES t_Usuarios(id_usuario)
+	ON DELETE RESTRICT ON UPDATE CASCADE
+};
+
+*/
+
+
+
+/* Para modificar la longuitud de un campo: 
 	ALTER TABLE t_Rep_Finanzas MODIFY COLUMN nombre VARCHAR(50);
 
+*/
 
 
 

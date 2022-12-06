@@ -46,9 +46,9 @@
 				{
 					echo '
 						<li class="active">
-							<a href="tareas">
+							<a href="notas">
 								<i class="fa fa-circle-o"></i>
-								<span>Tareas</span>           
+								<span>Notas</span>           
 							</a>
 						</li>					
 						<li class="treeview">
