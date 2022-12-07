@@ -41,12 +41,10 @@
 						{
 							$botones = " <div class='btn-group'><button class='btn btn-warning btnEditarNota' idNota = '".$notas[$i]["id_nota"]."' data-toggle='modal' data-target = '#modalEditarNota'><i class='fa fa-pencil'></i></button></div>";	
 						}
-
-						//"'.$notas[$i]['nombre_usuario'].'", 
-						$usuario = 'Juan Perez';
+												
 						$datosJson .= '[
-							"'.($i+1).'",							
-							"'.$usuario.'",
+							"'.$notas[$i]['id_nota'].'",
+							"'.$notas[$i]['nombre_Usuario'].'",
 							"'.$notas[$i]['nombre_nota'].'",
 							"'.$notas[$i]['fecha'].'",
 							"'.$botones.'"

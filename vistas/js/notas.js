@@ -34,8 +34,8 @@ $('.tablaNotas').DataTable({
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
-$("#nuevaMarca").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z-0-9/ ]+$");
+$("#nuevaNota").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Za-z-0-9/,.- ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -45,8 +45,8 @@ $("#nuevaMarca").bind('keypress', function(event) {
 
 // Validar los caracteres permitidos 
 // Validar la entrada.
-$("#editarMarca").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Za-z-0-9/ ]+$");
+$("#editarNota").bind('keypress', function(event) {
+  var regex = new RegExp("^[A-Za-z-0-9/,.- ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -55,23 +55,24 @@ $("#editarMarca").bind('keypress', function(event) {
 });
 
 // =======================================
-// Editar Marcas:
+// Editar Notas:
 // ======================================
 // Se va a realizar un cambio, ya que se debe ejecutar el código cuando se termina de cargar el cuerpo de la tabla. Se realiza un click en el Boton Editar
 
 // Esperar que HTML cargue toda la pagina para que JavaScript active los eventos.
 // Cuando se haya cargado ().tablaMarcas tbody).on se asigna el evento "on("click") a la clase "btnEditarMarca" la siguiente "function"
 
-$(".tablaMarcas tbody").on("click","button.btnEditarMarca",function(){
-	// Se obtiene el valor de "idMarca"
-	var idMarca = $(this).attr("idMarca");
+$(".tablaNotas tbody").on("click","button.btnEditarNota",function(){
+	// Se obtiene el valor de "idNota"
+	var idNota = $(this).attr("idNota");
+	console.log ("valor ",idNota);
 
 	// Para agregar datos 
 	var datos = new FormData();
-	datos.append("idMarca",idMarca); // Se crea la variable "POST", "idMarca"
+	datos.append("idNota",idNota); // Se crea la variable "POST", "idNota"
 
 	$.ajax({
-		url:"ajax/marcas.ajax.php",
+		url:"ajax/notas.ajax.php",
 		method:"POST",
 		data:datos,
 		cache:false,
@@ -80,9 +81,10 @@ $(".tablaMarcas tbody").on("click","button.btnEditarMarca",function(){
 		dataType:"json",
 		success:function(respuesta){
 			//console.log("respuesta",respuesta);
-			// Viene desde : <div id="modalEditarMarca" class="modal fade" role="dialog">, "marcas.php", se le asigna el valor que se retorno el Ajax.
-			$("#editarMarca").val(respuesta["descripcion"]);
-			$("#idMarca").val(respuesta["id_marca"]); // viene desde el campo oculto de <input type="hidden"  name="idMarca"  id="idMarca" required>
+			// Viene desde : <div id="modalEditarNota" class="modal fade" role="dialog">, "notas.php", se le asigna el valor que se retorno el Ajax.
+			$("#editarNombre_Nota").val(respuesta["nombre_nota"]);
+			$("#editarDescrip_Nota").val(respuesta["descripcion_nota"]);
+			$("#idNota").val(respuesta["id_nota"]); // viene desde el campo oculto de <input type="hidden"  name="idMarca"  id="idMarca" required>
 		}
 
 	}); // $.ajax({ ......
@@ -166,31 +168,31 @@ $("#editarMarca").change(function(){
 }) // $("#nuevaMarca").change(function(){
 
 //=======================================================
-// Eliminar Marca.
+// Eliminar Nota.
 //=======================================================
-// $(".btnEliminarMarca").click(function (){
+// $(".btnEliminarNota").click(function (){
 	// Cuando el documento ya este cargado, busque en cualquier momento la clase ".btnEditarMarca", por lo que no importa si al cargar la primera vez no se haya creado esta clase, pero al hacer click en la clase se ejecutara esta funcion.  
-	$(document).on("click",".btnEliminarMarca",function()
+	$(document).on("click",".btnEliminarNota",function()
 	{	
 
-		// Obteniendo los valores de "idMarca"
-		var idMarca = $(this).attr("idMarca");
+		// Obteniendo los valores de "idNota"
+		var idNota = $(this).attr("idNota");
 
 		Swal.fire ({
-			title: "Esta Seguro De Borrar La Marca",
+			title: "Esta Seguro De Borrar La Nota",
 			text: "Puedes Cancelar La Accion",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonText: "#3085d6",
 			cancelButtonColor: '#d33',
 			cancelButtonText: 'Cancelar',
-			confirmButtonText: 'Si, Borrar La Marca'
+			confirmButtonText: 'Si, Borrar La Nota'
 		}).then(function(result){ 
 			if (result.value)
 			{
-				window.location = "index.php?ruta=marcas&idMarca="+idMarca;
+				window.location = "index.php?ruta=notas&idNota="+idNota;
 			}
 		})	
 
-}) // $(".btnEliminarMarca").click(function(){
+}) // $(".btnEliminarNotaMarca").click(function(){
 

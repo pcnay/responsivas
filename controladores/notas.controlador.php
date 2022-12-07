@@ -49,7 +49,7 @@
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="notas";
+									//window.location="notas";
 								}
 	
 								});
@@ -87,34 +87,35 @@
 
 
 		// ==============================================
-		// Editar Marca
+		// Editar Nota
 		// ==============================================
-		static public function ctrEditarMarca()
+		static public function ctrEditarNota()
 		{
-			if (isset($_POST["editarMarca"]))
+			if (isset($_POST["editarNombre_Nota"]))
 			{
 				//if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarMarca"]))
 				//{
 					// Enviar la información al Modelo.
-					$tabla = "t_Marca";
+					$tabla = "t_Notas";
 					// Se pasan los valores para  la consulta en la base de datos.
-					$datos = array("descripcion"=>$_POST["editarMarca"],
-													"id_marca"=>$_POST["idMarca"]);
+					$datos = array("nombre_nota"=>$_POST["editarNombre_Nota"],
+												"descripcion_nota"=>$_POST["editarDescrip_Nota"],
+													"id_nota"=>$_POST["idNota"]);
 
-					$respuesta = ModeloMarcas::mdlEditarMarca($tabla,$datos);
+					$respuesta = ModeloNotas::mdlEditarNota($tabla,$datos);
 					if ($respuesta == "ok")
 					{
 						echo '<script>           
 						Swal.fire ({
 							type: "success",
-							title: "La Marca ha sido cambiada correctamente ",
+							title: "La Nota ha sido cambiada correctamente ",
 							showConfirmButton: true,
 							confirmButtonText: "Cerrar",
 							closeOnConfirm: false
 							}).then(function(result){
 								if (result.value)
 								{
-									window.location="marcas";
+									// window.location="notas"; */
 								}
 	
 								});
@@ -153,7 +154,7 @@
 		// =========================================
 		// Borrar Marca
 		// =========================================
-		static public function ctrBorrarMarca()
+		static public function ctrBorrarNota()
 		{
 			// "idMarca" = se origina 
 			/*
@@ -164,24 +165,24 @@
 				var idMarca = $(this).attr("idMarca");
 		*/
 
-			if (isset($_GET["idMarca"]))
+			if (isset($_GET["idNota"]))
 			{
-				$tabla = "t_Marca";
-				$datos = $_GET["idMarca"]; // Obtiene el valor.
-				$respuesta = ModeloMarcas::mdlBorrarMarca($tabla,$datos);
+				$tabla = "t_Notas";
+				$datos = $_GET["idNota"]; // Obtiene el valor.
+				$respuesta = ModeloNotas::mdlBorrarNota($tabla,$datos);
 				if ($respuesta = "ok")
 				{
 					echo '<script>           
 					Swal.fire ({
 						type: "success",
-						title: "La Marca ha sido borrado correctamente ",
+						title: "La Nota ha sido borrado correctamente ",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
 						}).then(function(result){
 							if (result.value)
 							{
-								window.location="marcas";
+								//window.location="notas";
 							}
 
 							});
@@ -190,9 +191,9 @@
 
 				} // if ($respuesta = "ok")
 
-			} // if (isset($_GET["idMarca"]))
+			} // if (isset($_GET["idNota"]))
 
-		} // static public function ctrBorrarMarca()
+		} // static public function ctrBorrarNota()
 
   } // class ControladorNotas
 

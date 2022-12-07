@@ -995,7 +995,7 @@ Cuando el usuario oprima el boton de "Editar Producto" se activa esta ventana.
 
 					<div class="form-group">
 						<label for="comentarios">Comentarios:</label>
-						<textarea class="form-control" rows="5" name="editarComent" id="editarComent" placeholder="Comentarios">
+						<textarea class="form-control" rows="5" cols="30" name="editarComent" id="editarComent" placeholder="Comentarios">
 						</textarea>
 					</div>
 

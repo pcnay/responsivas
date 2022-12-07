@@ -35,11 +35,12 @@
 		// ======================================================
 		// Editar Marca.
 		// ======================================================
-		static public function mdlEditarMarca($tabla,$datos)
+		static public function mdlEditarNota($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE id_marca = :id");
-			$stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR); 
-			$stmt->bindParam(":id",$datos["id_marca"],PDO::PARAM_STR); 
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre_nota = :nombre_nota,descripcion_nota = :descripcion_nota WHERE id_nota = :id");
+			$stmt->bindParam(":nombre_nota",$datos["nombre_nota"],PDO::PARAM_STR); 
+			$stmt->bindParam(":descripcion_nota",$datos["descripcion_nota"],PDO::PARAM_STR); 
+			$stmt->bindParam(":id",$datos["id_nota"],PDO::PARAM_STR); 
 
 			if ($stmt->execute())
 			{
@@ -56,14 +57,14 @@
 				return "error";
 			}
 
-		} // static public function mdlEditarMarca($tabla,$datos)
+		} // static public function mdlEditarNota($tabla,$datos)
 
 		// ==============================================
-		// Editar Marca.
+		// Borrar Nota.
 		// ==============================================
-		static public function mdlBorrarMarca($tabla,$datos)
+		static public function mdlBorrarNota($tabla,$datos)
 		{
-			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_marca = :id");
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_nota = :id");
 			
 		 	$stmt->bindParam(":id",$datos,PDO::PARAM_INT); 
 
@@ -81,7 +82,7 @@
 				$stmt=null;
 				return "error";
 			}
-		} // static public function mdlBorrarMarca($tabla,$datos)
+		} // static public function mdlBorrarNota($tabla,$datos)
 
 		// Mostrar Notas
 		// "static" debido a que tiene parámetros.
@@ -103,7 +104,7 @@
 			}
 			else // Cuando son todos los registros
 			{
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre_nota");
+				$stmt = Conexion::conectar()->prepare("SELECT tNotas.id_nota,tUsuarios.nombre AS nombre_Usuario,tNotas.nombre_nota,tNotas.descripcion_nota,tNotas.fecha FROM $tabla tNotas INNER JOIN t_Usuarios tUsuarios ON tNotas.id_usuario = tUsuarios.id_usuario ORDER BY tNotas.id_nota DESC ");
 				$stmt->execute();
 				$registros = $stmt->fetchAll();			
 				// Cerrar la conexion de la instancia de la base de datos.

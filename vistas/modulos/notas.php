@@ -106,7 +106,7 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="nuevaNota" placeholder = "Nombre Nota" id="nuevaNota" required>
+                <input type="text" maxlength="120" class="form-control input-lg" name="nuevaNota" placeholder = "Nombre Nota" id="nuevaNota" required>
               </div> <!-- <div class = "input-group"> -->           
 
             </div> <!-- <div class="form-group"> -->
@@ -147,10 +147,10 @@ Cuando el usuario oprima el boton de "Agregar Categoria" se activa esta ventana.
 Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 -->
 <!-- ================================================
-	 Modal Editar Marca 
+	 Modal Editar Notas 
 	====================================================
 -->
-<div id="modalEditarMarca" class="modal fade" role="dialog">
+<div id="modalEditarNota" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -162,7 +162,7 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
         <!-- La franja azul de la ventana modal -->
         <div class="modal-header" style= "background:#3c8dbc; color:white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Editar Marca</h4>
+          <h4 class="modal-title">Editar Nota</h4>
         </div>
 
 
@@ -172,11 +172,19 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
             <div class="form-group">
               <div class = "input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="editarMarca"  id="editarMarca" required>
-								<!-- Se envía como campo oculto para enviar el "id" de la Marca -->
-								<input type="hidden"  name="idMarca"  id="idMarca" required>
+								<label for="nombre_nota">Nombre Nota:</label>
+                <input type="text" maxlength="120" class="form-control input-lg" name="editarNombre_Nota"  id="editarNombre_Nota" required>
+								<!-- Se envía como campo oculto para enviar el "id" de la Nota -->
+								<input type="hidden"  name="idNota"  id="idNota" required>
               </div> <!-- <div class = "input-group"> -->           
+            </div> <!-- <div class="form-group"> -->
 
+            <div class="form-group">
+              <div class = "input-group">
+								<label for="comentarios">Descripcion Nota:</label>
+								<textarea class="form-control input-lg" rows="5" name="editarDescrip_Nota" id="editarDescrip_Nota" placeholder="">
+								</textarea>
+              </div> <!-- <div class = "input-group"> -->           
             </div> <!-- <div class="form-group"> -->
 
           </div> <!-- <div class="box-body"> -->
@@ -191,8 +199,8 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 
 					<?php 
 						// Para grabar la modifiacion de Marca.
-						$editarMarca = new ControladorMarcas();
-						$editarMarca->ctrEditarMarca();
+						$editarNota = new ControladorNotas();
+						$editarNota->ctrEditarNota();
 					?>
 
       </form>
@@ -205,9 +213,9 @@ Cuando el usuario oprima el boton de "Editar Marca" se activa esta ventana.
 
 <?php 
 	// =====================================================
-	// Para borrar un Marca.
+	// Para borrar una Nota.
 	// =====================================================
 	// Cuando se accese a este archivo, se esta ejecutando permanentemente.
-	$borrarMarca = new ControladorMarcas();
-	$borrarMarca->ctrBorrarMarca();
+	$borrarNota = new ControladorNotas();
+	$borrarNota->ctrBorrarNota();
 ?>
