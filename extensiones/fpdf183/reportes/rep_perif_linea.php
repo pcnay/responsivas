@@ -72,15 +72,15 @@
 			$this->Cell(135,5,$fecha_actual,0,1,'C',0);
       //$this->Cell(10,5,'ID',1,0,'C',0);
 			//$this->Cell(22,5,'MARCA',1,0,'C',0);
-      $this->Cell(25,5,'MODELO',1,0,'C',0);
-			$this->Cell(42,5,'SERIAL',1,0,'C',0);      
-			$this->Cell(35,5,'LINEA',1,0,'C',0);  
-			$this->Cell(35,5,'UBICACION',1,0,'C',0);  
-			$this->Cell(40,5,'ASSET',1,0,'C',0);
+      $this->Cell(20,5,'MODELO',1,0,'C',0);
+			$this->Cell(37,5,'SERIAL',1,0,'C',0);      
+			$this->Cell(30,5,'LINEA',1,0,'C',0);  
+			$this->Cell(40,5,'NOMENCLATURA',1,0,'C',0);  
+			$this->Cell(33,5,'ASSET',1,0,'C',0);
 			$this->Cell(25,5,'NPA',1,0,'C',0); 
-			$this->Cell(18,5,'LOFT',1,0,'C',0); 
+			$this->Cell(22,5,'LOFT',1,0,'C',0); 
 			//$this->Cell(58,5,'ESTACION',1,0,'C',0); 
-			$this->Cell(38,5,'IP',1,1,'C',0); // 1,1 = Salto de Linea
+			$this->Cell(29,5,'IP',1,1,'C',0); // 1,1 = Salto de Linea
     }
     function Footer()
     {
@@ -106,14 +106,14 @@
   for ($n=0;$n<count($Perif_Linea);$n++)
   {
     //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-		$pdf->Cell(25,5,$Perif_Linea[$n]['Modelo'],0,0,'L',0);		
-		$pdf->Cell(42,5,$Perif_Linea[$n]['num_serie'],0,0,'L',0);
-		$pdf->Cell(35,5,$Perif_Linea[$n]['Linea'],0,0,'L',0);
-		$pdf->Cell(35,5,$Perif_Linea[$n]['Ubicacion'],0,0,'L',0);
-		$pdf->Cell(40,5,$Perif_Linea[$n]['asset'],0,0,'L',0);
+		$pdf->Cell(20,5,$Perif_Linea[$n]['Modelo'],0,0,'L',0);		
+		$pdf->Cell(37,5,$Perif_Linea[$n]['num_serie'],0,0,'L',0);
+		$pdf->Cell(30,5,$Perif_Linea[$n]['Linea'],0,0,'L',0);
+		$pdf->Cell(40,5,$Perif_Linea[$n]['nomenclatura'],0,0,'L',0);
+		$pdf->Cell(33,5,$Perif_Linea[$n]['asset'],0,0,'L',0);
 		$pdf->Cell(25,5,$Perif_Linea[$n]['npa'],0,0,'L',0);
-		$pdf->Cell(18,5,$Perif_Linea[$n]['lofware'],0,0,'L',0);
-		$pdf->Cell(38,5,$Perif_Linea[$n]['num_ip'],0,1,'L',0);
+		$pdf->Cell(22,5,$Perif_Linea[$n]['loftware'],0,0,'L',0);
+		$pdf->Cell(29,5,$Perif_Linea[$n]['num_ip'],0,1,'L',0);
 		
     // MultiCell(Ancho,AltoFuente(puntos),'Texto Largo',1=Border 0=SinBorder,'Alineacion',Fondo(0=SinFondo))
 		//$pdf->MultiCell(60,5,$datos2[$n]['observaciones'],0,'L',0);				

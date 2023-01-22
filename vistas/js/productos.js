@@ -802,7 +802,7 @@ $("#editarNumIp").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#nuevaNomenclatura").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9-]+$");
+  var regex = new RegExp("^[A-Z0-9-. ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
@@ -821,7 +821,7 @@ $("#nuevaNomenclatura").change(function(){
 	//let Editar = 'N';
 	//validarCampo(nomenclatura,'Nomenclatura',Editar);
 
-	console.log("Nomenclatura",nomenclatura);
+	//console.log("Nomenclatura",nomenclatura);
 	
 	// Obtener datos de la base de datos
 	var datos = new FormData();
@@ -852,7 +852,7 @@ $("#nuevaNomenclatura").change(function(){
 // Validar los caracteres permitidos 
 // Validar la entrada.
 $("#editarNomenclatura").bind('keypress', function(event) {
-  var regex = new RegExp("^[A-Z0-9-]+$");
+  var regex = new RegExp("^[A-Z0-9-. ]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
