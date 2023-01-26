@@ -72,7 +72,7 @@
 			$this->Cell(135,5,$fecha_actual,0,1,'C',0);
       //$this->Cell(10,5,'ID',1,0,'C',0);
 			//$this->Cell(22,5,'MARCA',1,0,'C',0);
-      $this->Cell(20,5,'MODELO',1,0,'C',0);
+      $this->Cell(33,5,'MODELO',1,0,'C',0);
 			$this->Cell(37,5,'SERIAL',1,0,'C',0);      
 			$this->Cell(30,5,'LINEA',1,0,'C',0);  
 			$this->Cell(40,5,'NOMENCLATURA',1,0,'C',0);  
@@ -106,7 +106,7 @@
   for ($n=0;$n<count($Perif_Linea);$n++)
   {
     //$pdf->Cell(10,5,$datos2[$n]['id_refaccion'],0,0,'L',0);
-		$pdf->Cell(20,5,$Perif_Linea[$n]['Modelo'],0,0,'L',0);		
+		$pdf->Cell(33,5,$Perif_Linea[$n]['Modelo'],0,0,'L',0);		
 		$pdf->Cell(37,5,$Perif_Linea[$n]['num_serie'],0,0,'L',0);
 		$pdf->Cell(30,5,$Perif_Linea[$n]['Linea'],0,0,'L',0);
 		$pdf->Cell(40,5,$Perif_Linea[$n]['nomenclatura'],0,0,'L',0);
